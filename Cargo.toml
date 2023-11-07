@@ -1,0 +1,12 @@
+[package]
+name = "proc-macro-util"
+version = "0.1.0"
+authors = ["Lance Hart <me@lancehart.ca>"]
+edition = "2021"
+description = "Utilities to make writing procedural macros easier"
+repository = "https://github.com/shipsimfan/lib-proc-macro-util"
+license = "GPL-3.0-or-later"
+publish = false
+
+[lib]
+proc-macro = true
