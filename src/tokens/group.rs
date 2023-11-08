@@ -1,5 +1,5 @@
 use crate::{
-    parsing::Parser,
+    parsing::{Parse, Parser},
     tokens::{Delimiter, Span, TokenBuffer},
     Result,
 };
@@ -52,6 +52,12 @@ impl<'a> Group<'a> {
     }
 }
 
+impl<'a> Into<proc_macro::Group> for Group<'a> {
+    fn into(self) -> proc_macro::Group {
+        proc_macro::Group::new(self.delimiter, Parser::new(self.tokens).into())
+    }
+}
+
 macro_rules! delimiter {
     ($name: ident) => {
         #[derive(Clone, Copy)]
@@ -99,6 +105,12 @@ macro_rules! delimiter {
         impl Debug for $name {
             fn fmt(&self, f: &mut Formatter) -> std::fmt::Result {
                 Display::fmt(self, f)
+            }
+        }
+
+        impl<'a> Parse<'a> for $name {
+            fn parse(parser: &mut Parser<'a>) -> Result<Self> {
+                $name::parse_group(parser).map(|(_, this)| this)
             }
         }
     };

@@ -1,6 +1,11 @@
+use proc_macro::Spacing;
+
 use super::Parse;
 use crate::{
-    tokens::{Delimiter, Group, Ident, Punctuation, Span, TokenBuffer, TokenTree, TokenTreeBuffer},
+    tokens::{
+        Delimiter, Group, Ident, Literal, Punctuation, Span, TokenBuffer, TokenStream, TokenTree,
+        TokenTreeBuffer,
+    },
     Error, Result,
 };
 
@@ -36,13 +41,48 @@ impl<'a> Parser<'a> {
         }
     }
 
+    pub fn is_empty(&self) -> bool {
+        self.index >= self.input.len()
+    }
+
     pub fn error<T: std::fmt::Display>(&self, message: T) -> Error {
         Error::new_at(self.span(), message)
     }
 
-    #[allow(unused_variables)]
-    pub fn peek<T: Parse<'a>>(&self, token: T) -> bool {
+    pub fn peek<T: Parse<'a>>(&self) -> bool {
         self.clone().parse::<T>().is_ok()
+    }
+
+    pub fn peek2<T: Parse<'a>>(&self) -> bool {
+        let mut peek = self.clone();
+        Self::skip(&mut peek);
+        peek.peek::<T>()
+    }
+
+    pub fn peek3<T: Parse<'a>>(&self) -> bool {
+        let mut peek = self.clone();
+        Self::skip(&mut peek);
+        Self::skip(&mut peek);
+        peek.peek::<T>()
+    }
+
+    pub fn skip(&mut self) {
+        let len = match match self.current() {
+            Some(current) => current,
+            None => return,
+        } {
+            TokenTree::Punctuation(punct)
+                if punct.as_char() == '\'' && punct.spacing() == Spacing::Joint =>
+            {
+                self.index += 1;
+                let len = if self.peek::<Ident>() { 2 } else { 1 };
+                self.index -= 1;
+                len
+            }
+            _ => 1,
+        };
+
+        self.index += len;
     }
 
     pub fn advance(&mut self) {
@@ -65,7 +105,20 @@ impl<'a> Parser<'a> {
 
     pub fn punctuation(&mut self) -> Option<Punctuation> {
         match self.current()? {
-            TokenTree::Punctuation(punctuation) => Some(punctuation),
+            TokenTree::Punctuation(punctuation) => {
+                self.advance();
+                Some(punctuation)
+            }
+            _ => None,
+        }
+    }
+
+    pub fn literal(&mut self) -> Option<Literal> {
+        match self.current()? {
+            TokenTree::Literal(literal) => {
+                self.advance();
+                Some(literal)
+            }
             _ => None,
         }
     }
@@ -79,7 +132,15 @@ impl<'a> Parser<'a> {
         if group.delimiter() != delimiter {
             None
         } else {
+            self.advance();
             Some(group)
+        }
+    }
+
+    pub fn delimiter(&mut self) -> Option<(Delimiter, Parser<'a>)> {
+        match self.current()? {
+            TokenTree::Group(group) => Some((group.delimiter(), group.parser())),
+            _ => return None,
         }
     }
 
@@ -89,5 +150,22 @@ impl<'a> Parser<'a> {
             *self = parser;
             ret
         })
+    }
+}
+
+impl<'a> Into<TokenStream> for Parser<'a> {
+    fn into(self) -> TokenStream {
+        self.map(|token_tree| -> proc_macro::TokenTree { token_tree.into() })
+            .collect()
+    }
+}
+
+impl<'a> Iterator for Parser<'a> {
+    type Item = TokenTree<'a>;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        let ret = self.current();
+        self.advance();
+        ret
     }
 }

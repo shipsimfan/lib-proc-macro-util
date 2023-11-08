@@ -1,4 +1,7 @@
-use crate::ast::{AssociatedConstant, AssociatedType, Constraint, Expression, Lifetime, Type};
+use crate::{
+    ast::{AssociatedConstant, AssociatedType, Constraint, Expression, Lifetime, Type},
+    parsing::Parse,
+};
 
 #[derive(Clone)]
 pub enum GenericArgument {
@@ -8,4 +11,10 @@ pub enum GenericArgument {
     AssociatedType(AssociatedType),
     AssociatedConstant(AssociatedConstant),
     Constraint(Constraint),
+}
+
+impl<'a> Parse<'a> for GenericArgument {
+    fn parse(parser: &mut crate::parsing::Parser<'a>) -> crate::Result<Self> {
+        todo!()
+    }
 }

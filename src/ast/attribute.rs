@@ -22,7 +22,7 @@ pub struct Attribute {
 impl Attribute {
     pub fn parse_below(parser: &mut Parser) -> Result<Vec<Self>> {
         let mut attributes = Vec::new();
-        while parser.peek(Token! [#]) {
+        while parser.peek::<Token! [#]>() {
             attributes.push(Attribute::parse_single_below(parser)?);
         }
         Ok(attributes)
