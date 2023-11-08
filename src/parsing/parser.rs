@@ -2,6 +2,7 @@ use proc_macro::Spacing;
 
 use super::Parse;
 use crate::{
+    ast::Lifetime,
     tokens::{
         Delimiter, Group, Ident, Literal, Punctuation, Span, TokenBuffer, TokenStream, TokenTree,
         TokenTreeBuffer,
@@ -141,6 +142,24 @@ impl<'a> Parser<'a> {
         match self.current()? {
             TokenTree::Group(group) => Some((group.delimiter(), group.parser())),
             _ => return None,
+        }
+    }
+
+    pub fn lifetime(&mut self) -> Option<Lifetime> {
+        match self.current()? {
+            TokenTree::Punctuation(punctuation)
+                if punctuation.as_char() == '\'' && punctuation.spacing() == Spacing::Joint =>
+            {
+                let mut next = self.clone();
+                self.advance();
+                let ident = next.ident()?;
+                *self = next;
+                Some(Lifetime {
+                    apostrophe: punctuation.span(),
+                    ident,
+                })
+            }
+            _ => None,
         }
     }
 
