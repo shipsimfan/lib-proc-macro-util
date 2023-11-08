@@ -1,18 +1,27 @@
-use crate::{parsing::Parser, Result};
+use crate::{
+    parsing::{Parse, Parser},
+    Result,
+};
 use proc_macro::Span;
+use std::{
+    fmt::{Debug, Display, Formatter},
+    hash::{Hash, Hasher},
+};
 
 macro_rules! keyword {
     ($name: ident $str: literal) => {
+        #[derive(Clone, Copy)]
         pub struct $name {
             pub span: Span,
         }
 
-        #[allow(non_snake_case)]
-        pub fn $name(span: Span) -> $name {
-            $name { span }
+        impl $name {
+            pub fn new(span: Span) -> Self {
+                $name { span }
+            }
         }
 
-        impl Default for $name {
+        impl std::default::Default for $name {
             fn default() -> Self {
                 $name {
                     span: Span::call_site(),
@@ -20,15 +29,15 @@ macro_rules! keyword {
             }
         }
 
-        impl std::fmt::Display for $name {
-            fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        impl Display for $name {
+            fn fmt(&self, f: &mut Formatter) -> std::fmt::Result {
                 f.write_str($str)
             }
         }
 
-        impl std::fmt::Debug for $name {
-            fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-                std::fmt::Display::fmt(self, f)
+        impl Debug for $name {
+            fn fmt(&self, f: &mut Formatter) -> std::fmt::Result {
+                Display::fmt(self, f)
             }
         }
 
@@ -40,8 +49,12 @@ macro_rules! keyword {
 
         impl Eq for $name {}
 
-        impl $crate::parsing::Parse for $name {
-            fn parse(parser: &mut Parser) -> Result<Self> {
+        impl Hash for $name {
+            fn hash<H: Hasher>(&self, _: &mut H) {}
+        }
+
+        impl<'a> Parse<'a> for $name {
+            fn parse(parser: &mut Parser<'a>) -> Result<Self> {
                 Ok($name {
                     span: keyword(parser, $str)?,
                 })
@@ -51,13 +64,15 @@ macro_rules! keyword {
 }
 
 fn keyword(parser: &mut Parser, keyword: &str) -> Result<Span> {
-    if let Some(ident) = parser.ident() {
-        if ident.to_string() == keyword {
-            return Ok(ident.span());
+    parser.step(|parser| {
+        if let Some(ident) = parser.ident() {
+            if ident.to_string() == keyword {
+                return Ok(ident.span());
+            }
         }
-    }
 
-    Err(parser.error(format_args!("expected keyword \"{}\"", keyword)))
+        Err(parser.error(format_args!("expected keyword \"{}\"", keyword)))
+    })
 }
 
 keyword!(Abstract "abstract");
@@ -71,6 +86,7 @@ keyword!(Break "break");
 keyword!(Const "const");
 keyword!(Continue "continue");
 keyword!(Crate "crate");
+keyword!(Default "default");
 keyword!(Do "do");
 keyword!(Dyn "dyn");
 keyword!(Else "else");
@@ -92,9 +108,10 @@ keyword!(Mut "mut");
 keyword!(Override "override");
 keyword!(Priv "priv");
 keyword!(Pub "pub");
+keyword!(Ref "ref");
 keyword!(Return "return");
-keyword!(SelfType "selftype");
-keyword!(SelfValue "selfvalue");
+keyword!(SelfType "Self");
+keyword!(SelfValue "self");
 keyword!(Static "static");
 keyword!(Super "super");
 keyword!(Trait "trait");
