@@ -113,6 +113,7 @@ keyword!(Return "return");
 keyword!(SelfType "Self");
 keyword!(SelfValue "self");
 keyword!(Static "static");
+keyword!(Struct "struct");
 keyword!(Super "super");
 keyword!(Trait "trait");
 keyword!(Try "try");
