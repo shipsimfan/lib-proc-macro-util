@@ -132,3 +132,4 @@ punctuation!(SlashEquals "/=" [2]);
 punctuation!(Asterick "*" [1]);
 punctuation!(AsterickEquals "*=" [2]);
 punctuation!(Tilde "~" [1]);
+punctuation!(Underscore "_" [1]);

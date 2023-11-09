@@ -1,6 +1,7 @@
 use crate::{
     ast::{AssociatedConstant, AssociatedType, Constraint, Expression, Lifetime, Type},
     parsing::Parse,
+    tokens::{Brace, Literal},
     Token,
 };
 
@@ -20,6 +21,16 @@ impl<'a> Parse<'a> for GenericArgument {
             return Ok(GenericArgument::Lifetime(parser.parse()?));
         }
 
-        todo!()
+        if parser.peek::<Literal>() || parser.peek::<Brace>() {
+            return Expression::constant(parser).map(GenericArgument::Constant);
+        }
+
+        todo!();
+        /*        let mut argument: Type = parser.parse()?;
+        match argument {
+            _ => {}
+        }
+
+        Ok(GenericArgument::Type(argument))*/
     }
 }
