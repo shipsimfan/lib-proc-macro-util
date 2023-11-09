@@ -52,5 +52,5 @@ pub use r#type::{
     TypeGroup, TypeImplTrait, TypeInfer, TypeMacro, TypeNever, TypeParentheses, TypePath,
     TypePointer, TypeReference, TypeSlice, TypeTraitObject, TypeTuple,
 };
-pub use statement::Statement;
+pub use statement::{Item, Local, LocalInit, Statement, StatementMacro};
 pub use visibility::{Visibility, VisibilityRestricted};
