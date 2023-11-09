@@ -61,8 +61,7 @@ impl<'a> Parse<'a> for Path {
         let leading_colon = parser.parse()?;
         let segments = {
             let mut segments = Punctuated::new();
-            let mut value = parser.parse()?;
-            segments.push_value(value);
+            segments.push_value(parser.parse()?);
             segments
         };
 
