@@ -52,5 +52,13 @@ pub use r#type::{
     TypeGroup, TypeImplTrait, TypeInfer, TypeMacro, TypeNever, TypeParentheses, TypePath,
     TypePointer, TypeReference, TypeSlice, TypeTraitObject, TypeTuple,
 };
-pub use statement::{Item, Local, LocalInit, Statement, StatementMacro};
+pub use statement::{
+    ForeignItem, ForeignItemFunction, ForeignItemMacro, ForeignItemStatic, ForeignItemType,
+    FunctionArgument, ImplItem, ImplItemConst, ImplItemFn, ImplItemMacro, ImplItemType, Item,
+    ItemConst, ItemEnum, ItemExternCrate, ItemFn, ItemForeignMod, ItemImpl, ItemMacro, ItemMod,
+    ItemStatic, ItemStruct, ItemTrait, ItemTraitAlias, ItemType, ItemUnion, ItemUse, Local,
+    LocalInit, PatternType, Receiver, Signature, Statement, StatementMacro, TraitItem,
+    TraitItemConst, TraitItemFn, TraitItemMacro, TraitItemType, UseGlob, UseGroup, UseName,
+    UsePath, UseRename, UseTree, Variadic,
+};
 pub use visibility::{Visibility, VisibilityRestricted};
