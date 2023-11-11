@@ -7,7 +7,7 @@ mod error;
 mod parse;
 mod parser;
 
-pub use error::{Error, Result};
+pub use error::{Error, ErrorMessage, Result};
 pub use parse::Parse;
 pub use parser::Parser;
 

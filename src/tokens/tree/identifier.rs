@@ -34,6 +34,6 @@ impl Into<proc_macro::Ident> for Identifier {
 
 impl ToTokens for Identifier {
     fn to_tokens(&self, generator: &mut crate::Generator) {
-        generator.identifier_string_with_span(&self.0.to_string(), self.0.span())
+        generator.identifier_string_at(&self.0.to_string(), self.0.span())
     }
 }

@@ -8,8 +8,13 @@ use std::fmt::Display;
 /// An result of parsing macro input
 pub type Result<T> = std::result::Result<T, Error>;
 
-/// An error while parsing macro input
+/// A set of errors while parsing macro input
 pub struct Error {
+    errors: Vec<ErrorMessage>,
+}
+
+/// An error while parsing macro input
+pub struct ErrorMessage {
     /// The span where the error occurred
     span: Span,
 
@@ -18,30 +23,108 @@ pub struct Error {
 }
 
 impl Error {
-    /// Creates a new [`Error`] with span `Span::call_site()`
+    /// Creates a new [`Error`] with one message at `Span::call_site()`
     ///
     /// ## Parameters
     ///  * `message` - The message which will be displayed
     ///
     /// ## Return Value
     /// Returns the newly created [`Error`]
+    ///
+    /// ## Remarks
+    /// For more information, see `ErrorMessage::new()`
     pub fn new<T: Display>(message: T) -> Self {
         Error {
+            errors: vec![ErrorMessage::new(message)],
+        }
+    }
+
+    /// Creates a new [`Error`] with one message
+    ///
+    /// ## Parameters
+    ///  * `message` - The message which will be displayed
+    ///  * `span` - The span that will be used for this error
+    ///
+    /// ## Return Value
+    /// Returns the newly created [`Error`]
+    ///
+    /// ## Remarks
+    /// For more information, see `ErrorMessage::new_at()`
+    pub fn new_at<T: Display>(message: T, span: Span) -> Self {
+        Error {
+            errors: vec![ErrorMessage::new_at(message, span)],
+        }
+    }
+
+    /// Creates a new empty [`Error`]
+    ///
+    /// ## Return Value
+    /// Returns the newly created empty [`Error`]
+    pub fn new_empty() -> Self {
+        Error { errors: Vec::new() }
+    }
+
+    /// Appends a message to this error at `Span::call_site()`
+    ///
+    /// ## Parameters
+    ///  * `message` - The message to be appended
+    ///
+    /// ## Return Value
+    /// Returns this error with the message appended
+    pub fn append<T: Display>(self, message: T) -> Self {
+        self.append_message(ErrorMessage::new(message))
+    }
+
+    /// Appends a message to this error
+    ///
+    /// ## Parameters
+    ///  * `message` - The message to be appended
+    ///  * `span` - The span for the appended error
+    ///
+    /// ## Return Value
+    /// Returns this error with the message appended
+    pub fn append_at<T: Display>(self, message: T, span: Span) -> Self {
+        self.append_message(ErrorMessage::new_at(message, span))
+    }
+
+    /// Appends a message to this error
+    ///
+    /// ## Parameters
+    ///  * `message` - The message to be appended
+    ///
+    /// ## Return Value
+    /// Returns this error with the message appended
+    pub fn append_message(mut self, message: ErrorMessage) -> Self {
+        self.errors.push(message);
+        self
+    }
+}
+
+impl ErrorMessage {
+    /// Creates a new [`ErrorMessage`] at `Span::call_site()`
+    ///
+    /// ## Parameters
+    ///  * `message` - The message which will be displayed
+    ///
+    /// ## Return Value
+    /// Returns the newly created [`ErrorMessage`]
+    pub fn new<T: Display>(message: T) -> Self {
+        ErrorMessage {
             span: Span::call_site(),
             message: message.to_string(),
         }
     }
 
-    /// Creates a new [`Error`]
+    /// Creates a new [`ErrorMessage`]
     ///
     /// ## Parameters
-    ///  * `span` - The span that will be used for this error
     ///  * `message` - The message which will be displayed
+    ///  * `span` - The span that will be used for this error
     ///
     /// ## Return Value
-    /// Returns the newly created [`Error`]
-    pub fn new_at<T: Display>(span: Span, message: T) -> Self {
-        Error {
+    /// Returns the newly created [`ErrorMessage`]
+    pub fn new_at<T: Display>(message: T, span: Span) -> Self {
+        ErrorMessage {
             span,
             message: message.to_string(),
         }
@@ -52,27 +135,65 @@ impl std::error::Error for Error {}
 
 impl std::fmt::Display for Error {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        f.write_str(&self.message)
+        for i in 0..self.errors.len() {
+            write!(f, "{}", self.errors[i])?;
+
+            if i < self.errors.len() - 1 {
+                writeln!(f)?;
+            }
+        }
+
+        Ok(())
     }
 }
 
 impl std::fmt::Debug for Error {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        std::fmt::Display::fmt(self, f)
+        for i in 0..self.errors.len() {
+            write!(f, "{}", self.errors[i])?;
+
+            if i < self.errors.len() - 1 {
+                write!(f, ";")?;
+            }
+        }
+
+        Ok(())
     }
 }
 
 impl ToTokens for Error {
     fn to_tokens(&self, generator: &mut Generator) {
+        for error in &self.errors {
+            error.to_tokens(generator);
+        }
+    }
+}
+
+impl std::error::Error for ErrorMessage {}
+
+impl std::fmt::Display for ErrorMessage {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(&self.message)
+    }
+}
+
+impl std::fmt::Debug for ErrorMessage {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        std::fmt::Display::fmt(self, f)
+    }
+}
+
+impl ToTokens for ErrorMessage {
+    fn to_tokens(&self, generator: &mut Generator) {
         let (start, end) = (self.span.start(), self.span.end());
 
         generator.generate(&DoubleColon::new([start; 2]));
-        generator.identifier_string_with_span("core", start);
+        generator.identifier_string_at("core", start);
         generator.generate(&DoubleColon::new([start; 2]));
-        generator.identifier_string_with_span("compile_error", start);
+        generator.identifier_string_at("compile_error", start);
         generator.generate(&Exclamation::new([start]));
 
-        let mut group = generator.group_span(Delimiter::Brace, end);
-        group.literal_string_with_span(&self.message, end);
+        let mut group = generator.group_at(Delimiter::Brace, end);
+        group.literal_string_at(&self.message, end);
     }
 }
