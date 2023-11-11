@@ -10,11 +10,13 @@
 #[macro_export]
 macro_rules! proc_macro_function {
     ($name: ident::$type_name: ident) => {
+        use $crate::Parse;
+
         mod $name;
 
         #[proc_macro]
         pub fn $name(input: ::proc_macro::TokenStream) -> ::proc_macro::TokenStream {
-            match $name::$type_name::parse(input) {
+            match $crate::parse::<$name::$type_name>(input) {
                 Ok(output) => $crate::generate(output),
                 Err(error) => $crate::generate(error),
             }
