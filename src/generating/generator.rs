@@ -39,8 +39,16 @@ impl<'a> Generator<'a> {
     ///
     /// ## Parameters
     ///  * `identifier` - The string to become the [`Identifier`] to append
+    pub fn identifier_string(&mut self, identifier: &str) {
+        self.identifier_string_with_span(identifier, Span::call_site())
+    }
+
+    /// Appends an [`Identifier`] from a string to the stream
+    ///
+    /// ## Parameters
+    ///  * `identifier` - The string to become the [`Identifier`] to append
     ///  * `span` - The [`Span`] for the new [`Identifier`]
-    pub fn identifier_string(&mut self, identifier: &str, span: Span) {
+    pub fn identifier_string_with_span(&mut self, identifier: &str, span: Span) {
         self.identifier(Identifier::new(identifier, span))
     }
 
@@ -64,9 +72,28 @@ impl<'a> Generator<'a> {
     ///
     /// ## Parameters
     ///  * `literal` - The string to become the [`Literal`] to append
+    pub fn literal_string(&mut self, literal: &str) {
+        self.literal_string_with_span(literal, Span::call_site())
+    }
+
+    /// Appends an [`Literal`] from a string to the stream
+    ///
+    /// ## Parameters
+    ///  * `literal` - The string to become the [`Literal`] to append
     ///  * `span` - The [`Span`] for the new [`Literal`]
-    pub fn literal_string(&mut self, literal: &str, span: Span) {
+    pub fn literal_string_with_span(&mut self, literal: &str, span: Span) {
         self.literal(Literal::new_string(literal, span))
+    }
+
+    /// Appends a group to the stream
+    ///
+    /// ## Parameters
+    ///  * `delimiter` - The [`Delimiter`] for the new group
+    ///
+    /// ## Return Value
+    /// Returns a new generator for the appended group
+    pub fn group<'b>(&'b mut self, delimiter: Delimiter) -> Generator<'b> {
+        self.group_span(delimiter, Span::call_site())
     }
 
     /// Appends a group to the stream
@@ -77,7 +104,7 @@ impl<'a> Generator<'a> {
     ///
     /// ## Return Value
     /// Returns a new generator for the appended group
-    pub fn group<'b>(&'b mut self, delimiter: Delimiter, span: Span) -> Generator<'b> {
+    pub fn group_span<'b>(&'b mut self, delimiter: Delimiter, span: Span) -> Generator<'b> {
         self.tokens.push(OwnedTokenTree::Group(OwnedGroup::new(
             span,
             delimiter,

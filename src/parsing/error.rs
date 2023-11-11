@@ -67,12 +67,12 @@ impl ToTokens for Error {
         let (start, end) = (self.span.start(), self.span.end());
 
         generator.generate(&DoubleColon::new([start; 2]));
-        generator.identifier_string("core", start);
+        generator.identifier_string_with_span("core", start);
         generator.generate(&DoubleColon::new([start; 2]));
-        generator.identifier_string("compile_error", start);
+        generator.identifier_string_with_span("compile_error", start);
         generator.generate(&Exclamation::new([start]));
 
-        let mut group = generator.group(Delimiter::Brace, end);
-        group.literal_string(&self.message, end);
+        let mut group = generator.group_span(Delimiter::Brace, end);
+        group.literal_string_with_span(&self.message, end);
     }
 }
