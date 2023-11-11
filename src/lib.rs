@@ -1,12 +1,24 @@
+//! # lib-proc-macro-util
+//! A library to ease writing procedural macros
+//!
+//! ## Concepts
+//! **TODO**
+//!
+//! ## Usage
+//! **TODO**
+
+#![deny(missing_docs)]
+#![feature(proc_macro_span)]
+
 extern crate proc_macro;
 
-mod derive;
-mod error;
+mod generating;
+mod macros;
+mod parsing;
 
-pub mod ast;
 pub mod tokens;
 
-pub mod parsing;
+pub use generating::{generate, Generator, ToTokens};
+pub use parsing::{parse, Error, Parse, Parser, Result};
 
-pub use derive::DeriveInput;
-pub use error::{Error, Result};
+pub(crate) use parsing::TokenBuffer;

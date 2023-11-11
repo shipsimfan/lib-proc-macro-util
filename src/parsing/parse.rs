@@ -1,33 +1,13 @@
-use super::Parser;
-use crate::{
-    tokens::{Ident, Literal},
-    Result,
-};
+use crate::{Parser, Result};
 
-pub trait Parse<'a>: Sized {
-    fn parse(parser: &mut Parser<'a>) -> Result<Self>;
-}
-
-impl<'a> Parse<'a> for Ident {
-    fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        parser.ident().ok_or(parser.error("expected an identifier"))
-    }
-}
-
-impl<'a> Parse<'a> for Literal {
-    fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        parser
-            .literal()
-            .ok_or(parser.error("expected an identifier"))
-    }
-}
-
-impl<'a, T: Parse<'a>> Parse<'a> for Option<T> {
-    fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        if parser.peek::<T>() {
-            Ok(Some(parser.parse()?))
-        } else {
-            Ok(None)
-        }
-    }
+/// An object that can be created by parsing tokens
+pub trait Parse: Sized {
+    /// Creates this object from parsing tokens
+    ///
+    /// ## Parameters
+    ///  * `parser` - The parser which holds the token stream
+    ///
+    /// ## Return Value
+    /// Returns the newly created object on success.
+    fn parse(parser: &mut Parser) -> Result<Self>;
 }
