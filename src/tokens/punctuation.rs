@@ -41,6 +41,7 @@ punctuation![
     "::" DoubleColon,
     "," Comma,
     "." Dot,
+    "=" Equals,
     "!" Exclamation,
     ";" SemiColon
 ];
