@@ -27,11 +27,19 @@ macro_rules! punctuation {
                 }
             }
         }
+
+        impl ::core::default::Default for $name {
+            fn default() -> Self {
+                Self::new([::proc_macro::Span::call_site(); $literal.len()])
+            }
+        }
     )*};
 }
 
 punctuation![
     ":" Colon,
     "::" DoubleColon,
-    "!" Exclamation
+    "," Comma,
+    "!" Exclamation,
+    ";" SemiColon
 ];
