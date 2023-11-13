@@ -40,6 +40,7 @@ punctuation![
     ":" Colon,
     "::" DoubleColon,
     "," Comma,
+    "." Dot,
     "!" Exclamation,
     ";" SemiColon
 ];
