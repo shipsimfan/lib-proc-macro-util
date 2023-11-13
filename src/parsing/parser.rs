@@ -22,6 +22,15 @@ impl<'a> Parser<'a> {
         T::parse(self)
     }
 
+    /// Checks the next element in the stream without advancing it
+    ///
+    /// ## Return Value
+    /// Returns `true` if the next value in stream is of type `T`
+    pub fn peek<T: Parse>(&self) -> bool {
+        let mut parser = self.clone();
+        parser.parse::<T>().is_ok()
+    }
+
     /// Gets the next token in the stream
     ///
     /// ## Return Value

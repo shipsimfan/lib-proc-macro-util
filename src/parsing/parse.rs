@@ -11,3 +11,13 @@ pub trait Parse: Sized {
     /// Returns the newly created object on success.
     fn parse(parser: &mut Parser) -> Result<Self>;
 }
+
+impl<T: Parse> Parse for Option<T> {
+    fn parse(parser: &mut Parser) -> Result<Self> {
+        if parser.peek::<T>() {
+            parser.parse().map(|value| Some(value))
+        } else {
+            Ok(None)
+        }
+    }
+}
