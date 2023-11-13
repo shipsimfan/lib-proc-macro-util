@@ -1,5 +1,5 @@
 use crate::{
-    tokens::{DoubleColon, Exclamation},
+    tokens::{DoubleColon, Exclamation, SemiColon},
     Generator, ToTokens,
 };
 use proc_macro::{Delimiter, Span};
@@ -187,13 +187,15 @@ impl ToTokens for ErrorMessage {
     fn to_tokens(&self, generator: &mut Generator) {
         let (start, end) = (self.span.start(), self.span.end());
 
-        generator.generate(&DoubleColon::new([start; 2]));
+        DoubleColon::new([start; 2]).to_tokens(generator);
         generator.identifier_string_at("core", start);
-        generator.generate(&DoubleColon::new([start; 2]));
+        DoubleColon::new([start; 2]).to_tokens(generator);
         generator.identifier_string_at("compile_error", start);
-        generator.generate(&Exclamation::new([start]));
+        Exclamation::new([start]).to_tokens(generator);
 
-        let mut group = generator.group_at(Delimiter::Brace, end);
+        let mut group = generator.group_at(Delimiter::Parenthesis, end);
         group.literal_string_at(&self.message, end);
+
+        SemiColon::new([end]).to_tokens(generator);
     }
 }
