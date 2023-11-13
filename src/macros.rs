@@ -16,7 +16,7 @@ macro_rules! proc_macro_function {
 
         #[proc_macro]
         pub fn $name(input: ::proc_macro::TokenStream) -> ::proc_macro::TokenStream {
-            match $crate::parse::<$name::$type_name>(input) {
+            match $crate::parse::<$name::$type_name>(input, true) {
                 Ok(output) => $crate::generate(&output),
                 Err(error) => $crate::generate(&error),
             }

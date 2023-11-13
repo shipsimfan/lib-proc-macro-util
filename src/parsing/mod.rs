@@ -17,11 +17,18 @@ pub(crate) use buffer::TokenBuffer;
 ///
 /// ## Parameters
 ///  * `input` - The [`TokenStream`] to parse
+///  * `full` - If true, this function will verify the full stream was parsed or it will return an
+///             error.
 ///
 /// ## Return Value
 /// Returns the object parsed from `input` on success.
-pub fn parse<T: Parse>(input: proc_macro::TokenStream) -> Result<T> {
+pub fn parse<T: Parse>(input: proc_macro::TokenStream, full: bool) -> Result<T> {
     let token_buffer: TokenBuffer = input.into();
     let mut parser: Parser = (&token_buffer).into();
-    parser.parse()
+    let result = parser.parse()?;
+    if !full || parser.empty() {
+        Ok(result)
+    } else {
+        Err(Error::new("expected the end"))
+    }
 }

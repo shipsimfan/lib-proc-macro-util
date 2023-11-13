@@ -11,6 +11,14 @@ impl TokenBuffer {
         TokenBuffer { tokens: Vec::new() }
     }
 
+    /// Get the number of tokens in the buffer
+    ///
+    /// ## Return Value
+    /// Returns the number of tokens in the buffer
+    pub(crate) fn len(&self) -> usize {
+        self.tokens.len()
+    }
+
     /// Gets the [`TokenTree`] located at `index`
     pub(crate) fn get(&self, index: usize) -> Option<TokenTree> {
         self.tokens.get(index).map(|token| token.into())

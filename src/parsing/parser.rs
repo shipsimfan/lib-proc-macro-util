@@ -22,6 +22,14 @@ impl<'a> Parser<'a> {
         T::parse(self)
     }
 
+    /// Is this stream empty?
+    ///
+    /// ## Return Value
+    /// Returns true if there are no more tokens in the stream
+    pub fn empty(&self) -> bool {
+        self.index >= self.buffer.len()
+    }
+
     /// Checks the next element in the stream without advancing it
     ///
     /// ## Return Value
