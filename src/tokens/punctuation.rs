@@ -1,6 +1,7 @@
 macro_rules! punctuation {
-    [$($literal: literal $name: ident),*] => {$(
+    [$($literal: literal $name: ident)*] => {$(
         #[allow(missing_docs)]
+        #[derive(Clone)]
         pub struct $name {
             spans: [::proc_macro::Span; Self::LEN],
         }
@@ -66,11 +67,11 @@ macro_rules! punctuation {
 }
 
 punctuation![
-    ":" Colon,
-    "::" DoubleColon,
-    "," Comma,
-    "." Dot,
-    "=" Equals,
-    "!" Exclamation,
+    ":" Colon
+    "::" DoubleColon
+    "," Comma
+    "." Dot
+    "=" Equals
+    "!" Exclamation
     ";" SemiColon
 ];

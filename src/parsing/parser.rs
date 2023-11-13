@@ -1,9 +1,9 @@
-use proc_macro::Span;
-
 use crate::{
     tokens::{Group, Identifier, Literal, Punctuation, TokenTree},
-    Parse, Result, TokenBuffer,
+    Error, Parse, Result, TokenBuffer,
 };
+use proc_macro::Span;
+use std::fmt::Display;
 
 /// A source of tokens for parsing
 #[derive(Clone)]
@@ -55,6 +55,17 @@ impl<'a> Parser<'a> {
             },
             None => Span::call_site(),
         }
+    }
+
+    /// Creates an error using the [`Span`] of the next element
+    ///
+    /// ## Parameters
+    ///  * `message` - The message which will be displayed
+    ///
+    /// ## Return Value
+    /// Returns the newly created [`Error`]
+    pub fn error<T: Display>(&self, message: T) -> Error {
+        Error::new_at(message, self.span())
     }
 
     /// Gets the next token in the stream

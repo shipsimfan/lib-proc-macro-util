@@ -27,6 +27,12 @@ impl Identifier {
     }
 }
 
+impl<T: AsRef<str>> PartialEq<T> for Identifier {
+    fn eq(&self, other: &T) -> bool {
+        self.0.to_string() == other.as_ref()
+    }
+}
+
 impl From<proc_macro::Ident> for Identifier {
     fn from(ident: proc_macro::Ident) -> Self {
         Identifier(ident)
