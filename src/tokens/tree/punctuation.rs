@@ -21,6 +21,30 @@ impl Punctuation {
 
         Punctuation(punct)
     }
+
+    /// Get the [`Span`] of this punctuation
+    ///
+    /// ## Return Value
+    /// Returns this punctuation's [`Span`]
+    pub fn span(&self) -> Span {
+        self.0.span()
+    }
+
+    /// Gets this punctuation as it's [`char`] representation
+    ///
+    /// ## Return Value
+    /// Returns this punctuation as a [`char`]
+    pub fn as_char(&self) -> char {
+        self.0.as_char()
+    }
+
+    /// Get the [`Spacing`] of this punctuation
+    ///
+    /// ## Return Value
+    /// Returns this punctuation's [`Spacing`]
+    pub fn spacing(&self) -> Spacing {
+        self.0.spacing()
+    }
 }
 
 impl From<proc_macro::Punct> for Punctuation {

@@ -14,6 +14,16 @@ pub struct Group<'a> {
     pub tokens: Parser<'a>,
 }
 
+impl<'a> Group<'a> {
+    /// Get the [`Span`] of this group
+    ///
+    /// ## Return Value
+    /// Returns this group's [`Span`]
+    pub fn span(&self) -> Span {
+        self.span
+    }
+}
+
 impl<'a> From<&'a OwnedGroup> for Group<'a> {
     fn from(value: &'a OwnedGroup) -> Self {
         Group {

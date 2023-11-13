@@ -17,6 +17,14 @@ impl Identifier {
     pub fn new(identifier: &str, span: Span) -> Self {
         Identifier(proc_macro::Ident::new(identifier, span))
     }
+
+    /// Get the [`Span`] of this identifier
+    ///
+    /// ## Return Value
+    /// Returns this identifier's [`Span`]
+    pub fn span(&self) -> Span {
+        self.0.span()
+    }
 }
 
 impl From<proc_macro::Ident> for Identifier {

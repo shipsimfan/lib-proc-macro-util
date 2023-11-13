@@ -19,6 +19,14 @@ impl Literal {
         literal.set_span(span);
         literal.into()
     }
+
+    /// Get the [`Span`] of this literal
+    ///
+    /// ## Return Value
+    /// Returns this literal's [`Span`]
+    pub fn span(&self) -> Span {
+        self.0.span()
+    }
 }
 
 impl From<proc_macro::Literal> for Literal {

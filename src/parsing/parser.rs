@@ -1,3 +1,5 @@
+use proc_macro::Span;
+
 use crate::{
     tokens::{Group, Identifier, Literal, Punctuation, TokenTree},
     Parse, Result, TokenBuffer,
@@ -39,6 +41,22 @@ impl<'a> Parser<'a> {
         parser.parse::<T>().is_ok()
     }
 
+    /// Get the span of the next element
+    ///
+    /// ## Return Value
+    /// Returns the [`Span`] of the next element or `Span:call_site()` if there is none.
+    pub fn span(&self) -> Span {
+        match self.current() {
+            Some(current) => match current {
+                TokenTree::Group(group) => group.span,
+                TokenTree::Identifier(identifier) => identifier.span(),
+                TokenTree::Literal(literal) => literal.span(),
+                TokenTree::Punctuation(punctuation) => punctuation.span(),
+            },
+            None => Span::call_site(),
+        }
+    }
+
     /// Gets the next token in the stream
     ///
     /// ## Return Value
@@ -47,6 +65,22 @@ impl<'a> Parser<'a> {
         let ret = self.current()?;
         self.advance();
         Some(ret)
+    }
+
+    /// Runs a parsing function only advancing if the parse succeeds
+    ///
+    /// ## Parameters
+    ///  * `f` - The parsing function to be run
+    ///
+    /// ## Return Value
+    /// Returns the value return by `f` on success
+    pub fn step<T, F: FnOnce(&mut Parser) -> Result<T>>(&mut self, f: F) -> Result<T> {
+        let mut parser = self.clone();
+
+        f(&mut parser).map(|value| {
+            *self = parser;
+            value
+        })
     }
 
     /// Parses a [`Group`] from the stream
