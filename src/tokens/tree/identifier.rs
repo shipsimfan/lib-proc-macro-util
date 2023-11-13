@@ -1,6 +1,5 @@
+use crate::{Error, Generator, Parse, Parser, Result, ToTokens};
 use proc_macro::Span;
-
-use crate::ToTokens;
 
 /// An identifier
 #[derive(Clone)]
@@ -32,8 +31,16 @@ impl Into<proc_macro::Ident> for Identifier {
     }
 }
 
+impl Parse for Identifier {
+    fn parse(parser: &mut Parser) -> Result<Self> {
+        parser
+            .identifier()
+            .ok_or(Error::new("expected an identifier"))
+    }
+}
+
 impl ToTokens for Identifier {
-    fn to_tokens(&self, generator: &mut crate::Generator) {
+    fn to_tokens(&self, generator: &mut Generator) {
         generator.identifier_string_at(&self.0.to_string(), self.0.span())
     }
 }

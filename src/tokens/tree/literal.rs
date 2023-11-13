@@ -1,3 +1,4 @@
+use crate::{Error, Generator, Parse, Parser, Result, ToTokens};
 use proc_macro::Span;
 
 /// A string or numeric literal
@@ -29,5 +30,17 @@ impl From<proc_macro::Literal> for Literal {
 impl Into<proc_macro::Literal> for Literal {
     fn into(self) -> proc_macro::Literal {
         self.0
+    }
+}
+
+impl Parse for Literal {
+    fn parse(parser: &mut Parser) -> Result<Self> {
+        parser.literal().ok_or(Error::new("expected an identifier"))
+    }
+}
+
+impl ToTokens for Literal {
+    fn to_tokens(&self, generator: &mut Generator) {
+        generator.literal(self.clone())
     }
 }

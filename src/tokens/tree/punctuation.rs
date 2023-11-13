@@ -1,6 +1,5 @@
+use crate::{Error, Generator, Parse, Parser, Result, ToTokens};
 use proc_macro::{Spacing, Span};
-
-use crate::ToTokens;
 
 /// A single character of punctuation
 #[derive(Clone)]
@@ -36,8 +35,16 @@ impl Into<proc_macro::Punct> for Punctuation {
     }
 }
 
+impl Parse for Punctuation {
+    fn parse(parser: &mut Parser) -> Result<Self> {
+        parser
+            .punctuation()
+            .ok_or(Error::new("expected punctuation"))
+    }
+}
+
 impl ToTokens for Punctuation {
-    fn to_tokens(&self, generator: &mut crate::Generator) {
+    fn to_tokens(&self, generator: &mut Generator) {
         generator.punctuation(self.clone())
     }
 }
