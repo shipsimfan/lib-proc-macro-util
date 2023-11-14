@@ -1,0 +1,10 @@
+[package]
+name = "base"
+description = "Base definitions for lib-proc-macro-utils"
+
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+repository.workspace = true
+license.workspace = true
+publish.workspace = true

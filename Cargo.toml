@@ -1,9 +1,30 @@
-[package]
-name = "proc-macro-util"
+[workspace]
+default-members = ["."]
+members = ["base", "macros"]
+
+[workspace.package]
 version = "0.1.0"
 authors = ["Lance Hart <me@lancehart.ca>"]
 edition = "2021"
-description = "Utilities to make writing procedural macros easier"
 repository = "https://github.com/shipsimfan/lib-proc-macro-util"
 license = "GPL-3.0-or-later"
 publish = false
+
+[workspace.dependencies]
+base.path = "base"
+macros.path = "macros"
+
+[package]
+name = "proc-macro-util"
+description = "Utilities to make writing procedural macros easier"
+
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+repository.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+base.workspace = true
+macros.workspace = true
