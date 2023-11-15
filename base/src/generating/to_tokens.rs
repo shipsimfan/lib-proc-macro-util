@@ -9,6 +9,12 @@ pub trait ToTokens {
     fn to_tokens(&self, generator: &mut Generator);
 }
 
+impl<T: ToTokens> ToTokens for Box<T> {
+    fn to_tokens(&self, generator: &mut Generator) {
+        self.as_ref().to_tokens(generator)
+    }
+}
+
 impl<T: ToTokens> ToTokens for Option<T> {
     fn to_tokens(&self, generator: &mut Generator) {
         if let Some(t) = self {

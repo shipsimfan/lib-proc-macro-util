@@ -1,6 +1,6 @@
 use super::Group;
 use base::{
-    tokens::{Identifier, Literal, Punctuation, TokenTree as RawTokenTree},
+    tokens::{Identifier, Literal, PunctuationToken, TokenTree as RawTokenTree},
     Generator, Parse, Parser, Result, ToTokens, Token,
 };
 use proc_macro::Delimiter;
@@ -9,7 +9,7 @@ pub(super) enum TokenTree {
     Group(Group),
     Identifier(Identifier),
     Literal(Literal),
-    Punctuation(Punctuation),
+    Punctuation(Box<dyn PunctuationToken>),
     Variable(Identifier),
 }
 
@@ -47,7 +47,7 @@ impl TokenTree {
                 Token![!].to_tokens(generator);
 
                 let mut token_parameters = generator.group(Delimiter::Bracket);
-                token_parameters.punctuation(punctuation.clone());
+                token_parameters.generate(punctuation);
 
                 Token![.].to_tokens(generator);
                 generator.identifier_string("to_tokens");
@@ -70,6 +70,19 @@ impl TokenTree {
 
 impl Parse for TokenTree {
     fn parse(parser: &mut Parser) -> Result<Self> {
+        match parser.parse::<Box<dyn PunctuationToken>>() {
+            Ok(punctuation) => {
+                if punctuation.as_str() == "#" {
+                    if let Some(identifier) = parser.identifier() {
+                        return Ok(TokenTree::Variable(identifier));
+                    }
+
+                    return Ok(TokenTree::Punctuation(punctuation));
+                }
+            }
+            Err(_) => {}
+        }
+
         Ok(
             match parser.next().ok_or(parser.error("expected a token tree"))? {
                 RawTokenTree::Group(group) => {
@@ -78,14 +91,7 @@ impl Parse for TokenTree {
                 RawTokenTree::Identifier(identifier) => TokenTree::Identifier(identifier),
                 RawTokenTree::Literal(literal) => TokenTree::Literal(literal),
                 RawTokenTree::Punctuation(punctuation) => {
-                    if punctuation.as_char() != '#' {
-                        return Ok(TokenTree::Punctuation(punctuation));
-                    }
-
-                    match parser.identifier() {
-                        Some(identifier) => TokenTree::Variable(identifier),
-                        None => TokenTree::Punctuation(punctuation),
-                    }
+                    panic!("Unhandled punctuation '{}'", punctuation.as_char())
                 }
             },
         )

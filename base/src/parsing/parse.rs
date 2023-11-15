@@ -12,6 +12,12 @@ pub trait Parse: Sized {
     fn parse(parser: &mut Parser) -> Result<Self>;
 }
 
+impl<T: Parse> Parse for Box<T> {
+    fn parse(parser: &mut Parser) -> Result<Self> {
+        T::parse(parser).map(Box::new)
+    }
+}
+
 impl<T: Parse> Parse for Option<T> {
     fn parse(parser: &mut Parser) -> Result<Self> {
         if parser.peek::<T>() {
