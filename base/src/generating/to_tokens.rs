@@ -8,3 +8,17 @@ pub trait ToTokens {
     ///  * `generator` - The generator taking the tokens
     fn to_tokens(&self, generator: &mut Generator);
 }
+
+impl<T: ToTokens> ToTokens for Option<T> {
+    fn to_tokens(&self, generator: &mut Generator) {
+        if let Some(t) = self {
+            t.to_tokens(generator)
+        }
+    }
+}
+
+impl<T: ToTokens> ToTokens for &T {
+    fn to_tokens(&self, generator: &mut Generator) {
+        (*self).to_tokens(generator)
+    }
+}
