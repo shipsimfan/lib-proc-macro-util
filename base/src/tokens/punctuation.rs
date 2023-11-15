@@ -127,5 +127,6 @@ punctuation![
     "." Dot
     "=" Equals
     "!" Exclamation
+    "#" Hash
     ";" SemiColon
 ];
