@@ -57,7 +57,7 @@ impl TokenTree {
             }
             TokenTree::Variable(variable) => {
                 generator_dot(generator, generator_ident);
-                generator.identifier_string("to_tokens");
+                generator.identifier_string("generate");
 
                 let mut parameters = generator.group(Delimiter::Parenthesis);
                 Token![&].to_tokens(&mut parameters);
