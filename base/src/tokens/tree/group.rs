@@ -15,12 +15,28 @@ pub struct Group<'a> {
 }
 
 impl<'a> Group<'a> {
-    /// Get the [`Span`] of this group
+    /// Gets the [`Span`] of this group
     ///
     /// ## Return Value
     /// Returns this group's [`Span`]
     pub fn span(&self) -> Span {
         self.span
+    }
+
+    /// Gets the [`Delimiter`] surrounding this group
+    ///
+    /// ## Return Value
+    /// Returns the [`Delimiter`] surrounding this group
+    pub fn delimiter(&self) -> Delimiter {
+        self.delimiter
+    }
+
+    /// Gets the tokens in this group
+    ///
+    /// ## Return Value
+    /// Returns the [`Parser`] for the tokens in this group
+    pub fn tokens(&self) -> Parser<'a> {
+        self.tokens.clone()
     }
 }
 

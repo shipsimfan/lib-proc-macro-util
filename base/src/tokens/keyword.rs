@@ -43,4 +43,6 @@ macro_rules! keywords {
 
 keywords! [
     "const" Const
+    "let" Let
+    "mut" Mut
 ];

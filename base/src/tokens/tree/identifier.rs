@@ -25,6 +25,14 @@ impl Identifier {
     pub fn span(&self) -> Span {
         self.0.span()
     }
+
+    /// Converts this identifier to a [`String`]
+    ///
+    /// ## Return Value
+    /// Returns the [`String`] representation of this identifier
+    pub fn to_string(&self) -> String {
+        self.0.to_string()
+    }
 }
 
 impl<T: AsRef<str>> PartialEq<T> for Identifier {

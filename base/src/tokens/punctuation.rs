@@ -67,6 +67,7 @@ macro_rules! punctuation {
 }
 
 punctuation![
+    "&" Ampersand
     ":" Colon
     "::" DoubleColon
     "," Comma
