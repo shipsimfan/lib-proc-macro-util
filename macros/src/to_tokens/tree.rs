@@ -76,9 +76,9 @@ impl Parse for TokenTree {
                     if let Some(identifier) = parser.identifier() {
                         return Ok(TokenTree::Variable(identifier));
                     }
-
-                    return Ok(TokenTree::Punctuation(punctuation));
                 }
+
+                return Ok(TokenTree::Punctuation(punctuation));
             }
             Err(_) => {}
         }
