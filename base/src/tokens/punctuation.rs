@@ -23,8 +23,8 @@ macro_rules! one_punctuation_token_impl {
 
 macro_rules! punctuation_token_impl {
     ($($literal: literal $name: ident),*) => {
-        impl $crate::Parse for Box<dyn PunctuationToken> {
-            fn parse(parser: &mut $crate::Parser) -> $crate::Result<Self> {
+        impl<'a> $crate::Parse<'a> for Box<dyn PunctuationToken> {
+            fn parse(parser: &mut $crate::Parser<'a>) -> $crate::Result<Self> {
                 $(one_punctuation_token_impl!(parser, $literal, $name);)*
 
                 Err(parser.error("expected a punctuation"))
@@ -57,8 +57,8 @@ macro_rules! one_punctuation {
             }
         }
 
-        impl $crate::Parse for $name {
-            fn parse(parser: &mut $crate::Parser) -> $crate::Result<Self> {
+        impl<'a> $crate::Parse<'a> for $name {
+            fn parse(parser: &mut $crate::Parser<'a>) -> $crate::Result<Self> {
                 let mut spans = [parser.span(); Self::LEN];
 
                 parser.step(|parser| {

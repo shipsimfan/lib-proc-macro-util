@@ -12,8 +12,8 @@ pub struct ToTokensMacro {
     tokens: TokenList,
 }
 
-impl Parse for ToTokensMacro {
-    fn parse(parser: &mut Parser) -> base::Result<Self> {
+impl<'a> Parse<'a> for ToTokensMacro {
+    fn parse(parser: &mut Parser<'a>) -> base::Result<Self> {
         Ok(ToTokensMacro {
             generator_ident: parser
                 .parse()

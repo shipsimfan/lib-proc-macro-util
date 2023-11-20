@@ -13,8 +13,8 @@ macro_rules! keywords {
             }
         }
 
-        impl $crate::Parse for $name {
-            fn parse(parser: &mut $crate::Parser) -> $crate::Result<Self> {
+        impl<'a> $crate::Parse<'a> for $name {
+            fn parse(parser: &mut $crate::Parser<'a>) -> $crate::Result<Self> {
                 parser.step(|parser| {
                     if let Some(identifier) = parser.identifier() {
                         if identifier == $literal {

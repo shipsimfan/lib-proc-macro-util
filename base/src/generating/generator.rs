@@ -1,6 +1,6 @@
 use crate::{
     parsing::TokenBuffer,
-    tokens::{Identifier, Literal, OwnedGroup, OwnedTokenTree, Punctuation},
+    tokens::{Identifier, Literal, OwnedGroup, OwnedTokenTree, Punctuation, TokenTree},
     ToTokens,
 };
 use proc_macro::{Delimiter, Span};
@@ -25,6 +25,14 @@ impl<'a> Generator<'a> {
     ///  * `value` - The value to generate tokens for
     pub fn generate<T: ToTokens>(&mut self, value: &T) {
         value.to_tokens(self)
+    }
+
+    /// Appends the token tree into the stream
+    ///
+    /// ## Parameters
+    ///  * `token` - The token tree to append
+    pub fn push(&mut self, token: &TokenTree) {
+        self.tokens.push(token.clone().into())
     }
 
     /// Appends an [`Identifier`] to the stream

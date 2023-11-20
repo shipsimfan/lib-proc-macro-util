@@ -41,8 +41,8 @@ impl Into<proc_macro::Literal> for Literal {
     }
 }
 
-impl Parse for Literal {
-    fn parse(parser: &mut Parser) -> Result<Self> {
+impl<'a> Parse<'a> for Literal {
+    fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         parser.literal().ok_or(Error::new("expected an identifier"))
     }
 }

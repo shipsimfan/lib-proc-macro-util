@@ -53,8 +53,8 @@ impl Into<proc_macro::Ident> for Identifier {
     }
 }
 
-impl Parse for Identifier {
-    fn parse(parser: &mut Parser) -> Result<Self> {
+impl<'a> Parse<'a> for Identifier {
+    fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         parser
             .identifier()
             .ok_or(Error::new("expected an identifier"))

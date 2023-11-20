@@ -1,13 +1,16 @@
-use crate::tokens::{OwnedTokenTree, TokenTree};
+use crate::{
+    tokens::{OwnedTokenTree, TokenTree},
+    ToTokens,
+};
 
 /// A buffer for a stream of tokens to parse
-pub(crate) struct TokenBuffer {
+pub struct TokenBuffer {
     tokens: Vec<OwnedTokenTree>,
 }
 
 impl TokenBuffer {
     /// Creates a new [`TokenBuffer`]
-    pub(crate) fn new() -> Self {
+    pub fn new() -> Self {
         TokenBuffer { tokens: Vec::new() }
     }
 
@@ -15,12 +18,12 @@ impl TokenBuffer {
     ///
     /// ## Return Value
     /// Returns the number of tokens in the buffer
-    pub(crate) fn len(&self) -> usize {
+    pub fn len(&self) -> usize {
         self.tokens.len()
     }
 
     /// Gets the [`TokenTree`] located at `index`
-    pub(crate) fn get(&self, index: usize) -> Option<TokenTree> {
+    pub fn get(&self, index: usize) -> Option<TokenTree> {
         self.tokens.get(index).map(|token| token.into())
     }
 
@@ -57,5 +60,13 @@ impl Into<proc_macro::TokenStream> for TokenBuffer {
             .into_iter()
             .map(|token| -> proc_macro::TokenTree { token.into() })
             .collect()
+    }
+}
+
+impl ToTokens for TokenBuffer {
+    fn to_tokens(&self, generator: &mut crate::Generator) {
+        for token in &self.tokens {
+            generator.push(&token.into())
+        }
     }
 }

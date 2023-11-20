@@ -18,8 +18,8 @@ impl TokenList {
     }
 }
 
-impl Parse for TokenList {
-    fn parse(parser: &mut Parser) -> Result<Self> {
+impl<'a> Parse<'a> for TokenList {
+    fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         let mut tokens = Vec::new();
 
         while !parser.empty() {

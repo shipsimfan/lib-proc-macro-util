@@ -1,6 +1,6 @@
 use crate::{
     tokens::{Group, Identifier, Literal, Punctuation, TokenTree},
-    Error, Parse, Result, TokenBuffer,
+    Error, Parse, Result, ToTokens, TokenBuffer,
 };
 use proc_macro::Span;
 use std::fmt::Display;
@@ -20,7 +20,7 @@ impl<'a> Parser<'a> {
     ///
     /// ## Return Value
     /// Returns the newly created object on success.
-    pub fn parse<T: Parse>(&mut self) -> Result<T> {
+    pub fn parse<T: Parse<'a>>(&mut self) -> Result<T> {
         T::parse(self)
     }
 
@@ -36,7 +36,7 @@ impl<'a> Parser<'a> {
     ///
     /// ## Return Value
     /// Returns `true` if the next value in stream is of type `T`
-    pub fn peek<T: Parse>(&self) -> bool {
+    pub fn peek<T: Parse<'a>>(&self) -> bool {
         let mut parser = self.clone();
         parser.parse::<T>().is_ok()
     }
@@ -175,5 +175,21 @@ impl<'a> Parser<'a> {
 impl<'a> From<&'a TokenBuffer> for Parser<'a> {
     fn from(buffer: &'a TokenBuffer) -> Self {
         Parser { buffer, index: 0 }
+    }
+}
+
+impl<'a> Into<TokenBuffer> for Parser<'a> {
+    fn into(mut self) -> TokenBuffer {
+        let mut token_buffer = TokenBuffer::new();
+        while let Some(token) = self.next() {
+            token_buffer.push(token.into());
+        }
+        token_buffer
+    }
+}
+
+impl<'a> ToTokens for Parser<'a> {
+    fn to_tokens(&self, generator: &mut crate::Generator) {
+        self.buffer.to_tokens(generator);
     }
 }

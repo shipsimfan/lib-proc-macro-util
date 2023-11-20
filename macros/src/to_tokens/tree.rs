@@ -68,8 +68,8 @@ impl TokenTree {
     }
 }
 
-impl Parse for TokenTree {
-    fn parse(parser: &mut Parser) -> Result<Self> {
+impl<'a> Parse<'a> for TokenTree {
+    fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         match parser.parse::<Box<dyn PunctuationToken>>() {
             Ok(punctuation) => {
                 if punctuation.as_str() == "#" {

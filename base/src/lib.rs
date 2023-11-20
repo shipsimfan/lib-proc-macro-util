@@ -10,9 +10,8 @@ mod generating;
 mod macros;
 mod parsing;
 
+pub mod ast;
 pub mod tokens;
 
 pub use generating::{generate, Generator, ToTokens};
-pub use parsing::{parse, Error, ErrorMessage, Parse, Parser, Result};
-
-pub(crate) use parsing::TokenBuffer;
+pub use parsing::{parse, Error, ErrorMessage, Parse, Parser, Result, TokenBuffer};

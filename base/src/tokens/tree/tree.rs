@@ -26,3 +26,14 @@ impl<'a> From<&'a OwnedTokenTree> for TokenTree<'a> {
         }
     }
 }
+
+impl<'a> Into<OwnedTokenTree> for TokenTree<'a> {
+    fn into(self) -> OwnedTokenTree {
+        match self {
+            TokenTree::Group(group) => OwnedTokenTree::Group(group.into()),
+            TokenTree::Identifier(identifier) => OwnedTokenTree::Identifier(identifier.into()),
+            TokenTree::Literal(literal) => OwnedTokenTree::Literal(literal.into()),
+            TokenTree::Punctuation(punctuation) => OwnedTokenTree::Punctuation(punctuation.into()),
+        }
+    }
+}

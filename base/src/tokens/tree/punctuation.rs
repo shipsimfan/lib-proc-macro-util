@@ -59,8 +59,8 @@ impl Into<proc_macro::Punct> for Punctuation {
     }
 }
 
-impl Parse for Punctuation {
-    fn parse(parser: &mut Parser) -> Result<Self> {
+impl<'a> Parse<'a> for Punctuation {
+    fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         parser
             .punctuation()
             .ok_or(Error::new("expected punctuation"))

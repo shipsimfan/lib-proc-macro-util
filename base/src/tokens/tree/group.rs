@@ -1,4 +1,4 @@
-use crate::{parsing::Parser, tokens::OwnedGroup};
+use crate::{parsing::Parser, tokens::OwnedGroup, Parse, ToTokens};
 use proc_macro::{Delimiter, Span};
 
 /// A delimited group of tokens
@@ -47,5 +47,29 @@ impl<'a> From<&'a OwnedGroup> for Group<'a> {
             delimiter: value.delimiter,
             tokens: Parser::from(&value.tokens),
         }
+    }
+}
+
+impl<'a> Into<OwnedGroup> for Group<'a> {
+    fn into(self) -> OwnedGroup {
+        OwnedGroup {
+            span: self.span,
+            delimiter: self.delimiter,
+            tokens: self.tokens.into(),
+        }
+    }
+}
+
+impl<'a> Parse<'a> for Group<'a> {
+    fn parse(parser: &mut Parser<'a>) -> crate::Result<Self> {
+        parser.group().ok_or(parser.error("expected a group"))
+    }
+}
+
+impl<'a> ToTokens for Group<'a> {
+    fn to_tokens(&self, generator: &mut crate::Generator) {
+        generator
+            .group_at(self.delimiter, self.span)
+            .generate(&self.tokens);
     }
 }
