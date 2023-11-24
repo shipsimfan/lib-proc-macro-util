@@ -43,6 +43,9 @@ impl TokenTree {
                 literal.to_tokens(&mut parameters);
             }
             TokenTree::Punctuation(punctuation) => {
+                Token![::].to_tokens(generator);
+                generator.identifier_string("proc_macro_util");
+                Token![::].to_tokens(generator);
                 generator.identifier_string("Token");
                 Token![!].to_tokens(generator);
 
