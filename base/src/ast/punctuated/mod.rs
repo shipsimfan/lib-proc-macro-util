@@ -23,6 +23,19 @@ impl<Element, Seperator> Punctuated<Element, Seperator> {
         }
     }
 
+    /// Gets the number of elements in this list
+    pub fn len(&self) -> usize {
+        self.inner.len() + if self.last.is_some() { 1 } else { 0 }
+    }
+
+    /// Creates a borrowed iterator over the elements
+    pub fn iter(&self) -> Iter<Element, Seperator> {
+        Iter::new(
+            self.inner.iter(),
+            self.last.as_ref().map(|last| last.as_ref()),
+        )
+    }
+
     /// Pushes an element to the end
     ///
     /// ## Parameters
@@ -45,14 +58,6 @@ impl<Element, Seperator> Punctuated<Element, Seperator> {
     pub fn push_seperator(&mut self, seperator: Seperator) {
         assert!(self.last.is_some());
         self.inner.push((*self.last.take().unwrap(), seperator));
-    }
-
-    /// Creates a borrowed iterator over the elements
-    pub fn iter(&self) -> Iter<Element, Seperator> {
-        Iter::new(
-            self.inner.iter(),
-            self.last.as_ref().map(|last| last.as_ref()),
-        )
     }
 }
 
