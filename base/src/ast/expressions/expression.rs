@@ -1,10 +1,9 @@
-use proc_macro::Delimiter;
-
 use crate::{
-    ast::{FunctionCallExpression, MacroCallExpression},
+    ast::{FunctionCallExpression, MacroCallExpression, ReferenceExpression},
     tokens::{Group, Identifier, Literal},
-    Parse, ToTokens,
+    Parse, ToTokens, Token,
 };
+use proc_macro::Delimiter;
 
 /// A Rust expression
 #[derive(Clone)]
@@ -23,6 +22,9 @@ pub enum Expression<'a> {
 
     /// An invocation of a macro
     MacroCall(MacroCallExpression<'a>),
+
+    /// A reference of another expression
+    Reference(ReferenceExpression<'a>),
 
     /// A slice
     Slice(Group<'a>),
@@ -48,6 +50,10 @@ impl<'a> Parse<'a> for Expression<'a> {
             Ok(Expression::Identifier(identifier))
         } else if let Some(literal) = parser.literal() {
             Ok(Expression::Literal(literal))
+        } else if parser.peek::<Token![&]>() {
+            parser
+                .parse()
+                .map(|reference| Expression::Reference(reference))
         } else {
             Err(parser.error("expected an expression"))
         }
@@ -62,6 +68,7 @@ impl<'a> ToTokens for Expression<'a> {
             Expression::Identifier(identifier) => identifier.to_tokens(generator),
             Expression::Literal(literal) => literal.to_tokens(generator),
             Expression::MacroCall(macro_call) => macro_call.to_tokens(generator),
+            Expression::Reference(reference) => reference.to_tokens(generator),
             Expression::Slice(slice) => slice.to_tokens(generator),
         }
     }
