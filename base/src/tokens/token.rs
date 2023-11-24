@@ -12,5 +12,8 @@ macro_rules! Token {
     [=] => { $crate::tokens::Equals::default() };
     [!] => { $crate::tokens::Exclamation::default() };
     [#] => { $crate::tokens::Hash::default() };
+    [<] => { $crate::tokens::LeftTriangle::default() };
+    [->] => { $crate::tokens::RightArrow::default() };
+    [>] => { $crate::tokens::RightTriangle::default() };
     [;] => { $crate::tokens::SemiColon::default() };
 }

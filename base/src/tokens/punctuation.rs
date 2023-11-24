@@ -121,12 +121,16 @@ macro_rules! punctuation {
 
 punctuation![
     "::" DoubleColon
+    "->" RightArrow
     "&" Ampersand
     ":" Colon
     "," Comma
+    "-" Dash
     "." Dot
     "=" Equals
     "!" Exclamation
     "#" Hash
+    "<" LeftTriangle
+    ">" RightTriangle
     ";" SemiColon
 ];
