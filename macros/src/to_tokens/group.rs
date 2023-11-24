@@ -20,20 +20,20 @@ impl Group {
             Identifier::new(&format!("{BASE_GENERATOR_NAME}{id}"), Span::call_site());
         *id += 1;
 
-        Token![let].to_tokens(generator);
-        Token![mut].to_tokens(generator);
+        Token![let]().to_tokens(generator);
+        Token![mut]().to_tokens(generator);
         generator.identifier(new_generator_ident.clone());
-        Token![=].to_tokens(generator);
+        Token![=]().to_tokens(generator);
         generator.identifier(generator_ident.clone());
-        Token![.].to_tokens(generator);
+        Token![.]().to_tokens(generator);
         generator.identifier_string("group");
 
         let mut parameters = generator.group(Delimiter::Parenthesis);
-        Token![::].to_tokens(&mut parameters);
+        Token![::]().to_tokens(&mut parameters);
         parameters.identifier_string("proc_macro_util");
-        Token![::].to_tokens(&mut parameters);
+        Token![::]().to_tokens(&mut parameters);
         parameters.identifier_string("Delimiter");
-        Token![::].to_tokens(&mut parameters);
+        Token![::]().to_tokens(&mut parameters);
         parameters.identifier_string(match self.delimiter {
             Delimiter::Brace => "Brace",
             Delimiter::Bracket => "Bracket",
@@ -41,7 +41,7 @@ impl Group {
             Delimiter::Parenthesis => "Parenthesis",
         });
 
-        Token![;].to_tokens(generator);
+        Token![;]().to_tokens(generator);
 
         self.tokens
             .to_tokens(generator, &new_generator_ident, true, id);

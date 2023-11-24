@@ -6,6 +6,12 @@ macro_rules! keywords {
             pub span: ::proc_macro::Span,
         }
 
+        #[allow(missing_docs)]
+        #[allow(non_snake_case)]
+        pub fn $name() -> $name {
+            $name::default()
+        }
+
         impl $name {
             #[allow(missing_docs)]
             pub fn new(span: ::proc_macro::Span) -> Self {

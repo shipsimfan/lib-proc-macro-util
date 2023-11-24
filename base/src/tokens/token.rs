@@ -1,19 +1,19 @@
 /// Creates a token with span `Span::call_site()`
 #[macro_export]
 macro_rules! Token {
-    [const] => { $crate::tokens::Const::default() };
-    [let] => { $crate::tokens::Let::default() };
-    [mut] => { $crate::tokens::Mut::default() };
-    [&] => { $crate::tokens::Ampersand::default() };
-    [:] => { $crate::tokens::Colon::default() };
-    [::] => { $crate::tokens::DoubleColon::default() };
-    [,] => { $crate::tokens::Comma::default() };
-    [.] => { $crate::tokens::Dot::default() };
-    [=] => { $crate::tokens::Equals::default() };
-    [!] => { $crate::tokens::Exclamation::default() };
-    [#] => { $crate::tokens::Hash::default() };
-    [<] => { $crate::tokens::LeftTriangle::default() };
-    [->] => { $crate::tokens::RightArrow::default() };
-    [>] => { $crate::tokens::RightTriangle::default() };
-    [;] => { $crate::tokens::SemiColon::default() };
+    [const] => { $crate::tokens::Const };
+    [let] => { $crate::tokens::Let };
+    [mut] => { $crate::tokens::Mut };
+    [&] => { $crate::tokens::Ampersand };
+    [:] => { $crate::tokens::Colon };
+    [::] => { $crate::tokens::DoubleColon };
+    [,] => { $crate::tokens::Comma };
+    [.] => { $crate::tokens::Dot };
+    [=] => { $crate::tokens::Equals };
+    [!] => { $crate::tokens::Exclamation };
+    [#] => { $crate::tokens::Hash };
+    [<] => { $crate::tokens::LeftTriangle };
+    [->] => { $crate::tokens::RightArrow };
+    [>] => { $crate::tokens::RightTriangle };
+    [;] => { $crate::tokens::SemiColon };
 }

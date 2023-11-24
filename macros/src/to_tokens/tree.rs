@@ -15,7 +15,7 @@ pub(super) enum TokenTree {
 
 fn generator_dot(generator: &mut Generator, ident: &Identifier) {
     generator.identifier(ident.clone());
-    Token![.].to_tokens(generator);
+    Token![.]().to_tokens(generator);
 }
 
 impl TokenTree {
@@ -40,26 +40,27 @@ impl TokenTree {
                 generator.identifier_string("generate");
 
                 let mut parameters = generator.group(Delimiter::Parenthesis);
-                Token![&].to_tokens(&mut parameters);
+                Token![&]().to_tokens(&mut parameters);
                 literal.to_tokens(&mut parameters);
             }
             TokenTree::Punctuation(punctuation) => {
-                Token![::].to_tokens(generator);
+                Token![::]().to_tokens(generator);
                 generator.identifier_string("proc_macro_util");
-                Token![::].to_tokens(generator);
+                Token![::]().to_tokens(generator);
                 generator.identifier_string("Token");
-                Token![!].to_tokens(generator);
+                Token![!]().to_tokens(generator);
 
                 let mut token_parameters = generator.group(Delimiter::Bracket);
                 token_parameters.generate(punctuation);
 
-                Token![.].to_tokens(generator);
+                generator.group(Delimiter::Parenthesis);
+                Token![.]().to_tokens(generator);
                 generator.identifier_string("to_tokens");
 
                 let mut parameters = generator.group(Delimiter::Parenthesis);
                 if generator_ref {
-                    Token![&].to_tokens(&mut parameters);
-                    Token![mut].to_tokens(&mut parameters);
+                    Token![&]().to_tokens(&mut parameters);
+                    Token![mut]().to_tokens(&mut parameters);
                 }
                 parameters.identifier(generator_ident.clone());
             }
@@ -68,11 +69,11 @@ impl TokenTree {
                 generator.identifier_string("generate");
 
                 let mut parameters = generator.group(Delimiter::Parenthesis);
-                Token![&].to_tokens(&mut parameters);
+                Token![&]().to_tokens(&mut parameters);
                 parameters.identifier(variable.clone());
             }
         }
-        Token![;].to_tokens(generator);
+        Token![;]().to_tokens(generator);
     }
 }
 

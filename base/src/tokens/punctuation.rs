@@ -41,6 +41,12 @@ macro_rules! one_punctuation {
             spans: [::proc_macro::Span; Self::LEN],
         }
 
+        #[allow(missing_docs)]
+        #[allow(non_snake_case)]
+        pub fn $name() -> $name {
+            $name::default()
+        }
+
         impl $name {
             #[allow(missing_docs)]
             pub const LEN: usize = $literal.len();
