@@ -1,5 +1,9 @@
 use crate::ToTokens;
 
+mod iter;
+
+pub use iter::{IntoIter, Iter};
+
 /// A series of `Element`s punctuated by `Seperator`s
 #[derive(Clone)]
 pub struct Punctuated<Element, Seperator> {
@@ -42,6 +46,14 @@ impl<Element, Seperator> Punctuated<Element, Seperator> {
         assert!(self.last.is_some());
         self.inner.push((*self.last.take().unwrap(), seperator));
     }
+
+    /// Creates a borrowed iterator over the elements
+    pub fn iter(&self) -> Iter<Element, Seperator> {
+        Iter::new(
+            self.inner.iter(),
+            self.last.as_ref().map(|last| last.as_ref()),
+        )
+    }
 }
 
 impl<Element: ToTokens, Seperator: ToTokens> ToTokens for Punctuated<Element, Seperator> {
@@ -52,5 +64,23 @@ impl<Element: ToTokens, Seperator: ToTokens> ToTokens for Punctuated<Element, Se
         }
 
         self.last.to_tokens(generator);
+    }
+}
+
+impl<Element, Seperator> IntoIterator for Punctuated<Element, Seperator> {
+    type IntoIter = IntoIter<Element, Seperator>;
+    type Item = (Element, Option<Seperator>);
+
+    fn into_iter(self) -> Self::IntoIter {
+        IntoIter::new(self.inner.into_iter(), self.last)
+    }
+}
+
+impl<'a, Element, Seperator> IntoIterator for &'a Punctuated<Element, Seperator> {
+    type IntoIter = Iter<'a, Element, Seperator>;
+    type Item = (&'a Element, Option<&'a Seperator>);
+
+    fn into_iter(self) -> Self::IntoIter {
+        self.iter()
     }
 }
