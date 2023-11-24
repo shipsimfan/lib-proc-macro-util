@@ -7,7 +7,9 @@ use proc_macro::TokenStream;
 mod expressions;
 mod path;
 mod punctuated;
+mod r#type;
 
 pub use expressions::*;
 pub use path::*;
 pub use punctuated::Punctuated;
+pub use r#type::Type;
