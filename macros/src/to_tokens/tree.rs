@@ -23,6 +23,7 @@ impl TokenTree {
         &self,
         generator: &mut Generator,
         generator_ident: &Identifier,
+        generator_ref: bool,
         id: &mut usize,
     ) {
         match self {
@@ -56,6 +57,10 @@ impl TokenTree {
                 generator.identifier_string("to_tokens");
 
                 let mut parameters = generator.group(Delimiter::Parenthesis);
+                if generator_ref {
+                    Token![&].to_tokens(&mut parameters);
+                    Token![mut].to_tokens(&mut parameters);
+                }
                 parameters.identifier(generator_ident.clone());
             }
             TokenTree::Variable(variable) => {

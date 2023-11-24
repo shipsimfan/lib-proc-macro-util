@@ -10,10 +10,11 @@ impl TokenList {
         &self,
         generator: &mut Generator,
         generator_ident: &Identifier,
+        generator_ref: bool,
         id: &mut usize,
     ) {
         for token in &self.tokens {
-            token.to_tokens(generator, generator_ident, id);
+            token.to_tokens(generator, generator_ident, generator_ref, id);
         }
     }
 }

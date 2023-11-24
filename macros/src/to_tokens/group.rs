@@ -43,7 +43,8 @@ impl Group {
 
         Token![;].to_tokens(generator);
 
-        self.tokens.to_tokens(generator, &new_generator_ident, id);
+        self.tokens
+            .to_tokens(generator, &new_generator_ident, true, id);
     }
 }
 

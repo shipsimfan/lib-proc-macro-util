@@ -27,6 +27,6 @@ impl ToTokens for ToTokensMacro {
     fn to_tokens(&self, generator: &mut Generator) {
         let mut id = 0;
         self.tokens
-            .to_tokens(generator, &self.generator_ident, &mut id);
+            .to_tokens(generator, &self.generator_ident, false, &mut id);
     }
 }
