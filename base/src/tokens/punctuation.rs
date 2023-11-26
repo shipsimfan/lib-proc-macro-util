@@ -129,6 +129,7 @@ punctuation![
     "::" DoubleColon
     "->" RightArrow
     "&" Ampersand
+    "'" Apostrophe
     ":" Colon
     "," Comma
     "-" Dash
