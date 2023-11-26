@@ -27,10 +27,10 @@ impl<'a> Parse<'a> for GenericArguments {
         let left_triangle = parser.parse()?;
 
         let mut arguments = Punctuated::new();
-        while !parser.peek::<Token![<]>() {
+        while !parser.peek::<Token![>]>() {
             arguments.push_element(parser.parse()?);
 
-            if parser.peek::<Token![<]>() {
+            if parser.peek::<Token![>]>() {
                 break;
             }
 
