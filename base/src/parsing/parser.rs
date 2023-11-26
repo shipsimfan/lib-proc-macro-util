@@ -85,7 +85,7 @@ impl<'a> Parser<'a> {
     ///
     /// ## Return Value
     /// Returns the value return by `f` on success
-    pub fn step<T, F: FnOnce(&mut Parser) -> Result<T>>(&mut self, f: F) -> Result<T> {
+    pub fn step<T, F: FnOnce(&mut Parser<'a>) -> Result<T>>(&mut self, f: F) -> Result<T> {
         let mut parser = self.clone();
 
         f(&mut parser).map(|value| {

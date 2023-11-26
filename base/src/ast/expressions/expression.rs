@@ -1,5 +1,8 @@
 use crate::{
-    ast::{FunctionCallExpression, MacroCallExpression, ReferenceExpression},
+    ast::{
+        AccessorExpression, FunctionAccessorExpression, FunctionCallExpression,
+        MacroCallExpression, ReferenceExpression,
+    },
     tokens::{Group, Identifier, Literal},
     Parse, ToTokens, Token,
 };
@@ -8,8 +11,14 @@ use proc_macro::Delimiter;
 /// A Rust expression
 #[derive(Clone)]
 pub enum Expression<'a> {
+    /// An accessor of an item member
+    Accessor(AccessorExpression<'a>),
+
     /// A block of statements
     Block(Group<'a>),
+
+    /// An invocation of a member function
+    FunctionAccessor(FunctionAccessorExpression<'a>),
 
     /// An invocation of a function
     FunctionCall(FunctionCallExpression<'a>),
@@ -32,7 +41,7 @@ pub enum Expression<'a> {
 
 impl<'a> Parse<'a> for Expression<'a> {
     fn parse(parser: &mut crate::Parser<'a>) -> crate::Result<Self> {
-        if parser.peek::<MacroCallExpression>() {
+        let expression = if parser.peek::<MacroCallExpression>() {
             parser
                 .parse()
                 .map(|macro_call| Expression::MacroCall(macro_call))
@@ -56,6 +65,19 @@ impl<'a> Parse<'a> for Expression<'a> {
                 .map(|reference| Expression::Reference(reference))
         } else {
             Err(parser.error("expected an expression"))
+        }?;
+
+        if parser.peek::<Token![.]>() {
+            if let Ok(function_accessor) = parser.step(|parser| {
+                FunctionAccessorExpression::parse(Box::new(expression.clone()), parser)
+            }) {
+                Ok(Expression::FunctionAccessor(function_accessor))
+            } else {
+                AccessorExpression::parse(Box::new(expression), parser)
+                    .map(|accessor| Expression::Accessor(accessor))
+            }
+        } else {
+            Ok(expression)
         }
     }
 }
@@ -63,7 +85,11 @@ impl<'a> Parse<'a> for Expression<'a> {
 impl<'a> ToTokens for Expression<'a> {
     fn to_tokens(&self, generator: &mut crate::Generator) {
         match self {
+            Expression::Accessor(accessor) => accessor.to_tokens(generator),
             Expression::Block(block) => block.to_tokens(generator),
+            Expression::FunctionAccessor(function_accessor) => {
+                function_accessor.to_tokens(generator)
+            }
             Expression::FunctionCall(function_call) => function_call.to_tokens(generator),
             Expression::Identifier(identifier) => identifier.to_tokens(generator),
             Expression::Literal(literal) => literal.to_tokens(generator),
