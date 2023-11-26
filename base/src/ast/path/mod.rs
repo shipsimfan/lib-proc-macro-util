@@ -1,8 +1,10 @@
-use super::Punctuated;
-use crate::{
-    tokens::{DoubleColon, Identifier},
-    Parse, ToTokens,
-};
+use crate::{ast::Punctuated, Parse, ToTokens, Token};
+
+mod generic_arguments;
+mod segment;
+
+pub use generic_arguments::GenericArguments;
+pub use segment::PathSegment;
 
 /// A path to an item
 ///
@@ -10,10 +12,10 @@ use crate::{
 #[derive(Clone)]
 pub struct Path {
     /// The leading colon
-    pub leading: Option<DoubleColon>,
+    pub leading: Option<Token![::]>,
 
     /// The segments of the path
-    pub segments: Punctuated<Identifier, DoubleColon>,
+    pub segments: Punctuated<PathSegment, Token![::]>,
 }
 
 impl<'a> Parse<'a> for Path {
@@ -25,7 +27,7 @@ impl<'a> Parse<'a> for Path {
         // Push the first element garunteed
         segments.push_element(parser.parse()?);
 
-        while parser.peek::<DoubleColon>() {
+        while parser.peek::<Token![::]>() {
             segments.push_seperator(parser.parse()?);
             segments.push_element(parser.parse()?);
         }

@@ -1,8 +1,4 @@
-use crate::{
-    ast::Expression,
-    tokens::{Dot, Identifier},
-    Generator, Parser, Result, ToTokens,
-};
+use crate::{ast::Expression, tokens::Identifier, Generator, Parser, Result, ToTokens, Token};
 
 /// An expression accessing a member of an item
 ///
@@ -10,7 +6,7 @@ use crate::{
 #[derive(Clone)]
 pub struct AccessorExpression<'a> {
     expression: Box<Expression<'a>>,
-    dot: Dot,
+    dot: Token![.],
     identifier: Identifier,
 }
 

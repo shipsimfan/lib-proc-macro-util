@@ -16,4 +16,5 @@ macro_rules! Token {
     [->] => { $crate::tokens::RightArrow };
     [>] => { $crate::tokens::RightTriangle };
     [;] => { $crate::tokens::SemiColon };
+    [_] => { $crate::tokens::Underscore };
 }

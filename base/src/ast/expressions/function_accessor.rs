@@ -1,7 +1,6 @@
 use crate::{
     ast::{Expression, FunctionCallExpression},
-    tokens::Dot,
-    Parser, Result, ToTokens,
+    Parser, Result, ToTokens, Token,
 };
 
 /// An expression calling a function on an item
@@ -10,7 +9,7 @@ use crate::{
 #[derive(Clone)]
 pub struct FunctionAccessorExpression<'a> {
     expression: Box<Expression<'a>>,
-    dot: Dot,
+    dot: Token![.],
     function_call: FunctionCallExpression<'a>,
 }
 

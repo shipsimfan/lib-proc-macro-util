@@ -1,20 +1,30 @@
-use crate::{ast::Path, Parse, Parser, Result, ToTokens};
+use crate::{ast::Path, Generator, Parse, Parser, Result, ToTokens, Token};
 
 /// A Rust type
-pub struct Type {
-    path: Path,
+#[derive(Clone)]
+pub enum Type {
+    /// A type that is infered by context
+    Inference(Token![_]),
+
+    /// A path to a type
+    Path(Path),
 }
 
 impl<'a> Parse<'a> for Type {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        let path = parser.parse()?;
-
-        Ok(Type { path })
+        if parser.peek::<Token![_]>() {
+            Ok(Type::Inference(parser.parse()?))
+        } else {
+            Ok(Type::Path(parser.parse()?))
+        }
     }
 }
 
 impl ToTokens for Type {
-    fn to_tokens(&self, generator: &mut crate::Generator) {
-        self.path.to_tokens(generator);
+    fn to_tokens(&self, generator: &mut Generator) {
+        match self {
+            Type::Inference(underscore) => underscore.to_tokens(generator),
+            Type::Path(path) => path.to_tokens(generator),
+        }
     }
 }

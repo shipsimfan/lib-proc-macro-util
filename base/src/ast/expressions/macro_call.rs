@@ -1,8 +1,4 @@
-use crate::{
-    ast::Path,
-    tokens::{Exclamation, Group},
-    Parse, Parser, ToTokens,
-};
+use crate::{ast::Path, tokens::Group, Parse, Parser, ToTokens, Token};
 
 /// A macro call expression
 ///
@@ -13,7 +9,7 @@ pub struct MacroCallExpression<'a> {
     pub path: Path,
 
     /// The excalmation mark
-    pub exclamation: Exclamation,
+    pub exclamation: Token![!],
 
     /// The body of the macro
     pub group: Group<'a>,

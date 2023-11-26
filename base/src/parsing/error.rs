@@ -1,7 +1,4 @@
-use crate::{
-    tokens::{DoubleColon, Exclamation, SemiColon},
-    Generator, ToTokens,
-};
+use crate::{Generator, ToTokens, Token};
 use proc_macro::{Delimiter, Span};
 use std::fmt::Display;
 
@@ -187,15 +184,15 @@ impl ToTokens for ErrorMessage {
     fn to_tokens(&self, generator: &mut Generator) {
         let (start, end) = (self.span.start(), self.span.end());
 
-        DoubleColon::new([start; 2]).to_tokens(generator);
+        <Token![::]>::new([start; 2]).to_tokens(generator);
         generator.identifier_string_at("core", start);
-        DoubleColon::new([start; 2]).to_tokens(generator);
+        <Token![::]>::new([start; 2]).to_tokens(generator);
         generator.identifier_string_at("compile_error", start);
-        Exclamation::new([start]).to_tokens(generator);
+        <Token![!]>::new([start]).to_tokens(generator);
 
         let mut group = generator.group_at(Delimiter::Parenthesis, end);
         group.literal_string_at(&self.message, end);
 
-        SemiColon::new([end]).to_tokens(generator);
+        <Token![;]>::new([end]).to_tokens(generator);
     }
 }

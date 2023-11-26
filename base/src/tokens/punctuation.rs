@@ -139,4 +139,5 @@ punctuation![
     "<" LeftTriangle
     ">" RightTriangle
     ";" SemiColon
+    "_" Underscore
 ];

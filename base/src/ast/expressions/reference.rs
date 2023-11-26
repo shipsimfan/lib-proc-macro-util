@@ -1,8 +1,4 @@
-use crate::{
-    ast::Expression,
-    tokens::{Ampersand, Mut},
-    Parse, Parser, ToTokens,
-};
+use crate::{ast::Expression, Parse, Parser, ToTokens, Token};
 
 /// A reference expression
 ///
@@ -10,10 +6,10 @@ use crate::{
 #[derive(Clone)]
 pub struct ReferenceExpression<'a> {
     /// The ampersand indicating the reference
-    pub ampersand: Ampersand,
+    pub ampersand: Token![&],
 
     /// Is this a mutable reference
-    pub r#mut: Option<Mut>,
+    pub r#mut: Option<Token![mut]>,
 
     /// The expression being referenced
     pub expression: Box<Expression<'a>>,
