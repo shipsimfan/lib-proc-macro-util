@@ -41,7 +41,7 @@ pub enum Expression<'a> {
 
 impl<'a> Parse<'a> for Expression<'a> {
     fn parse(parser: &mut crate::Parser<'a>) -> crate::Result<Self> {
-        let expression = if parser.peek::<MacroCallExpression>() {
+        let mut expression = if parser.peek::<MacroCallExpression>() {
             parser
                 .parse()
                 .map(|macro_call| Expression::MacroCall(macro_call))
@@ -67,18 +67,18 @@ impl<'a> Parse<'a> for Expression<'a> {
             Err(parser.error("expected an expression"))
         }?;
 
-        if parser.peek::<Token![.]>() {
-            if let Ok(function_accessor) = parser.step(|parser| {
+        while parser.peek::<Token![.]>() {
+            expression = if let Ok(function_accessor) = parser.step(|parser| {
                 FunctionAccessorExpression::parse(Box::new(expression.clone()), parser)
             }) {
                 Ok(Expression::FunctionAccessor(function_accessor))
             } else {
                 AccessorExpression::parse(Box::new(expression), parser)
                     .map(|accessor| Expression::Accessor(accessor))
-            }
-        } else {
-            Ok(expression)
+            }?;
         }
+
+        Ok(expression)
     }
 }
 
