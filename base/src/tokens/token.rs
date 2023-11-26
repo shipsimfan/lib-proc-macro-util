@@ -5,6 +5,7 @@ macro_rules! Token {
     [let] => { $crate::tokens::Let };
     [mut] => { $crate::tokens::Mut };
     [&] => { $crate::tokens::Ampersand };
+    ['_] => { $crate::tokens::Apostrophe };
     [:] => { $crate::tokens::Colon };
     [::] => { $crate::tokens::DoubleColon };
     [,] => { $crate::tokens::Comma };
