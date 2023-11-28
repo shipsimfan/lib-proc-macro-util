@@ -141,4 +141,5 @@ punctuation![
     ">" RightTriangle
     ";" SemiColon
     "_" Underscore
+    "|" VerticalBar
 ];
