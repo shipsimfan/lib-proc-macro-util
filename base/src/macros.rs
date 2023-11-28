@@ -10,8 +10,6 @@
 #[macro_export]
 macro_rules! proc_macro_function {
     ($name: ident::$type_name: ident) => {
-        use $crate::Parse;
-
         mod $name;
 
         #[proc_macro]
