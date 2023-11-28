@@ -9,10 +9,11 @@
 ///  * `$type_name` - The name of the type to parse
 #[macro_export]
 macro_rules! proc_macro_function {
-    ($name: ident::$type_name: ident) => {
+    ($(#[$outer: meta])* $name: ident::$type_name: ident) => {
         mod $name;
 
         #[proc_macro]
+        $(#[$outer])*
         pub fn $name(input: ::proc_macro::TokenStream) -> ::proc_macro::TokenStream {
             let token_buffer = input.into();
             match $crate::parse::<$name::$type_name>(&token_buffer, true) {
