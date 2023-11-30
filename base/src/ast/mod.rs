@@ -8,8 +8,10 @@ mod expressions;
 mod path;
 mod punctuated;
 mod r#type;
+mod variable_name;
 
 pub use expressions::*;
 pub use path::*;
 pub use punctuated::Punctuated;
 pub use r#type::Type;
+pub use variable_name::VariableName;
