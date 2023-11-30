@@ -14,6 +14,7 @@ macro_rules! Token {
     [!] => { $crate::tokens::Exclamation };
     [#] => { $crate::tokens::Hash };
     [<] => { $crate::tokens::LeftTriangle };
+    [?] => { $crate::tokens::QuestionMark };
     [->] => { $crate::tokens::RightArrow };
     [>] => { $crate::tokens::RightTriangle };
     [;] => { $crate::tokens::SemiColon };
