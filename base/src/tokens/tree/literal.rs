@@ -20,6 +20,13 @@ impl Literal {
         literal.into()
     }
 
+    /// Creates a new [`Literal`] from a usize `value`
+    pub fn new_usize_unsuffixed(value: usize, span: Span) -> Self {
+        let mut literal = proc_macro::Literal::usize_unsuffixed(value);
+        literal.set_span(span);
+        literal.into()
+    }
+
     /// Get the [`Span`] of this literal
     ///
     /// ## Return Value
