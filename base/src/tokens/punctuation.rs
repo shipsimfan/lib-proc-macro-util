@@ -130,6 +130,7 @@ punctuation![
     "->" RightArrow
     "&" Ampersand
     "'" Apostrophe
+    "*" Asterick
     ":" Colon
     "," Comma
     "-" Dash
