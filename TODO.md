@@ -2,4 +2,3 @@
  1. Add tests
      1. Unit tests
      2. Integration tests
- 3. Add dyn Traits to generic arguments

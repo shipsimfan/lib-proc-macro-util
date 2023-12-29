@@ -1,7 +1,5 @@
-use crate::{
-    ast::{Punctuated, Type},
-    Generator, Parse, Parser, Result, ToTokens, Token,
-};
+use super::GenericArgument;
+use crate::{ast::Punctuated, Generator, Parse, Parser, Result, ToTokens, Token};
 
 /// A series of generic arguments
 ///
@@ -15,7 +13,7 @@ pub struct GenericArguments {
     pub left_triangle: Token![<],
 
     /// The generic arguments themselves
-    pub arguments: Punctuated<Type, Token![,]>,
+    pub arguments: Punctuated<GenericArgument, Token![,]>,
 
     /// The end of the generic arguments
     pub right_triangle: Token![>],

@@ -50,6 +50,7 @@ macro_rules! keywords {
 keywords! [
     "const" Const
     "crate" Crate
+    "dyn" Dyn
     "let" Let
     "mut" Mut
     "pub" Pub
