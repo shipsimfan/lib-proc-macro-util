@@ -49,6 +49,11 @@ macro_rules! keywords {
 
 keywords! [
     "const" Const
+    "crate" Crate
     "let" Let
     "mut" Mut
+    "pub" Pub
+    "self" LowerSelf
+    "Self" UpperSelf
+    "super" Super
 ];

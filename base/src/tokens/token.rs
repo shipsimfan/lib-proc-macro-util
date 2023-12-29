@@ -2,8 +2,13 @@
 #[macro_export]
 macro_rules! Token {
     [const] => { $crate::tokens::Const };
+    [crate] => { $crate::tokens::Crate };
     [let] => { $crate::tokens::Let };
     [mut] => { $crate::tokens::Mut };
+    [pub] => { $crate::tokens::Pub };
+    [self] => { $crate::tokens::LowerSelf };
+    [Self] => { $crate::tokens::UpperSelf };
+    [super] => { $crate::tokens::Super };
     [&] => { $crate::tokens::Ampersand };
     ['_] => { $crate::tokens::Apostrophe };
     [*] => { $crate::tokens::Asterick };
