@@ -9,9 +9,11 @@ mod path;
 mod punctuated;
 mod r#type;
 mod variable_name;
+mod visibility;
 
 pub use expressions::*;
 pub use path::*;
 pub use punctuated::Punctuated;
 pub use r#type::Type;
 pub use variable_name::VariableName;
+pub use visibility::Visibility;
