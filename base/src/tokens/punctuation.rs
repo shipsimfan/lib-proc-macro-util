@@ -144,4 +144,5 @@ punctuation![
     ";" SemiColon
     "_" Underscore
     "|" VerticalBar
+    "/" ForwardSlash
 ];

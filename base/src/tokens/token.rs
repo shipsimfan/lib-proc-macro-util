@@ -27,4 +27,5 @@ macro_rules! Token {
     [;] => { $crate::tokens::SemiColon };
     [_] => { $crate::tokens::Underscore };
     [|] => { $crate::tokens::VerticalBar };
+    [/] => { $crate::tokens::ForwardSlash };
 }
