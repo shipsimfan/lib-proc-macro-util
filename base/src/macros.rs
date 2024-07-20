@@ -36,7 +36,7 @@ macro_rules! proc_macro_function {
 #[macro_export]
 macro_rules! proc_macro_derive {
     ($(#[$outer: meta])* $name: ident::$type_name: ident) => {
-        mod $namel
+        mod $name;
 
         #[proc_macro_derive($type_name)]
         pub fn $name(input: ::proc_macro::TokenStream) -> ::proc_macro::TokenStream {
