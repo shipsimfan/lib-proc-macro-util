@@ -51,6 +51,10 @@ impl<'a> Parse<'a> for NamedStructMember<'a> {
 
 impl<'a> ToTokens for NamedStructMember<'a> {
     fn to_tokens(&self, generator: &mut Generator) {
+        for meta in &self.meta {
+            meta.to_tokens(generator);
+        }
+
         self.visibility.to_tokens(generator);
         self.name.to_tokens(generator);
         self.colon.to_tokens(generator);
