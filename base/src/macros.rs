@@ -41,7 +41,7 @@ macro_rules! proc_macro_derive {
         #[proc_macro_derive($type_name)]
         pub fn $name(input: ::proc_macro::TokenStream) -> ::proc_macro::TokenStream {
             let token_buffer = input.into();
-            match $crate::parse::<$name::$type_name>(&token_buffer, true) {
+            match $name::generate($crate::parse(&token_buffer, true).unwrap()) {
                 Ok(output) => $crate::generate(&output),
                 Err(error) => $crate::generate(&error),
             }
