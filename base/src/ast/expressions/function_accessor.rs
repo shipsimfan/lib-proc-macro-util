@@ -8,9 +8,14 @@ use crate::{
 /// Example: `foo.bar()`
 #[derive(Clone)]
 pub struct FunctionAccessorExpression<'a> {
-    expression: Box<Expression<'a>>,
-    dot: Token![.],
-    function_call: FunctionCallExpression<'a>,
+    /// The expression being accessed
+    pub expression: Box<Expression<'a>>,
+
+    /// The dot token inidicating access
+    pub dot: Token![.],
+
+    /// The function call on the expression
+    pub function_call: FunctionCallExpression<'a>,
 }
 
 impl<'a> FunctionAccessorExpression<'a> {

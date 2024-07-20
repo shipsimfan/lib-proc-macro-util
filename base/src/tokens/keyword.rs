@@ -56,5 +56,6 @@ keywords! [
     "pub" Pub
     "self" LowerSelf
     "Self" UpperSelf
+    "struct" Struct
     "super" Super
 ];

@@ -5,9 +5,14 @@ use crate::{ast::Expression, tokens::Identifier, Generator, Parser, Result, ToTo
 /// Example: `foo.bar`
 #[derive(Clone)]
 pub struct AccessorExpression<'a> {
-    expression: Box<Expression<'a>>,
-    dot: Token![.],
-    identifier: Identifier,
+    /// The expression being accessed
+    pub expression: Box<Expression<'a>>,
+
+    /// The dot token inidicating access
+    pub dot: Token![.],
+
+    /// The name of thing being accessed
+    pub identifier: Identifier,
 }
 
 impl<'a> AccessorExpression<'a> {

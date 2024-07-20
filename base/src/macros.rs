@@ -30,9 +30,9 @@ macro_rules! proc_macro_function {
 /// `proc_macro_derive!($name::$type_name)`
 ///
 /// ## Parameters
-///  * `$name` - The name of this procedural macro. This will also be the module holding the type
-///              to parse.
-///  * `$type_name` - The name of the type to parse and the trait to derive
+///  * `$name` - The name of this procedural macro and the name of the module holding a function  
+///              with the signature `generate(Derive) -> Result<T: ToTokens, E: ToTokens>`
+///  * `$type_name` - The name of the trait to derive
 #[macro_export]
 macro_rules! proc_macro_derive {
     ($(#[$outer: meta])* $name: ident::$type_name: ident) => {

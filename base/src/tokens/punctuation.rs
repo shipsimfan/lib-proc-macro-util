@@ -145,4 +145,5 @@ punctuation![
     "_" Underscore
     "|" VerticalBar
     "/" ForwardSlash
+    "+" Plus
 ];

@@ -4,14 +4,20 @@
 #[allow(unused_imports)]
 use proc_macro::TokenStream;
 
+mod declarations;
 mod expressions;
+mod generics;
+mod lifetime;
 mod path;
 mod punctuated;
 mod r#type;
 mod variable_name;
 mod visibility;
 
+pub use declarations::*;
 pub use expressions::*;
+pub use generics::*;
+pub use lifetime::Lifetime;
 pub use path::*;
 pub use punctuated::Punctuated;
 pub use r#type::Type;

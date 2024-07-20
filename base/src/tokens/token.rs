@@ -28,4 +28,5 @@ macro_rules! Token {
     [_] => { $crate::tokens::Underscore };
     [|] => { $crate::tokens::VerticalBar };
     [/] => { $crate::tokens::ForwardSlash };
+    [+] => { $crate::tokens::Plus };
 }
