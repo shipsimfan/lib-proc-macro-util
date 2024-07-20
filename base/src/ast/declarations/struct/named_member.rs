@@ -1,5 +1,5 @@
 use crate::{
-    ast::{Type, Visibility},
+    ast::{Meta, Type, Visibility},
     tokens::Identifier,
     Generator, Parse, Parser, Result, ToTokens, Token,
 };
@@ -11,6 +11,9 @@ use crate::ast::StructDeclaration;
 /// A named member of a [`Struct`]
 #[derive(Clone)]
 pub struct NamedStructMember<'a> {
+    /// Metadata describing this struct
+    pub meta: Vec<Meta<'a>>,
+
     /// The visibility of this member
     pub visibility: Option<Visibility<'a>>,
 
@@ -26,12 +29,18 @@ pub struct NamedStructMember<'a> {
 
 impl<'a> Parse<'a> for NamedStructMember<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
+        let mut meta = Vec::new();
+        while parser.peek::<Meta>() {
+            meta.push(parser.parse()?);
+        }
+
         let visibility = parser.parse()?;
         let name = parser.parse()?;
         let colon = parser.parse()?;
         let r#type = parser.parse()?;
 
         Ok(NamedStructMember {
+            meta,
             visibility,
             name,
             colon,

@@ -13,7 +13,9 @@ mod punctuated;
 mod r#type;
 mod variable_name;
 mod visibility;
+mod meta;
 
+pub use meta::Meta;
 pub use declarations::*;
 pub use expressions::*;
 pub use generics::*;
