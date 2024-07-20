@@ -1,4 +1,8 @@
-use crate::{ast::StructDeclaration, tokens::Struct, Generator, Parse, Result, ToTokens};
+use crate::{
+    ast::{Meta, StructDeclaration},
+    tokens::Struct,
+    Generator, Parse, Result, ToTokens,
+};
 
 /// A declaration which can have a trait derived for it
 #[derive(Clone)]
@@ -9,12 +13,18 @@ pub enum Derive<'a> {
 
 impl<'a> Parse<'a> for Derive<'a> {
     fn parse(parser: &mut crate::Parser<'a>) -> Result<Self> {
+        let mut meta = Vec::new();
+        while parser.peek::<Meta>() {
+            meta.push(parser.parse()?);
+        }
+
         let visibility = parser.parse()?;
 
         if parser.peek::<Struct>() {
-            StructDeclaration::parse(visibility, parser).map(|r#struct| Derive::Struct(r#struct))
+            StructDeclaration::parse(meta, visibility, parser)
+                .map(|r#struct| Derive::Struct(r#struct))
         } else {
-            Err(parser.error("expected an expression"))
+            Err(parser.error("expected `struct`"))
         }
     }
 }
