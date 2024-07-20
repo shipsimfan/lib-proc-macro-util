@@ -35,7 +35,7 @@ macro_rules! proc_macro_function {
 ///  * `$type_name` - The name of the trait to derive
 #[macro_export]
 macro_rules! proc_macro_derive {
-    ($(#[$outer: meta])* $name: ident::$type_name: ident) => {
+    ($name: ident::$type_name: ident) => {
         mod $name;
 
         #[proc_macro_derive($type_name)]
