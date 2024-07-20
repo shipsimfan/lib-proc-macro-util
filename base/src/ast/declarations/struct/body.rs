@@ -33,10 +33,10 @@ impl<'a> Parse<'a> for StructBody<'a> {
 
         match group.delimiter() {
             Delimiter::Parenthesis => Ok(StructBody::Unnamed(
-                Punctuated::parse(&mut group.tokens(), false)?,
+                Punctuated::parse(&mut group.tokens(), false, true)?,
                 parser.parse()?,
             )),
-            Delimiter::Brace => Punctuated::parse(&mut group.tokens(), false)
+            Delimiter::Brace => Punctuated::parse(&mut group.tokens(), false, true)
                 .map(|members| StructBody::Named(members)),
             _ => Err(Error::new_at(
                 "expected a braces or parenthesis",

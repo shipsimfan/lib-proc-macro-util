@@ -63,7 +63,11 @@ impl<Element, Seperator> Punctuated<Element, Seperator> {
 
 impl<'a, Element: Parse<'a>, Seperator: Parse<'a>> Punctuated<Element, Seperator> {
     /// Parses a [`Punctuated`] list from `parser`
-    pub fn parse(parser: &mut Parser<'a>, first_required: bool) -> Result<Self> {
+    pub fn parse(
+        parser: &mut Parser<'a>,
+        first_required: bool,
+        optional_final_seperator: bool,
+    ) -> Result<Self> {
         let mut inner = Punctuated::new();
 
         if !first_required && !parser.peek::<Element>() {
@@ -73,6 +77,11 @@ impl<'a, Element: Parse<'a>, Seperator: Parse<'a>> Punctuated<Element, Seperator
 
         while parser.peek::<Seperator>() {
             inner.push_seperator(parser.parse()?);
+
+            if optional_final_seperator && !parser.peek::<Element>() {
+                break;
+            }
+
             inner.push_element(parser.parse()?);
         }
 

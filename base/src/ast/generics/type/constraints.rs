@@ -16,7 +16,7 @@ pub struct GenericTypeConstraints {
 impl<'a> Parse<'a> for GenericTypeConstraints {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         let colon = parser.parse()?;
-        let constraints = Punctuated::parse(parser, true)?;
+        let constraints = Punctuated::parse(parser, true, false)?;
 
         Ok(GenericTypeConstraints { colon, constraints })
     }

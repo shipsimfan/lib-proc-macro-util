@@ -1,5 +1,6 @@
 use crate::{
-    ast::{Lifetime, Punctuated}, Generator, Parse, Parser, Result, ToTokens, Token
+    ast::{Lifetime, Punctuated},
+    Generator, Parse, Parser, Result, ToTokens, Token,
 };
 
 // rustdoc imports
@@ -19,7 +20,7 @@ pub struct GenericLifetimeConstraints {
 impl<'a> Parse<'a> for GenericLifetimeConstraints {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         let colon = parser.parse()?;
-        let constraints = Punctuated::parse(parser, true)?;
+        let constraints = Punctuated::parse(parser, true, false)?;
 
         Ok(GenericLifetimeConstraints { colon, constraints })
     }

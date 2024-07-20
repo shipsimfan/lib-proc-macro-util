@@ -47,7 +47,7 @@ impl Generics {
 impl<'a> Parse<'a> for Generics {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         let left_triangle = parser.parse()?;
-        let arguments = Punctuated::parse(parser, true)?;
+        let arguments = Punctuated::parse(parser, true, true)?;
         let right_triangle = parser.parse()?;
 
         Ok(Generics {
