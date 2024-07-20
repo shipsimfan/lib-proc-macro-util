@@ -15,7 +15,7 @@ pub enum StructBody<'a> {
     None(Token![;]),
 
     /// The struct constists of unnamed members
-    Unnamed(Punctuated<UnnamedStructMember<'a>, Token![,]>),
+    Unnamed(Punctuated<UnnamedStructMember<'a>, Token![,]>, Token![;]),
 
     /// The struct consists of named members
     Named(Punctuated<NamedStructMember<'a>, Token![,]>),
@@ -32,10 +32,12 @@ impl<'a> Parse<'a> for StructBody<'a> {
             .ok_or(Error::new_at("expected a struct body", parser.span()))?;
 
         match group.delimiter() {
-            Delimiter::Parenthesis => Punctuated::parse(&mut group.tokens(), false)
-                .map(|members| StructBody::Unnamed(members)),
+            Delimiter::Parenthesis => Ok(StructBody::Unnamed(
+                Punctuated::parse(&mut group.tokens(), false)?,
+                parser.parse()?,
+            )),
             Delimiter::Brace => Punctuated::parse(&mut group.tokens(), false)
-                .map(|members| StructBody::Unnamed(members)),
+                .map(|members| StructBody::Named(members)),
             _ => Err(Error::new_at(
                 "expected a braces or parenthesis",
                 group.span(),
@@ -48,9 +50,10 @@ impl<'a> ToTokens for StructBody<'a> {
     fn to_tokens(&self, generator: &mut Generator) {
         match self {
             StructBody::None(semicolon) => semicolon.to_tokens(generator),
-            StructBody::Unnamed(members) => {
+            StructBody::Unnamed(members, semicolon) => {
                 let mut group = generator.group(Delimiter::Parenthesis);
                 members.to_tokens(&mut group);
+                semicolon.to_tokens(generator);
             }
             StructBody::Named(members) => {
                 let mut group = generator.group(Delimiter::Brace);
