@@ -1,6 +1,7 @@
 use crate::{
     ast::{Generics, Visibility},
     tokens::Identifier,
+    Generator, Parser, Result, ToTokens,
 };
 
 mod body;
@@ -15,7 +16,7 @@ pub use unnamed_member::UnnamedStructMember;
 ///
 /// Example: `struct Example { a: u8 }`
 #[derive(Clone)]
-pub struct Struct<'a> {
+pub struct StructDeclaration<'a> {
     /// The visibility of this structure
     pub visibility: Option<Visibility<'a>>,
 
@@ -30,4 +31,32 @@ pub struct Struct<'a> {
 
     /// The body of the structure
     pub body: StructBody<'a>,
+}
+
+impl<'a> StructDeclaration<'a> {
+    /// Parses the [`Struct`] following `visibility`
+    pub fn parse(visibility: Option<Visibility<'a>>, parser: &mut Parser<'a>) -> Result<Self> {
+        let r#struct = parser.parse()?;
+        let identifier = parser.parse()?;
+        let generics = parser.parse()?;
+        let body = parser.parse()?;
+
+        Ok(StructDeclaration {
+            visibility,
+            r#struct,
+            identifier,
+            generics,
+            body,
+        })
+    }
+}
+
+impl<'a> ToTokens for StructDeclaration<'a> {
+    fn to_tokens(&self, generator: &mut Generator) {
+        self.visibility.to_tokens(generator);
+        self.r#struct.to_tokens(generator);
+        self.identifier.to_tokens(generator);
+        self.generics.to_tokens(generator);
+        self.body.to_tokens(generator);
+    }
 }

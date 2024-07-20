@@ -1,4 +1,4 @@
-use crate::ToTokens;
+use crate::{Parse, Parser, Result, ToTokens};
 
 mod iter;
 
@@ -58,6 +58,25 @@ impl<Element, Seperator> Punctuated<Element, Seperator> {
     pub fn push_seperator(&mut self, seperator: Seperator) {
         assert!(self.last.is_some());
         self.inner.push((*self.last.take().unwrap(), seperator));
+    }
+}
+
+impl<'a, Element: Parse<'a>, Seperator: Parse<'a>> Punctuated<Element, Seperator> {
+    /// Parses a [`Punctuated`] list from `parser`
+    pub fn parse(parser: &mut Parser<'a>, first_required: bool) -> Result<Self> {
+        let mut inner = Punctuated::new();
+
+        if !first_required && !parser.peek::<Element>() {
+            return Ok(inner);
+        }
+        inner.push_element(parser.parse()?);
+
+        while parser.peek::<Seperator>() {
+            inner.push_seperator(parser.parse()?);
+            inner.push_element(parser.parse()?);
+        }
+
+        Ok(inner)
     }
 }
 

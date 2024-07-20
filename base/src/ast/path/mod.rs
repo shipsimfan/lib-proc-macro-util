@@ -23,16 +23,7 @@ pub struct Path {
 impl<'a> Parse<'a> for Path {
     fn parse(parser: &mut crate::Parser<'a>) -> crate::Result<Self> {
         let leading = parser.parse()?;
-
-        let mut segments = Punctuated::new();
-
-        // Push the first element garunteed
-        segments.push_element(parser.parse()?);
-
-        while parser.peek::<Token![::]>() {
-            segments.push_seperator(parser.parse()?);
-            segments.push_element(parser.parse()?);
-        }
+        let segments = Punctuated::parse(parser, true)?;
 
         Ok(Path { leading, segments })
     }

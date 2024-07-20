@@ -1,5 +1,4 @@
-use super::Punctuated;
-use crate::Token;
+use crate::{ast::Punctuated, Generator, Parse, Parser, Result, ToTokens, Token};
 
 mod generic;
 mod lifetime;
@@ -20,4 +19,26 @@ pub struct Generics {
 
     /// The end of the generic arguments
     pub right_triangle: Token![>],
+}
+
+impl<'a> Parse<'a> for Generics {
+    fn parse(parser: &mut Parser<'a>) -> Result<Self> {
+        let left_triangle = parser.parse()?;
+        let arguments = Punctuated::parse(parser, true)?;
+        let right_triangle = parser.parse()?;
+
+        Ok(Generics {
+            left_triangle,
+            arguments,
+            right_triangle,
+        })
+    }
+}
+
+impl ToTokens for Generics {
+    fn to_tokens(&self, generator: &mut Generator) {
+        self.left_triangle.to_tokens(generator);
+        self.arguments.to_tokens(generator);
+        self.right_triangle.to_tokens(generator);
+    }
 }

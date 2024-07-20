@@ -1,6 +1,6 @@
 use crate::{
     ast::{GenericTypeConstraint, Punctuated},
-    Token,
+    Generator, Parse, Parser, Result, ToTokens, Token,
 };
 
 /// A list of constraints on a generic type
@@ -11,4 +11,20 @@ pub struct GenericTypeConstraints {
 
     /// The constraints on the type
     pub constraints: Punctuated<GenericTypeConstraint, Token![+]>,
+}
+
+impl<'a> Parse<'a> for GenericTypeConstraints {
+    fn parse(parser: &mut Parser<'a>) -> Result<Self> {
+        let colon = parser.parse()?;
+        let constraints = Punctuated::parse(parser, true)?;
+
+        Ok(GenericTypeConstraints { colon, constraints })
+    }
+}
+
+impl ToTokens for GenericTypeConstraints {
+    fn to_tokens(&self, generator: &mut Generator) {
+        self.colon.to_tokens(generator);
+        self.constraints.to_tokens(generator);
+    }
 }
