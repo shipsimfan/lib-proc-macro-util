@@ -1,4 +1,4 @@
-use crate::{ast::Path, Generator, Parse, Parser, Result, ToTokens, Token};
+use crate::{ast::Path, tokens::Identifier, Generator, Parse, Parser, Result, ToTokens, Token};
 
 /// A Rust type
 #[derive(Clone)]
@@ -26,5 +26,11 @@ impl ToTokens for Type {
             Type::Inference(underscore) => underscore.to_tokens(generator),
             Type::Path(path) => path.to_tokens(generator),
         }
+    }
+}
+
+impl From<Identifier> for Type {
+    fn from(identifier: Identifier) -> Self {
+        Type::Path(identifier.into())
     }
 }

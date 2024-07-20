@@ -1,5 +1,5 @@
 use crate::{
-    ast::{GenericLifetime, GenericType},
+    ast::{GenericArgument, GenericLifetime, GenericType},
     Generator, Parse, Parser, Result, ToTokens, Token,
 };
 
@@ -11,6 +11,16 @@ pub enum Generic {
 
     /// A generic type
     Type(GenericType),
+}
+
+impl Generic {
+    /// Convert this [`Generic`] to its corrisponding [`GenericArgument`]
+    pub fn to_arg(&self) -> GenericArgument {
+        match self {
+            Generic::Lifetime(lifetime) => GenericArgument::Lifetime(lifetime.lifetime.clone()),
+            Generic::Type(r#type) => GenericArgument::Type(r#type.name.clone().into()),
+        }
+    }
 }
 
 impl<'a> Parse<'a> for Generic {

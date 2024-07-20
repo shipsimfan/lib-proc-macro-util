@@ -1,4 +1,4 @@
-use crate::{ast::Punctuated, Parse, ToTokens, Token};
+use crate::{ast::Punctuated, tokens::Identifier, Parse, ToTokens, Token};
 
 mod generic_argument;
 mod generic_arguments;
@@ -33,5 +33,17 @@ impl ToTokens for Path {
     fn to_tokens(&self, generator: &mut crate::Generator) {
         self.leading.to_tokens(generator);
         self.segments.to_tokens(generator);
+    }
+}
+
+impl From<Identifier> for Path {
+    fn from(identifier: Identifier) -> Self {
+        let mut segments = Punctuated::new();
+        segments.push_element(identifier.into());
+
+        Path {
+            leading: None,
+            segments,
+        }
     }
 }

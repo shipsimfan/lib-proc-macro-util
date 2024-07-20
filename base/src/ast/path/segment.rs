@@ -28,3 +28,12 @@ impl ToTokens for PathSegment {
         self.arguments.to_tokens(generator);
     }
 }
+
+impl From<Identifier> for PathSegment {
+    fn from(identifier: Identifier) -> Self {
+        PathSegment {
+            identifier,
+            arguments: None,
+        }
+    }
+}

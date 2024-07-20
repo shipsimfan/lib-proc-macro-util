@@ -1,4 +1,7 @@
-use crate::{ast::Punctuated, Generator, Parse, Parser, Result, ToTokens, Token};
+use crate::{
+    ast::{GenericArguments, Punctuated},
+    Generator, Parse, Parser, Result, ToTokens, Token,
+};
 
 mod generic;
 mod lifetime;
@@ -19,6 +22,26 @@ pub struct Generics {
 
     /// The end of the generic arguments
     pub right_triangle: Token![>],
+}
+
+impl Generics {
+    /// Convert these [`Generics`] to their corrisponding [`GenericArguments`]
+    pub fn to_args(&self) -> GenericArguments {
+        let mut arguments = Punctuated::new();
+        for (generic, comma) in &self.arguments {
+            arguments.push_element(generic.to_arg());
+            if let Some(comma) = comma {
+                arguments.push_seperator(comma.clone());
+            }
+        }
+
+        GenericArguments {
+            leading_double_colon: None,
+            left_triangle: self.left_triangle.clone(),
+            arguments,
+            right_triangle: self.right_triangle.clone(),
+        }
+    }
 }
 
 impl<'a> Parse<'a> for Generics {
