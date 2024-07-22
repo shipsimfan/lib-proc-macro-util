@@ -9,6 +9,7 @@ macro_rules! Token {
     [pub] => { $crate::tokens::Pub };
     [self] => { $crate::tokens::LowerSelf };
     [Self] => { $crate::tokens::UpperSelf };
+    [struct] => { $crate::tokens::Struct };
     [super] => { $crate::tokens::Super };
     [&] => { $crate::tokens::Ampersand };
     ['_] => { $crate::tokens::Apostrophe };

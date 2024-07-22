@@ -2,6 +2,7 @@ use super::OwnedTokenTree;
 use crate::parsing::TokenBuffer;
 use proc_macro::{Delimiter, Span};
 
+#[derive(Debug)]
 pub(crate) struct OwnedGroup {
     pub(crate) span: Span,
     pub(crate) delimiter: Delimiter,

@@ -1,7 +1,7 @@
 use crate::{ast::Path, tokens::Identifier, Generator, Parse, Parser, Result, ToTokens, Token};
 
 /// A Rust type
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub enum Type {
     /// A type that is infered by context
     Inference(Token![_]),

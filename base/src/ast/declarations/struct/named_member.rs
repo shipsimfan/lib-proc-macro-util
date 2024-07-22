@@ -9,7 +9,7 @@ use crate::{
 use crate::ast::StructDeclaration;
 
 /// A named member of a [`Struct`]
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct NamedStructMember<'a> {
     /// Metadata describing this struct
     pub meta: Vec<Meta<'a>>,

@@ -1,7 +1,7 @@
 use crate::{
     ast::{Generics, Meta, Visibility},
     tokens::Identifier,
-    Generator, Parser, Result, ToTokens,
+    Generator, Parser, Result, ToTokens, Token,
 };
 
 mod body;
@@ -15,7 +15,7 @@ pub use unnamed_member::UnnamedStructMember;
 /// A declaration defining a structure
 ///
 /// Example: `struct Example { a: u8 }`
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct StructDeclaration<'a> {
     /// The metadata about the structure
     pub meta: Vec<Meta<'a>>,
@@ -24,7 +24,7 @@ pub struct StructDeclaration<'a> {
     pub visibility: Option<Visibility<'a>>,
 
     /// The `struct` token itself
-    pub r#struct: crate::tokens::Struct,
+    pub r#struct: Token![struct],
 
     /// The [`Identifier`] naming this structure
     pub identifier: Identifier,

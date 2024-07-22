@@ -1,7 +1,7 @@
 use crate::tokens::{Group, Identifier, Literal, OwnedTokenTree, Punctuation};
 
 /// One token or tree
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub enum TokenTree<'a> {
     /// A delimited group of tokens
     Group(Group<'a>),

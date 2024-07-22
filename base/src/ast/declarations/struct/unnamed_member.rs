@@ -8,7 +8,7 @@ use crate::{
 use crate::ast::StructDeclaration;
 
 /// An unnamed member of a [`Struct`]
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct UnnamedStructMember<'a> {
     /// The visibility of this member
     pub visibility: Option<Visibility<'a>>,

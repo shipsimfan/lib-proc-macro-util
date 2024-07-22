@@ -5,7 +5,7 @@ use crate::{
 };
 
 /// A declaration which can have a trait derived for it
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub enum Derive<'a> {
     /// A [`Struct`]
     Struct(StructDeclaration<'a>),

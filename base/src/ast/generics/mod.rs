@@ -12,7 +12,7 @@ pub use lifetime::*;
 pub use r#type::*;
 
 /// A list of [`Generic`]s
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct Generics {
     /// The start of the generic arguments
     pub left_triangle: Token![<],

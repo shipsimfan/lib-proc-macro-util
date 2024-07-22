@@ -1,7 +1,7 @@
 macro_rules! keywords {
     [$($literal: literal $name: ident)*] => {$(
         #[allow(missing_docs)]
-        #[derive(Clone)]
+        #[derive(Debug, Clone)]
         pub struct $name {
             pub span: ::proc_macro::Span,
         }

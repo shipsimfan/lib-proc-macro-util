@@ -4,6 +4,7 @@ use crate::{
 };
 
 /// A buffer for a stream of tokens to parse
+#[derive(Debug)]
 pub struct TokenBuffer {
     tokens: Vec<OwnedTokenTree>,
 }

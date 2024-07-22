@@ -11,7 +11,7 @@ pub use segment::PathSegment;
 /// A path to an item
 ///
 /// Example: `::foo::bar`
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct Path {
     /// The leading colon
     pub leading: Option<Token![::]>,

@@ -9,7 +9,7 @@ use proc_macro::Delimiter;
 use crate::ast::StructDeclaration;
 
 /// The body of a [`Struct`]
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub enum StructBody<'a> {
     /// The struct has no body
     None(Token![;]),

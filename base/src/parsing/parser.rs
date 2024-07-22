@@ -6,7 +6,7 @@ use proc_macro::Span;
 use std::fmt::Display;
 
 /// A source of tokens for parsing
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct Parser<'a> {
     /// The buffer holding the tokens
     buffer: &'a TokenBuffer,

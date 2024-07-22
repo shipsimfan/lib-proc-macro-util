@@ -2,7 +2,7 @@ use crate::{parsing::Parser, tokens::OwnedGroup, Parse, ToTokens};
 use proc_macro::{Delimiter, Span};
 
 /// A delimited group of tokens
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct Group<'a> {
     /// The span which covers this group
     pub span: Span,

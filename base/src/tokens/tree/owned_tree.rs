@@ -1,5 +1,6 @@
 use crate::tokens::{Identifier, Literal, OwnedGroup, Punctuation};
 
+#[derive(Debug)]
 pub(crate) enum OwnedTokenTree {
     Group(OwnedGroup),
     Identifier(Identifier),

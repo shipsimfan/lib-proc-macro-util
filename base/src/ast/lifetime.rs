@@ -1,7 +1,7 @@
 use crate::{tokens::Identifier, Generator, Parse, Parser, Result, ToTokens, Token};
 
 /// A lifetime indicator
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct Lifetime {
     /// The ' indicating this is a lifetime
     pub apostrophe: Token!['_],
@@ -18,7 +18,6 @@ impl<'a> Parse<'a> for Lifetime {
         Ok(Lifetime { apostrophe, name })
     }
 }
-
 
 impl ToTokens for Lifetime {
     fn to_tokens(&self, generator: &mut Generator) {

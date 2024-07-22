@@ -2,7 +2,7 @@ use crate::{Error, Generator, Parse, Parser, Result, ToTokens};
 use proc_macro::{Spacing, Span};
 
 /// A single character of punctuation
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct Punctuation(proc_macro::Punct);
 
 impl Punctuation {

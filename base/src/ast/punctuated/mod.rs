@@ -5,7 +5,7 @@ mod iter;
 pub use iter::{IntoIter, Iter};
 
 /// A series of `Element`s punctuated by `Separator`s
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct Punctuated<Element, Separator> {
     inner: Vec<(Element, Separator)>,
     last: Option<Box<Element>>,

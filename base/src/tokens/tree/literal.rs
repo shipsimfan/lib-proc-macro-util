@@ -2,7 +2,7 @@ use crate::{Error, Generator, Parse, Parser, Result, ToTokens};
 use proc_macro::Span;
 
 /// A string or numeric literal
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct Literal(proc_macro::Literal);
 
 impl Literal {

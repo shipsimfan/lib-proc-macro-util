@@ -8,7 +8,7 @@ use crate::{
 use crate::ast::GenericLifetime;
 
 /// Constraints on a [`GenericLifetime`]
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct GenericLifetimeConstraints {
     /// The colon indicating the start of the constraints
     pub colon: Token![:],

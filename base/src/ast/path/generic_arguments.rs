@@ -4,7 +4,7 @@ use crate::{ast::Punctuated, Generator, Parse, Parser, Result, ToTokens, Token};
 /// A series of generic arguments
 ///
 /// Example: `<Foo, Bar>`
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct GenericArguments {
     /// The double colon before the generic arguments
     pub leading_double_colon: Option<Token![::]>,

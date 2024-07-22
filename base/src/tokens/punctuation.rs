@@ -36,7 +36,7 @@ macro_rules! punctuation_token_impl {
 macro_rules! one_punctuation {
     ($literal: literal, $name: ident) => {
         #[allow(missing_docs)]
-        #[derive(Clone)]
+        #[derive(Debug, Clone)]
         pub struct $name {
             spans: [::proc_macro::Span; Self::LEN],
         }

@@ -1,7 +1,7 @@
 use crate::{ast::{Meta, StructDeclaration}, tokens::Struct, Generator, Parse, Result, ToTokens};
 
 /// A declaration defining something
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub enum Declaration<'a> {
     /// A definition of a [`Struct`]
     Struct(StructDeclaration<'a>),

@@ -1,7 +1,7 @@
 use crate::{ast::GenericArguments, tokens::Identifier, Parse, ToTokens};
 
 /// A single segment of a path
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct PathSegment {
     /// The identifier
     pub identifier: Identifier,

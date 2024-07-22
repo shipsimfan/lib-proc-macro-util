@@ -3,7 +3,7 @@ use crate::{tokens::Group, Generator, Parse, Parser, Result, ToTokens, Token};
 /// The visibility of an item
 ///
 /// Example: `pub(crate)`
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct Visibility<'a> {
     /// The public keyword identifying this construct
     pub r#pub: Token![pub],

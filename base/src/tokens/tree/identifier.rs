@@ -2,7 +2,7 @@ use crate::{Error, Generator, Parse, Parser, Result, ToTokens};
 use proc_macro::Span;
 
 /// An identifier
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct Identifier(proc_macro::Ident);
 
 impl Identifier {

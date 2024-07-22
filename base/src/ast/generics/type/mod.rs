@@ -7,7 +7,7 @@ pub use constraint::GenericTypeConstraint;
 pub use constraints::GenericTypeConstraints;
 
 /// A generic type
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct GenericType {
     /// The placeholder name for the type
     pub name: Identifier,

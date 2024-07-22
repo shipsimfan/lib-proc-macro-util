@@ -8,7 +8,7 @@ use crate::{
 use crate::ast::GenericType;
 
 /// A constraint on a [`GenericType`]
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub enum GenericTypeConstraint {
     /// The constraint is a lifetime
     Lifetime(Lifetime),

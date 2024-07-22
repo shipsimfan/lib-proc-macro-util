@@ -4,7 +4,7 @@ use crate::{
 };
 
 /// A single generic argument
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub enum GenericArgument {
     /// A regular type
     Type(Type),

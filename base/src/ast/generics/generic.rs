@@ -4,7 +4,7 @@ use crate::{
 };
 
 /// A single generic
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub enum Generic {
     /// A generic lifetime
     Lifetime(GenericLifetime),

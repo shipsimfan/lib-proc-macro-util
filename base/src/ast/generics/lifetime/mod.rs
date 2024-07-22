@@ -5,7 +5,7 @@ mod constraints;
 pub use constraints::GenericLifetimeConstraints;
 
 /// A generic lifetime
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct GenericLifetime {
     /// The name of the lifetime
     pub lifetime: Lifetime,

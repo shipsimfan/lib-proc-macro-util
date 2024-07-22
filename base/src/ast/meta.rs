@@ -2,7 +2,7 @@ use crate::{tokens::Group, Error, Generator, Parse, Parser, Result, ToTokens, To
 use proc_macro::Delimiter;
 
 /// Metadata about a definition
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct Meta<'a> {
     /// The `#` identifying the start of the metadata
     pub hash: Token![#],
