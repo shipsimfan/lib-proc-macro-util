@@ -32,7 +32,7 @@ impl<'a> Parse<'a> for GenericArguments {
                 break;
             }
 
-            arguments.push_seperator(parser.parse()?);
+            arguments.push_separator(parser.parse()?);
         }
 
         let right_triangle = parser.parse()?;

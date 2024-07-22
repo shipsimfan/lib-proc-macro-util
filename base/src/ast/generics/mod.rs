@@ -31,7 +31,7 @@ impl Generics {
         for (generic, comma) in &self.arguments {
             arguments.push_element(generic.to_arg());
             if let Some(comma) = comma {
-                arguments.push_seperator(comma.clone());
+                arguments.push_separator(comma.clone());
             }
         }
 
