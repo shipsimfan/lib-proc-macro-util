@@ -39,6 +39,7 @@ macro_rules! one_punctuation {
         #[derive(Debug, Clone)]
         pub struct $name {
             spans: [::proc_macro::Span; Self::LEN],
+            final_spacing: ::proc_macro::Spacing,
         }
 
         #[allow(missing_docs)]
@@ -53,7 +54,18 @@ macro_rules! one_punctuation {
 
             #[allow(missing_docs)]
             pub fn new(spans: [::proc_macro::Span; Self::LEN]) -> Self {
-                $name { spans }
+                $name {
+                    spans,
+                    final_spacing: ::proc_macro::Spacing::Alone,
+                }
+            }
+
+            #[allow(missing_docs)]
+            pub fn new_joint(spans: [::proc_macro::Span; Self::LEN]) -> Self {
+                $name {
+                    spans,
+                    final_spacing: ::proc_macro::Spacing::Joint,
+                }
             }
         }
 
@@ -75,7 +87,10 @@ macro_rules! one_punctuation {
                                 if punctuation.as_char() != c {
                                     break;
                                 } else if i == Self::LEN - 1 {
-                                    return Ok($name { spans });
+                                    return Ok($name {
+                                        spans,
+                                        final_spacing: punctuation.spacing(),
+                                    });
                                 } else if punctuation.spacing() != ::proc_macro::Spacing::Joint {
                                     break;
                                 }
@@ -98,7 +113,7 @@ macro_rules! one_punctuation {
                     let spacing = if i < Self::LEN - 1 {
                         ::proc_macro::Spacing::Joint
                     } else {
-                        ::proc_macro::Spacing::Alone
+                        self.final_spacing
                     };
 
                     generator.punctuation($crate::tokens::Punctuation::new(

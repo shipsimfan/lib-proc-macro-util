@@ -1,4 +1,8 @@
-use crate::{tokens::Identifier, Generator, Parse, Parser, Result, ToTokens, Token};
+use crate::{
+    tokens::{Apostrophe, Identifier},
+    Generator, Parse, Parser, Result, ToTokens, Token,
+};
+use proc_macro::Span;
 
 /// A lifetime indicator
 #[derive(Debug, Clone)]
@@ -8,6 +12,16 @@ pub struct Lifetime {
 
     /// The name of the lifetime
     pub name: Identifier,
+}
+
+impl Lifetime {
+    /// Creates a new [`Lifetime`] with a `call_site` span
+    pub fn new(name: Identifier) -> Self {
+        Lifetime {
+            apostrophe: Apostrophe::new_joint([Span::call_site()]),
+            name,
+        }
+    }
 }
 
 impl<'a> Parse<'a> for Lifetime {
