@@ -1,4 +1,5 @@
 use crate::{Parse, Parser, Result, ToTokens};
+use std::collections::VecDeque;
 
 mod iter;
 
@@ -7,7 +8,7 @@ pub use iter::{IntoIter, Iter};
 /// A series of `Element`s punctuated by `Separator`s
 #[derive(Debug, Clone)]
 pub struct Punctuated<Element, Separator> {
-    inner: Vec<(Element, Separator)>,
+    inner: VecDeque<(Element, Separator)>,
     last: Option<Box<Element>>,
 }
 
@@ -19,7 +20,7 @@ impl<Element, Separator> Punctuated<Element, Separator> {
     /// Returns the newly created empty [`Punctuated`]
     pub const fn new() -> Self {
         Punctuated {
-            inner: Vec::new(),
+            inner: VecDeque::new(),
             last: None,
         }
     }
@@ -63,7 +64,13 @@ impl<Element, Separator> Punctuated<Element, Separator> {
     /// This function will panic if the sequence doesn't have an element preceding this separator.
     pub fn push_separator(&mut self, separator: Separator) {
         assert!(self.last.is_some());
-        self.inner.push((*self.last.take().unwrap(), separator));
+        self.inner
+            .push_back((*self.last.take().unwrap(), separator));
+    }
+
+    /// Pushes an element onto the front of the list
+    pub fn push_front(&mut self, element: Element, separator: Separator) {
+        self.inner.push_front((element, separator));
     }
 }
 

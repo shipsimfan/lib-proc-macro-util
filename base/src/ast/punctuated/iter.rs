@@ -1,16 +1,16 @@
 pub struct IntoIter<Element, Seperator> {
-    iter: std::vec::IntoIter<(Element, Seperator)>,
+    iter: std::collections::vec_deque::IntoIter<(Element, Seperator)>,
     last: Option<Box<Element>>,
 }
 
 pub struct Iter<'a, Element, Seperator> {
-    iter: std::slice::Iter<'a, (Element, Seperator)>,
+    iter: std::collections::vec_deque::Iter<'a, (Element, Seperator)>,
     last: Option<&'a Element>,
 }
 
 impl<Element, Seperator> IntoIter<Element, Seperator> {
     pub const fn new(
-        iter: std::vec::IntoIter<(Element, Seperator)>,
+        iter: std::collections::vec_deque::IntoIter<(Element, Seperator)>,
         last: Option<Box<Element>>,
     ) -> Self {
         IntoIter { iter, last }
@@ -31,7 +31,7 @@ impl<Element, Seperator> Iterator for IntoIter<Element, Seperator> {
 
 impl<'a, Element, Seperator> Iter<'a, Element, Seperator> {
     pub const fn new(
-        iter: std::slice::Iter<'a, (Element, Seperator)>,
+        iter: std::collections::vec_deque::Iter<'a, (Element, Seperator)>,
         last: Option<&'a Element>,
     ) -> Self {
         Iter { iter, last }
