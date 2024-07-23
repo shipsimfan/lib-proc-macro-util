@@ -20,6 +20,7 @@ macro_rules! Token {
     [.] => { $crate::tokens::Dot };
     [=] => { $crate::tokens::Equals };
     [!] => { $crate::tokens::Exclamation };
+    [=>] => { $crate::tokens::FatRightArrow };
     [#] => { $crate::tokens::Hash };
     [<] => { $crate::tokens::LeftTriangle };
     [?] => { $crate::tokens::QuestionMark };

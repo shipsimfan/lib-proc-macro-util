@@ -143,6 +143,7 @@ macro_rules! punctuation {
 punctuation![
     "::" DoubleColon
     "->" RightArrow
+    "=>" FatRightArrow
     "&" Ampersand
     "'" Apostrophe
     "*" Asterick
