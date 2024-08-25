@@ -1,6 +1,7 @@
 use crate::{tokens::Identifier, Generator, Parse, Parser, Result, ToTokens, Token};
 
 /// A variable name
+#[derive(Debug, Clone)]
 pub enum VariableName {
     /// The variable has an identifier
     Identifier(Identifier),
