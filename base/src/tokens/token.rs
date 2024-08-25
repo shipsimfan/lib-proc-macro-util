@@ -17,6 +17,7 @@ macro_rules! Token {
     [*] => { $crate::tokens::Asterick };
     [:] => { $crate::tokens::Colon };
     [::] => { $crate::tokens::DoubleColon };
+    [==] => { $crate::tokens::DoubleEquals };
     [,] => { $crate::tokens::Comma };
     [.] => { $crate::tokens::Dot };
     [=] => { $crate::tokens::Equals };

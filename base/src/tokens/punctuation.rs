@@ -142,6 +142,7 @@ macro_rules! punctuation {
 
 punctuation![
     "::" DoubleColon
+    "==" DoubleEquals
     "->" RightArrow
     "=>" FatRightArrow
     "&" Ampersand
