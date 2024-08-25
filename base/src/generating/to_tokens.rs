@@ -62,3 +62,9 @@ impl ToTokens for [u8] {
         Literal::new_byte_string(self, Span::call_site()).to_tokens(generator)
     }
 }
+
+impl<const N: usize> ToTokens for [u8; N] {
+    fn to_tokens(&self, generator: &mut Generator) {
+        Literal::new_byte_string(self, Span::call_site()).to_tokens(generator)
+    }
+}
