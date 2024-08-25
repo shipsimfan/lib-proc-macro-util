@@ -6,7 +6,7 @@ use crate::{
 
 // rustdoc imports
 #[allow(unused_imports)]
-use crate::ast::StructDeclaration;
+use crate::ast::StructItem;
 
 /// A named member of a [`Struct`]
 #[derive(Debug, Clone)]

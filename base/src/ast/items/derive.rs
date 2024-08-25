@@ -1,5 +1,5 @@
 use crate::{
-    ast::{Meta, StructDeclaration},
+    ast::{Meta, StructItem},
     tokens::Struct,
     Generator, Parse, Result, ToTokens,
 };
@@ -8,7 +8,7 @@ use crate::{
 #[derive(Debug, Clone)]
 pub enum Derive<'a> {
     /// A [`Struct`]
-    Struct(StructDeclaration<'a>),
+    Struct(StructItem<'a>),
 }
 
 impl<'a> Parse<'a> for Derive<'a> {
@@ -21,8 +21,7 @@ impl<'a> Parse<'a> for Derive<'a> {
         let visibility = parser.parse()?;
 
         if parser.peek::<Struct>() {
-            StructDeclaration::parse(meta, visibility, parser)
-                .map(|r#struct| Derive::Struct(r#struct))
+            StructItem::parse(meta, visibility, parser).map(|r#struct| Derive::Struct(r#struct))
         } else {
             Err(parser.error("expected `struct`"))
         }

@@ -6,7 +6,7 @@ use proc_macro::Delimiter;
 
 // rustdoc imports
 #[allow(unused_imports)]
-use crate::ast::StructDeclaration;
+use crate::ast::StructItem;
 
 /// The body of a [`Struct`]
 #[derive(Debug, Clone)]

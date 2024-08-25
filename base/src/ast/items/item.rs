@@ -1,14 +1,16 @@
 use crate::{
-    ast::{Meta, StructDeclaration},
-    tokens::Struct,
-    Generator, Parse, Result, ToTokens,
+    ast::{Function, Meta, StructItem},
+    Generator, Parse, Result, ToTokens, Token,
 };
 
 /// A declaration defining something
 #[derive(Debug, Clone)]
 pub enum Item<'a> {
     /// A definition of a [`Struct`]
-    Struct(StructDeclaration<'a>),
+    Struct(StructItem<'a>),
+
+    /// A definition of a function
+    Fn(Function<'a>),
 }
 
 impl<'a> Parse<'a> for Item<'a> {
@@ -20,11 +22,12 @@ impl<'a> Parse<'a> for Item<'a> {
 
         let visibility = parser.parse()?;
 
-        if parser.peek::<Struct>() {
-            StructDeclaration::parse(meta, visibility, parser)
-                .map(|r#struct| Item::Struct(r#struct))
+        if parser.peek::<Token![struct]>() {
+            StructItem::parse(meta, visibility, parser).map(|r#struct| Item::Struct(r#struct))
+        } else if parser.peek::<Token![fn]>() {
+            Function::parse(meta, visibility, parser).map(|r#fn| Item::Fn(r#fn))
         } else {
-            Err(parser.error("expected a declaration"))
+            Err(parser.error("expected an item"))
         }
     }
 }
@@ -33,6 +36,7 @@ impl<'a> ToTokens for Item<'a> {
     fn to_tokens(&self, generator: &mut Generator) {
         match self {
             Item::Struct(r#struct) => r#struct.to_tokens(generator),
+            Item::Fn(r#fn) => r#fn.to_tokens(generator),
         }
     }
 }

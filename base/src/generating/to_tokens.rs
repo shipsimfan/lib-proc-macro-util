@@ -28,3 +28,11 @@ impl<T: ToTokens> ToTokens for &T {
         (*self).to_tokens(generator)
     }
 }
+
+impl<T: ToTokens> ToTokens for Vec<T> {
+    fn to_tokens(&self, generator: &mut Generator) {
+        for token in self {
+            token.to_tokens(generator);
+        }
+    }
+}

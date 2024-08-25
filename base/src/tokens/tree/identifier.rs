@@ -57,7 +57,7 @@ impl<'a> Parse<'a> for Identifier {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         parser
             .identifier()
-            .ok_or(Error::new("expected an identifier"))
+            .ok_or(Error::new_at("expected an identifier", parser.span()))
     }
 }
 

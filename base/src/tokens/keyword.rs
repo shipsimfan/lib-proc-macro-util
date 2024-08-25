@@ -51,6 +51,7 @@ keywords! [
     "const" Const
     "crate" Crate
     "dyn" Dyn
+    "fn" Fn
     "let" Let
     "mut" Mut
     "pub" Pub

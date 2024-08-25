@@ -4,6 +4,7 @@ macro_rules! Token {
     [const] => { $crate::tokens::Const };
     [crate] => { $crate::tokens::Crate };
     [dyn] => {$crate::tokens::Dyn };
+    [fn] => { $crate::tokens::Fn };
     [let] => { $crate::tokens::Let };
     [mut] => { $crate::tokens::Mut };
     [pub] => { $crate::tokens::Pub };

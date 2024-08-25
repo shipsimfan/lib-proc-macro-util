@@ -17,7 +17,10 @@ impl<'a> Parse<'a> for Meta<'a> {
         let group: Group = parser.parse()?;
 
         if group.delimiter() != Delimiter::Bracket {
-            return Err(Error::new("meta must be surrounding by brackets"));
+            return Err(Error::new_at(
+                "meta must be surrounding by brackets",
+                group.span(),
+            ));
         }
 
         Ok(Meta { hash, group })

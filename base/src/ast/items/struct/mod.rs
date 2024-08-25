@@ -16,7 +16,7 @@ pub use unnamed_member::UnnamedStructMember;
 ///
 /// Example: `struct Example { a: u8 }`
 #[derive(Debug, Clone)]
-pub struct StructDeclaration<'a> {
+pub struct StructItem<'a> {
     /// The metadata about the structure
     pub meta: Vec<Meta<'a>>,
 
@@ -36,7 +36,7 @@ pub struct StructDeclaration<'a> {
     pub body: StructBody<'a>,
 }
 
-impl<'a> StructDeclaration<'a> {
+impl<'a> StructItem<'a> {
     /// Parses the [`Struct`] following `visibility`
     pub fn parse(
         meta: Vec<Meta<'a>>,
@@ -48,7 +48,7 @@ impl<'a> StructDeclaration<'a> {
         let generics = parser.parse()?;
         let body = parser.parse()?;
 
-        Ok(StructDeclaration {
+        Ok(StructItem {
             meta,
             visibility,
             r#struct,
@@ -59,8 +59,9 @@ impl<'a> StructDeclaration<'a> {
     }
 }
 
-impl<'a> ToTokens for StructDeclaration<'a> {
+impl<'a> ToTokens for StructItem<'a> {
     fn to_tokens(&self, generator: &mut Generator) {
+        self.meta.to_tokens(generator);
         self.visibility.to_tokens(generator);
         self.r#struct.to_tokens(generator);
         self.identifier.to_tokens(generator);
