@@ -27,6 +27,13 @@ impl Literal {
         literal.into()
     }
 
+    /// Creates a new [`Literal`] from a bytes string `value`
+    pub fn new_byte_string(value: &[u8], span: Span) -> Self {
+        let mut literal = proc_macro::Literal::byte_string(value);
+        literal.set_span(span);
+        literal.into()
+    }
+
     /// Get the [`Span`] of this literal
     ///
     /// ## Return Value
