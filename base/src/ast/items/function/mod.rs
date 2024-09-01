@@ -3,6 +3,7 @@ use crate::{
     tokens::Identifier,
     Error, Generator, Parser, Result, ToTokens, Token,
 };
+use proc_macro::Delimiter;
 
 mod body;
 mod parameter;
@@ -10,7 +11,6 @@ mod return_type;
 
 pub use body::FunctionBody;
 pub use parameter::FunctionParameter;
-use proc_macro::Delimiter;
 pub use return_type::FunctionReturnType;
 
 /// A declaration of a function
@@ -23,6 +23,15 @@ pub struct Function<'a> {
 
     /// The visibility of this function
     pub visibility: Option<Visibility<'a>>,
+
+    /// If this function is constant
+    pub r#const: Option<Token![const]>,
+
+    /// If this function is asynchronous
+    pub r#async: Option<Token![async]>,
+
+    /// If this function is unsafe
+    pub r#unsafe: Option<Token![unsafe]>,
 
     /// The `fn` token itself
     pub r#fn: Token![fn],
@@ -48,6 +57,9 @@ impl<'a> Function<'a> {
     pub fn parse(
         meta: Vec<Meta<'a>>,
         visibility: Option<Visibility<'a>>,
+        r#const: Option<Token![const]>,
+        r#async: Option<Token![async]>,
+        r#unsafe: Option<Token![unsafe]>,
         parser: &mut Parser<'a>,
     ) -> Result<Self> {
         let r#fn = parser.parse()?;
@@ -74,6 +86,9 @@ impl<'a> Function<'a> {
         Ok(Function {
             meta,
             visibility,
+            r#const,
+            r#async,
+            r#unsafe,
             r#fn,
             identifier,
             generics,

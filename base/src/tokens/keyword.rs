@@ -48,6 +48,8 @@ macro_rules! keywords {
 }
 
 keywords! [
+    "async" Async
+    "await" Await
     "const" Const
     "crate" Crate
     "dyn" Dyn
@@ -59,4 +61,5 @@ keywords! [
     "Self" UpperSelf
     "struct" Struct
     "super" Super
+    "unsafe" Unsafe
 ];

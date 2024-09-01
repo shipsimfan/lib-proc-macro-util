@@ -1,6 +1,8 @@
 /// Creates a token with span `Span::call_site()`
 #[macro_export]
 macro_rules! Token {
+    [async] => { $crate::tokens::Async };
+    [await] => { $crate::tokens::Await };
     [const] => { $crate::tokens::Const };
     [crate] => { $crate::tokens::Crate };
     [dyn] => {$crate::tokens::Dyn };
@@ -12,6 +14,7 @@ macro_rules! Token {
     [Self] => { $crate::tokens::UpperSelf };
     [struct] => { $crate::tokens::Struct };
     [super] => { $crate::tokens::Super };
+    [unsafe] => { $crate::tokens::Unsafe };
     [&] => { $crate::tokens::Ampersand };
     ['_] => { $crate::tokens::Apostrophe };
     [*] => { $crate::tokens::Asterick };

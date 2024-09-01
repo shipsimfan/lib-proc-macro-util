@@ -21,11 +21,15 @@ impl<'a> Parse<'a> for Item<'a> {
         }
 
         let visibility = parser.parse()?;
+        let r#const = parser.parse()?;
+        let r#async = parser.parse()?;
+        let r#unsafe = parser.parse()?;
 
         if parser.peek::<Token![struct]>() {
             StructItem::parse(meta, visibility, parser).map(|r#struct| Item::Struct(r#struct))
         } else if parser.peek::<Token![fn]>() {
-            Function::parse(meta, visibility, parser).map(|r#fn| Item::Fn(r#fn))
+            Function::parse(meta, visibility, r#const, r#async, r#unsafe, parser)
+                .map(|r#fn| Item::Fn(r#fn))
         } else {
             Err(parser.error("expected an item"))
         }
