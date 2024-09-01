@@ -25,7 +25,7 @@ impl<T: ToTokens> ToTokens for Option<T> {
     }
 }
 
-impl<T: ToTokens> ToTokens for &T {
+impl<T: ToTokens + ?Sized> ToTokens for &T {
     fn to_tokens(&self, generator: &mut Generator) {
         (*self).to_tokens(generator)
     }

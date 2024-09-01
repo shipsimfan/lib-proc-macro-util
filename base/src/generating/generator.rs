@@ -23,7 +23,7 @@ impl<'a> Generator<'a> {
     ///
     /// ## Parameters
     ///  * `value` - The value to generate tokens for
-    pub fn generate<T: ToTokens>(&mut self, value: &T) {
+    pub fn generate<T: ToTokens + ?Sized>(&mut self, value: &T) {
         value.to_tokens(self)
     }
 
