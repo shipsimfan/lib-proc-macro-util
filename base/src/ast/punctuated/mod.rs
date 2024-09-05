@@ -3,7 +3,7 @@ use std::collections::VecDeque;
 
 mod iter;
 
-pub use iter::{IntoIter, Iter};
+pub use iter::{IntoIter, Iter, IterMut};
 
 /// A series of `Element`s punctuated by `Separator`s
 #[derive(Debug, Clone)]
@@ -41,6 +41,19 @@ impl<Element, Separator> Punctuated<Element, Separator> {
             self.inner.iter(),
             self.last.as_ref().map(|last| last.as_ref()),
         )
+    }
+
+    /// Creates a borrowed mutable iterator over the elements
+    pub fn iter_mut(&mut self) -> IterMut<Element, Separator> {
+        IterMut::new(
+            self.inner.iter_mut(),
+            self.last.as_mut().map(|last| last.as_mut()),
+        )
+    }
+
+    /// Creates an owned iterator over the elements
+    pub fn into_iter(self) -> IntoIter<Element, Separator> {
+        IntoIter::new(self.inner.into_iter(), self.last)
     }
 
     /// Pushes an element to the end
@@ -118,7 +131,7 @@ impl<Element, Separator> IntoIterator for Punctuated<Element, Separator> {
     type Item = (Element, Option<Separator>);
 
     fn into_iter(self) -> Self::IntoIter {
-        IntoIter::new(self.inner.into_iter(), self.last)
+        self.into_iter()
     }
 }
 
@@ -128,5 +141,14 @@ impl<'a, Element, Separator> IntoIterator for &'a Punctuated<Element, Separator>
 
     fn into_iter(self) -> Self::IntoIter {
         self.iter()
+    }
+}
+
+impl<'a, Element, Separator> IntoIterator for &'a mut Punctuated<Element, Separator> {
+    type IntoIter = IterMut<'a, Element, Separator>;
+    type Item = (&'a mut Element, Option<&'a mut Separator>);
+
+    fn into_iter(self) -> Self::IntoIter {
+        self.iter_mut()
     }
 }

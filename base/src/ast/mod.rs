@@ -21,7 +21,7 @@ pub use items::*;
 pub use lifetime::Lifetime;
 pub use meta::Meta;
 pub use path::*;
-pub use punctuated::Punctuated;
+pub use punctuated::*;
 pub use r#type::Type;
 pub use variable_name::VariableName;
 pub use visibility::Visibility;
