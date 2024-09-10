@@ -10,8 +10,5 @@
 #![deny(missing_docs)]
 #![feature(proc_macro_span)]
 
-extern crate proc_macro;
-
-pub use proc_macro::{Delimiter, Span};
 pub use proc_macro_util_base::*;
 pub use proc_macro_util_macros::*;

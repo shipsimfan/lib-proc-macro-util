@@ -1,10 +1,10 @@
-use crate::tokens::{Group, Identifier, Literal, OwnedTokenTree, Punctuation};
+use crate::tokens::{Group, Identifier, Literal, Punctuation};
 
 /// One token or tree
 #[derive(Debug, Clone)]
-pub enum TokenTree<'a> {
+pub enum TokenTree {
     /// A delimited group of tokens
-    Group(Group<'a>),
+    Group(Group),
 
     /// An identifier
     Identifier(Identifier),
@@ -16,24 +16,24 @@ pub enum TokenTree<'a> {
     Punctuation(Punctuation),
 }
 
-impl<'a> From<&'a OwnedTokenTree> for TokenTree<'a> {
-    fn from(token: &'a OwnedTokenTree) -> Self {
-        match token {
-            OwnedTokenTree::Group(group) => TokenTree::Group(group.into()),
-            OwnedTokenTree::Identifier(identifier) => TokenTree::Identifier(identifier.clone()),
-            OwnedTokenTree::Literal(literal) => TokenTree::Literal(literal.clone()),
-            OwnedTokenTree::Punctuation(punctuation) => TokenTree::Punctuation(punctuation.clone()),
+impl<'a> From<proc_macro::TokenTree> for TokenTree<'a> {
+    fn from(tree: proc_macro::TokenTree) -> Self {
+        match tree {
+            proc_macro::TokenTree::Group(group) => TokenTree::Group(group.into()),
+            proc_macro::TokenTree::Ident(ident) => TokenTree::Identifier(ident.into()),
+            proc_macro::TokenTree::Literal(literal) => TokenTree::Literal(literal.into()),
+            proc_macro::TokenTree::Punct(punctuation) => TokenTree::Punctuation(punctuation.into()),
         }
     }
 }
 
-impl<'a> Into<OwnedTokenTree> for TokenTree<'a> {
-    fn into(self) -> OwnedTokenTree {
+impl<'a> Into<proc_macro::TokenTree> for TokenTree<'a> {
+    fn into(self) -> proc_macro::TokenTree {
         match self {
-            TokenTree::Group(group) => OwnedTokenTree::Group(group.into()),
-            TokenTree::Identifier(identifier) => OwnedTokenTree::Identifier(identifier.into()),
-            TokenTree::Literal(literal) => OwnedTokenTree::Literal(literal.into()),
-            TokenTree::Punctuation(punctuation) => OwnedTokenTree::Punctuation(punctuation.into()),
+            TokenTree::Group(group) => proc_macro::TokenTree::Group(group.into()),
+            TokenTree::Identifier(ident) => proc_macro::TokenTree::Ident(ident.into()),
+            TokenTree::Literal(literal) => proc_macro::TokenTree::Literal(literal.into()),
+            TokenTree::Punctuation(punctuation) => proc_macro::TokenTree::Punct(punctuation.into()),
         }
     }
 }

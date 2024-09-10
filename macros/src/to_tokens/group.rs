@@ -17,7 +17,7 @@ impl Group {
         id: &mut usize,
     ) {
         let new_generator_ident =
-            Identifier::new(&format!("{BASE_GENERATOR_NAME}{id}"), Span::call_site());
+            Identifier::new_at(&format!("{BASE_GENERATOR_NAME}{id}"), Span::call_site());
         *id += 1;
 
         Token![let]().to_tokens(generator);

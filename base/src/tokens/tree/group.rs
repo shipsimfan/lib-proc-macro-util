@@ -1,9 +1,8 @@
-use crate::{parsing::Parser, tokens::OwnedGroup, Parse, ToTokens};
-use proc_macro::{Delimiter, Span};
+use crate::{parsing::Parser, tokens::TokenTree, Delimiter, Parse, Result, Span, ToTokens};
 
 /// A delimited group of tokens
 #[derive(Debug, Clone)]
-pub struct Group<'a> {
+pub struct Group {
     /// The span which covers this group
     pub span: Span,
 
@@ -11,58 +10,32 @@ pub struct Group<'a> {
     pub delimiter: Delimiter,
 
     /// The tokens contained by this buffer
-    pub tokens: Parser<'a>,
+    pub tokens: Vec<TokenTree>,
 }
 
-impl<'a> Group<'a> {
-    /// Gets the [`Span`] of this group
-    ///
-    /// ## Return Value
-    /// Returns this group's [`Span`]
-    pub fn span(&self) -> Span {
-        self.span
-    }
-
-    /// Gets the [`Delimiter`] surrounding this group
-    ///
-    /// ## Return Value
-    /// Returns the [`Delimiter`] surrounding this group
-    pub fn delimiter(&self) -> Delimiter {
-        self.delimiter
-    }
-
-    /// Gets the tokens in this group
-    ///
-    /// ## Return Value
-    /// Returns the [`Parser`] for the tokens in this group
-    pub fn tokens(&self) -> Parser<'a> {
-        self.tokens.clone()
-    }
-}
-
-impl<'a> From<&'a OwnedGroup> for Group<'a> {
-    fn from(value: &'a OwnedGroup) -> Self {
+impl Group {
+    pub const fn new_at(delimiter: Delimiter, span: Span) -> Self {
         Group {
-            span: value.span,
-            delimiter: value.delimiter,
-            tokens: Parser::from(&value.tokens),
+            span,
+            delimiter,
+            tokens: Vec::new(),
         }
+    }
+
+    pub fn parser(&self) -> Parser<'a> {
+        self.tokens.into()
     }
 }
 
-impl<'a> Into<OwnedGroup> for Group<'a> {
-    fn into(self) -> OwnedGroup {
-        OwnedGroup {
-            span: self.span,
-            delimiter: self.delimiter,
-            tokens: self.tokens.into(),
-        }
+impl<'a> Parse<'a> for &'a Group<'a> {
+    fn parse(parser: &mut Parser<'a>) -> Result<Self> {
+        parser.group().ok_or(parser.error("expected a group"))
     }
 }
 
 impl<'a> Parse<'a> for Group<'a> {
-    fn parse(parser: &mut Parser<'a>) -> crate::Result<Self> {
-        parser.group().ok_or(parser.error("expected a group"))
+    fn parse(parser: &mut Parser<'a>) -> Result<Self> {
+        parser.parse::<&'a Group>().map(|group| group.clone())
     }
 }
 
@@ -71,5 +44,21 @@ impl<'a> ToTokens for Group<'a> {
         generator
             .group_at(self.delimiter, self.span)
             .generate(&self.tokens);
+    }
+}
+
+impl<'a> From<proc_macro::Group> for Group<'a> {
+    fn from(group: proc_macro::Group) -> Self {
+        Group {
+            span: group.span(),
+            delimiter: group.delimiter(),
+            tokens: group.stream().into(),
+        }
+    }
+}
+
+impl<'a> Into<proc_macro::Group> for Group<'a> {
+    fn into(self) -> proc_macro::Group {
+        proc_macro::Group::new(self.delimiter, self.tokens.into())
     }
 }

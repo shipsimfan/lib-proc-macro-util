@@ -14,7 +14,7 @@ impl Identifier {
     ///
     /// ## Return Value
     /// Returns the newly created [`Identifier`]
-    pub fn new(identifier: &str, span: Span) -> Self {
+    pub fn new_at(identifier: &str, span: Span) -> Self {
         Identifier(proc_macro::Ident::new(identifier, span))
     }
 
@@ -35,7 +35,7 @@ impl Identifier {
     }
 }
 
-impl<T: AsRef<str>> PartialEq<T> for Identifier {
+impl<T: AsRef<str> + ?Sized> PartialEq<T> for Identifier {
     fn eq(&self, other: &T) -> bool {
         self.0.to_string() == other.as_ref()
     }
@@ -53,11 +53,19 @@ impl Into<proc_macro::Ident> for Identifier {
     }
 }
 
-impl<'a> Parse<'a> for Identifier {
+impl<'a> Parse<'a> for &'a Identifier {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         parser
             .identifier()
             .ok_or(Error::new_at("expected an identifier", parser.span()))
+    }
+}
+
+impl<'a> Parse<'a> for Identifier {
+    fn parse(parser: &mut Parser<'a>) -> Result<Self> {
+        parser
+            .parse::<&'a Identifier>()
+            .map(|identifier| identifier.clone())
     }
 }
 

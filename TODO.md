@@ -1,10 +1,30 @@
 # ToDo List
  1. Refactor/Improvement
+  *Things to think about:*
+   1. Debug
+   2. Clone
+   3. PartialEq + Eq
+   4. Public member(s)
+   5. Ownership and borrowing
+   6. Simple new function(s)
+   7. Clear utility functions
+   8. Parse
+   9. ToTokens
+   10. Deref
+   11. From<>
+   12. Into<>
+   13. Error messages and spans
+
+  *Things to implement:*
    1. tokens
-     1. Punctuation
-     2. Identifier
-     3. Literal
-     4. Group
+     1. Tree
+       1. Remove OwnedGroup and OwnedTokenTree
+       2. Move tree elements out of tree module
+     2. Keyword
+     3. Punctuation
+     4. Identifier
+     5. Literal
+     6. Group
    2. ast
      1. SimplePath
      2. DelimTokenTree

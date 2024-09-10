@@ -55,11 +55,17 @@ impl Into<proc_macro::Literal> for Literal {
     }
 }
 
-impl<'a> Parse<'a> for Literal {
+impl<'a> Parse<'a> for &'a Literal {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         parser
             .literal()
             .ok_or(Error::new_at("expected a literal", parser.span()))
+    }
+}
+
+impl<'a> Parse<'a> for Literal {
+    fn parse(parser: &mut Parser<'a>) -> Result<Self> {
+        parser.parse::<&'a Literal>().map(|literal| literal.clone())
     }
 }
 
