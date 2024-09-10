@@ -6,7 +6,60 @@
      3. Literal
      4. Group
    2. ast
-     1. Crate
+     1. SimplePath
+     2. DelimTokenTree
+     3. OuterAttribute
+     4. InnerAttribute
+     5. Visibility
+     6. Expression
+       1. ExpressionWithoutBlock
+         1. LiteralExpression
+         2. PathExpression
+         3. GroupedExpression
+         4. ArrayExpression
+         5. AwaitExpression
+         6. IndexExpression
+         7. TupleExpression
+         8. TupleIndexingExpression
+         9. StructExpression
+         10. CallExpression
+         11. MethodCallExpression
+         12. FieldExpression
+         13. ClosureExpression
+         14. AsyncBlockExpression
+         15. ContinueExpression
+         16. BreakExpression
+         17. RangeExpression
+         18. ReturnExpression
+         19. UnderscoreExpression
+         20. MacroInvocation
+       2. ExpressionWithBlock
+         1. BlockExpression
+         2. ConstBlockExpression
+         3. UnsafeBlockExpression
+         4. LoopExpression
+         5. IfExpression
+         6. IfLetExpression
+         7. MatchExpression
+     7. Item
+       1. VisItem
+         1. Module
+         2. ExternCrate
+         3. UseDeclaration
+         4. Function
+         5. TypeAlias
+         6. Struct
+         7. Enumeration
+         8. Union
+         9. ConstantItem
+         10. StaticItem
+         11. Trait
+         12. Implementation
+         13. ExternBlock
+       2. MacroItem
+         1. MacroInvocationSemi
+         2. MacroRulesDefinition
+     8. Crate
    3. to_tokens
    4. macros
      1. function
