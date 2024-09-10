@@ -1,6 +1,6 @@
 use super::TokenList;
-use base::{tokens::Identifier, Generator, Parser, Result, ToTokens, Token};
 use proc_macro::{Delimiter, Span};
+use proc_macro_util_base::{tokens::Identifier, Generator, Parser, Result, ToTokens, Token};
 
 pub(super) struct Group {
     delimiter: Delimiter,

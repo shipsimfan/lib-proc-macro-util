@@ -1,5 +1,5 @@
 use super::TokenTree;
-use base::{tokens::Identifier, Generator, Parse, Parser, Result};
+use proc_macro_util_base::{tokens::Identifier, Generator, Parse, Parser, Result};
 
 pub(super) struct TokenList {
     tokens: Vec<TokenTree>,

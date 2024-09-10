@@ -1,5 +1,5 @@
 [package]
-name = "macros"
+name = "proc-macro-util-macros"
 description = "Macros for lib-proc-macro-util"
 
 version.workspace = true
@@ -13,4 +13,4 @@ publish.workspace = true
 proc-macro = true
 
 [dependencies]
-base.workspace = true
+proc-macro-util-base.workspace = true

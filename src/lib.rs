@@ -12,6 +12,6 @@
 
 extern crate proc_macro;
 
-pub use base::*;
-pub use macros::*;
 pub use proc_macro::{Delimiter, Span};
+pub use proc_macro_util_base::*;
+pub use proc_macro_util_macros::*;

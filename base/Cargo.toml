@@ -1,5 +1,5 @@
 [package]
-name = "base"
+name = "proc-macro-util-base"
 description = "Base definitions for lib-proc-macro-utils"
 
 version.workspace = true

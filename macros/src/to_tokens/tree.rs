@@ -1,9 +1,9 @@
 use super::Group;
-use base::{
+use proc_macro::Delimiter;
+use proc_macro_util_base::{
     tokens::{Identifier, Literal, PunctuationToken, TokenTree as RawTokenTree},
     Generator, Parse, Parser, Result, ToTokens, Token,
 };
-use proc_macro::Delimiter;
 
 pub(super) enum TokenTree {
     Group(Group),

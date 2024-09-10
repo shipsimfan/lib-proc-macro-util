@@ -1,4 +1,4 @@
-use base::proc_macro_function;
+use proc_macro_util_base::proc_macro_function;
 
 proc_macro_function!(
     /// Generates tokens using a generator for an input

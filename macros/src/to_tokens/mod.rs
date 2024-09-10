@@ -1,6 +1,6 @@
-use base::{tokens::Identifier, Generator, Parse, Parser, ToTokens};
 use group::Group;
 use list::TokenList;
+use proc_macro_util_base::{tokens::Identifier, Generator, Parse, Parser, Result, ToTokens};
 use tree::TokenTree;
 
 mod group;
@@ -13,7 +13,7 @@ pub struct ToTokensMacro {
 }
 
 impl<'a> Parse<'a> for ToTokensMacro {
-    fn parse(parser: &mut Parser<'a>) -> base::Result<Self> {
+    fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         Ok(ToTokensMacro {
             generator_ident: parser
                 .parse()

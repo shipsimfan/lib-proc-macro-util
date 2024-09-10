@@ -11,8 +11,8 @@ license = "GPL-3.0-or-later"
 publish = false
 
 [workspace.dependencies]
-base.path = "base"
-macros.path = "macros"
+proc-macro-util-base.path = "base"
+proc-macro-util-macros.path = "macros"
 
 [package]
 name = "proc-macro-util"
@@ -26,5 +26,5 @@ license.workspace = true
 publish.workspace = true
 
 [dependencies]
-base.workspace = true
-macros.workspace = true
+proc-macro-util-base.workspace = true
+proc-macro-util-macros.workspace = true
