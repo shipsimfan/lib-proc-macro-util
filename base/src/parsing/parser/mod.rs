@@ -1,9 +1,9 @@
 use crate::tokens::TokenTree;
 
 mod from;
+mod new;
 mod next;
 mod span;
-mod tree;
 
 /// A source of tokens for parsing
 #[derive(Debug, Clone)]
@@ -16,11 +16,6 @@ pub struct Parser<'a> {
 }
 
 impl<'a> Parser<'a> {
-    /// Creates a new [`Parser`] over `stream`
-    pub fn new(stream: &'a [TokenTree]) -> Self {
-        Parser { stream, index: 0 }
-    }
-
     /// Is this stream empty?
     ///
     /// ## Return Value
