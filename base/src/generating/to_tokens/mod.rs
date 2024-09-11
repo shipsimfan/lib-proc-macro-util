@@ -3,7 +3,6 @@ use crate::Generator;
 mod r#box;
 mod number;
 mod option;
-mod reference;
 mod slice;
 mod string;
 
@@ -13,5 +12,5 @@ pub trait ToTokens {
     ///
     /// ## Parameters
     ///  * `generator` - The generator taking the tokens
-    fn to_tokens(&self, generator: &mut Generator);
+    fn to_tokens(self, generator: &mut Generator);
 }

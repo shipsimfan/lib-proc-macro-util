@@ -71,7 +71,7 @@ impl<'a> Parse<'a> for Literal {
 }
 
 impl ToTokens for Literal {
-    fn to_tokens(&self, generator: &mut Generator) {
-        generator.push(TokenTree::Literal(self.clone()))
+    fn to_tokens(self, generator: &mut Generator) {
+        TokenTree::Literal(self).to_tokens(generator)
     }
 }

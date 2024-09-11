@@ -46,8 +46,8 @@ impl<'a> Parse<'a> for Group {
 }
 
 impl<'a> ToTokens for Group {
-    fn to_tokens(&self, generator: &mut crate::Generator) {
-        generator.push(TokenTree::Group(self.clone()));
+    fn to_tokens(self, generator: &mut crate::Generator) {
+        TokenTree::Group(self).to_tokens(generator);
     }
 }
 

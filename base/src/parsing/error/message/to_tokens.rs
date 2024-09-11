@@ -4,7 +4,7 @@ use crate::{
 };
 
 impl ToTokens for ErrorMessage {
-    fn to_tokens(&self, generator: &mut Generator) {
+    fn to_tokens(self, generator: &mut Generator) {
         let (start, end) = (self.span.start(), self.span.end());
 
         <Token![::]>::new([start; 2]).to_tokens(generator);

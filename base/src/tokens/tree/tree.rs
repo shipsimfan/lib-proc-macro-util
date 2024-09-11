@@ -42,7 +42,7 @@ impl Into<proc_macro::TokenTree> for TokenTree {
 }
 
 impl ToTokens for TokenTree {
-    fn to_tokens(&self, generator: &mut Generator) {
-        generator.push(self.clone())
+    fn to_tokens(self, generator: &mut Generator) {
+        generator.push(self)
     }
 }

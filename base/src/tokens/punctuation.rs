@@ -1,38 +1,3 @@
-/// A trait for any type of punctuation
-pub trait PunctuationToken: crate::ToTokens {
-    /// Gets the string representation of this punctuation
-    ///
-    /// ## Return Value
-    /// Returns the string representation of this punctuation
-    fn as_str(&self) -> &'static str;
-}
-
-impl crate::ToTokens for Box<dyn PunctuationToken> {
-    fn to_tokens(&self, generator: &mut crate::Generator) {
-        self.as_ref().to_tokens(generator)
-    }
-}
-
-macro_rules! one_punctuation_token_impl {
-    ($parser: ident, $literal: literal, $name: ident) => {
-        if let Ok(punctuation) = $parser.parse::<$name>() {
-            return Ok(Box::new(punctuation));
-        }
-    };
-}
-
-macro_rules! punctuation_token_impl {
-    ($($literal: literal $name: ident),*) => {
-        impl<'a> $crate::Parse<'a> for Box<dyn PunctuationToken> {
-            fn parse(parser: &mut $crate::Parser<'a>) -> $crate::Result<Self> {
-                $(one_punctuation_token_impl!(parser, $literal, $name);)*
-
-                Err(parser.error("expected a punctuation"))
-            }
-        }
-    };
-}
-
 macro_rules! one_punctuation {
     ($literal: literal, $name: ident) => {
         #[allow(missing_docs)]
@@ -67,10 +32,9 @@ macro_rules! one_punctuation {
                     final_spacing: ::proc_macro::Spacing::Joint,
                 }
             }
-        }
 
-        impl PunctuationToken for $name {
-            fn as_str(&self) -> &'static str {
+            #[allow(missing_docs)]
+            pub const fn as_str(&self) -> &'static str {
                 $literal
             }
         }
@@ -81,8 +45,8 @@ macro_rules! one_punctuation {
 
                 parser.step(|parser| {
                     for (i, c) in $literal.chars().enumerate() {
-                        match parser.punctuation() {
-                            Some(punctuation) => {
+                        match parser.next() {
+                            Some($crate::tokens::TokenTree::Punctuation(punctuation)) => {
                                 spans[i] = punctuation.span();
                                 if punctuation.as_char() != c {
                                     break;
@@ -95,7 +59,7 @@ macro_rules! one_punctuation {
                                     break;
                                 }
                             }
-                            None => break,
+                            _ => break,
                         }
                     }
 
@@ -108,7 +72,7 @@ macro_rules! one_punctuation {
         }
 
         impl $crate::ToTokens for $name {
-            fn to_tokens(&self, generator: &mut $crate::Generator) {
+            fn to_tokens(self, generator: &mut $crate::Generator) {
                 for (i, c) in $literal.chars().enumerate() {
                     let spacing = if i < Self::LEN - 1 {
                         ::proc_macro::Spacing::Joint
@@ -116,11 +80,8 @@ macro_rules! one_punctuation {
                         self.final_spacing
                     };
 
-                    generator.punctuation($crate::tokens::Punctuation::new(
-                        c,
-                        spacing,
-                        self.spans[i],
-                    ));
+                    $crate::tokens::Punctuation::new(c, spacing, self.spans[i])
+                        .to_tokens(generator);
                 }
             }
         }
@@ -135,7 +96,6 @@ macro_rules! one_punctuation {
 
 macro_rules! punctuation {
     [$($literal: literal $name: ident)*] => {
-        punctuation_token_impl!($($literal $name),*);
         $(one_punctuation!($literal, $name);)*
     };
 }

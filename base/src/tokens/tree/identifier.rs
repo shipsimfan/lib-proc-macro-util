@@ -76,7 +76,7 @@ impl<'a> Parse<'a> for Identifier {
 }
 
 impl ToTokens for Identifier {
-    fn to_tokens(&self, generator: &mut Generator) {
-        generator.push(TokenTree::Identifier(self.clone()))
+    fn to_tokens(self, generator: &mut Generator) {
+        TokenTree::Identifier(self).to_tokens(generator);
     }
 }

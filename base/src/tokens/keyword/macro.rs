@@ -39,7 +39,7 @@ macro_rules! keywords {
         }
 
         impl $crate::ToTokens for $name {
-            fn to_tokens(&self, generator: &mut $crate::Generator) {
+            fn to_tokens(self, generator: &mut $crate::Generator) {
                 generator.push($crate::tokens::TokenTree::Identifier($crate::tokens::Identifier::new_at($literal, self.span)));
             }
         }
