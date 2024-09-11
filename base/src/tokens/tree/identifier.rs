@@ -1,4 +1,4 @@
-use crate::{Error, Generator, Parse, Parser, Result, ToTokens};
+use crate::{tokens::TokenTree, Generator, Parse, Parser, Result, ToTokens};
 use proc_macro::Span;
 
 /// An identifier
@@ -6,6 +6,11 @@ use proc_macro::Span;
 pub struct Identifier(proc_macro::Ident);
 
 impl Identifier {
+    /// Creates a new [`Identifier`] with [`Span::call_site()`]
+    pub fn new(identifier: &str) -> Self {
+        Identifier(proc_macro::Ident::new(identifier, Span::call_site()))
+    }
+
     /// Creates a new [`Identifier`]
     ///
     /// ## Parameters
@@ -55,9 +60,10 @@ impl Into<proc_macro::Ident> for Identifier {
 
 impl<'a> Parse<'a> for &'a Identifier {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        parser
-            .identifier()
-            .ok_or(Error::new_at("expected an identifier", parser.span()))
+        match parser.next() {
+            Some(TokenTree::Identifier(identifier)) => Ok(identifier.into()),
+            _ => Err(parser.error("expected an identifier")),
+        }
     }
 }
 
@@ -71,6 +77,6 @@ impl<'a> Parse<'a> for Identifier {
 
 impl ToTokens for Identifier {
     fn to_tokens(&self, generator: &mut Generator) {
-        generator.identifier_string_at(&self.0.to_string(), self.0.span())
+        generator.push(TokenTree::Identifier(self.clone()))
     }
 }

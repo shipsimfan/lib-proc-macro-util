@@ -1,4 +1,4 @@
-use crate::{Error, Generator, Parse, Parser, Result, ToTokens};
+use crate::{tokens::TokenTree, Generator, Parse, Parser, Result, ToTokens};
 use proc_macro::Span;
 
 /// A string or numeric literal
@@ -57,9 +57,10 @@ impl Into<proc_macro::Literal> for Literal {
 
 impl<'a> Parse<'a> for &'a Literal {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        parser
-            .literal()
-            .ok_or(Error::new_at("expected a literal", parser.span()))
+        match parser.next() {
+            Some(TokenTree::Literal(literal)) => Ok(literal.into()),
+            _ => Err(parser.error("expected a literal")),
+        }
     }
 }
 
@@ -71,6 +72,6 @@ impl<'a> Parse<'a> for Literal {
 
 impl ToTokens for Literal {
     fn to_tokens(&self, generator: &mut Generator) {
-        generator.literal(self.clone())
+        generator.push(TokenTree::Literal(self.clone()))
     }
 }

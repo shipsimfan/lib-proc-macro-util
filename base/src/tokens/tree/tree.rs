@@ -1,4 +1,7 @@
-use crate::tokens::{Group, Identifier, Literal, Punctuation};
+use crate::{
+    tokens::{Group, Identifier, Literal, Punctuation},
+    Generator, ToTokens,
+};
 
 /// One token or tree
 #[derive(Debug, Clone)]
@@ -16,7 +19,7 @@ pub enum TokenTree {
     Punctuation(Punctuation),
 }
 
-impl<'a> From<proc_macro::TokenTree> for TokenTree<'a> {
+impl From<proc_macro::TokenTree> for TokenTree {
     fn from(tree: proc_macro::TokenTree) -> Self {
         match tree {
             proc_macro::TokenTree::Group(group) => TokenTree::Group(group.into()),
@@ -27,7 +30,7 @@ impl<'a> From<proc_macro::TokenTree> for TokenTree<'a> {
     }
 }
 
-impl<'a> Into<proc_macro::TokenTree> for TokenTree<'a> {
+impl Into<proc_macro::TokenTree> for TokenTree {
     fn into(self) -> proc_macro::TokenTree {
         match self {
             TokenTree::Group(group) => proc_macro::TokenTree::Group(group.into()),
@@ -35,5 +38,11 @@ impl<'a> Into<proc_macro::TokenTree> for TokenTree<'a> {
             TokenTree::Literal(literal) => proc_macro::TokenTree::Literal(literal.into()),
             TokenTree::Punctuation(punctuation) => proc_macro::TokenTree::Punct(punctuation.into()),
         }
+    }
+}
+
+impl ToTokens for TokenTree {
+    fn to_tokens(&self, generator: &mut Generator) {
+        generator.push(self.clone())
     }
 }

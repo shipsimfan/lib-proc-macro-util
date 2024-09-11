@@ -1,4 +1,7 @@
-use crate::{parsing::Parser, tokens::TokenTree, Delimiter, Parse, Result, Span, ToTokens};
+use crate::{
+    collect_token_stream, into_token_stream, parsing::Parser, tokens::TokenTree, Delimiter, Parse,
+    Result, Span, ToTokens,
+};
 
 /// A delimited group of tokens
 #[derive(Debug, Clone)]
@@ -22,43 +25,44 @@ impl Group {
         }
     }
 
-    pub fn parser(&self) -> Parser<'a> {
-        self.tokens.into()
+    pub fn parser(&self) -> Parser {
+        Parser::new(&self.tokens)
     }
 }
 
-impl<'a> Parse<'a> for &'a Group<'a> {
+impl<'a> Parse<'a> for &'a Group {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        parser.group().ok_or(parser.error("expected a group"))
+        match parser.next() {
+            Some(TokenTree::Group(group)) => Ok(group),
+            _ => Err(parser.error("expected a group")),
+        }
     }
 }
 
-impl<'a> Parse<'a> for Group<'a> {
+impl<'a> Parse<'a> for Group {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         parser.parse::<&'a Group>().map(|group| group.clone())
     }
 }
 
-impl<'a> ToTokens for Group<'a> {
+impl<'a> ToTokens for Group {
     fn to_tokens(&self, generator: &mut crate::Generator) {
-        generator
-            .group_at(self.delimiter, self.span)
-            .generate(&self.tokens);
+        generator.push(TokenTree::Group(self.clone()));
     }
 }
 
-impl<'a> From<proc_macro::Group> for Group<'a> {
+impl<'a> From<proc_macro::Group> for Group {
     fn from(group: proc_macro::Group) -> Self {
         Group {
             span: group.span(),
             delimiter: group.delimiter(),
-            tokens: group.stream().into(),
+            tokens: collect_token_stream(group.stream()),
         }
     }
 }
 
-impl<'a> Into<proc_macro::Group> for Group<'a> {
+impl<'a> Into<proc_macro::Group> for Group {
     fn into(self) -> proc_macro::Group {
-        proc_macro::Group::new(self.delimiter, self.tokens.into())
+        proc_macro::Group::new(self.delimiter, into_token_stream(self.tokens))
     }
 }

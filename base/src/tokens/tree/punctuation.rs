@@ -1,4 +1,4 @@
-use crate::{Error, Generator, Parse, Parser, Result, ToTokens};
+use crate::{tokens::TokenTree, Generator, Parse, Parser, Result, ToTokens};
 use proc_macro::{Spacing, Span};
 
 /// A single character of punctuation
@@ -59,16 +59,25 @@ impl Into<proc_macro::Punct> for Punctuation {
     }
 }
 
+impl<'a> Parse<'a> for &'a Punctuation {
+    fn parse(parser: &mut Parser<'a>) -> Result<Self> {
+        match parser.next() {
+            Some(TokenTree::Punctuation(punctuation)) => Ok(punctuation.into()),
+            _ => Err(parser.error("expected punctuation")),
+        }
+    }
+}
+
 impl<'a> Parse<'a> for Punctuation {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         parser
-            .punctuation()
-            .ok_or(Error::new_at("expected punctuation", parser.span()))
+            .parse::<&'a Punctuation>()
+            .map(|literal| literal.clone())
     }
 }
 
 impl ToTokens for Punctuation {
     fn to_tokens(&self, generator: &mut Generator) {
-        generator.punctuation(self.clone())
+        generator.push(TokenTree::Punctuation(self.clone()))
     }
 }

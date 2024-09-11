@@ -26,7 +26,7 @@ impl<'a> Generator<'a> {
     ///
     /// ## Parameters
     ///  * `token` - The token tree to append
-    pub fn push(&mut self, token: &TokenTree) {
+    pub fn push(&mut self, token: TokenTree) {
         self.tokens.push(token.clone().into())
     }
 }

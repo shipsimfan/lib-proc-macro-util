@@ -27,7 +27,7 @@ macro_rules! keywords {
         impl<'a> $crate::Parse<'a> for $name {
             fn parse(parser: &mut $crate::Parser<'a>) -> $crate::Result<Self> {
                 parser.step(|parser| {
-                    if let Some(identifier) = parser.identifier() {
+                    if let Some($crate::tokens::TokenTree::Identifier(identifier)) = parser.next() {
                         if identifier == $literal {
                             return Ok(Self::new(identifier.span()))
                         }
@@ -40,7 +40,7 @@ macro_rules! keywords {
 
         impl $crate::ToTokens for $name {
             fn to_tokens(&self, generator: &mut $crate::Generator) {
-                generator.identifier_string_at($literal, self.span);
+                generator.push($crate::tokens::TokenTree::Identifier($crate::tokens::Identifier::new_at($literal, self.span)));
             }
         }
 

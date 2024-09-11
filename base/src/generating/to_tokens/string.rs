@@ -12,18 +12,6 @@ impl ToTokens for String {
     }
 }
 
-impl ToTokens for std::ffi::OsStr {
-    fn to_tokens(&self, generator: &mut Generator) {
-        Literal::new(self).to_tokens(generator)
-    }
-}
-
-impl ToTokens for std::ffi::OsString {
-    fn to_tokens(&self, generator: &mut Generator) {
-        Literal::new(self).to_tokens(generator)
-    }
-}
-
 impl ToTokens for std::ffi::CStr {
     fn to_tokens(&self, generator: &mut Generator) {
         Literal::new(self).to_tokens(generator)
@@ -31,18 +19,6 @@ impl ToTokens for std::ffi::CStr {
 }
 
 impl ToTokens for std::ffi::CString {
-    fn to_tokens(&self, generator: &mut Generator) {
-        Literal::new(self).to_tokens(generator)
-    }
-}
-
-impl ToTokens for std::path::Path {
-    fn to_tokens(&self, generator: &mut Generator) {
-        Literal::new(self).to_tokens(generator)
-    }
-}
-
-impl ToTokens for std::path::PathBuf {
     fn to_tokens(&self, generator: &mut Generator) {
         Literal::new(self).to_tokens(generator)
     }
