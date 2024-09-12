@@ -1,7 +1,7 @@
 use crate::{tokens::Literal, Generator, ToTokens};
 
-impl ToTokens for Literal {
+impl ToTokens for char {
     fn to_tokens(self, generator: &mut Generator) {
-        generator.push(self.into())
+        Literal::new(self).to_tokens(generator)
     }
 }

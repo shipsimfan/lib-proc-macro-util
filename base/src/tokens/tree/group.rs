@@ -17,6 +17,16 @@ pub struct Group {
 }
 
 impl Group {
+    /// Creates a new [`Group`] with [`Span::call_site`]
+    pub fn new(delimiter: Delimiter) -> Self {
+        Group {
+            span: Span::call_site(),
+            delimiter,
+            tokens: Vec::new(),
+        }
+    }
+
+    /// Creates a new [`Group`] with `span`
     pub const fn new_at(delimiter: Delimiter, span: Span) -> Self {
         Group {
             span,
@@ -25,6 +35,7 @@ impl Group {
         }
     }
 
+    /// Creates a [`Parser`] for this groups tokens
     pub fn parser(&self) -> Parser {
         Parser::new(&self.tokens)
     }

@@ -1,6 +1,8 @@
 use crate::Generator;
 
+mod bool;
 mod r#box;
+mod char;
 mod number;
 mod option;
 mod slice;

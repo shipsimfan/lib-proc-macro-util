@@ -11,3 +11,9 @@ impl Into<TokenTree> for Literal {
         TokenTree::Literal(self)
     }
 }
+
+impl Into<proc_macro::TokenTree> for Literal {
+    fn into(self) -> proc_macro::TokenTree {
+        proc_macro::TokenTree::Literal(self.0)
+    }
+}

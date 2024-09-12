@@ -1,5 +1,6 @@
 use crate::Span;
 
+mod char;
 mod number;
 mod string;
 

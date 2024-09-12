@@ -15,3 +15,11 @@ impl IntoLiteral for &std::ffi::CStr {
         literal
     }
 }
+
+impl IntoLiteral for &[u8] {
+    fn into_literal(self, span: Span) -> proc_macro::Literal {
+        let mut literal = proc_macro::Literal::byte_string(self);
+        literal.set_span(span);
+        literal
+    }
+}

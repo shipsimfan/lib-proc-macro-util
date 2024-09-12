@@ -17,12 +17,11 @@
 
   *Things to implement:*
    1. tokens
-     1. Identifier
+     1. Punctuation
      2. Group
-     3. Punctuation
-     4. Tree
-     5. Keyword
-     6. Punctuations
+     3. Tree
+     4. Keyword
+     5. Punctuations
    2. ast
      1. SimplePath
      2. DelimTokenTree

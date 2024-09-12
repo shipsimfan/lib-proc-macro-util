@@ -15,4 +15,4 @@ pub mod tokens;
 
 pub use generating::{generate, into_token_stream, Generator, ToTokens};
 pub use parsing::{collect_token_stream, parse, Error, ErrorMessage, Parse, Parser, Result};
-pub use proc_macro::{Delimiter, Span};
+pub use proc_macro::{Delimiter, Spacing, Span};

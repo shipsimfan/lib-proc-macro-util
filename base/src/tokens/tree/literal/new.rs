@@ -5,7 +5,7 @@ use crate::{
 
 impl Literal {
     /// Creates a new [`Literal`] from a [`proc_macro::Literal`]
-    pub fn new_raw(literal: proc_macro::Literal) -> Self {
+    pub const fn new_raw(literal: proc_macro::Literal) -> Self {
         Literal(literal)
     }
 
