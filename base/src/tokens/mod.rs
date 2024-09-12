@@ -11,4 +11,4 @@ mod tree;
 
 pub use keyword::*;
 pub use punctuation::*;
-pub use tree::{Group, Identifier, Literal, Punctuation, TokenTree};
+pub use tree::{Group, Identifier, IntoLiteral, Literal, Punctuation, TokenTree};

@@ -17,14 +17,12 @@
 
   *Things to implement:*
    1. tokens
-     1. Tree
-       1. Remove OwnedGroup and OwnedTokenTree
-       2. Move tree elements out of tree module
-     2. Keyword
+     1. Identifier
+     2. Group
      3. Punctuation
-     4. Identifier
-     5. Literal
-     6. Group
+     4. Tree
+     5. Keyword
+     6. Punctuations
    2. ast
      1. SimplePath
      2. DelimTokenTree
