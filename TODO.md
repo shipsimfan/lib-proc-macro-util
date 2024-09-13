@@ -17,11 +17,12 @@
 
   *Things to implement:*
    1. tokens
-     1. Group
-     2. Tree
-     3. Keyword
-     4. Punctuations
-   2. ast
+     1. Tree
+     2. Keyword
+     3. Punctuations
+     4. Move tree items out of tree module
+   2. to_tokens
+   3. ast
      1. SimplePath
      2. DelimTokenTree
      3. OuterAttribute
@@ -76,8 +77,7 @@
          1. MacroInvocationSemi
          2. MacroRulesDefinition
      8. Crate
-   3. to_tokens
-   4. macros
+   5. macros
      1. function
      2. derive
      3. attribute
