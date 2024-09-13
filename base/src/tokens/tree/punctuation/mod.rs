@@ -1,4 +1,4 @@
-use proc_macro::{Spacing, Span};
+use crate::{Spacing, Span};
 
 mod display;
 mod eq;

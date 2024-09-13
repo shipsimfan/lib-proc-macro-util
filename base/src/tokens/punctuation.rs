@@ -80,7 +80,7 @@ macro_rules! one_punctuation {
                         self.final_spacing
                     };
 
-                    $crate::tokens::Punctuation::new(c, spacing, self.spans[i])
+                    $crate::tokens::Punctuation::new_spaced_at(c, spacing, self.spans[i])
                         .to_tokens(generator);
                 }
             }
