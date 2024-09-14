@@ -10,7 +10,7 @@ pub use error::{Error, ErrorMessage, Result};
 pub use parse::Parse;
 pub use parser::Parser;
 
-/// Attempts to parse an object from a [`TokenStream`]
+/// Attempts to parse an object from a [`proc_macro::TokenStream`]
 ///
 /// ## Parameters
 ///  * `input` - The [`proc_macro::TokenStream`] to parse

@@ -17,8 +17,7 @@
 
   *Things to implement:*
    1. tokens
-     1. Keyword
-     2. Punctuations
+     1. Punctuations
    2. to_tokens
    3. ast
      1. SimplePath

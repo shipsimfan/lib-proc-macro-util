@@ -1,52 +1,72 @@
 macro_rules! keywords {
-    [$($literal: literal $name: ident)*] => {$(
-        #[allow(missing_docs)]
+    [$(
+        $(#[$meta: meta])*
+        $keyword: literal $name: ident
+    )*] => {$(
+        $(#[$meta])*
+        #[doc = ::std::concat!("`", $keyword, "` keyword")]
         #[derive(Debug, Clone)]
         pub struct $name {
-            pub span: ::proc_macro::Span,
+            /// The location of this span
+            pub span: Span,
         }
 
-        #[allow(missing_docs)]
+        #[doc = ::std::concat!("Creates a new [`struct@", ::std::stringify!($name), "`] keyword with [`Span::call_site`]")]
         #[allow(non_snake_case)]
         pub fn $name() -> $name {
-            $name::default()
+            $name::new()
         }
 
         impl $name {
-            #[allow(missing_docs)]
-            pub const fn new(span: ::proc_macro::Span) -> Self {
+            #[doc = ::std::concat!("Creates a new [`struct@", ::std::stringify!($name), "`] keyword with `span`")]
+            pub const fn new_at(span: Span) -> Self {
                 $name { span }
             }
 
-            #[allow(missing_docs)]
+            #[doc = ::std::concat!("Creates a new [`struct@", ::std::stringify!($name), "`] keyword with [`Span::call_site`]")]
+            pub fn new() -> Self {
+                $name::new_at(Span::call_site())
+            }
+
+            #[doc = ::std::concat!("Gets the keyword as a [`str`]")]
             pub const fn as_str(&self) -> &'static str {
-                $literal
+                $keyword
             }
         }
 
-        impl<'a> $crate::Parse<'a> for $name {
-            fn parse(parser: &mut $crate::Parser<'a>) -> $crate::Result<Self> {
-                parser.step(|parser| {
-                    if let Some($crate::tokens::TokenTree::Identifier(identifier)) = parser.next() {
-                        if identifier == $literal {
-                            return Ok(Self::new(identifier.span()))
-                        }
+        impl Into<Identifier> for $name {
+            fn into(self) -> Identifier {
+                Identifier::new_at($keyword, self.span)
+            }
+        }
+
+        impl Into<TokenTree> for $name {
+            fn into(self) -> TokenTree {
+                TokenTree::Identifier(self.into())
+            }
+        }
+
+        impl<'a> Parse<'a> for $name {
+            fn parse(parser: &mut Parser<'a>) -> Result<Self> {
+                if let Some(TokenTree::Identifier(identifier)) = parser.next() {
+                    if identifier == $keyword {
+                        return Ok(Self::new_at(identifier.span()))
                     }
+                }
 
-                    Err(parser.error(concat!("expected \"", $literal, "\"")))
-                })
+                Err(parser.error(concat!("expected \"", $keyword, "\"")))
             }
         }
 
-        impl $crate::ToTokens for $name {
-            fn to_tokens(self, generator: &mut $crate::Generator) {
-                generator.push($crate::tokens::TokenTree::Identifier($crate::tokens::Identifier::new_at($literal, self.span)));
+        impl ToTokens for $name {
+            fn to_tokens(self, generator: &mut Generator) {
+                generator.push(self.into());
             }
         }
 
-        impl ::core::default::Default for $name {
+        impl Default for $name {
             fn default() -> Self {
-                Self::new(::proc_macro::Span::call_site())
+                Self::new()
             }
         }
     )*};
