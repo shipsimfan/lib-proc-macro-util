@@ -1,4 +1,4 @@
-use proc_macro::Span;
+use crate::Span;
 
 mod display;
 mod from;

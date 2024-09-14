@@ -1,6 +1,7 @@
 use super::TokenList;
-use proc_macro::{Delimiter, Span};
-use proc_macro_util_base::{tokens::Identifier, Generator, Parser, Result, ToTokens, Token};
+use proc_macro_util_base::{
+    tokens::Identifier, Delimiter, Generator, Parser, Result, Span, ToTokens, Token,
+};
 
 pub(super) struct Group {
     delimiter: Delimiter,
@@ -16,17 +17,16 @@ impl Group {
         generator_ident: &Identifier,
         id: &mut usize,
     ) {
-        let new_generator_ident =
-            Identifier::new_at(&format!("{BASE_GENERATOR_NAME}{id}"), Span::call_site());
+        let new_generator_ident = Identifier::new(&format!("{BASE_GENERATOR_NAME}{id}"));
         *id += 1;
 
         Token![let]().to_tokens(generator);
         Token![mut]().to_tokens(generator);
-        generator.identifier(new_generator_ident.clone());
+        new_generator_ident.to_tokens(generator);
         Token![=]().to_tokens(generator);
-        generator.identifier(generator_ident.clone());
+        generator_ident.to_tokens(generator);
         Token![.]().to_tokens(generator);
-        generator.identifier_string("group");
+        "group".to_tokens(generator);
 
         let mut parameters = generator.group(Delimiter::Parenthesis);
         Token![::]().to_tokens(&mut parameters);

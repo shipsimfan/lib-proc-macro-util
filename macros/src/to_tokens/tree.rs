@@ -1,15 +1,14 @@
 use super::Group;
-use proc_macro::Delimiter;
 use proc_macro_util_base::{
-    tokens::{Identifier, Literal, PunctuationToken, TokenTree as RawTokenTree},
-    Generator, Parse, Parser, Result, ToTokens, Token,
+    tokens::{Identifier, Literal, Punctuation, TokenTree as RawTokenTree},
+    Delimiter, Generator, Parse, Parser, Result, ToTokens, Token,
 };
 
 pub(super) enum TokenTree {
     Group(Group),
     Identifier(Identifier),
     Literal(Literal),
-    Punctuation(Box<dyn PunctuationToken>),
+    Punctuation(Punctuation),
     Variable(Identifier),
 }
 

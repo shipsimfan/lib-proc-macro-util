@@ -1,8 +1,4 @@
-//! Tokens used for parsing and generating [`TokenStream`]s
-
-// rustdoc imports
-#[allow(unused_imports)]
-use proc_macro::TokenStream;
+//! Tokens used for parsing and generating [`proc_macro::TokenStream`]s
 
 mod group;
 mod identifier;

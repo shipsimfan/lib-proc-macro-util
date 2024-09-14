@@ -1,11 +1,11 @@
-use proc_macro::Span;
+use crate::Span;
 
 mod display;
+mod eq;
 mod from;
 mod into;
 mod new;
 mod parse;
-mod eq;
 mod to_tokens;
 
 /// An identifier

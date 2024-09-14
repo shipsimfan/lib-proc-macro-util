@@ -1,8 +1,7 @@
 use crate::{
     tokens::{Apostrophe, Identifier},
-    Generator, Parse, Parser, Result, ToTokens, Token,
+    Generator, Parse, Parser, Result, Span, ToTokens, Token,
 };
-use proc_macro::Span;
 
 /// A lifetime indicator
 #[derive(Debug, Clone)]

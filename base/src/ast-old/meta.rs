@@ -1,5 +1,4 @@
-use crate::{tokens::Group, Error, Generator, Parse, Parser, Result, ToTokens, Token};
-use proc_macro::Delimiter;
+use crate::{tokens::Group, Delimiter, Error, Generator, Parse, Parser, Result, ToTokens, Token};
 
 /// Metadata about a definition
 #[derive(Debug, Clone)]
