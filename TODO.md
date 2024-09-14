@@ -16,8 +16,7 @@
    13. Error messages and spans
 
   *Things to implement:*
-   1. to_tokens
-   2. ast
+   1. ast
      1. SimplePath
      2. DelimTokenTree
      3. OuterAttribute
@@ -72,6 +71,6 @@
          1. MacroInvocationSemi
          2. MacroRulesDefinition
      8. Crate
-   3. macros
+   2. macros
      1. derive
      2. attribute

@@ -1,32 +1,17 @@
-use group::Group;
-use list::TokenList;
-use proc_macro_util_base::{tokens::Identifier, Generator, Parse, Parser, Result, ToTokens};
-use tree::TokenTree;
+use proc_macro_util_base::tokens::Identifier;
+use token::Token;
 
-mod group;
-mod list;
-mod tree;
+mod token;
 
-pub struct ToTokensMacro {
-    generator_ident: Identifier,
-    tokens: TokenList,
-}
+mod parse;
+mod to_tokens;
 
-impl<'a> Parse<'a> for ToTokensMacro {
-    fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        Ok(ToTokensMacro {
-            generator_ident: parser
-                .parse()
-                .map_err(|error| error.append("expected the generator's variable name"))?,
-            tokens: parser.parse()?,
-        })
-    }
-}
+/// The implementation for the [`to_tokens`](crate::to_tokens) macro
+#[derive(Debug, Clone)]
+pub struct ToTokens<'a> {
+    /// The name of the generator to use
+    generator: &'a Identifier,
 
-impl ToTokens for ToTokensMacro {
-    fn to_tokens(self, generator: &mut Generator) {
-        let mut id = 0;
-        self.tokens
-            .to_tokens(generator, &self.generator_ident, false, &mut id);
-    }
+    /// The tokens to generate
+    tokens: Vec<Token<'a>>,
 }

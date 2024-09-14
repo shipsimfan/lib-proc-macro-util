@@ -1,6 +1,6 @@
 [package]
 name = "proc-macro-util-macros"
-description = "Macros for lib-proc-macro-util"
+description = "Procedural macros for lib-proc-macro-util"
 
 version.workspace = true
 authors.workspace = true

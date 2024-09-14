@@ -1,9 +1,6 @@
 [workspace]
 default-members = ["."]
-members = [
-    "base",
-    #"macros"
-]
+members = ["base", "macros"]
 
 [workspace.package]
 version = "0.1.0"
@@ -15,7 +12,7 @@ publish = false
 
 [workspace.dependencies]
 proc-macro-util-base.path = "base"
-#proc-macro-util-macros.path = "macros"
+proc-macro-util-macros.path = "macros"
 
 [package]
 name = "proc-macro-util"
@@ -30,4 +27,4 @@ publish.workspace = true
 
 [dependencies]
 proc-macro-util-base.workspace = true
-#proc-macro-util-macros.workspace = true
+proc-macro-util-macros.workspace = true

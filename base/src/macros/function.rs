@@ -20,10 +20,10 @@ macro_rules! proc_macro_function {
         #[proc_macro]
         $(#[$meta])*
         pub fn $name(input: ::proc_macro::TokenStream) -> ::proc_macro::TokenStream {
-            let token_buffer = input.into();
+            let token_buffer = $crate::collect_token_stream(input);
             match $crate::parse::<$path>(&token_buffer, true) {
-                Ok(output) => $crate::generate(&output),
-                Err(error) => $crate::generate(&error),
+                Ok(output) => $crate::generate(output),
+                Err(error) => $crate::generate(error),
             }
         }
     };

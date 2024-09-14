@@ -1,5 +1,7 @@
 use proc_macro_util_base::proc_macro_function;
 
+mod to_tokens;
+
 proc_macro_function!(
     /// Generates tokens using a generator for an input
     ///
@@ -14,5 +16,5 @@ proc_macro_function!(
     ///  - `...` is any tokens to be generated. If an identifier is preceeded by a `#` in this, it
     ///    will generate the tokens for the corresponding variable instead of generating the
     ///    identifier and `#`.
-    to_tokens::ToTokensMacro
+    to_tokens -> to_tokens::ToTokens
 );

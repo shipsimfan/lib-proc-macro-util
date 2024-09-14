@@ -1,4 +1,7 @@
-use crate::{tokens::TokenTree, ToTokens};
+use crate::{
+    tokens::{Group, TokenTree},
+    Delimiter, ToTokens,
+};
 
 /// An object for generating tokens
 pub struct Generator<'a> {
@@ -10,7 +13,7 @@ impl<'a> Generator<'a> {
     ///
     /// ## Return Value
     /// Returns the newly created [`Generator`]
-    pub(crate) fn new(tokens: &'a mut Vec<TokenTree>) -> Self {
+    pub fn new(tokens: &'a mut Vec<TokenTree>) -> Self {
         Generator { tokens }
     }
 
@@ -28,5 +31,32 @@ impl<'a> Generator<'a> {
     ///  * `token` - The token tree to append
     pub fn push(&mut self, token: TokenTree) {
         self.tokens.push(token.clone().into())
+    }
+
+    /// Inserts a new group with delimited by `delimiter` and returns a generator for that group
+    pub fn group(&mut self, delimiter: Delimiter) -> Generator {
+        self.tokens.push(Group::new(delimiter).into());
+        match self.tokens.last_mut() {
+            Some(TokenTree::Group(group)) => group.generator(),
+            _ => unreachable!(),
+        }
+    }
+
+    /// Inserts a new group with delimited by [`Delimiter::Brace`] and returns a generator for that
+    /// group
+    pub fn group_brace(&mut self) -> Generator {
+        self.group(Delimiter::Brace)
+    }
+
+    /// Inserts a new group with delimited by [`Delimiter::Bracket`] and returns a generator for
+    /// that group
+    pub fn group_bracket(&mut self) -> Generator {
+        self.group(Delimiter::Bracket)
+    }
+
+    /// Inserts a new group with delimited by [`Delimiter::Parenthesis`] and returns a generator
+    /// for that group
+    pub fn group_parenthesis(&mut self) -> Generator {
+        self.group(Delimiter::Parenthesis)
     }
 }
