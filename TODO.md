@@ -17,10 +17,8 @@
 
   *Things to implement:*
    1. tokens
-     1. Tree
-     2. Keyword
-     3. Punctuations
-     4. Move tree items out of tree module
+     1. Keyword
+     2. Punctuations
    2. to_tokens
    3. ast
      1. SimplePath

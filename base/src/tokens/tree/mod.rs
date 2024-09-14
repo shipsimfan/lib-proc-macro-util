@@ -1,11 +1,22 @@
-mod group;
-mod identifier;
-mod literal;
-mod punctuation;
-mod tree;
+use crate::tokens::{Group, Identifier, Literal, Punctuation};
 
-pub use group::Group;
-pub use identifier::Identifier;
-pub use literal::{IntoLiteral, Literal};
-pub use punctuation::Punctuation;
-pub use tree::TokenTree;
+mod from;
+mod into;
+mod parse;
+mod to_tokens;
+
+/// One token or tree
+#[derive(Debug, Clone)]
+pub enum TokenTree {
+    /// A delimited group of tokens
+    Group(Group),
+
+    /// An identifier
+    Identifier(Identifier),
+
+    /// A string or numeric literal
+    Literal(Literal),
+
+    /// A single character of punctuation
+    Punctuation(Punctuation),
+}

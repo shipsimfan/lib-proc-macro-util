@@ -16,6 +16,6 @@ impl<'a> Parse<'a> for Punctuation {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         parser
             .parse::<&'a Punctuation>()
-            .map(|literal| literal.clone())
+            .map(|punctuation| punctuation.clone())
     }
 }
