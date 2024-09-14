@@ -7,6 +7,7 @@ mod number;
 mod option;
 mod slice;
 mod string;
+mod tuple;
 
 /// An object which can be converted to tokens
 pub trait ToTokens {

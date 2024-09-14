@@ -2,6 +2,10 @@
 //! Base definitions for lib-proc-macro-util
 
 #![deny(missing_docs)]
+#![deny(rustdoc::private_intra_doc_links)]
+#![deny(rustdoc::unescaped_backticks)]
+#![deny(rustdoc::redundant_explicit_links)]
+#![warn(rustdoc::broken_intra_doc_links)]
 #![feature(proc_macro_span)]
 
 extern crate proc_macro;
@@ -10,7 +14,7 @@ mod generating;
 mod macros;
 mod parsing;
 
-//pub mod ast;
+pub mod ast;
 pub mod tokens;
 
 pub use generating::{generate, into_token_stream, Generator, ToTokens};

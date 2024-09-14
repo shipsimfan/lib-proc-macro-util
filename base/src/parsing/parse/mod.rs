@@ -1,6 +1,7 @@
 use crate::{Parser, Result};
 
 mod r#impl;
+mod impl_tuple;
 
 /// An object that can be created by parsing tokens
 pub trait Parse<'a>: Sized {

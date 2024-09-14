@@ -17,12 +17,11 @@
 
   *Things to implement:*
    1. ast
-     1. SimplePath
-     2. DelimTokenTree
-     3. OuterAttribute
-     4. InnerAttribute
-     5. Visibility
-     6. Expression
+     1. DelimTokenTree
+     2. OuterAttribute
+     3. InnerAttribute
+     4. Visibility
+     5. Expression
        1. ExpressionWithoutBlock
          1. LiteralExpression
          2. PathExpression
@@ -52,7 +51,7 @@
          5. IfExpression
          6. IfLetExpression
          7. MatchExpression
-     7. Item
+     6. Item
        1. VisItem
          1. Module
          2. ExternCrate
@@ -70,7 +69,7 @@
        2. MacroItem
          1. MacroInvocationSemi
          2. MacroRulesDefinition
-     8. Crate
+     7. Crate
    2. macros
      1. derive
      2. attribute
