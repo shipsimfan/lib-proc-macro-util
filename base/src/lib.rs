@@ -7,7 +7,7 @@
 extern crate proc_macro;
 
 mod generating;
-mod macros;
+//mod macros;
 mod parsing;
 
 //pub mod ast;

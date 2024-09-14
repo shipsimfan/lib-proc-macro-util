@@ -7,16 +7,8 @@ name = "proc-macro-util"
 version = "0.1.0"
 dependencies = [
  "proc-macro-util-base",
- "proc-macro-util-macros",
 ]
 
 [[package]]
 name = "proc-macro-util-base"
 version = "0.1.0"
-
-[[package]]
-name = "proc-macro-util-macros"
-version = "0.1.0"
-dependencies = [
- "proc-macro-util-base",
-]
