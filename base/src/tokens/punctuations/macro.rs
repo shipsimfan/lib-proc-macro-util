@@ -5,7 +5,7 @@ macro_rules! punctuation {
     )*] => {$(
         $(#[$meta])*
         #[doc = concat!("`", $punctuation, "` punctuation")]
-        #[derive(Debug, Clone)]
+        #[derive(Debug, Clone, Copy)]
         pub struct $name {
             /// The locations of the punctuations
             pub spans: [Span; Self::LEN],
@@ -105,6 +105,12 @@ macro_rules! punctuation {
         impl Default for $name {
             fn default() -> Self {
                 Self::new_alone()
+            }
+        }
+
+        impl std::fmt::Display for $name {
+            fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+                f.write_str(self.as_str())
             }
         }
     )*};

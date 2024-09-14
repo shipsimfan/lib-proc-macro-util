@@ -5,7 +5,7 @@ macro_rules! keywords {
     )*] => {$(
         $(#[$meta])*
         #[doc = concat!("`", $keyword, "` keyword")]
-        #[derive(Debug, Clone)]
+        #[derive(Debug, Clone, Copy)]
         pub struct $name {
             /// The location of this keyword
             pub span: Span,
@@ -67,6 +67,12 @@ macro_rules! keywords {
         impl Default for $name {
             fn default() -> Self {
                 Self::new()
+            }
+        }
+
+        impl std::fmt::Display for $name {
+            fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+                f.write_str(self.as_str())
             }
         }
     )*};
