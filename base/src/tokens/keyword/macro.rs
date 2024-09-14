@@ -4,31 +4,31 @@ macro_rules! keywords {
         $keyword: literal $name: ident
     )*] => {$(
         $(#[$meta])*
-        #[doc = ::std::concat!("`", $keyword, "` keyword")]
+        #[doc = concat!("`", $keyword, "` keyword")]
         #[derive(Debug, Clone)]
         pub struct $name {
-            /// The location of this span
+            /// The location of this keyword
             pub span: Span,
         }
 
-        #[doc = ::std::concat!("Creates a new [`struct@", ::std::stringify!($name), "`] keyword with [`Span::call_site`]")]
+        #[doc = concat!("Creates a new [`struct@", stringify!($name), "`] keyword with [`Span::call_site`]")]
         #[allow(non_snake_case)]
         pub fn $name() -> $name {
             $name::new()
         }
 
         impl $name {
-            #[doc = ::std::concat!("Creates a new [`struct@", ::std::stringify!($name), "`] keyword with `span`")]
+            #[doc = concat!("Creates a new [`struct@", stringify!($name), "`] keyword with `span`")]
             pub const fn new_at(span: Span) -> Self {
                 $name { span }
             }
 
-            #[doc = ::std::concat!("Creates a new [`struct@", ::std::stringify!($name), "`] keyword with [`Span::call_site`]")]
+            #[doc = concat!("Creates a new [`struct@", stringify!($name), "`] keyword with [`Span::call_site`]")]
             pub fn new() -> Self {
                 $name::new_at(Span::call_site())
             }
 
-            #[doc = ::std::concat!("Gets the keyword as a [`str`]")]
+            #[doc = concat!("Gets the keyword as a [`str`]")]
             pub const fn as_str(&self) -> &'static str {
                 $keyword
             }

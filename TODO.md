@@ -16,8 +16,7 @@
    13. Error messages and spans
 
   *Things to implement:*
-   1. tokens
-     1. Punctuations
+   1. function macro
    2. to_tokens
    3. ast
      1. SimplePath
@@ -74,8 +73,6 @@
          1. MacroInvocationSemi
          2. MacroRulesDefinition
      8. Crate
-   5. macros
-     1. function
-     2. derive
-     3. attribute
-     4. to_tokens
+   4. macros
+     1. derive
+     2. attribute
