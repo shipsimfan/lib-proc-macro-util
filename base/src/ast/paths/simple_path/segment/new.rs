@@ -15,4 +15,19 @@ impl<'a> SimplePathSegment<'a> {
     pub fn new_dollar_crate() -> SimplePathSegment<'a> {
         (Token![$](), Token![crate]()).into()
     }
+
+    /// Creates a new [`SimplePathSegment::Crate`]
+    pub fn new_crate() -> SimplePathSegment<'a> {
+        Token![crate]().into()
+    }
+
+    /// Creates a new [`SimplePathSegment::_Self`]
+    pub fn new_self() -> SimplePathSegment<'a> {
+        Token![self]().into()
+    }
+
+    /// Creates a new [`SimplePathSegment::Super`]
+    pub fn new_super() -> SimplePathSegment<'a> {
+        Token![super]().into()
+    }
 }

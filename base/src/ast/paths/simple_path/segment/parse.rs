@@ -2,11 +2,8 @@ use crate::{ast::SimplePathSegment, Parse, Parser, Result, Token};
 
 impl<'a> Parse<'a> for SimplePathSegment<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        if parser.peek::<Token![$]>() {
-            let dollar = parser.parse()?;
-            let krate = parser.parse()?;
-
-            return Ok(SimplePathSegment::DollarCrate(dollar, krate));
+        if let Ok(dollar) = parser.step::<Token![$], _>(Parser::parse) {
+            return Ok(SimplePathSegment::DollarCrate(dollar, parser.parse()?));
         }
 
         parser

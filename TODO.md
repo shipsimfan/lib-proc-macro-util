@@ -17,8 +17,7 @@
 
   *Things to implement:*
    1. ast
-     1. Visibility
-     2. Expression
+     1. Expression
        1. ExpressionWithoutBlock
          1. LiteralExpression
          2. PathExpression
@@ -48,7 +47,7 @@
          5. IfExpression
          6. IfLetExpression
          7. MatchExpression
-     3. Item
+     2. Item
        1. VisItem
          1. Module
          2. ExternCrate
@@ -66,7 +65,7 @@
        2. MacroItem
          1. MacroInvocationSemi
          2. MacroRulesDefinition
-     4. Crate
+     3. Crate
    2. macros
      1. derive
      2. attribute

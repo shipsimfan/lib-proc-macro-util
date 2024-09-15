@@ -15,6 +15,15 @@ pub enum SimplePathSegment<'a> {
     /// An owned identifier
     OwnedIdentifier(Identifier),
 
+    /// A reference to the local crate
+    Crate(Token![crate]),
+
+    /// A reference to the local item
+    _Self(Token![self]),
+
+    /// A reference to super
+    Super(Token![super]),
+
     /// A reference to the local crate used in `macro_rules!`
     DollarCrate(Token![$], Token![crate]),
 }

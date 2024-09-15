@@ -6,11 +6,13 @@ use proc_macro_util_base::{
 
 /// Attempts to parse `punctuation` into either a [`Token::Normal`] or a [`Token::Variable`]
 fn parse_punctuation<'a>(punctuation: &'a Punctuation, parser: &mut Parser<'a>) -> Token<'a> {
-    if punctuation.as_char() != '#' || !parser.peek::<Identifier>() {
-        return Token::Punctuation(punctuation);
+    if punctuation.as_char() == '#' {
+        if let Ok(identifier) = parser.step::<&'a Identifier, _>(Parser::parse) {
+            return Token::Variable(identifier);
+        }
     }
 
-    Token::Variable(parser.parse().unwrap())
+    return Token::Punctuation(punctuation);
 }
 
 impl<'a> Token<'a> {

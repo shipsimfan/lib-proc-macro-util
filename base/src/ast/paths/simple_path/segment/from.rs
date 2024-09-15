@@ -29,3 +29,21 @@ impl<'a> From<()> for SimplePathSegment<'a> {
         SimplePathSegment::new_dollar_crate()
     }
 }
+
+impl<'a> From<Token![crate]> for SimplePathSegment<'a> {
+    fn from(krate: Token![crate]) -> Self {
+        SimplePathSegment::Crate(krate)
+    }
+}
+
+impl<'a> From<Token![self]> for SimplePathSegment<'a> {
+    fn from(_self: Token![self]) -> Self {
+        SimplePathSegment::_Self(_self)
+    }
+}
+
+impl<'a> From<Token![super]> for SimplePathSegment<'a> {
+    fn from(_super: Token![super]) -> Self {
+        SimplePathSegment::Super(_super)
+    }
+}

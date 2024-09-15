@@ -2,9 +2,11 @@
 
 mod attributes;
 mod paths;
+mod visibility;
 
 pub mod expressions;
 
 pub use attributes::*;
 pub use expressions::Expression;
 pub use paths::*;
+pub use visibility::{Visibility, VisibilityScope};
