@@ -16,13 +16,13 @@ impl<'a> From<Group> for AttrInput<'a> {
     }
 }
 
-impl<'a, T: Into<Expression>> From<T> for AttrInput<'a> {
+impl<'a, T: Into<Expression<'a>>> From<T> for AttrInput<'a> {
     fn from(value: T) -> Self {
         AttrInput::Expression(Token![=](), value.into())
     }
 }
 
-impl<'a, T: Into<Expression>> From<(Token![=], T)> for AttrInput<'a> {
+impl<'a, T: Into<Expression<'a>>> From<(Token![=], T)> for AttrInput<'a> {
     fn from(value: (Token![=], T)) -> Self {
         AttrInput::Expression(value.0, value.1.into())
     }

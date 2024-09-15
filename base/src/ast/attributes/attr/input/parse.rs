@@ -1,8 +1,8 @@
-use crate::{ast::AttrInput, Parse, Parser, Result, Token};
+use crate::{ast::AttrInput, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for AttrInput<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        if let Ok(equals) = parser.step::<Token![=], _>(Parser::parse) {
+        if let Ok(equals) = parser.step(Parser::parse) {
             return Ok(AttrInput::Expression(equals, parser.parse()?));
         }
 

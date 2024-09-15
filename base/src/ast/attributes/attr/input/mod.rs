@@ -16,5 +16,5 @@ pub enum AttrInput<'a> {
     OwnedGroup(Group),
 
     /// The input is equal to an expression
-    Expression(Token![=], Expression),
+    Expression(Token![=], Expression<'a>),
 }

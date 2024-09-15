@@ -7,7 +7,7 @@ use proc_macro_util_base::{
 /// Attempts to parse `punctuation` into either a [`Token::Normal`] or a [`Token::Variable`]
 fn parse_punctuation<'a>(punctuation: &'a Punctuation, parser: &mut Parser<'a>) -> Token<'a> {
     if punctuation.as_char() == '#' {
-        if let Ok(identifier) = parser.step::<&'a Identifier, _>(Parser::parse) {
+        if let Ok(identifier) = parser.step(Parser::parse) {
             return Token::Variable(identifier);
         }
     }

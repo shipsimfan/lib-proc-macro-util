@@ -1,7 +1,9 @@
 use crate::ast::Expression;
 
-impl std::fmt::Display for Expression {
+impl<'a> std::fmt::Display for Expression<'a> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        todo!()
+        match self {
+            Expression::Literal(literal) => literal.fmt(f),
+        }
     }
 }

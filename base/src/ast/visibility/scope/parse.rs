@@ -1,16 +1,16 @@
-use crate::{ast::VisibilityScope, Parse, Parser, Result, Token};
+use crate::{ast::VisibilityScope, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for VisibilityScope<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        if let Ok(krate) = parser.step::<Token![crate], _>(Parser::parse) {
+        if let Ok(krate) = parser.step(Parser::parse) {
             return Ok(VisibilityScope::Crate(krate));
         }
 
-        if let Ok(_self) = parser.step::<Token![self], _>(Parser::parse) {
+        if let Ok(_self) = parser.step(Parser::parse) {
             return Ok(VisibilityScope::_Self(_self));
         }
 
-        if let Ok(_super) = parser.step::<Token![super], _>(Parser::parse) {
+        if let Ok(_super) = parser.step(Parser::parse) {
             return Ok(VisibilityScope::Super(_super));
         }
 
