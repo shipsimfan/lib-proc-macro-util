@@ -1,5 +1,6 @@
 use crate::{parsing::Parser, tokens::TokenTree, Delimiter, Generator, Span};
 
+mod display;
 mod from;
 mod into;
 mod new;
