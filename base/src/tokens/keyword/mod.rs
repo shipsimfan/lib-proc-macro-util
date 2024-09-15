@@ -21,6 +21,7 @@ r#macro::keywords! [
     "else" Else
     "enum" Enum
     "extern" Extern
+    "false" False
     "final" Final
     "fn" Fn
     "for" For
@@ -45,6 +46,7 @@ r#macro::keywords! [
     "struct" Struct
     "super" Super
     "trait" Trait
+    "true" True
     "try" Try
     "type" Type
     "typeof" TypeOf

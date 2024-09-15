@@ -16,6 +16,7 @@ macro_rules! Token {
     [else] => { $crate::tokens::Else };
     [enum] => { $crate::tokens::Enum };
     [extern] => { $crate::tokens::Extern };
+    [false] => { $crate::tokens::False };
     [final] => { $crate::tokens::Final };
     [fn] => { $crate::tokens::Fn };
     [for] => { $crate::tokens::For };
@@ -40,6 +41,7 @@ macro_rules! Token {
     [struct] => { $crate::tokens::Struct };
     [super] => { $crate::tokens::Super };
     [trait] => { $crate::tokens::Trait };
+    [true] => { $crate::tokens::True };
     [try] => { $crate::tokens::Try };
     [type] => { $crate::tokens::Type };
     [typeof] => { $crate::tokens::TypeOf };
