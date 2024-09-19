@@ -7,12 +7,15 @@
 #![deny(rustdoc::redundant_explicit_links)]
 #![warn(rustdoc::broken_intra_doc_links)]
 #![feature(proc_macro_span)]
+#![feature(const_option)]
 
 extern crate proc_macro;
 
 mod generating;
 mod macros;
 mod parsing;
+
+mod supported_languages;
 
 pub mod ast;
 pub mod tokens;
