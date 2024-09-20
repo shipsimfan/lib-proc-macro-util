@@ -5,7 +5,7 @@ version = 3
 [[package]]
 name = "i18n"
 version = "0.1.0"
-source = "git+https://github.com/shipsimfan/lib-i18n#df2d3b5b90db2e5d250b52039b706a1e9e654221"
+source = "git+https://github.com/shipsimfan/lib-i18n#ee9260841621e8f1d25f8c96045afd282eea7dbc"
 
 [[package]]
 name = "proc-macro-util"

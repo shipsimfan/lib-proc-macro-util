@@ -3,21 +3,10 @@ use crate::{
     supported_languages::{EN, FR},
     Parse, Parser, Result,
 };
-use i18n::translation::{Message, MessageKey};
 
-const EXPRESSION_EXPECTED: MessageKey<()> = MessageKey::new(&[
-    (EN, {
-        fn english(_: &(), f: &mut std::fmt::Formatter) -> std::fmt::Result {
-            f.write_str("expected an expression")
-        }
-        Message::new(english)
-    }),
-    (FR, {
-        fn french(_: &(), f: &mut std::fmt::Formatter) -> std::fmt::Result {
-            f.write_str("attendu une expression")
-        }
-        Message::new(french)
-    }),
+i18n::message_key!(EXPRESSION_EXPECTED [
+    EN => { "expected an expression" },
+    FR => { "attendu une expression" },
 ]);
 
 impl<'a> Parse<'a> for Expression<'a> {
