@@ -5,7 +5,10 @@ version = 3
 [[package]]
 name = "i18n"
 version = "0.1.0"
-source = "git+https://github.com/shipsimfan/lib-i18n#ee9260841621e8f1d25f8c96045afd282eea7dbc"
+source = "git+https://github.com/shipsimfan/lib-i18n#f8e700d77b6b1fc37a6762ef25ab434b83727a4e"
+dependencies = [
+ "win32",
+]
 
 [[package]]
 name = "proc-macro-util"
@@ -28,3 +31,8 @@ version = "0.1.0"
 dependencies = [
  "proc-macro-util-base",
 ]
+
+[[package]]
+name = "win32"
+version = "0.1.0"
+source = "git+https://github.com/shipsimfan/lib-win32#3e9f51544b799dfab898ac657725ba781f0d9241"
