@@ -1,18 +1,24 @@
 use crate::{
-    ast::{AttrInput, Expression},
+    ast::{AttrInput, DelimTokenTree, Expression},
     tokens::Group,
     Token,
 };
 
+impl<'a> From<DelimTokenTree<'a>> for AttrInput<'a> {
+    fn from(group: DelimTokenTree<'a>) -> Self {
+        AttrInput::Group(group)
+    }
+}
+
 impl<'a> From<&'a Group> for AttrInput<'a> {
     fn from(group: &'a Group) -> Self {
-        AttrInput::Group(group)
+        AttrInput::Group(group.into())
     }
 }
 
 impl<'a> From<Group> for AttrInput<'a> {
     fn from(group: Group) -> Self {
-        AttrInput::OwnedGroup(group)
+        AttrInput::Group(group.into())
     }
 }
 
