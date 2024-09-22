@@ -2,7 +2,6 @@ use crate::ast::SimplePath;
 
 mod input;
 
-mod display;
 mod from;
 mod new;
 mod parse;
@@ -12,6 +11,7 @@ pub use input::AttrInput;
 
 /// An attribute is a general, free-form metadatum that is interpreted according to name,
 /// convention, language, and compiler version
+#[derive(Debug, Clone)]
 pub struct Attr<'a> {
     /// The path identifiying the attribute
     pub path: SimplePath<'a>,

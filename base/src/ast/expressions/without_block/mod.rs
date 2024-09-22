@@ -1,14 +1,20 @@
-use crate::ast::expressions::LiteralExpression;
+use crate::ast::OuterAttribute;
 
-mod display;
 mod from;
+mod kind;
 mod new;
 mod parse;
 mod to_tokens;
 
+pub use kind::ExpressionWithoutBlockKind;
+
 /// An expression that does not have a block
+
 #[derive(Debug, Clone)]
-pub enum ExpressionWithoutBlock<'a> {
-    /// An expression made up of a literal value
-    Literal(LiteralExpression<'a>),
+pub struct ExpressionWithoutBlock<'a> {
+    /// Attributes affecting this expression
+    pub attributes: Vec<OuterAttribute<'a>>,
+
+    /// The kind of expression
+    pub kind: ExpressionWithoutBlockKind<'a>,
 }

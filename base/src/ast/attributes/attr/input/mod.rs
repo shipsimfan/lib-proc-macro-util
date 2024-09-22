@@ -1,6 +1,5 @@
 use crate::{ast::Expression, tokens::Group, Token};
 
-mod display;
 mod from;
 mod new;
 mod parse;

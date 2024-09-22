@@ -1,15 +1,20 @@
-use crate::ast::expressions::LiteralExpression;
+use crate::ast::OuterAttribute;
 
-mod display;
 mod from;
+mod kind;
 mod new;
 mod parse;
 mod to_tokens;
 
+pub use kind::ExpressionKind;
+
 /// A construct that evaluates to a value, and it can be used to perform computations, manipulate
 /// data, or control the flow of a program
 #[derive(Debug, Clone)]
-pub enum Expression<'a> {
-    /// An expression made up of a literal value
-    Literal(LiteralExpression<'a>),
+pub struct Expression<'a> {
+    /// Attributes affecting this expression
+    pub attributes: Vec<OuterAttribute<'a>>,
+
+    /// The kind of expression
+    pub kind: ExpressionKind<'a>,
 }

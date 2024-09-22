@@ -1,6 +1,5 @@
 use crate::{ast::Attr, Token};
 
-mod display;
 mod from;
 mod new;
 mod parse;

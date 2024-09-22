@@ -7,6 +7,6 @@ mod visibility;
 pub mod expressions;
 
 pub use attributes::*;
-pub use expressions::{Expression, ExpressionWithoutBlock};
+pub use expressions::*;
 pub use paths::*;
-pub use visibility::{Visibility, VisibilityScope};
+pub use visibility::*;
