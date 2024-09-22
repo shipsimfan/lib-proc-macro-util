@@ -17,7 +17,29 @@
 
   *Things to implement:*
    1. ast
-     1. Expression
+     1. MacroInvocation
+     2. TypeParamBounds
+     3. PathInExpression
+       1. GenericArg
+       2. GenericArgs
+     4. QualifiedPathInType
+     5. Type
+       1. TypeNoBounds
+         1. ParenthesizedType
+         2. ImplTraitTypeOneBound
+         3. TraitObjectTypeOneBound
+         4. TypePath
+         5. TupleType
+         6. NeverType
+         7. RawPointerType
+         8. ReferenceType
+         9. ArrayType
+         10. SliceType
+         11. InferredType
+         12. BareFunctionType
+       2. ImplTraitType
+       3. TraitObjectType
+     6. Expression
        1. PathExpression
        2. GroupedExpression
        3. ArrayExpression
@@ -36,14 +58,13 @@
        16. RangeExpression
        17. ReturnExpression
        18. UnderscoreExpression
-       19. MacroInvocation
-       20. ConstBlockExpression
-       21. UnsafeBlockExpression
-       22. LoopExpression
-       23. IfExpression
-       24. IfLetExpression
-       25. MatchExpression
-     2. Item
+       19. ConstBlockExpression
+       20. UnsafeBlockExpression
+       21. LoopExpression
+       22. IfExpression
+       23. IfLetExpression
+       24. MatchExpression
+     7. Item
        1. VisItem
          1. Module
          2. ExternCrate
@@ -61,12 +82,11 @@
        2. MacroItem
          1. MacroInvocationSemi
          2. MacroRulesDefinition
-     3. Statement
+     8. Statement
        1. Item
        2. LetStatement
        3. ExpressionStatement
-       4. MacroInvocationSemi
-     4. Crate
+     9. Crate
    2. macros
      1. derive
      2. attribute

@@ -1,6 +1,7 @@
 //! Utility definitions for working with standard parts of the Rust abstract syntax tree
 
 mod attributes;
+mod lifetime;
 mod paths;
 mod visibility;
 
@@ -8,6 +9,7 @@ pub mod expressions;
 pub mod statements;
 
 pub use attributes::*;
+pub use lifetime::*;
 pub use paths::*;
 pub use visibility::*;
 

@@ -51,6 +51,7 @@ r#macro::punctuation![
     "+" Plus
     "#" Pound
     "?" Question
+    "'" Quote
     ";" Semi
     "/" Slash
     "*" Star

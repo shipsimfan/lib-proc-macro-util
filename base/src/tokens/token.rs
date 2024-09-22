@@ -97,6 +97,7 @@ macro_rules! Token {
     [+] => { $crate::tokens::Plus };
     [#] => { $crate::tokens::Pound };
     [?] => { $crate::tokens::Question };
+    ['_] => { $crate::tokens::Quote };
     [;] => { $crate::tokens::Semi };
     [/] => { $crate::tokens::Slash };
     [*] => { $crate::tokens::Star };
