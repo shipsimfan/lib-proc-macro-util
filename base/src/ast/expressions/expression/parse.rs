@@ -1,13 +1,10 @@
-use crate::{
-    ast::Expression,
-    supported_languages::{EN, FR},
-    Parse, Parser, Result,
-};
+use crate::{ast::Expression, supported_languages::*, Parse, Parser, Result};
 use i18n::m;
 
-i18n::message_key!(EXPRESSION_EXPECTED [
+i18n::message_key!(EXPECTED_EXPRESSION [
     EN => { "expected an expression" },
-    FR => { "attendu une expression" },
+    FR => { "une expression était attendue" },
+    ZH => { "预期的表达式" },
 ]);
 
 impl<'a> Parse<'a> for Expression<'a> {
@@ -16,6 +13,6 @@ impl<'a> Parse<'a> for Expression<'a> {
             return Ok(Expression::Literal(literal));
         }
 
-        Err(parser.error(m!(EXPRESSION_EXPECTED)))
+        Err(parser.error(m!(EXPECTED_EXPRESSION)))
     }
 }

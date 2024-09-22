@@ -5,7 +5,7 @@ version = 3
 [[package]]
 name = "i18n"
 version = "0.1.0"
-source = "git+https://github.com/shipsimfan/lib-i18n#f8e700d77b6b1fc37a6762ef25ab434b83727a4e"
+source = "git+https://github.com/shipsimfan/lib-i18n#163c7a141ea225a18400831a5dd0373adca69ae6"
 dependencies = [
  "win32",
 ]
@@ -29,6 +29,7 @@ dependencies = [
 name = "proc-macro-util-macros"
 version = "0.1.0"
 dependencies = [
+ "i18n",
  "proc-macro-util-base",
 ]
 

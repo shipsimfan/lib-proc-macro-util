@@ -1,8 +1,15 @@
-use crate::{tokens::TokenTree, Parse, Parser, Result};
+use crate::{supported_languages::*, tokens::TokenTree, Parse, Parser, Result};
+use i18n::m;
+
+i18n::message_key!( EXPECTED_TOKEN_TREE [
+    EN => { "expected a token tree" },
+    FR => { "un arbre de jetons était attendu" },
+    ZH => { "预期的标记树" },
+]);
 
 impl<'a> Parse<'a> for &'a TokenTree {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        parser.next().ok_or(parser.error("expected a token tree"))
+        parser.next().ok_or(parser.error(m!(EXPECTED_TOKEN_TREE)))
     }
 }
 

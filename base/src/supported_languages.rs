@@ -1,7 +1,12 @@
+//! The set of languages supported by this library
+
 use i18n::locale::LanguageTag;
 
 /// English (United States)
-pub(crate) const EN: &LanguageTag = &LanguageTag::from_language(b"en").unwrap();
+pub const EN: &LanguageTag = &LanguageTag::from_language(b"en").unwrap();
 
 /// French (France)
-pub(crate) const FR: &LanguageTag = &LanguageTag::from_language(b"fr").unwrap();
+pub const FR: &LanguageTag = &LanguageTag::from_language(b"fr").unwrap();
+
+/// Chinese (Simplified, mainland China)
+pub const ZH: &LanguageTag = &LanguageTag::from_language(b"zh").unwrap();

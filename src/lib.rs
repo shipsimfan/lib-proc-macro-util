@@ -13,5 +13,8 @@
 #![deny(rustdoc::redundant_explicit_links)]
 #![warn(rustdoc::broken_intra_doc_links)]
 
-pub use proc_macro_util_base::*;
+pub use proc_macro_util_base::{
+    ast, collect_token_stream, generate, into_token_stream, parse, tokens, Delimiter, Error,
+    ErrorMessage, Generator, Parse, Parser, Result, Spacing, Span, ToTokens,
+};
 pub use proc_macro_util_macros::*;

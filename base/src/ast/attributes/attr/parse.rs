@@ -1,11 +1,18 @@
-use crate::{ast::Attr, Parse, Parser, Result};
+use crate::{ast::Attr, supported_languages::*, Parse, Parser, Result};
+use i18n::m;
+
+i18n::message_key!( EXPECTED_ATTRIBUTE [
+    EN => { "expected an attribute" },
+    FR => { "un attribut était attendu" },
+    ZH => { "预期的属性" },
+]);
 
 impl<'a> Parse<'a> for Attr<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         Ok(Attr {
             path: parser
                 .parse()
-                .map_err(|error| error.append("expected an attribute path"))?,
+                .map_err(|error| error.append(m!(EXPECTED_ATTRIBUTE)))?,
             input: parser.parse()?,
         })
     }

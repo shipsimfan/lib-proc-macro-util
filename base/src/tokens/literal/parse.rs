@@ -1,13 +1,21 @@
 use crate::{
+    supported_languages::*,
     tokens::{Literal, TokenTree},
     Parse, Parser, Result,
 };
+use i18n::m;
+
+i18n::message_key!( EXPECTED_LITERAL [
+    EN => { "expected a literal" },
+    FR => { "une valeur littérale était attendue" },
+    ZH => { "预期的字面值" },
+]);
 
 impl<'a> Parse<'a> for &'a Literal {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         match parser.next() {
             Some(TokenTree::Literal(literal)) => Ok(literal.into()),
-            _ => Err(parser.error("expected a literal")),
+            _ => Err(parser.error(m!(EXPECTED_LITERAL))),
         }
     }
 }

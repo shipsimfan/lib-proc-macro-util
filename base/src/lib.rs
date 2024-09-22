@@ -15,7 +15,7 @@ mod generating;
 mod macros;
 mod parsing;
 
-mod supported_languages;
+pub mod supported_languages;
 
 pub mod ast;
 pub mod tokens;

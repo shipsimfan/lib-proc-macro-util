@@ -1,4 +1,11 @@
-use crate::{ast::SimplePath, Parse, Parser, Result, Token};
+use crate::{ast::SimplePath, supported_languages::*, Parse, Parser, Result, Token};
+use i18n::m;
+
+i18n::message_key!( EXPECTED_SIMPLE_PATH [
+    EN => { "expected a simple path" },
+    FR => { "un chemin simple était attendu" },
+    ZH => { "预期的简单路径" },
+]);
 
 impl<'a> Parse<'a> for SimplePath<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -7,7 +14,7 @@ impl<'a> Parse<'a> for SimplePath<'a> {
             if leading.is_some() {
                 error
             } else {
-                parser.error("expected a simple path")
+                parser.error(m!(EXPECTED_SIMPLE_PATH))
             }
         })?;
         let remaining = parser.parse()?;

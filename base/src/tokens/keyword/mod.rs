@@ -1,7 +1,9 @@
 use crate::{
+    supported_languages::*,
     tokens::{Identifier, TokenTree},
     Generator, Parse, Parser, Result, Span, ToTokens,
 };
+use i18n::m;
 
 mod r#macro;
 

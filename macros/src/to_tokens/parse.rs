@@ -1,5 +1,12 @@
 use super::{ToTokens, Token};
-use proc_macro_util_base::{tokens::Identifier, Parse, Parser, Result};
+use i18n::m;
+use proc_macro_util_base::{supported_languages::*, tokens::Identifier, Parse, Parser, Result};
+
+i18n::message_key!( EXPECTED_ATTRIBUTE [
+    EN => { "expected the name of the generator to use" },
+    FR => { "le nom du générateur à utiliser était attendu" },
+    ZH => { "预期要使用的生成器名称" },
+]);
 
 impl<'a> ToTokens<'a> {
     /// Attempts to parse the `to_tokens` macro from `parser`, with the output using `base` as the
@@ -18,7 +25,7 @@ impl<'a> Parse<'a> for ToTokens<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         let generator = parser
             .parse()
-            .map_err(|error| error.append("expected the name of the generator to use"))?;
+            .map_err(|error| error.append(m!(EXPECTED_ATTRIBUTE)))?;
 
         ToTokens::parse_without_name(parser, generator)
     }
