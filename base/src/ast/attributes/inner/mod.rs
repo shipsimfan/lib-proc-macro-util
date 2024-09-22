@@ -6,6 +6,7 @@ mod parse;
 mod to_tokens;
 
 /// Inner attributes are [`Attr`]s which apply to the item they are inside
+#[derive(Debug, Clone)]
 pub struct InnerAttribute<'a> {
     /// The "#" identifying the attribute
     pub hash: Token![#],

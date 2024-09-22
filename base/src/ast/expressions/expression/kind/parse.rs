@@ -11,6 +11,8 @@ impl<'a> Parse<'a> for ExpressionKind<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         if let Ok(literal) = parser.step(Parser::parse) {
             return Ok(ExpressionKind::Literal(literal));
+        } else if let Ok(block) = parser.step(Parser::parse) {
+            return Ok(ExpressionKind::Block(block));
         }
 
         Err(parser.error(m!(EXPECTED_EXPRESSION)))

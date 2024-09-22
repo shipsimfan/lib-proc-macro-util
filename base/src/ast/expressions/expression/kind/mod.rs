@@ -1,4 +1,4 @@
-use crate::ast::expressions::LiteralExpression;
+use crate::ast::expressions::{BlockExpression, LiteralExpression};
 
 mod from;
 mod new;
@@ -10,4 +10,7 @@ mod to_tokens;
 pub enum ExpressionKind<'a> {
     /// An expression made up of a literal value
     Literal(LiteralExpression<'a>),
+
+    /// An expression made up of only a block
+    Block(BlockExpression<'a>),
 }

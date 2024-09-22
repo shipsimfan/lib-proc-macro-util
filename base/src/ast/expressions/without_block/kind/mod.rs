@@ -1,6 +1,5 @@
 use crate::ast::expressions::LiteralExpression;
 
-mod display;
 mod from;
 mod new;
 mod parse;

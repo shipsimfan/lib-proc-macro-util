@@ -5,8 +5,14 @@ mod paths;
 mod visibility;
 
 pub mod expressions;
+pub mod statements;
 
 pub use attributes::*;
-pub use expressions::*;
 pub use paths::*;
 pub use visibility::*;
+
+pub use expressions::{
+    Expression, ExpressionKind, ExpressionWithBlock, ExpressionWithBlockKind,
+    ExpressionWithoutBlock, ExpressionWithoutBlockKind,
+};
+pub use statements::Statement;
