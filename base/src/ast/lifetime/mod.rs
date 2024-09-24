@@ -1,10 +1,14 @@
 use crate::{tokens::Identifier, Token};
 
+mod bounds;
+
 mod display;
 mod from;
 mod new;
 mod parse;
 mod to_tokens;
+
+pub use bounds::LifetimeBounds;
 
 /// A lifetime denoting scope of a variable
 #[derive(Debug, Clone)]

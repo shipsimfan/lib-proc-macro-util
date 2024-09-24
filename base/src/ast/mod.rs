@@ -5,6 +5,7 @@ mod delim_token_tree;
 mod lifetime;
 mod macro_invocation;
 mod paths;
+mod types;
 mod visibility;
 
 pub mod expressions;
@@ -15,6 +16,7 @@ pub use delim_token_tree::*;
 pub use lifetime::*;
 pub use macro_invocation::*;
 pub use paths::*;
+pub use types::*;
 pub use visibility::*;
 
 pub use expressions::{
