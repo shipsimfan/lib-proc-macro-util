@@ -1,6 +1,7 @@
 use crate::{tokens::Identifier, Token};
 
 mod bounds;
+mod r#for;
 
 mod display;
 mod from;
@@ -9,6 +10,7 @@ mod parse;
 mod to_tokens;
 
 pub use bounds::LifetimeBounds;
+pub use r#for::ForLifetimes;
 
 /// A lifetime denoting scope of a variable
 #[derive(Debug, Clone)]

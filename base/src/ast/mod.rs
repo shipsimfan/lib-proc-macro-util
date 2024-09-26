@@ -2,6 +2,7 @@
 
 mod attributes;
 mod delim_token_tree;
+mod generic_params;
 mod lifetime;
 mod macro_invocation;
 mod paths;
@@ -9,10 +10,12 @@ mod types;
 mod visibility;
 
 pub mod expressions;
+pub mod items;
 pub mod statements;
 
 pub use attributes::*;
 pub use delim_token_tree::*;
+pub use generic_params::*;
 pub use lifetime::*;
 pub use macro_invocation::*;
 pub use paths::*;
