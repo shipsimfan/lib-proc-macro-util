@@ -1,6 +1,6 @@
 use crate::{ast::GenericParams, Token};
 
-pub struct ForLifetimes {
+pub struct ForLifetimes<'a> {
     r#for: Token![for],
-    generics: GenericParams,
+    generics: GenericParams<'a>,
 }

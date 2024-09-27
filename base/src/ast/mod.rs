@@ -2,6 +2,7 @@
 
 mod attributes;
 mod delim_token_tree;
+mod generic_args;
 mod generic_params;
 mod lifetime;
 mod macro_invocation;
@@ -15,6 +16,7 @@ pub mod statements;
 
 pub use attributes::*;
 pub use delim_token_tree::*;
+pub use generic_args::*;
 pub use generic_params::*;
 pub use lifetime::*;
 pub use macro_invocation::*;
