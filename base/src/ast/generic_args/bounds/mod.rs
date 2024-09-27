@@ -4,6 +4,10 @@ use crate::{
     Token,
 };
 
+mod parse;
+mod to_tokens;
+
+#[derive(Debug, Clone)]
 pub struct GenericArgsBounds<'a> {
     pub identifier: Identifier,
     pub args: Option<Box<GenericArgs<'a>>>,

@@ -6,6 +6,10 @@ use crate::{
     Token,
 };
 
+mod parse;
+mod to_tokens;
+
+#[derive(Debug, Clone)]
 pub enum GenericArgsConst<'a> {
     Block(BlockExpression<'a>),
     Literal(LiteralExpression<'a>),

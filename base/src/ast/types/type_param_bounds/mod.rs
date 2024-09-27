@@ -9,6 +9,7 @@ pub use type_param_bound::TypeParamBound;
 use crate::Token;
 
 /// A set of bounds on the types parameters can take
+#[derive(Debug, Clone)]
 pub struct TypeParamBounds<'a> {
     /// The first required type parameter binding
     pub first: TypeParamBound<'a>,
