@@ -21,11 +21,12 @@ pub use generic_params::*;
 pub use lifetime::*;
 pub use macro_invocation::*;
 pub use paths::*;
-pub use types::*;
 pub use visibility::*;
 
 pub use expressions::{
     Expression, ExpressionKind, ExpressionWithBlock, ExpressionWithBlockKind,
     ExpressionWithoutBlock, ExpressionWithoutBlockKind,
 };
+pub use items::TraitBound;
 pub use statements::Statement;
+pub use types::{TypeNoBounds, TypeParamBound, TypeParamBounds};
