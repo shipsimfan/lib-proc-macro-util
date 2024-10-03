@@ -7,6 +7,7 @@ mod to_tokens;
 pub use inputs::TypePathFnInputs;
 
 /// A function in a type path
+#[derive(Debug, Clone)]
 pub struct TypePathFn {
     /// The input types to the function
     pub inputs: Option<TypePathFnInputs>,

@@ -4,6 +4,7 @@ mod parse;
 mod to_tokens;
 
 /// A segment of different types of paths
+#[derive(Debug, Clone)]
 pub enum PathIdentSegment {
     /// The segment is an identifier
     Identifier(Identifier),

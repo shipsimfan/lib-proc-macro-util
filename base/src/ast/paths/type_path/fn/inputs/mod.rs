@@ -4,6 +4,7 @@ mod parse;
 mod to_tokens;
 
 /// The input types to a function in a type path
+#[derive(Debug, Clone)]
 pub struct TypePathFnInputs {
     /// The first input type
     pub first: Type,
