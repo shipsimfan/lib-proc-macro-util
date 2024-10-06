@@ -7,6 +7,7 @@ mod parse;
 mod to_tokens;
 
 /// A bound restricting a type to a trait
+#[derive(Debug, Clone)]
 pub struct TraitBound<'a> {
     /// Is this bound surrounded by parentheses
     pub delimited: bool,

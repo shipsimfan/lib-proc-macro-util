@@ -22,10 +22,11 @@ impl<'a> Parse<'a> for TraitBound<'a> {
             None => None,
         };
 
-        let mut parser = group.as_mut().unwrap_or(parser);
+        let delimited = group.is_some();
+        let parser = group.as_mut().unwrap_or(parser);
 
         Ok(TraitBound {
-            delimited: group.is_some(),
+            delimited,
             question: parser.parse()?,
             for_lifetimes: parser.parse()?,
             path: parser.parse()?,
