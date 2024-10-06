@@ -3,7 +3,7 @@ mod lifetime;
 mod r#type;
 
 pub use lifetime::LifetimeParam;
-pub use r#const::ConstParam;
+pub use r#const::{ConstParam, ConstParamValue};
 pub use r#type::TypeParam;
 
 pub enum GenericParamKind<'a> {
