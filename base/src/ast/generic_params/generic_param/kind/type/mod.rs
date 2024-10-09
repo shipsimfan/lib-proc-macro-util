@@ -4,8 +4,17 @@ use crate::{
     Token,
 };
 
+mod parse;
+mod to_tokens;
+
+/// A generic type parameter
 pub struct TypeParam<'a> {
+    /// The name of the generic type
     pub identifier: Identifier,
+
+    /// Restrictions on what the type can be
     pub bounds: Option<(Token![:], Option<TypeParamBounds<'a>>)>,
-    pub value: Option<(Token![=], Type)>,
+
+    /// A default type
+    pub default: Option<(Token![=], Type)>,
 }
