@@ -11,6 +11,7 @@ mod to_tokens;
 pub use value::ConstParamValue;
 
 /// A constant generic parameter
+#[derive(Debug, Clone)]
 pub struct ConstParam<'a> {
     /// The keyword identifying this parameter as constant
     pub r#const: Token![const],

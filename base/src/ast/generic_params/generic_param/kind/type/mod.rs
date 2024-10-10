@@ -8,6 +8,7 @@ mod parse;
 mod to_tokens;
 
 /// A generic type parameter
+#[derive(Debug, Clone)]
 pub struct TypeParam<'a> {
     /// The name of the generic type
     pub identifier: Identifier,

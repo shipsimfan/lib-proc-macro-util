@@ -7,6 +7,7 @@ mod parse;
 mod to_tokens;
 
 /// A generic lifetime parameter
+#[derive(Debug, Clone)]
 pub struct LifetimeParam<'a> {
     /// The lifetime itself
     pub lifetime: Lifetime<'a>,

@@ -8,6 +8,7 @@ mod to_tokens;
 pub use kind::*;
 
 /// A generic parameter
+#[derive(Debug, Clone)]
 pub struct GenericParam<'a> {
     /// Attributes modifying this parameter
     pub attributes: Vec<OuterAttribute<'a>>,

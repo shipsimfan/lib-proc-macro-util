@@ -10,6 +10,7 @@ pub use r#const::{ConstParam, ConstParamValue};
 pub use r#type::TypeParam;
 
 /// The kind a generic parameter is
+#[derive(Debug, Clone)]
 pub enum GenericParamKind<'a> {
     /// The generic parameter is a constant
     Const(ConstParam<'a>),

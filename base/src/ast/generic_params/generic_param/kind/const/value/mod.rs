@@ -10,6 +10,7 @@ mod parse;
 mod to_tokens;
 
 /// The value of a constant generic parameter
+#[derive(Debug, Clone)]
 pub enum ConstParamValue<'a> {
     /// The value is contained in a block
     Block(BlockExpression<'a>),
