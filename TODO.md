@@ -17,8 +17,7 @@
 
   *Things to implement:*
    1. ast
-     1. QualifiedPathInType
-     2. Type
+     1. Type
        1. TypeNoBounds
          1. ParenthesizedType
          2. ImplTraitTypeOneBound
@@ -34,7 +33,7 @@
          12. BareFunctionType
        2. ImplTraitType
        3. TraitObjectType
-     3. Expression
+     2. Expression
        1. PathExpression
        2. GroupedExpression
        3. ArrayExpression
@@ -59,7 +58,7 @@
        22. IfExpression
        23. IfLetExpression
        24. MatchExpression
-     4. Item
+     3. Item
        1. VisItem
          1. Module
          2. ExternCrate
@@ -77,11 +76,11 @@
        2. MacroItem
          1. MacroInvocationSemi
          2. MacroRulesDefinition
-     5. Statement
+     4. Statement
        1. Item
        2. LetStatement
        3. ExpressionStatement
-     6. Crate
+     5. Crate
    2. macros
      1. derive
      2. attribute
