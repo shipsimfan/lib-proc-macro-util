@@ -19,20 +19,17 @@
    1. ast
      1. Type
        1. TypeNoBounds
-         1. ParenthesizedType
-         2. ImplTraitTypeOneBound
-         3. TraitObjectTypeOneBound
-         4. TypePath
-         5. TupleType
-         6. NeverType
-         7. RawPointerType
-         8. ReferenceType
-         9. ArrayType
-         10. SliceType
-         11. InferredType
-         12. BareFunctionType
-       2. ImplTraitType
-       3. TraitObjectType
+         1. TraitObjectTypeOneBound
+         2. TypePath
+         3. TupleType
+         4. NeverType
+         5. RawPointerType
+         6. ReferenceType
+         7. ArrayType
+         8. SliceType
+         9. InferredType
+         10. BareFunctionType
+       2. TraitObjectType
      2. Expression
        1. PathExpression
        2. GroupedExpression

@@ -10,5 +10,5 @@ pub enum TypePathSegmentGenerics<'a> {
     GenericArgs(GenericArgs<'a>),
 
     /// A function
-    TypePathFn(TypePathFn),
+    TypePathFn(TypePathFn<'a>),
 }

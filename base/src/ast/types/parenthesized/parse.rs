@@ -1,9 +1,8 @@
-use i18n::m;
-
 use crate::{
     ast::types::ParenthesizedType, supported_languages::*, tokens::Group, Delimiter, Parse, Parser,
     Result,
 };
+use i18n::m;
 
 i18n::message_key!(EXPECTED_PARENTHESIZED_TYPE [
     EN => { "expected a parenthesized type" },
@@ -11,7 +10,7 @@ i18n::message_key!(EXPECTED_PARENTHESIZED_TYPE [
     ZH => { "预期的括号括起来的类型" },
 ]);
 
-impl<'a> Parse<'a> for ParenthesizedType {
+impl<'a> Parse<'a> for ParenthesizedType<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         let group: &'a Group = parser.parse()?;
         if group.delimiter != Delimiter::Parenthesis {

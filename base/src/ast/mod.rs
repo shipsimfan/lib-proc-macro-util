@@ -7,12 +7,12 @@ mod generic_params;
 mod lifetime;
 mod macro_invocation;
 mod paths;
-mod types;
 mod visibility;
 
 pub mod expressions;
 pub mod items;
 pub mod statements;
+pub mod types;
 
 pub use attributes::*;
 pub use delim_token_tree::*;

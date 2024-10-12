@@ -7,10 +7,14 @@ i18n::message_key!(EXPECTED_TYPE_NO_BOUNDS [
     ZH => { "预期的无边界类型" },
 ]);
 
-impl<'a> Parse<'a> for TypeNoBounds {
+impl<'a> Parse<'a> for TypeNoBounds<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         if let Ok(parenthesized) = parser.step(Parser::parse) {
             return Ok(TypeNoBounds::Parenthesized(parenthesized));
+        }
+
+        if let Ok(impl_trait) = parser.step(Parser::parse) {
+            return Ok(TypeNoBounds::ImplTraitOneBound(impl_trait));
         }
 
         Err(parser.error(m!(EXPECTED_TYPE_NO_BOUNDS)))

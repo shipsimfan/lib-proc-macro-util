@@ -1,11 +1,14 @@
-use crate::ast::types::ParenthesizedType;
+use crate::ast::types::{ImplTraitTypeOneBound, ParenthesizedType};
 
 mod parse;
 mod to_tokens;
 
 /// A type which can be defined without bounds
 #[derive(Debug, Clone)]
-pub enum TypeNoBounds {
+pub enum TypeNoBounds<'a> {
     /// The type is surrounded by parentheses
-    Parenthesized(ParenthesizedType),
+    Parenthesized(ParenthesizedType<'a>),
+
+    /// An unnamed type implementing one trait
+    ImplTraitOneBound(ImplTraitTypeOneBound<'a>),
 }

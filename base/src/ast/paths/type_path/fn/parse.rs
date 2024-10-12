@@ -14,7 +14,7 @@ i18n::message_key!(EXPECTED_END_OF_FN_INPUTS [
     ZH => { "预期的函数输入结束" },
 ]);
 
-impl<'a> Parse<'a> for TypePathFn {
+impl<'a> Parse<'a> for TypePathFn<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         let group: &'a Group = parser.parse()?;
         if group.delimiter != Delimiter::Parenthesis {
