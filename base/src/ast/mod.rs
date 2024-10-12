@@ -29,4 +29,4 @@ pub use expressions::{
 };
 pub use items::TraitBound;
 pub use statements::Statement;
-pub use types::{TypeNoBounds, TypeParamBound, TypeParamBounds};
+pub use types::{Type, TypeNoBounds, TypeParamBound, TypeParamBounds};
