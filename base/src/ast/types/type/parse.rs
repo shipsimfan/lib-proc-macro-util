@@ -37,6 +37,10 @@ impl<'a> Parse<'a> for Type<'a> {
             return Ok(Type::QualifiedPath(qualified_path));
         }
 
+        if let Ok(macro_invocation) = parser.step(Parser::parse) {
+            return Ok(Type::MacroInvocation(macro_invocation));
+        }
+
         if let Ok(tuple) = parser.step(Parser::parse) {
             return Ok(Type::Tuple(tuple));
         }

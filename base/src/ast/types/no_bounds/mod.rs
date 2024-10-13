@@ -3,7 +3,7 @@ use crate::ast::{
         ArrayType, ImplTraitTypeOneBound, InferredType, NeverType, ParenthesizedType,
         RawPointerType, ReferenceType, SliceType, TraitObjectTypeOneBound, TupleType,
     },
-    QualifiedPathInType, TypePath,
+    MacroInvocation, QualifiedPathInType, TypePath,
 };
 
 mod parse;
@@ -47,4 +47,7 @@ pub enum TypeNoBounds<'a> {
 
     /// A type qualified as another type or trait
     QualifiedPath(QualifiedPathInType<'a>),
+
+    /// A call to a macro
+    MacroInvocation(MacroInvocation<'a>),
 }

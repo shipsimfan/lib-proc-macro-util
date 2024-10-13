@@ -4,7 +4,7 @@ use crate::ast::{
         ParenthesizedType, RawPointerType, ReferenceType, SliceType, TraitObjectType,
         TraitObjectTypeOneBound, TupleType,
     },
-    QualifiedPathInType, TypePath,
+    MacroInvocation, QualifiedPathInType, TypePath,
 };
 
 mod parse;
@@ -54,4 +54,7 @@ pub enum Type<'a> {
 
     /// A type qualified as another type or trait
     QualifiedPath(QualifiedPathInType<'a>),
+
+    /// A call to a macro
+    MacroInvocation(MacroInvocation<'a>),
 }

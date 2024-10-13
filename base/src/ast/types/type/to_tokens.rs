@@ -21,6 +21,7 @@ impl<'a> ToTokens for Type<'a> {
             Type::Slice(slice) => slice.to_tokens(generator),
             Type::Inferred(inferred) => inferred.to_tokens(generator),
             Type::QualifiedPath(qualified_path) => qualified_path.to_tokens(generator),
+            Type::MacroInvocation(macro_invocation) => macro_invocation.to_tokens(generator),
         }
     }
 }
