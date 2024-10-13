@@ -17,10 +17,7 @@
 
   *Things to implement:*
    1. ast
-     1. Type
-       1. TypeNoBounds
-         1. BareFunctionType
-     2. Expression
+     1. Expression
        1. PathExpression
        2. GroupedExpression
        3. ArrayExpression
@@ -45,7 +42,7 @@
        22. IfExpression
        23. IfLetExpression
        24. MatchExpression
-     3. Item
+     2. Item
        1. VisItem
          1. Module
          2. ExternCrate
@@ -63,11 +60,11 @@
        2. MacroItem
          1. MacroInvocationSemi
          2. MacroRulesDefinition
-     4. Statement
+     3. Statement
        1. Item
        2. LetStatement
        3. ExpressionStatement
-     5. Crate
+     4. Crate
    2. macros
      1. derive
      2. attribute
