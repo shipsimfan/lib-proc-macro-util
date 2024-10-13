@@ -1,6 +1,6 @@
 use crate::ast::{
     types::{
-        ImplTraitTypeOneBound, NeverType, ParenthesizedType, RawPointerType,
+        ImplTraitTypeOneBound, NeverType, ParenthesizedType, RawPointerType, ReferenceType,
         TraitObjectTypeOneBound, TupleType,
     },
     TypePath,
@@ -32,4 +32,7 @@ pub enum TypeNoBounds<'a> {
 
     /// A raw pointer to another type
     RawPointer(RawPointerType<'a>),
+
+    /// A reference to another type
+    Reference(ReferenceType<'a>),
 }

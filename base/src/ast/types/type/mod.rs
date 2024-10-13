@@ -1,7 +1,7 @@
 use crate::ast::{
     types::{
         ImplTraitType, ImplTraitTypeOneBound, NeverType, ParenthesizedType, RawPointerType,
-        TraitObjectType, TraitObjectTypeOneBound, TupleType,
+        ReferenceType, TraitObjectType, TraitObjectTypeOneBound, TupleType,
     },
     TypePath,
 };
@@ -38,4 +38,7 @@ pub enum Type<'a> {
 
     /// A raw pointer to another type
     RawPointer(RawPointerType<'a>),
+
+    /// A reference to another type
+    Reference(ReferenceType<'a>),
 }

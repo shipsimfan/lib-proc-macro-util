@@ -16,6 +16,7 @@ impl<'a> ToTokens for Type<'a> {
             Type::Tuple(tuple) => tuple.to_tokens(generator),
             Type::Never(never) => never.to_tokens(generator),
             Type::RawPointer(raw_pointer) => raw_pointer.to_tokens(generator),
+            Type::Reference(reference) => reference.to_tokens(generator),
         }
     }
 }

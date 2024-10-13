@@ -17,6 +17,10 @@ impl<'a> Parse<'a> for Type<'a> {
             return Ok(Type::RawPointer(raw_pointer));
         }
 
+        if let Ok(reference) = parser.step(Parser::parse) {
+            return Ok(Type::Reference(reference));
+        }
+
         if let Ok(tuple) = parser.step(Parser::parse) {
             return Ok(Type::Tuple(tuple));
         }
