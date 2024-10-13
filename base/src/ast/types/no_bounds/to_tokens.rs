@@ -18,6 +18,7 @@ impl<'a> ToTokens for TypeNoBounds<'a> {
             TypeNoBounds::MacroInvocation(macro_invocation) => {
                 macro_invocation.to_tokens(generator)
             }
+            TypeNoBounds::BareFunction(bare_function) => bare_function.to_tokens(generator),
         }
     }
 }

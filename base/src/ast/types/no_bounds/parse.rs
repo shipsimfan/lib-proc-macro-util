@@ -49,6 +49,10 @@ impl<'a> Parse<'a> for TypeNoBounds<'a> {
             return Ok(TypeNoBounds::Parenthesized(parenthesized));
         }
 
+        if let Ok(bare_function) = parser.step_parse() {
+            return Ok(TypeNoBounds::BareFunction(bare_function));
+        }
+
         if let Ok(impl_trait) = parser.step_parse() {
             return Ok(TypeNoBounds::ImplTraitOneBound(impl_trait));
         }

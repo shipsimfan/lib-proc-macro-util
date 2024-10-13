@@ -22,6 +22,7 @@ impl<'a> ToTokens for Type<'a> {
             Type::Inferred(inferred) => inferred.to_tokens(generator),
             Type::QualifiedPath(qualified_path) => qualified_path.to_tokens(generator),
             Type::MacroInvocation(macro_invocation) => macro_invocation.to_tokens(generator),
+            Type::BareFunction(bare_function) => bare_function.to_tokens(generator),
         }
     }
 }

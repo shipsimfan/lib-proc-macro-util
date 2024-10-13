@@ -1,7 +1,14 @@
 use crate::{ast::Abi, Token};
 
+mod parse;
+mod to_tokens;
+
+/// Qualifiers adjusting a function
 #[derive(Debug, Clone)]
-pub struct FunctionTypeQualifiers {
+pub struct FunctionTypeQualifiers<'a> {
+    /// Indicates if the function is unsafe
     pub r#unsafe: Option<Token![unsafe]>,
-    pub r#extern: Option<(Token![extern], Option<Abi>)>,
+
+    /// Indicates if the function is an external function
+    pub r#extern: Option<(Token![extern], Option<Abi<'a>>)>,
 }

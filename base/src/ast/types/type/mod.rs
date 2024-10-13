@@ -1,6 +1,6 @@
 use crate::ast::{
     types::{
-        ArrayType, ImplTraitType, ImplTraitTypeOneBound, InferredType, NeverType,
+        ArrayType, BareFunctionType, ImplTraitType, ImplTraitTypeOneBound, InferredType, NeverType,
         ParenthesizedType, RawPointerType, ReferenceType, SliceType, TraitObjectType,
         TraitObjectTypeOneBound, TupleType,
     },
@@ -57,4 +57,7 @@ pub enum Type<'a> {
 
     /// A call to a macro
     MacroInvocation(MacroInvocation<'a>),
+
+    /// A bare function
+    BareFunction(BareFunctionType<'a>),
 }

@@ -49,6 +49,10 @@ impl<'a> Parse<'a> for Type<'a> {
             return Ok(Type::Parenthesized(parenthesized));
         }
 
+        if let Ok(bare_function) = parser.step_parse() {
+            return Ok(Type::BareFunction(bare_function));
+        }
+
         if let Ok(impl_trait_one_bound) = parser.step_parse() {
             return Ok(Type::ImplTraitOneBound(impl_trait_one_bound));
         }

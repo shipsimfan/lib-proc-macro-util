@@ -1,7 +1,8 @@
 use crate::ast::{
     types::{
-        ArrayType, ImplTraitTypeOneBound, InferredType, NeverType, ParenthesizedType,
-        RawPointerType, ReferenceType, SliceType, TraitObjectTypeOneBound, TupleType,
+        ArrayType, BareFunctionType, ImplTraitTypeOneBound, InferredType, NeverType,
+        ParenthesizedType, RawPointerType, ReferenceType, SliceType, TraitObjectTypeOneBound,
+        TupleType,
     },
     MacroInvocation, QualifiedPathInType, TypePath,
 };
@@ -50,4 +51,7 @@ pub enum TypeNoBounds<'a> {
 
     /// A call to a macro
     MacroInvocation(MacroInvocation<'a>),
+
+    /// A bare function
+    BareFunction(BareFunctionType<'a>),
 }
