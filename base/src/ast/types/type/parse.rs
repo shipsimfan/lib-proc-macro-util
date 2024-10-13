@@ -33,6 +33,10 @@ impl<'a> Parse<'a> for Type<'a> {
             return Ok(Type::Slice(slice));
         }
 
+        if let Ok(qualified_path) = parser.step(Parser::parse) {
+            return Ok(Type::QualifiedPath(qualified_path));
+        }
+
         if let Ok(tuple) = parser.step(Parser::parse) {
             return Ok(Type::Tuple(tuple));
         }

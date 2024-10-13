@@ -4,7 +4,7 @@ use crate::ast::{
         ParenthesizedType, RawPointerType, ReferenceType, SliceType, TraitObjectType,
         TraitObjectTypeOneBound, TupleType,
     },
-    TypePath,
+    QualifiedPathInType, TypePath,
 };
 
 mod parse;
@@ -51,4 +51,7 @@ pub enum Type<'a> {
 
     /// A type which has been explicitly specified and will be inferred by the compiler
     Inferred(InferredType),
+
+    /// A type qualified as another type or trait
+    QualifiedPath(QualifiedPathInType<'a>),
 }

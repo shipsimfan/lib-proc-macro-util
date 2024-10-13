@@ -3,7 +3,7 @@ use crate::ast::{
         ArrayType, ImplTraitTypeOneBound, InferredType, NeverType, ParenthesizedType,
         RawPointerType, ReferenceType, SliceType, TraitObjectTypeOneBound, TupleType,
     },
-    TypePath,
+    QualifiedPathInType, TypePath,
 };
 
 mod parse;
@@ -44,4 +44,7 @@ pub enum TypeNoBounds<'a> {
 
     /// A type which has been explicitly specified and will be inferred by the compiler
     Inferred(InferredType),
+
+    /// A type qualified as another type or trait
+    QualifiedPath(QualifiedPathInType<'a>),
 }

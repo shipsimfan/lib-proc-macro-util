@@ -20,6 +20,7 @@ impl<'a> ToTokens for Type<'a> {
             Type::Array(array) => array.to_tokens(generator),
             Type::Slice(slice) => slice.to_tokens(generator),
             Type::Inferred(inferred) => inferred.to_tokens(generator),
+            Type::QualifiedPath(qualified_path) => qualified_path.to_tokens(generator),
         }
     }
 }

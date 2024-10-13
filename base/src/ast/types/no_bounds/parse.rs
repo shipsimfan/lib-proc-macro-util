@@ -33,6 +33,10 @@ impl<'a> Parse<'a> for TypeNoBounds<'a> {
             return Ok(TypeNoBounds::Slice(slice));
         }
 
+        if let Ok(qualified_path) = parser.step(Parser::parse) {
+            return Ok(TypeNoBounds::QualifiedPath(qualified_path));
+        }
+
         if let Ok(tuple) = parser.step(Parser::parse) {
             return Ok(TypeNoBounds::Tuple(tuple));
         }
