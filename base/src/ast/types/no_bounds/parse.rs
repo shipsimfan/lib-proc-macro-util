@@ -21,6 +21,10 @@ impl<'a> Parse<'a> for TypeNoBounds<'a> {
             return Ok(TypeNoBounds::Reference(reference));
         }
 
+        if let Ok(array) = parser.step(Parser::parse) {
+            return Ok(TypeNoBounds::Reference(array));
+        }
+
         if let Ok(tuple) = parser.step(Parser::parse) {
             return Ok(TypeNoBounds::Tuple(tuple));
         }

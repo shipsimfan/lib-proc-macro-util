@@ -1,7 +1,7 @@
 use crate::ast::{
     types::{
-        ImplTraitType, ImplTraitTypeOneBound, NeverType, ParenthesizedType, RawPointerType,
-        ReferenceType, TraitObjectType, TraitObjectTypeOneBound, TupleType,
+        ArrayType, ImplTraitType, ImplTraitTypeOneBound, NeverType, ParenthesizedType,
+        RawPointerType, ReferenceType, TraitObjectType, TraitObjectTypeOneBound, TupleType,
     },
     TypePath,
 };
@@ -41,4 +41,7 @@ pub enum Type<'a> {
 
     /// A reference to another type
     Reference(ReferenceType<'a>),
+
+    /// A fixed-sized homogenous sequence of values
+    Array(ArrayType<'a>),
 }

@@ -21,6 +21,10 @@ impl<'a> Parse<'a> for Type<'a> {
             return Ok(Type::Reference(reference));
         }
 
+        if let Ok(array) = parser.step(Parser::parse) {
+            return Ok(Type::Array(array));
+        }
+
         if let Ok(tuple) = parser.step(Parser::parse) {
             return Ok(Type::Tuple(tuple));
         }

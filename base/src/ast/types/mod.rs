@@ -2,6 +2,7 @@
 
 mod type_param_bounds;
 
+mod array_type;
 mod impl_trait;
 mod impl_trait_one_bound;
 mod never;
@@ -18,6 +19,7 @@ mod r#type;
 pub use r#type::*;
 pub use type_param_bounds::*;
 
+pub use array_type::ArrayType;
 pub use impl_trait::ImplTraitType;
 pub use impl_trait_one_bound::ImplTraitTypeOneBound;
 pub use never::NeverType;
