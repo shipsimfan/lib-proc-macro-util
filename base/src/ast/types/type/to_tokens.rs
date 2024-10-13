@@ -19,6 +19,7 @@ impl<'a> ToTokens for Type<'a> {
             Type::Reference(reference) => reference.to_tokens(generator),
             Type::Array(array) => array.to_tokens(generator),
             Type::Slice(slice) => slice.to_tokens(generator),
+            Type::Inferred(inferred) => inferred.to_tokens(generator),
         }
     }
 }

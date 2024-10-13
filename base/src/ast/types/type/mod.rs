@@ -1,8 +1,8 @@
 use crate::ast::{
     types::{
-        ArrayType, ImplTraitType, ImplTraitTypeOneBound, NeverType, ParenthesizedType,
-        RawPointerType, ReferenceType, SliceType, TraitObjectType, TraitObjectTypeOneBound,
-        TupleType,
+        ArrayType, ImplTraitType, ImplTraitTypeOneBound, InferredType, NeverType,
+        ParenthesizedType, RawPointerType, ReferenceType, SliceType, TraitObjectType,
+        TraitObjectTypeOneBound, TupleType,
     },
     TypePath,
 };
@@ -48,4 +48,7 @@ pub enum Type<'a> {
 
     /// A dynamically-sized homogenous sequence of values
     Slice(SliceType<'a>),
+
+    /// A type which has been explicitly specified and will be inferred by the compiler
+    Inferred(InferredType),
 }

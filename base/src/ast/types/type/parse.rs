@@ -9,6 +9,10 @@ i18n::message_key!(EXPECTED_TYPE [
 
 impl<'a> Parse<'a> for Type<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
+        if let Ok(inferred) = parser.step(Parser::parse) {
+            return Ok(Type::Inferred(inferred));
+        }
+
         if let Ok(never) = parser.step(Parser::parse) {
             return Ok(Type::Never(never));
         }
