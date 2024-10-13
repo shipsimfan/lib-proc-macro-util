@@ -4,6 +4,7 @@ mod type_param_bounds;
 
 mod impl_trait;
 mod impl_trait_one_bound;
+mod never;
 mod parenthesized;
 mod trait_object;
 mod trait_object_one_bound;
@@ -17,6 +18,7 @@ pub use type_param_bounds::*;
 
 pub use impl_trait::ImplTraitType;
 pub use impl_trait_one_bound::ImplTraitTypeOneBound;
+pub use never::NeverType;
 pub use no_bounds::TypeNoBounds;
 pub use parenthesized::ParenthesizedType;
 pub use trait_object::TraitObjectType;

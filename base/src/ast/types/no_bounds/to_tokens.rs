@@ -8,6 +8,7 @@ impl<'a> ToTokens for TypeNoBounds<'a> {
             TypeNoBounds::TraitObjectOneBound(trait_object) => trait_object.to_tokens(generator),
             TypeNoBounds::Path(path) => path.to_tokens(generator),
             TypeNoBounds::Tuple(tuple) => tuple.to_tokens(generator),
+            TypeNoBounds::Never(never) => never.to_tokens(generator),
         }
     }
 }

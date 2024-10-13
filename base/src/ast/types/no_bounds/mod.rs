@@ -1,9 +1,9 @@
 use crate::ast::{
-    types::{ImplTraitTypeOneBound, ParenthesizedType, TraitObjectTypeOneBound},
+    types::{
+        ImplTraitTypeOneBound, NeverType, ParenthesizedType, TraitObjectTypeOneBound, TupleType,
+    },
     TypePath,
 };
-
-use super::TupleType;
 
 mod parse;
 mod to_tokens;
@@ -25,4 +25,7 @@ pub enum TypeNoBounds<'a> {
 
     /// An ordered heterogenous list of types
     Tuple(TupleType<'a>),
+
+    /// A type which has no value and represents computation that never completes
+    Never(NeverType),
 }

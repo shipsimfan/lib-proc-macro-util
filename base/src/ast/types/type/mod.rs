@@ -1,6 +1,6 @@
 use crate::ast::{
     types::{
-        ImplTraitType, ImplTraitTypeOneBound, ParenthesizedType, TraitObjectType,
+        ImplTraitType, ImplTraitTypeOneBound, NeverType, ParenthesizedType, TraitObjectType,
         TraitObjectTypeOneBound, TupleType,
     },
     TypePath,
@@ -32,4 +32,7 @@ pub enum Type<'a> {
 
     /// An ordered heterogenous list of types
     Tuple(TupleType<'a>),
+
+    /// A type which has no value and represents computation that never completes
+    Never(NeverType),
 }

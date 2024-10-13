@@ -9,6 +9,10 @@ i18n::message_key!(EXPECTED_TYPE_NO_BOUNDS [
 
 impl<'a> Parse<'a> for TypeNoBounds<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
+        if let Ok(never) = parser.step(Parser::parse) {
+            return Ok(TypeNoBounds::Never(never));
+        }
+
         if let Ok(tuple) = parser.step(Parser::parse) {
             return Ok(TypeNoBounds::Tuple(tuple));
         }

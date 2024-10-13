@@ -14,6 +14,7 @@ impl<'a> ToTokens for Type<'a> {
             }
             Type::Path(path) => path.to_tokens(generator),
             Type::Tuple(tuple) => tuple.to_tokens(generator),
+            Type::Never(never) => never.to_tokens(generator),
         }
     }
 }
