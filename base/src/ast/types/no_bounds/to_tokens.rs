@@ -9,6 +9,7 @@ impl<'a> ToTokens for TypeNoBounds<'a> {
             TypeNoBounds::Path(path) => path.to_tokens(generator),
             TypeNoBounds::Tuple(tuple) => tuple.to_tokens(generator),
             TypeNoBounds::Never(never) => never.to_tokens(generator),
+            TypeNoBounds::RawPointer(raw_pointer) => raw_pointer.to_tokens(generator),
         }
     }
 }

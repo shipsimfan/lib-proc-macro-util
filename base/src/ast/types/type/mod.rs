@@ -1,7 +1,7 @@
 use crate::ast::{
     types::{
-        ImplTraitType, ImplTraitTypeOneBound, NeverType, ParenthesizedType, TraitObjectType,
-        TraitObjectTypeOneBound, TupleType,
+        ImplTraitType, ImplTraitTypeOneBound, NeverType, ParenthesizedType, RawPointerType,
+        TraitObjectType, TraitObjectTypeOneBound, TupleType,
     },
     TypePath,
 };
@@ -35,4 +35,7 @@ pub enum Type<'a> {
 
     /// A type which has no value and represents computation that never completes
     Never(NeverType),
+
+    /// A raw pointer to another type
+    RawPointer(RawPointerType<'a>),
 }

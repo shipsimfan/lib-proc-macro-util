@@ -19,12 +19,11 @@
    1. ast
      1. Type
        1. TypeNoBounds
-         1. RawPointerType
-         2. ReferenceType
-         3. ArrayType
-         4. SliceType
-         5. InferredType
-         6. BareFunctionType
+         1. ReferenceType
+         2. ArrayType
+         3. SliceType
+         4. InferredType
+         5. BareFunctionType
      2. Expression
        1. PathExpression
        2. GroupedExpression
