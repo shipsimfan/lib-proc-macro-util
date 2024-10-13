@@ -1,6 +1,9 @@
-use crate::ast::types::{
-    ImplTraitType, ImplTraitTypeOneBound, ParenthesizedType, TraitObjectType,
-    TraitObjectTypeOneBound,
+use crate::ast::{
+    types::{
+        ImplTraitType, ImplTraitTypeOneBound, ParenthesizedType, TraitObjectType,
+        TraitObjectTypeOneBound,
+    },
+    TypePath,
 };
 
 mod parse;
@@ -23,4 +26,7 @@ pub enum Type<'a> {
 
     /// An opaque value of another type that a trait
     TraitObjectOneBound(TraitObjectTypeOneBound<'a>),
+
+    /// A path to a type
+    Path(TypePath<'a>),
 }

@@ -19,15 +19,14 @@
    1. ast
      1. Type
        1. TypeNoBounds
-         1. TypePath
-         2. TupleType
-         3. NeverType
-         4. RawPointerType
-         5. ReferenceType
-         6. ArrayType
-         7. SliceType
-         8. InferredType
-         9. BareFunctionType
+         1. TupleType
+         2. NeverType
+         3. RawPointerType
+         4. ReferenceType
+         5. ArrayType
+         6. SliceType
+         7. InferredType
+         8. BareFunctionType
      2. Expression
        1. PathExpression
        2. GroupedExpression

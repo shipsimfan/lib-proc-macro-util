@@ -12,6 +12,7 @@ impl<'a> ToTokens for Type<'a> {
             Type::TraitObjectOneBound(trait_object_one_bound) => {
                 trait_object_one_bound.to_tokens(generator)
             }
+            Type::Path(path) => path.to_tokens(generator),
         }
     }
 }

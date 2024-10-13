@@ -6,6 +6,7 @@ impl<'a> ToTokens for TypeNoBounds<'a> {
             TypeNoBounds::Parenthesized(parenthesized) => parenthesized.to_tokens(generator),
             TypeNoBounds::ImplTraitOneBound(impl_trait) => impl_trait.to_tokens(generator),
             TypeNoBounds::TraitObjectOneBound(trait_object) => trait_object.to_tokens(generator),
+            TypeNoBounds::Path(path) => path.to_tokens(generator),
         }
     }
 }

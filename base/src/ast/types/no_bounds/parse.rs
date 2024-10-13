@@ -17,6 +17,10 @@ impl<'a> Parse<'a> for TypeNoBounds<'a> {
             return Ok(TypeNoBounds::ImplTraitOneBound(impl_trait));
         }
 
+        if let Ok(path) = parser.step(Parser::parse) {
+            return Ok(TypeNoBounds::Path(path));
+        }
+
         if let Ok(trait_object) = parser.step(Parser::parse) {
             return Ok(TypeNoBounds::TraitObjectOneBound(trait_object));
         }
