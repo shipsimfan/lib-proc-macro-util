@@ -3,6 +3,7 @@
 mod type_param_bounds;
 
 mod array;
+mod bare_function;
 mod impl_trait;
 mod impl_trait_one_bound;
 mod inferred;
@@ -22,6 +23,10 @@ pub use r#type::*;
 pub use type_param_bounds::*;
 
 pub use array::ArrayType;
+pub use bare_function::{
+    BareFunctionReturnType, BareFunctionType, FunctionTypeQualifiers, MaybeNamedFunctionParameters,
+    MaybeNamedParam, MaybeNamedParamName,
+};
 pub use impl_trait::ImplTraitType;
 pub use impl_trait_one_bound::ImplTraitTypeOneBound;
 pub use inferred::InferredType;

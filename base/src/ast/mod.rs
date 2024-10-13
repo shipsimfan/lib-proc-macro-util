@@ -27,6 +27,6 @@ pub use expressions::{
     Expression, ExpressionKind, ExpressionWithBlock, ExpressionWithBlockKind,
     ExpressionWithoutBlock, ExpressionWithoutBlockKind,
 };
-pub use items::TraitBound;
+pub use items::{Abi, TraitBound};
 pub use statements::Statement;
 pub use types::{Type, TypeNoBounds, TypeParamBound, TypeParamBounds};
