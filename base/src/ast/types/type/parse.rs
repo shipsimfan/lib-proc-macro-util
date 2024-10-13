@@ -21,6 +21,14 @@ impl<'a> Parse<'a> for Type<'a> {
             return Ok(Type::ImplTrait(impl_trait));
         }
 
+        if let Ok(trait_object_one_bound) = parser.step(Parser::parse) {
+            return Ok(Type::TraitObjectOneBound(trait_object_one_bound));
+        }
+
+        if let Ok(trait_object) = parser.step(Parser::parse) {
+            return Ok(Type::TraitObject(trait_object));
+        }
+
         Err(parser.error(m!(EXPECTED_TYPE)))
     }
 }

@@ -1,4 +1,4 @@
-use crate::ast::types::{ImplTraitTypeOneBound, ParenthesizedType};
+use crate::ast::types::{ImplTraitTypeOneBound, ParenthesizedType, TraitObjectTypeOneBound};
 
 mod parse;
 mod to_tokens;
@@ -11,4 +11,7 @@ pub enum TypeNoBounds<'a> {
 
     /// An unnamed type implementing one trait
     ImplTraitOneBound(ImplTraitTypeOneBound<'a>),
+
+    /// An opaque value of another type that a trait
+    TraitObjectOneBound(TraitObjectTypeOneBound<'a>),
 }
