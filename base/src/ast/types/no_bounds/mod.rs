@@ -1,7 +1,7 @@
 use crate::ast::{
     types::{
         ArrayType, ImplTraitTypeOneBound, NeverType, ParenthesizedType, RawPointerType,
-        ReferenceType, TraitObjectTypeOneBound, TupleType,
+        ReferenceType, SliceType, TraitObjectTypeOneBound, TupleType,
     },
     TypePath,
 };
@@ -38,4 +38,7 @@ pub enum TypeNoBounds<'a> {
 
     /// A fixed-sized homogenous sequence of values
     Array(ArrayType<'a>),
+
+    /// A dynamically-sized homogenous sequence of values
+    Slice(SliceType<'a>),
 }

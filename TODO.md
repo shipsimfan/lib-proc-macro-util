@@ -19,9 +19,8 @@
    1. ast
      1. Type
        1. TypeNoBounds
-         1. SliceType
-         2. InferredType
-         3. BareFunctionType
+         1. InferredType
+         2. BareFunctionType
      2. Expression
        1. PathExpression
        2. GroupedExpression

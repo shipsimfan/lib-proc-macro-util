@@ -12,6 +12,7 @@ impl<'a> ToTokens for TypeNoBounds<'a> {
             TypeNoBounds::RawPointer(raw_pointer) => raw_pointer.to_tokens(generator),
             TypeNoBounds::Reference(reference) => reference.to_tokens(generator),
             TypeNoBounds::Array(array) => array.to_tokens(generator),
+            TypeNoBounds::Slice(slice) => slice.to_tokens(generator),
         }
     }
 }

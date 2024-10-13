@@ -18,6 +18,7 @@ impl<'a> ToTokens for Type<'a> {
             Type::RawPointer(raw_pointer) => raw_pointer.to_tokens(generator),
             Type::Reference(reference) => reference.to_tokens(generator),
             Type::Array(array) => array.to_tokens(generator),
+            Type::Slice(slice) => slice.to_tokens(generator),
         }
     }
 }

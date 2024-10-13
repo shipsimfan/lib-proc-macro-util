@@ -25,6 +25,10 @@ impl<'a> Parse<'a> for Type<'a> {
             return Ok(Type::Array(array));
         }
 
+        if let Ok(slice) = parser.step(Parser::parse) {
+            return Ok(Type::Slice(slice));
+        }
+
         if let Ok(tuple) = parser.step(Parser::parse) {
             return Ok(Type::Tuple(tuple));
         }
