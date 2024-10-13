@@ -13,6 +13,7 @@ impl<'a> ToTokens for Type<'a> {
                 trait_object_one_bound.to_tokens(generator)
             }
             Type::Path(path) => path.to_tokens(generator),
+            Type::Tuple(tuple) => tuple.to_tokens(generator),
         }
     }
 }

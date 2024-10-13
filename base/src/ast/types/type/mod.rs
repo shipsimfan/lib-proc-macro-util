@@ -1,7 +1,7 @@
 use crate::ast::{
     types::{
         ImplTraitType, ImplTraitTypeOneBound, ParenthesizedType, TraitObjectType,
-        TraitObjectTypeOneBound,
+        TraitObjectTypeOneBound, TupleType,
     },
     TypePath,
 };
@@ -29,4 +29,7 @@ pub enum Type<'a> {
 
     /// A path to a type
     Path(TypePath<'a>),
+
+    /// An ordered heterogenous list of types
+    Tuple(TupleType<'a>),
 }

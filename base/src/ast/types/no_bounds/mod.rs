@@ -3,6 +3,8 @@ use crate::ast::{
     TypePath,
 };
 
+use super::TupleType;
+
 mod parse;
 mod to_tokens;
 
@@ -20,4 +22,7 @@ pub enum TypeNoBounds<'a> {
 
     /// A path to a type
     Path(TypePath<'a>),
+
+    /// An ordered heterogenous list of types
+    Tuple(TupleType<'a>),
 }
