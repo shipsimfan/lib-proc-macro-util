@@ -9,7 +9,7 @@ i18n::message_key!( EXPECTED_ATTR_INPUT [
 
 impl<'a> Parse<'a> for AttrInput<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        if let Ok(equals) = parser.step(Parser::parse) {
+        if let Ok(equals) = parser.step_parse() {
             return Ok(AttrInput::Expression(equals, parser.parse()?));
         }
 

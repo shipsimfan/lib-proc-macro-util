@@ -44,6 +44,11 @@ impl<'a> Parser<'a> {
         T::parse(self)
     }
 
+    /// Parses an object from the stream, only advancing if the parse succeeds
+    pub fn step_parse<T: Parse<'a>>(&mut self) -> Result<T> {
+        self.step(Parser::parse)
+    }
+
     /// Collects the remaining tokens in the stream
     pub fn collect(&mut self) -> &'a [TokenTree] {
         let ret = if self.index > self.stream.len() {

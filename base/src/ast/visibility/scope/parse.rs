@@ -9,15 +9,15 @@ i18n::message_key!( EXPECTED_VISIBILITY_SCOPE [
 
 impl<'a> Parse<'a> for VisibilityScope<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        if let Ok(krate) = parser.step(Parser::parse) {
+        if let Ok(krate) = parser.step_parse() {
             return Ok(VisibilityScope::Crate(krate));
         }
 
-        if let Ok(_self) = parser.step(Parser::parse) {
+        if let Ok(_self) = parser.step_parse() {
             return Ok(VisibilityScope::_Self(_self));
         }
 
-        if let Ok(_super) = parser.step(Parser::parse) {
+        if let Ok(_super) = parser.step_parse() {
             return Ok(VisibilityScope::Super(_super));
         }
 

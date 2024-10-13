@@ -25,7 +25,7 @@ impl<'a> Parse<'a> for GenericParamKind<'a> {
                 .map(|lifetime| GenericParamKind::Lifetime(lifetime));
         }
 
-        if let Ok(r#type) = parser.step(Parser::parse) {
+        if let Ok(r#type) = parser.step_parse() {
             return Ok(GenericParamKind::Type(r#type));
         }
 

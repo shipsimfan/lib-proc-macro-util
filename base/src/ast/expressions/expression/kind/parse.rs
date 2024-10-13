@@ -9,9 +9,9 @@ i18n::message_key!(EXPECTED_EXPRESSION [
 
 impl<'a> Parse<'a> for ExpressionKind<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        if let Ok(literal) = parser.step(Parser::parse) {
+        if let Ok(literal) = parser.step_parse() {
             return Ok(ExpressionKind::Literal(literal));
-        } else if let Ok(block) = parser.step(Parser::parse) {
+        } else if let Ok(block) = parser.step_parse() {
             return Ok(ExpressionKind::Block(block));
         }
 

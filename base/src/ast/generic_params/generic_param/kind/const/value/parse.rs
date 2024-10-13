@@ -9,11 +9,11 @@ i18n::message_key!(EXPECTED_CONST_PARAM_VALUE [
 
 impl<'a> Parse<'a> for ConstParamValue<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        if let Ok(block) = parser.step(Parser::parse) {
+        if let Ok(block) = parser.step_parse() {
             return Ok(ConstParamValue::Block(block));
         }
 
-        if let Ok(identifier) = parser.step(Parser::parse) {
+        if let Ok(identifier) = parser.step_parse() {
             return Ok(ConstParamValue::Identifier(identifier));
         }
 

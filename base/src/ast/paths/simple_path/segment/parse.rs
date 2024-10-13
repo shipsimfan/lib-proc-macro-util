@@ -9,7 +9,7 @@ i18n::message_key!( EXPECTED_SIMPLE_PATH_SEGMENT [
 
 impl<'a> Parse<'a> for SimplePathSegment<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        if let Ok(dollar) = parser.step(Parser::parse) {
+        if let Ok(dollar) = parser.step_parse() {
             return Ok(SimplePathSegment::DollarCrate(dollar, parser.parse()?));
         }
 

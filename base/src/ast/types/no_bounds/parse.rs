@@ -9,55 +9,55 @@ i18n::message_key!(EXPECTED_TYPE_NO_BOUNDS [
 
 impl<'a> Parse<'a> for TypeNoBounds<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        if let Ok(inferred) = parser.step(Parser::parse) {
+        if let Ok(inferred) = parser.step_parse() {
             return Ok(TypeNoBounds::Inferred(inferred));
         }
 
-        if let Ok(never) = parser.step(Parser::parse) {
+        if let Ok(never) = parser.step_parse() {
             return Ok(TypeNoBounds::Never(never));
         }
 
-        if let Ok(raw_pointer) = parser.step(Parser::parse) {
+        if let Ok(raw_pointer) = parser.step_parse() {
             return Ok(TypeNoBounds::RawPointer(raw_pointer));
         }
 
-        if let Ok(reference) = parser.step(Parser::parse) {
+        if let Ok(reference) = parser.step_parse() {
             return Ok(TypeNoBounds::Reference(reference));
         }
 
-        if let Ok(array) = parser.step(Parser::parse) {
+        if let Ok(array) = parser.step_parse() {
             return Ok(TypeNoBounds::Reference(array));
         }
 
-        if let Ok(slice) = parser.step(Parser::parse) {
+        if let Ok(slice) = parser.step_parse() {
             return Ok(TypeNoBounds::Slice(slice));
         }
 
-        if let Ok(qualified_path) = parser.step(Parser::parse) {
+        if let Ok(qualified_path) = parser.step_parse() {
             return Ok(TypeNoBounds::QualifiedPath(qualified_path));
         }
 
-        if let Ok(macro_invocation) = parser.step(Parser::parse) {
+        if let Ok(macro_invocation) = parser.step_parse() {
             return Ok(TypeNoBounds::MacroInvocation(macro_invocation));
         }
 
-        if let Ok(tuple) = parser.step(Parser::parse) {
+        if let Ok(tuple) = parser.step_parse() {
             return Ok(TypeNoBounds::Tuple(tuple));
         }
 
-        if let Ok(parenthesized) = parser.step(Parser::parse) {
+        if let Ok(parenthesized) = parser.step_parse() {
             return Ok(TypeNoBounds::Parenthesized(parenthesized));
         }
 
-        if let Ok(impl_trait) = parser.step(Parser::parse) {
+        if let Ok(impl_trait) = parser.step_parse() {
             return Ok(TypeNoBounds::ImplTraitOneBound(impl_trait));
         }
 
-        if let Ok(path) = parser.step(Parser::parse) {
+        if let Ok(path) = parser.step_parse() {
             return Ok(TypeNoBounds::Path(path));
         }
 
-        if let Ok(trait_object) = parser.step(Parser::parse) {
+        if let Ok(trait_object) = parser.step_parse() {
             return Ok(TypeNoBounds::TraitObjectOneBound(trait_object));
         }
 

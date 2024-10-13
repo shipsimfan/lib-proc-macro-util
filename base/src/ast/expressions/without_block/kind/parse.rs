@@ -9,7 +9,7 @@ i18n::message_key!( EXPECTED_EXPESSION_WITHOUT_BLOCK [
 
 impl<'a> Parse<'a> for ExpressionWithoutBlockKind<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        if let Ok(literal) = parser.step(Parser::parse) {
+        if let Ok(literal) = parser.step_parse() {
             return Ok(ExpressionWithoutBlockKind::Literal(literal));
         }
 

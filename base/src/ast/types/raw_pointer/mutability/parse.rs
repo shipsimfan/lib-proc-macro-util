@@ -9,11 +9,11 @@ i18n::message_key!(EXPECTED_MUT_OR_CONST [
 
 impl<'a> Parse<'a> for RawPointerTypeMutability {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        if let Ok(r#mut) = parser.step(Parser::parse) {
+        if let Ok(r#mut) = parser.step_parse() {
             return Ok(RawPointerTypeMutability::Mut(r#mut));
         }
 
-        if let Ok(r#const) = parser.step(Parser::parse) {
+        if let Ok(r#const) = parser.step_parse() {
             return Ok(RawPointerTypeMutability::Const(r#const));
         }
 

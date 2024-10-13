@@ -9,7 +9,7 @@ i18n::message_key!( EXPECTED_EXPESSION_WITH_BLOCK [
 
 impl<'a> Parse<'a> for ExpressionWithBlockKind<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        if let Ok(block) = parser.step(Parser::parse) {
+        if let Ok(block) = parser.step_parse() {
             return Ok(ExpressionWithBlockKind::Block(block));
         }
 

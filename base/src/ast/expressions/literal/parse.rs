@@ -10,11 +10,11 @@ i18n::message_key!( EXPECTED_ATTR_INPUT [
 
 impl<'a> Parse<'a> for LiteralExpression<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        if let Ok(r#true) = parser.step(Parser::parse) {
+        if let Ok(r#true) = parser.step_parse() {
             return Ok(LiteralExpression::True(r#true));
         }
 
-        if let Ok(r#false) = parser.step(Parser::parse) {
+        if let Ok(r#false) = parser.step_parse() {
             return Ok(LiteralExpression::False(r#false));
         }
 

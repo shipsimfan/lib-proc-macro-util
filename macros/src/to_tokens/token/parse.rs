@@ -15,7 +15,7 @@ i18n::message_key!( EXPECTED_TOKEN [
 /// Attempts to parse `punctuation` into either a [`Token::Punctuation`] or a [`Token::Variable`]
 fn parse_punctuation<'a>(punctuation: &'a Punctuation, parser: &mut Parser<'a>) -> Token<'a> {
     if punctuation.as_char() == '#' {
-        if let Ok(identifier) = parser.step(Parser::parse) {
+        if let Ok(identifier) = parser.step_parse() {
             return Token::Variable(identifier);
         }
     }
