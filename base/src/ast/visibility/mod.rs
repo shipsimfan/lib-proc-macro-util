@@ -11,6 +11,7 @@ mod to_tokens;
 pub use scope::VisibilityScope;
 
 /// Defines where an item can be accessed from
+#[derive(Debug, Clone)]
 pub struct Visibility<'a> {
     /// The "pub" token identifying the visibility
     pub r#pub: Token![pub],
