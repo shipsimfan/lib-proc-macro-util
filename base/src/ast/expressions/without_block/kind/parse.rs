@@ -13,6 +13,10 @@ impl<'a> Parse<'a> for ExpressionWithoutBlockKind<'a> {
             return Ok(ExpressionWithoutBlockKind::Literal(literal));
         }
 
+        if let Ok(path) = parser.step_parse() {
+            return Ok(ExpressionWithoutBlockKind::Path(path));
+        }
+
         Err(parser.error(m!(EXPECTED_EXPESSION_WITHOUT_BLOCK)))
     }
 }

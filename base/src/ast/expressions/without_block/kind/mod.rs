@@ -1,4 +1,4 @@
-use crate::ast::expressions::LiteralExpression;
+use crate::ast::expressions::{LiteralExpression, PathExpression};
 
 mod from;
 mod new;
@@ -10,4 +10,7 @@ mod to_tokens;
 pub enum ExpressionWithoutBlockKind<'a> {
     /// An expression made up of a literal value
     Literal(LiteralExpression<'a>),
+
+    /// A path to a type or a variable
+    Path(PathExpression<'a>),
 }

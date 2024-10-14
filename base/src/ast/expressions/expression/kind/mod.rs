@@ -1,4 +1,4 @@
-use crate::ast::expressions::{BlockExpression, LiteralExpression};
+use crate::ast::expressions::{BlockExpression, LiteralExpression, PathExpression};
 
 mod from;
 mod new;
@@ -13,4 +13,7 @@ pub enum ExpressionKind<'a> {
 
     /// An expression made up of only a block
     Block(BlockExpression<'a>),
+
+    /// A path to a type or a variable
+    Path(PathExpression<'a>),
 }

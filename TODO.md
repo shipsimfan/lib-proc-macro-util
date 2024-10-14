@@ -17,32 +17,7 @@
 
   *Things to implement:*
    1. ast
-     1. Expression
-       1. PathExpression
-       2. GroupedExpression
-       3. ArrayExpression
-       4. AwaitExpression
-       5. IndexExpression
-       6. TupleExpression
-       7. TupleIndexingExpression
-       8. StructExpression
-       9. CallExpression
-       10. MethodCallExpression
-       11. FieldExpression
-       12. ClosureExpression
-       13. AsyncBlockExpression
-       14. ContinueExpression
-       15. BreakExpression
-       16. RangeExpression
-       17. ReturnExpression
-       18. UnderscoreExpression
-       19. ConstBlockExpression
-       20. UnsafeBlockExpression
-       21. LoopExpression
-       22. IfExpression
-       23. IfLetExpression
-       24. MatchExpression
-     2. Item
+     1. Item
        1. VisItem
          1. Module
          2. ExternCrate
@@ -60,10 +35,34 @@
        2. MacroItem
          1. MacroInvocationSemi
          2. MacroRulesDefinition
-     3. Statement
+     2. Statement
        1. Item
        2. LetStatement
        3. ExpressionStatement
+     3. Expression
+       1. GroupedExpression
+       2. ArrayExpression
+       3. AwaitExpression
+       4. IndexExpression
+       5. TupleExpression
+       6. TupleIndexingExpression
+       7. StructExpression
+       8. CallExpression
+       9. MethodCallExpression
+       10. FieldExpression
+       11. ClosureExpression
+       12. AsyncBlockExpression
+       13. ContinueExpression
+       14. BreakExpression
+       15. RangeExpression
+       16. ReturnExpression
+       17. UnderscoreExpression
+       18. ConstBlockExpression
+       19. UnsafeBlockExpression
+       20. LoopExpression
+       21. IfExpression
+       22. IfLetExpression
+       23. MatchExpression
      4. Crate
    2. macros
      1. derive

@@ -17,5 +17,5 @@ pub struct BlockExpression<'a> {
     pub statements: Vec<Statement>,
 
     /// A final return value
-    pub end: Option<ExpressionWithoutBlock<'a>>,
+    pub end: Option<Box<ExpressionWithoutBlock<'a>>>,
 }

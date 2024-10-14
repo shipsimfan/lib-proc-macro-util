@@ -17,7 +17,7 @@ impl<'a>
         BlockExpression {
             attributes: value.0,
             statements: value.1,
-            end: value.2,
+            end: value.2.map(|expression| Box::new(expression)),
         }
     }
 }
@@ -49,7 +49,7 @@ impl<'a>
         BlockExpression {
             attributes: value.0,
             statements: value.1,
-            end: Some(value.2),
+            end: Some(Box::new(value.2)),
         }
     }
 }
@@ -71,7 +71,7 @@ impl<'a>
         BlockExpression {
             attributes: vec![value.0],
             statements: value.1,
-            end: value.2,
+            end: value.2.map(|expression| Box::new(expression)),
         }
     }
 }
@@ -103,7 +103,7 @@ impl<'a>
         BlockExpression {
             attributes: vec![value.0],
             statements: value.1,
-            end: Some(value.2),
+            end: Some(Box::new(value.2)),
         }
     }
 }
@@ -113,7 +113,7 @@ impl<'a> From<(Vec<Statement>, Option<ExpressionWithoutBlock<'a>>)> for BlockExp
         BlockExpression {
             attributes: Vec::new(),
             statements: value.0,
-            end: value.1,
+            end: value.1.map(|expression| Box::new(expression)),
         }
     }
 }
@@ -133,7 +133,7 @@ impl<'a> From<(Vec<Statement>, ExpressionWithoutBlock<'a>)> for BlockExpression<
         BlockExpression {
             attributes: Vec::new(),
             statements: value.0,
-            end: Some(value.1),
+            end: Some(Box::new(value.1)),
         }
     }
 }
@@ -155,7 +155,7 @@ impl<'a>
         BlockExpression {
             attributes: value.0,
             statements: vec![value.1],
-            end: value.2,
+            end: value.2.map(|expression| Box::new(expression)),
         }
     }
 }
@@ -187,7 +187,7 @@ impl<'a>
         BlockExpression {
             attributes: value.0,
             statements: vec![value.1],
-            end: Some(value.2),
+            end: Some(Box::new(value.2)),
         }
     }
 }
@@ -209,7 +209,7 @@ impl<'a>
         BlockExpression {
             attributes: vec![value.0],
             statements: vec![value.1],
-            end: value.2,
+            end: value.2.map(|expression| Box::new(expression)),
         }
     }
 }
@@ -229,7 +229,7 @@ impl<'a> From<(InnerAttribute<'a>, Statement, ExpressionWithoutBlock<'a>)> for B
         BlockExpression {
             attributes: vec![value.0],
             statements: vec![value.1],
-            end: Some(value.2),
+            end: Some(Box::new(value.2)),
         }
     }
 }
@@ -239,7 +239,7 @@ impl<'a> From<(Statement, Option<ExpressionWithoutBlock<'a>>)> for BlockExpressi
         BlockExpression {
             attributes: Vec::new(),
             statements: vec![value.0],
-            end: value.1,
+            end: value.1.map(|expression| Box::new(expression)),
         }
     }
 }
@@ -259,7 +259,7 @@ impl<'a> From<(Statement, ExpressionWithoutBlock<'a>)> for BlockExpression<'a> {
         BlockExpression {
             attributes: Vec::new(),
             statements: vec![value.0],
-            end: Some(value.1),
+            end: Some(Box::new(value.1)),
         }
     }
 }
@@ -271,7 +271,7 @@ impl<'a> From<(Vec<InnerAttribute<'a>>, Option<ExpressionWithoutBlock<'a>>)>
         BlockExpression {
             attributes: value.0,
             statements: Vec::new(),
-            end: value.1,
+            end: value.1.map(|expression| Box::new(expression)),
         }
     }
 }
@@ -291,7 +291,7 @@ impl<'a> From<(Vec<InnerAttribute<'a>>, ExpressionWithoutBlock<'a>)> for BlockEx
         BlockExpression {
             attributes: value.0,
             statements: Vec::new(),
-            end: Some(value.1),
+            end: Some(Box::new(value.1)),
         }
     }
 }
@@ -301,7 +301,7 @@ impl<'a> From<(InnerAttribute<'a>, Option<ExpressionWithoutBlock<'a>>)> for Bloc
         BlockExpression {
             attributes: vec![value.0],
             statements: Vec::new(),
-            end: value.1,
+            end: value.1.map(|expression| Box::new(expression)),
         }
     }
 }
@@ -321,7 +321,7 @@ impl<'a> From<(InnerAttribute<'a>, ExpressionWithoutBlock<'a>)> for BlockExpress
         BlockExpression {
             attributes: vec![value.0],
             statements: Vec::new(),
-            end: Some(value.1),
+            end: Some(Box::new(value.1)),
         }
     }
 }
@@ -331,7 +331,7 @@ impl<'a> From<Option<ExpressionWithoutBlock<'a>>> for BlockExpression<'a> {
         BlockExpression {
             attributes: Vec::new(),
             statements: Vec::new(),
-            end: value,
+            end: value.map(|expression| Box::new(expression)),
         }
     }
 }
@@ -351,7 +351,7 @@ impl<'a> From<ExpressionWithoutBlock<'a>> for BlockExpression<'a> {
         BlockExpression {
             attributes: Vec::new(),
             statements: Vec::new(),
-            end: Some(value),
+            end: Some(Box::new(value)),
         }
     }
 }

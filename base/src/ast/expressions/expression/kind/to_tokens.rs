@@ -5,6 +5,7 @@ impl<'a> ToTokens for ExpressionKind<'a> {
         match self {
             ExpressionKind::Literal(literal) => literal.to_tokens(generator),
             ExpressionKind::Block(block) => block.to_tokens(generator),
+            ExpressionKind::Path(path) => path.to_tokens(generator),
         }
     }
 }
