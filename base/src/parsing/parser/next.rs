@@ -10,6 +10,19 @@ impl<'a> Parser<'a> {
         parser.parse::<T>().is_ok()
     }
 
+    /// Checks if an element `n` tokens ahead matches that target element without advancing the
+    /// stream
+    pub fn peek_n<T: Parse<'a>>(&self, n: usize) -> bool {
+        let mut parser = self.clone();
+        parser.skip(n);
+        parser.parse::<T>().is_ok()
+    }
+
+    /// Skips `n` tokens from the stream
+    pub fn skip(&mut self, n: usize) {
+        self.index += n;
+    }
+
     /// Gets the next token in the stream
     ///
     /// ## Return Value

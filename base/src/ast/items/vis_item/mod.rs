@@ -14,5 +14,5 @@ pub struct VisItem<'a> {
     pub visibility: Option<Visibility<'a>>,
 
     /// The kind of item this is
-    pub kind: VisItemKind,
+    pub kind: VisItemKind<'a>,
 }

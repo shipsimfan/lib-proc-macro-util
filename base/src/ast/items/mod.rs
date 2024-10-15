@@ -1,11 +1,14 @@
 //! Definitions for all items in Rust
 
 mod function;
+mod module;
 mod r#trait;
 
 mod item;
 mod macro_item;
 mod vis_item;
+
+pub use module::{Module, ModuleBody};
 
 pub use function::Abi;
 pub use item::{Item, ItemKind};

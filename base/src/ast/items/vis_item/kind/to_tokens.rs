@@ -1,7 +1,9 @@
 use crate::{ast::VisItemKind, Generator, ToTokens};
 
-impl ToTokens for VisItemKind {
+impl<'a> ToTokens for VisItemKind<'a> {
     fn to_tokens(self, generator: &mut Generator) {
-        todo!()
+        match self {
+            VisItemKind::Module(module) => module.to_tokens(generator),
+        }
     }
 }
