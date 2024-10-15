@@ -6,6 +6,7 @@ mod generic_args;
 mod generic_params;
 mod lifetime;
 mod macro_invocation;
+mod maybe_identifier;
 mod paths;
 mod visibility;
 
@@ -20,6 +21,7 @@ pub use generic_args::*;
 pub use generic_params::*;
 pub use lifetime::*;
 pub use macro_invocation::*;
+pub use maybe_identifier::*;
 pub use paths::*;
 pub use visibility::*;
 

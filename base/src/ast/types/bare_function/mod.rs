@@ -7,7 +7,7 @@ mod return_type;
 mod parse;
 mod to_tokens;
 
-pub use parameters::{MaybeNamedFunctionParameters, MaybeNamedParam, MaybeNamedParamName};
+pub use parameters::{MaybeNamedFunctionParameters, MaybeNamedParam};
 pub use qualifiers::FunctionTypeQualifiers;
 pub use return_type::BareFunctionReturnType;
 

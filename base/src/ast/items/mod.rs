@@ -1,5 +1,6 @@
 //! Definitions for all items in Rust
 
+mod extern_crate;
 mod function;
 mod module;
 mod r#trait;
@@ -8,6 +9,7 @@ mod item;
 mod macro_item;
 mod vis_item;
 
+pub use extern_crate::{CrateRef, ExternCrate};
 pub use module::{Module, ModuleBody};
 
 pub use function::Abi;

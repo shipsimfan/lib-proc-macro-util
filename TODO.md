@@ -19,18 +19,17 @@
    1. ast
      1. Item
        1. VisItem
-         1. ExternCrate
-         2. UseDeclaration
-         3. Function
-         4. TypeAlias
-         5. Struct
-         6. Enumeration
-         7. Union
-         8. ConstantItem
-         9. StaticItem
-         10. Trait
-         11. Implementation
-         12. ExternBlock
+         1. UseDeclaration
+         2. Function
+         3. TypeAlias
+         4. Struct
+         5. Enumeration
+         6. Union
+         7. ConstantItem
+         8. StaticItem
+         9. Trait
+         10. Implementation
+         11. ExternBlock
        2. MacroItem
          1. MacroRulesDefinition
      2. Statement

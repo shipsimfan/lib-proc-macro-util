@@ -13,6 +13,12 @@ impl<'a> Parse<'a> for VisItemKind<'a> {
             return parser.parse().map(|module| VisItemKind::Module(module));
         }
 
+        if parser.peek::<Token![extern]>() && parser.peek_n::<Token![crate]>(1) {
+            return parser
+                .parse()
+                .map(|extern_crate| VisItemKind::ExternCrate(extern_crate));
+        }
+
         Err(parser.error(m!(EXPECTED_ITEM)))
     }
 }

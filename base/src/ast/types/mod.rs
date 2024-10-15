@@ -25,7 +25,7 @@ pub use type_param_bounds::*;
 pub use array::ArrayType;
 pub use bare_function::{
     BareFunctionReturnType, BareFunctionType, FunctionTypeQualifiers, MaybeNamedFunctionParameters,
-    MaybeNamedParam, MaybeNamedParamName,
+    MaybeNamedParam,
 };
 pub use impl_trait::ImplTraitType;
 pub use impl_trait_one_bound::ImplTraitTypeOneBound;

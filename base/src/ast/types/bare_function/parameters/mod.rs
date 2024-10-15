@@ -5,7 +5,7 @@ mod param;
 mod parse;
 mod to_tokens;
 
-pub use param::{MaybeNamedParam, MaybeNamedParamName};
+pub use param::MaybeNamedParam;
 
 /// A set of function parameters which might not be named
 #[derive(Debug, Clone)]
