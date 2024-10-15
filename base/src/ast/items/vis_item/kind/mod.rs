@@ -1,4 +1,4 @@
-use crate::ast::items::{ExternCrate, Module};
+use crate::ast::items::{ExternCrate, Module, UseDeclaration};
 
 mod parse;
 mod to_tokens;
@@ -11,4 +11,7 @@ pub enum VisItemKind<'a> {
 
     /// A reference to an external crate
     ExternCrate(ExternCrate<'a>),
+
+    /// An import of one or more items
+    Use(UseDeclaration<'a>),
 }

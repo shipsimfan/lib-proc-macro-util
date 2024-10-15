@@ -9,6 +9,10 @@ i18n::message_key!(EXPECTED_ITEM [
 
 impl<'a> Parse<'a> for VisItemKind<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
+        if parser.peek::<Token![use]>() {
+            return parser.parse().map(|r#use| VisItemKind::Use(r#use));
+        }
+
         if parser.peek::<Token![mod]>() || parser.peek_n::<Token![mod]>(1) {
             return parser.parse().map(|module| VisItemKind::Module(module));
         }
