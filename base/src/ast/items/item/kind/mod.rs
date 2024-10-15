@@ -10,5 +10,5 @@ pub enum ItemKind<'a> {
     Vis(VisItem<'a>),
 
     /// The item involves a macro
-    Macro(MacroItem),
+    Macro(MacroItem<'a>),
 }

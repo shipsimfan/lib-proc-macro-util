@@ -32,8 +32,7 @@
          11. Implementation
          12. ExternBlock
        2. MacroItem
-         1. MacroInvocationSemi
-         2. MacroRulesDefinition
+         1. MacroRulesDefinition
      2. Statement
        1. Item
        2. LetStatement
