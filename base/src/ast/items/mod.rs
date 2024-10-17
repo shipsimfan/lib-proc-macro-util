@@ -11,6 +11,10 @@ mod macro_item;
 mod vis_item;
 
 pub use extern_crate::{CrateRef, ExternCrate};
+pub use function::{
+    Function, FunctionBody, FunctionParam, FunctionParameters, FunctionQualifiers,
+    FunctionReturnType, SelfParam,
+};
 pub use module::{Module, ModuleBody};
 pub use r#use::{UseDeclaration, UseTree};
 

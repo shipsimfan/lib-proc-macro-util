@@ -17,7 +17,24 @@
 
   *Things to implement:*
    1. ast
-     1. Item
+     1. WhereClause
+     2. Pattern
+       1. PatternWithoutRange
+         1. LiteralPattern
+         2. IdentifierPattern
+         3. WildcardPattern
+         4. RestPattern
+         5. ReferencePattern
+         6. StructPattern
+         7. TupleStructPattern
+         8. TuplePattern
+         9. GroupedPattern
+         10. SlicePattern
+         11. PathPattern
+         12. MacroInvocation
+       2. PatternNoTopAlt
+         1. RangePattern
+     3. Item
        1. VisItem
          1. Function
          2. TypeAlias
@@ -31,11 +48,11 @@
          10. ExternBlock
        2. MacroItem
          1. MacroRulesDefinition
-     2. Statement
+     4. Statement
        1. Item
        2. LetStatement
        3. ExpressionStatement
-     3. Expression
+     5. Expression
        1. GroupedExpression
        2. ArrayExpression
        3. AwaitExpression
@@ -59,7 +76,7 @@
        21. IfExpression
        22. IfLetExpression
        23. MatchExpression
-     4. Crate
+     6. Crate
    2. macros
      1. derive
      2. attribute
