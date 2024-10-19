@@ -9,6 +9,7 @@ mod macro_invocation;
 mod maybe_identifier;
 mod paths;
 mod visibility;
+mod where_clause;
 
 pub mod expressions;
 pub mod items;
@@ -24,6 +25,7 @@ pub use macro_invocation::*;
 pub use maybe_identifier::*;
 pub use paths::*;
 pub use visibility::*;
+pub use where_clause::*;
 
 pub use expressions::{
     Expression, ExpressionKind, ExpressionWithBlock, ExpressionWithBlockKind,

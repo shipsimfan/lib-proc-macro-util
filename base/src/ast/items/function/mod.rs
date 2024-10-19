@@ -1,4 +1,8 @@
-use crate::{ast::GenericParams, tokens::Identifier, Token};
+use crate::{
+    ast::{GenericParams, WhereClause},
+    tokens::Identifier,
+    Token,
+};
 
 mod abi;
 mod body;
@@ -20,6 +24,6 @@ pub struct Function<'a> {
     pub generic_params: Option<GenericParams<'a>>,
     pub parameters: Option<FunctionParameters<'a>>,
     pub return_type: Option<FunctionReturnType<'a>>,
-    pub where_clause: Option<WhereClause>,
+    pub where_clause: Option<WhereClause<'a>>,
     pub body: FunctionBody<'a>,
 }
