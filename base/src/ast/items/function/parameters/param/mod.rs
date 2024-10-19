@@ -1,5 +1,5 @@
 use crate::{
-    ast::{OuterAttribute, Type},
+    ast::{OuterAttribute, PatternNoTopAlt, Type},
     Token,
 };
 

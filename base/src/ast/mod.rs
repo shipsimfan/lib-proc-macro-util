@@ -13,6 +13,7 @@ mod where_clause;
 
 pub mod expressions;
 pub mod items;
+pub mod patterns;
 pub mod statements;
 pub mod types;
 
@@ -32,5 +33,6 @@ pub use expressions::{
     ExpressionWithoutBlock, ExpressionWithoutBlockKind,
 };
 pub use items::{Abi, Item, ItemKind, MacroItem, TraitBound, VisItem, VisItemKind};
+pub use patterns::PatternNoTopAlt;
 pub use statements::Statement;
 pub use types::{Type, TypeNoBounds, TypeParamBound, TypeParamBounds};
