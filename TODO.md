@@ -36,16 +36,15 @@
          1. RangePattern
      3. Item
        1. VisItem
-         1. Function
-         2. TypeAlias
-         3. Struct
-         4. Enumeration
-         5. Union
-         6. ConstantItem
-         7. StaticItem
-         8. Trait
-         9. Implementation
-         10. ExternBlock
+         1. TypeAlias
+         2. Struct
+         3. Enumeration
+         4. Union
+         5. ConstantItem
+         6. StaticItem
+         7. Trait
+         8. Implementation
+         9. ExternBlock
        2. MacroItem
          1. MacroRulesDefinition
      4. Statement

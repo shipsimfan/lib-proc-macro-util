@@ -23,6 +23,10 @@ impl<'a> Parse<'a> for VisItemKind<'a> {
                 .map(|extern_crate| VisItemKind::ExternCrate(extern_crate));
         }
 
+        if let Ok(function) = parser.step_parse() {
+            return Ok(VisItemKind::Function(function));
+        }
+
         Err(parser.error(m!(EXPECTED_ITEM)))
     }
 }

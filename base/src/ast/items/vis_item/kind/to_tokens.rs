@@ -6,6 +6,7 @@ impl<'a> ToTokens for VisItemKind<'a> {
             VisItemKind::Module(module) => module.to_tokens(generator),
             VisItemKind::ExternCrate(extern_crate) => extern_crate.to_tokens(generator),
             VisItemKind::Use(r#use) => r#use.to_tokens(generator),
+            VisItemKind::Function(function) => function.to_tokens(generator),
         }
     }
 }
