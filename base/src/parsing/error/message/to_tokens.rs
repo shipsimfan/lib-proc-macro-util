@@ -16,6 +16,7 @@ impl ToTokens for ErrorMessage {
         let mut group = Group::new_at(Delimiter::Parenthesis, end);
         let mut group_gen = Generator::new(&mut group.tokens);
         Literal::new_at(self.message.as_str(), end).to_tokens(&mut group_gen);
+        group.to_tokens(generator);
 
         <Token![;]>::new_at_alone([end]).to_tokens(generator);
     }
