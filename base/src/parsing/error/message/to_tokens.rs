@@ -1,5 +1,5 @@
 use crate::{
-    tokens::{Group, Identifier},
+    tokens::{Group, Identifier, Literal},
     Delimiter, ErrorMessage, Generator, ToTokens, Token,
 };
 
@@ -15,7 +15,7 @@ impl ToTokens for ErrorMessage {
 
         let mut group = Group::new_at(Delimiter::Parenthesis, end);
         let mut group_gen = Generator::new(&mut group.tokens);
-        Identifier::new_at(&self.message, end).to_tokens(&mut group_gen);
+        Literal::new_at(self.message.as_str(), end).to_tokens(&mut group_gen);
 
         <Token![;]>::new_at_alone([end]).to_tokens(generator);
     }
