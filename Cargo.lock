@@ -36,4 +36,4 @@ dependencies = [
 [[package]]
 name = "win32"
 version = "0.1.0"
-source = "git+https://github.com/shipsimfan/lib-win32#3e9f51544b799dfab898ac657725ba781f0d9241"
+source = "git+https://github.com/shipsimfan/lib-win32#1db71261095f20b7f8dc26d4f2bf083d4dffcb35"
