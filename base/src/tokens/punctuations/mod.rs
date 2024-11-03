@@ -2,7 +2,7 @@ use crate::{
     supported_languages::*, tokens::Punctuation, Generator, Parse, Parser, Result, Spacing, Span,
     ToTokens,
 };
-use i18n::m;
+use i18n::translation::m;
 
 mod r#macro;
 

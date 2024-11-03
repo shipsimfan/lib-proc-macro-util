@@ -1,7 +1,7 @@
 use crate::{ast::MaybeIdentifier, supported_languages::*, Parse, Parser, Result};
-use i18n::m;
+use i18n::translation::m;
 
-i18n::message_key!(EXPECTED_FUNCTION_PARAMETER_NAME [
+i18n::translation::message_key!(EXPECTED_FUNCTION_PARAMETER_NAME [
     EN => { "expected a function parameter name" },
     FR => { "le nom d'un paramètre de fonction était attendu" },
     ZH => { "预期的函数参数名称" },

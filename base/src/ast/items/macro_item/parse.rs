@@ -1,7 +1,7 @@
 use crate::{ast::MacroItem, supported_languages::*, Parse, Parser, Result};
-use i18n::m;
+use i18n::translation::m;
 
-i18n::message_key!(EXPECTED_MACRO_ITEM [
+i18n::translation::message_key!(EXPECTED_MACRO_ITEM [
     EN => { "expected a macro item" },
     FR => { "un élément de macro était attendu" },
     ZH => { "预期的宏项目" },

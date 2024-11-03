@@ -1,7 +1,7 @@
 use crate::{ast::GenericArgsConst, supported_languages::*, Parse, Parser, Result};
-use i18n::m;
+use i18n::translation::m;
 
-i18n::message_key!(EXPECTED_CONSTANT_GENERIC_ARG [
+i18n::translation::message_key!(EXPECTED_CONSTANT_GENERIC_ARG [
     EN => { "expected a constant generic argument" },
     FR => { "un argument générique constant était attendu" },
     ZH => { "预期的常量泛型参数" },

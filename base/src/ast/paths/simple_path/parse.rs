@@ -1,7 +1,7 @@
 use crate::{ast::SimplePath, supported_languages::*, Parse, Parser, Result, Token};
-use i18n::m;
+use i18n::translation::m;
 
-i18n::message_key!( EXPECTED_SIMPLE_PATH [
+i18n::translation::message_key!( EXPECTED_SIMPLE_PATH [
     EN => { "expected a simple path" },
     FR => { "un chemin simple était attendu" },
     ZH => { "预期的简单路径" },

@@ -1,9 +1,9 @@
 use crate::{
     ast::TraitBound, supported_languages::*, tokens::Group, Delimiter, Parse, Parser, Result,
 };
-use i18n::m;
+use i18n::translation::m;
 
-i18n::message_key!(EXPECTED_TRAIT_BOUND [
+i18n::translation::message_key!(EXPECTED_TRAIT_BOUND [
     EN => { "expected a trait bound" },
     FR => { "une contrainte de trait était attendue" },
     ZH => { "预期的特征约束" },

@@ -1,9 +1,9 @@
 use crate::{
     ast::types::SliceType, supported_languages::*, tokens::Group, Delimiter, Parse, Parser, Result,
 };
-use i18n::m;
+use i18n::translation::m;
 
-i18n::message_key!(EXPECTED_SLICE [
+i18n::translation::message_key!(EXPECTED_SLICE [
     EN => { "expected a slice" },
     FR => { "une tranche était attendue" },
     ZH => { "预期的切片" },

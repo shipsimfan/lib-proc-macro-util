@@ -3,9 +3,9 @@ use crate::{
     tokens::{Literal, TokenTree},
     Parse, Parser, Result,
 };
-use i18n::m;
+use i18n::translation::m;
 
-i18n::message_key!( EXPECTED_LITERAL [
+i18n::translation::message_key!( EXPECTED_LITERAL [
     EN => { "expected a literal" },
     FR => { "une valeur littérale était attendue" },
     ZH => { "预期的字面值" },

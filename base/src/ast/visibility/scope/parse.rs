@@ -1,7 +1,7 @@
 use crate::{ast::VisibilityScope, supported_languages::*, Parse, Parser, Result};
-use i18n::m;
+use i18n::translation::m;
 
-i18n::message_key!( EXPECTED_VISIBILITY_SCOPE [
+i18n::translation::message_key!( EXPECTED_VISIBILITY_SCOPE [
     EN => { "expected \"crate\", \"super\", \"self\", or \"in\"" },
     FR => { "« crate », « super », « self » ou « in » était attendu" },
     ZH => { "预期的 'crate'、'super'、'self' 或 'in'" },

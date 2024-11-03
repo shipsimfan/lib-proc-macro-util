@@ -1,5 +1,5 @@
 use crate::{supported_languages::*, tokens::TokenTree};
-use i18n::m;
+use i18n::translation::m;
 
 mod collect_token_stream;
 mod error;
@@ -11,7 +11,7 @@ pub use error::{Error, ErrorMessage, Result};
 pub use parse::Parse;
 pub use parser::Parser;
 
-i18n::message_key!(EXPECTED_END [
+i18n::translation::message_key!(EXPECTED_END [
     EN => { "expected the end of the macro" },
     FR => { "la fin de la macro était attendue" },
     ZH => { "预期的宏结束" },

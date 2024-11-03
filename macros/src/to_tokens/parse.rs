@@ -1,8 +1,8 @@
 use super::{ToTokens, Token};
-use i18n::m;
+use i18n::translation::m;
 use proc_macro_util_base::{supported_languages::*, tokens::Identifier, Parse, Parser, Result};
 
-i18n::message_key!( EXPECTED_ATTRIBUTE [
+i18n::translation::message_key!( EXPECTED_ATTRIBUTE [
     EN => { "expected the name of the generator to use" },
     FR => { "le nom du générateur à utiliser était attendu" },
     ZH => { "预期要使用的生成器名称" },

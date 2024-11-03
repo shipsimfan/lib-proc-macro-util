@@ -1,7 +1,7 @@
 use crate::{ast::ExpressionKind, supported_languages::*, Parse, Parser, Result};
-use i18n::m;
+use i18n::translation::m;
 
-i18n::message_key!(EXPECTED_EXPRESSION [
+i18n::translation::message_key!(EXPECTED_EXPRESSION [
     EN => { "expected an expression" },
     FR => { "une expression était attendue" },
     ZH => { "预期的表达式" },

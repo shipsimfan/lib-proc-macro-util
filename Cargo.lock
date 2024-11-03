@@ -5,9 +5,28 @@ version = 3
 [[package]]
 name = "i18n"
 version = "0.1.0"
-source = "git+https://github.com/shipsimfan/lib-i18n#163c7a141ea225a18400831a5dd0373adca69ae6"
+dependencies = [
+ "i18n-fluent",
+ "i18n-locale",
+ "i18n-translation",
+]
+
+[[package]]
+name = "i18n-fluent"
+version = "0.1.0"
+
+[[package]]
+name = "i18n-locale"
+version = "0.1.0"
 dependencies = [
  "win32",
+]
+
+[[package]]
+name = "i18n-translation"
+version = "0.1.0"
+dependencies = [
+ "i18n-locale",
 ]
 
 [[package]]

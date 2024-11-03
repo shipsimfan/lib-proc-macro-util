@@ -1,12 +1,12 @@
 use super::{Group, Token};
-use i18n::m;
+use i18n::translation::m;
 use proc_macro_util_base::{
     supported_languages::*,
     tokens::{Identifier, Punctuation, TokenTree},
     Parser, Result,
 };
 
-i18n::message_key!( EXPECTED_TOKEN [
+i18n::translation::message_key!( EXPECTED_TOKEN [
     EN => { "expected a token" },
     FR => { "un jeton était attendu" },
     ZH => { "预期的标记" },

@@ -1,7 +1,7 @@
 use crate::{ast::SimplePathSegment, supported_languages::*, Parse, Parser, Result};
-use i18n::m;
+use i18n::translation::m;
 
-i18n::message_key!( EXPECTED_SIMPLE_PATH_SEGMENT [
+i18n::translation::message_key!( EXPECTED_SIMPLE_PATH_SEGMENT [
     EN => { "expected a simple path segment" },
     FR => { "un segment de chemin simple était attendu" },
     ZH => { "预期简单路径段" },

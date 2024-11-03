@@ -3,9 +3,9 @@ use crate::{
     tokens::{Punctuation, TokenTree},
     Parse, Parser, Result,
 };
-use i18n::m;
+use i18n::translation::m;
 
-i18n::message_key!( EXPECTED_PUNCTUATION [
+i18n::translation::message_key!( EXPECTED_PUNCTUATION [
     EN => { "expected punctuation" },
     FR => { "une ponctuation était attendue" },
     ZH => { "预期的标点符号" },

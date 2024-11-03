@@ -2,15 +2,15 @@ use crate::{
     ast::expressions::BlockExpression, supported_languages::*, tokens::Group, Delimiter, Parse,
     Parser, Result,
 };
-use i18n::m;
+use i18n::translation::m;
 
-i18n::message_key!( EXPECTED_BLOCK_EXPRESSION [
+i18n::translation::message_key!( EXPECTED_BLOCK_EXPRESSION [
     EN => { "expected a block expression" },
     FR => { "une expression de bloc était attendue" },
     ZH => { "预期的代码块表达式" },
 ]);
 
-i18n::message_key!( EXPECTED_CLOSING_BRACE [
+i18n::translation::message_key!( EXPECTED_CLOSING_BRACE [
     EN => { "expected \"}\" for block" },
     FR => { "« } » pour le bloc était attendu" },
     ZH => { "预期的用于块的 \"}\"" },

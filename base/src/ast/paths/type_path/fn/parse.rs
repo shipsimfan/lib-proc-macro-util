@@ -1,14 +1,14 @@
 use crate::{
     ast::TypePathFn, supported_languages::*, tokens::Group, Delimiter, Parse, Parser, Result,
 };
-use i18n::m;
+use i18n::translation::m;
 
-i18n::message_key!(EXPECTED_FN_INPUTS [
+i18n::translation::message_key!(EXPECTED_FN_INPUTS [
     EN => { "expected function inputs" },
     FR => { "les paramètres de la fonction étaient attendus" },
     ZH => { "预期的函数输入" },
 ]);
-i18n::message_key!(EXPECTED_END_OF_FN_INPUTS [
+i18n::translation::message_key!(EXPECTED_END_OF_FN_INPUTS [
     EN => { "expected the end of function inputs" },
     FR => { "la fin des paramètres de la fonction était attendue" },
     ZH => { "预期的函数输入结束" },

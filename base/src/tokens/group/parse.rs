@@ -3,9 +3,9 @@ use crate::{
     tokens::{Group, TokenTree},
     Parse, Parser, Result,
 };
-use i18n::m;
+use i18n::translation::m;
 
-i18n::message_key!( EXPECTED_GROUP [
+i18n::translation::message_key!( EXPECTED_GROUP [
     EN => { "expected a group" },
     FR => { "un groupe était attendu" },
     ZH => { "预期的组" },

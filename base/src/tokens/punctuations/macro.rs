@@ -63,7 +63,7 @@ macro_rules! punctuation {
 
         impl<'a> Parse<'a> for $name {
             fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-                i18n::message_key!( EXPECTED [
+                i18n::translation::message_key!( EXPECTED [
                     EN => { concat!("expected \"", $punctuation, "\"") },
                     FR => { concat!("« ", $punctuation, " » était attendu") },
                     ZH => { concat!("预期的 \"", $punctuation, "\"") },

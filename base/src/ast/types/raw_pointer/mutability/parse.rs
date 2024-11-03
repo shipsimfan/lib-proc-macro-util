@@ -1,7 +1,7 @@
 use crate::{ast::types::RawPointerTypeMutability, supported_languages::*, Parse, Parser, Result};
-use i18n::m;
+use i18n::translation::m;
 
-i18n::message_key!(EXPECTED_MUT_OR_CONST [
+i18n::translation::message_key!(EXPECTED_MUT_OR_CONST [
     EN => { "expected `mut` or `const`" },
     FR => { "« mut » ou « const » était attendu" },
     ZH => { "预期的 `mut` 或 `const`" },

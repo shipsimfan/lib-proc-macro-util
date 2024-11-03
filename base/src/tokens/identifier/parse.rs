@@ -3,9 +3,9 @@ use crate::{
     tokens::{Identifier, TokenTree},
     Parse, Parser, Result,
 };
-use i18n::m;
+use i18n::translation::m;
 
-i18n::message_key!( EXPECTED_IDENTIFIER [
+i18n::translation::message_key!( EXPECTED_IDENTIFIER [
     EN => { "expected an identifier" },
     FR => { "un identifiant était attendu" },
     ZH => { "预期的标识符" },

@@ -2,9 +2,9 @@ use crate::{
     ast::items::ModuleBody, supported_languages::*, tokens::Group, Delimiter, Error, Parse, Parser,
     Result,
 };
-use i18n::m;
+use i18n::translation::m;
 
-i18n::message_key!(EXPECTED_MODULE_BODY [
+i18n::translation::message_key!(EXPECTED_MODULE_BODY [
     EN => { "expected a module body" },
     FR => { "le corps du module était attendu" },
     ZH => { "预期的模块体" },

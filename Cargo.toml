@@ -14,7 +14,7 @@ publish = false
 proc-macro-util-base.path = "base"
 proc-macro-util-macros.path = "macros"
 
-i18n = { git = "https://github.com/shipsimfan/lib-i18n", default-features = false, features = [
+i18n = { path = "../lib-i18n", default-features = false, features = [
     'current',
     'std',
 ] }

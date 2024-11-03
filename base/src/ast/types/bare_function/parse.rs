@@ -2,9 +2,9 @@ use crate::{
     ast::types::BareFunctionType, supported_languages::*, tokens::Group, Delimiter, Parse, Parser,
     Result,
 };
-use i18n::m;
+use i18n::translation::m;
 
-i18n::message_key!(EXPECTED_FUNCTION_PARAMETERS [
+i18n::translation::message_key!(EXPECTED_FUNCTION_PARAMETERS [
     EN => { "expected function parameters" },
     FR => { "les paramètres de fonction étaient attendus" },
     ZH => { "预期的函数参数" },
