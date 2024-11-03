@@ -8,6 +8,7 @@ mod r#use;
 
 mod item;
 mod macro_item;
+mod r#struct;
 mod vis_item;
 
 pub use extern_crate::{CrateRef, ExternCrate};
@@ -16,6 +17,7 @@ pub use function::{
     FunctionReturnType, SelfParam,
 };
 pub use module::{Module, ModuleBody};
+pub use r#struct::{Struct, StructBody, StructField, StructFields, TupleField, TupleFields};
 pub use r#use::{UseDeclaration, UseTree};
 
 pub use function::Abi;
