@@ -30,8 +30,6 @@ fn generate_to_tokens_parameters(
 ) {
     generate_new(identifier, generator);
     Token![,]().to_tokens(generator);
-    Token![&]().to_tokens(generator);
-    Token![mut]().to_tokens(generator);
     generator_name.to_tokens(generator);
 }
 

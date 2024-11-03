@@ -40,7 +40,15 @@ fn generate_body(
     Token![mut]().to_tokens(generator);
     generator_name.clone().to_tokens(generator);
     Token![=]().to_tokens(generator);
-    generate_empty(delimiter, generator_name, generator);
+    generate_empty(delimiter, generator_name.clone(), generator);
+
+    Token![let]().to_tokens(generator);
+    generator_name.clone().to_tokens(generator);
+    Token![=]().to_tokens(generator);
+    Token![&]().to_tokens(generator);
+    Token![mut]().to_tokens(generator);
+    generator_name.to_tokens(generator);
+    Token![;]().to_tokens(generator);
 
     to_tokens.to_tokens(generator);
 }
