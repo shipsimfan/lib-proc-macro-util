@@ -1,9 +1,10 @@
 use crate::{ast::expressions::LiteralExpression, tokens::Literal, Token};
+use std::borrow::Cow;
 
 impl<'a> LiteralExpression<'a> {
     /// Creates a new [`LiteralExpression`] from `literal`
-    pub fn new<T: Into<Literal>>(literal: T) -> Self {
-        LiteralExpression::OwnedLiteral(literal.into())
+    pub fn new<T: Into<Cow<'a, Literal>>>(literal: T) -> Self {
+        LiteralExpression::Literal(literal.into())
     }
 
     /// Creates a new [`LiteralExpression::True`]

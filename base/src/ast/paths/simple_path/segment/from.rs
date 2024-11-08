@@ -2,13 +2,13 @@ use crate::{ast::SimplePathSegment, tokens::Identifier, Token};
 
 impl<'a> From<&'a Identifier> for SimplePathSegment<'a> {
     fn from(identifier: &'a Identifier) -> Self {
-        SimplePathSegment::Identifier(identifier)
+        SimplePathSegment::Identifier(identifier.into())
     }
 }
 
 impl<'a> From<Identifier> for SimplePathSegment<'a> {
     fn from(identifier: Identifier) -> Self {
-        SimplePathSegment::OwnedIdentifier(identifier)
+        SimplePathSegment::Identifier(identifier.into())
     }
 }
 

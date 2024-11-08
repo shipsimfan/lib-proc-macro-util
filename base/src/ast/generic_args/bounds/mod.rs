@@ -3,6 +3,7 @@ use crate::{
     tokens::Identifier,
     Token,
 };
+use std::borrow::Cow;
 
 mod parse;
 mod to_tokens;
@@ -11,7 +12,7 @@ mod to_tokens;
 #[derive(Debug, Clone)]
 pub struct GenericArgsBounds<'a> {
     /// The name of the bound
-    pub identifier: Identifier,
+    pub identifier: Cow<'a, Identifier>,
 
     /// Restrictions on the bound
     pub args: Option<Box<GenericArgs<'a>>>,

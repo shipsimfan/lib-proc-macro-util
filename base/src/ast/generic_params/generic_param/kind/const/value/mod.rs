@@ -1,3 +1,5 @@
+use std::borrow::Cow;
+
 use crate::{
     ast::expressions::BlockExpression,
     tokens::{Identifier, Literal},
@@ -16,14 +18,8 @@ pub enum ConstParamValue<'a> {
     Block(BlockExpression<'a>),
 
     /// The value is an identifier
-    Identifier(&'a Identifier),
-
-    /// The value is an owned identifier
-    IdentifierOwned(Identifier),
+    Identifier(Cow<'a, Identifier>),
 
     /// The value is a literal
-    Literal(Option<Token![-]>, &'a Literal),
-
-    /// The value is an owned literal
-    LiteralOwned(Option<Token![-]>, Literal),
+    Literal(Option<Token![-]>, Cow<'a, Literal>),
 }

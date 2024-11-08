@@ -12,7 +12,7 @@ impl<'a> GenericArgsBinding<'a> {
         value: T,
     ) -> Self {
         GenericArgsBinding {
-            identifier: identifier.into(),
+            identifier: identifier.into().into(),
             args: args.map(|args| Box::new(args)),
             equals: Token![=](),
             value: value.into(),

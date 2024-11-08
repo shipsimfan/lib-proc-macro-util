@@ -2,13 +2,13 @@ use crate::{ast::expressions::LiteralExpression, tokens::Literal, Token};
 
 impl<'a> From<&'a Literal> for LiteralExpression<'a> {
     fn from(literal: &'a Literal) -> Self {
-        LiteralExpression::Literal(literal)
+        LiteralExpression::Literal(literal.into())
     }
 }
 
 impl<'a, T: Into<Literal>> From<T> for LiteralExpression<'a> {
     fn from(literal: T) -> Self {
-        LiteralExpression::new(literal)
+        LiteralExpression::new(literal.into())
     }
 }
 

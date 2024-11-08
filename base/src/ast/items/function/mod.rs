@@ -3,6 +3,7 @@ use crate::{
     tokens::Identifier,
     Token,
 };
+use std::borrow::Cow;
 
 mod abi;
 mod body;
@@ -29,7 +30,7 @@ pub struct Function<'a> {
     pub r#fn: Token![fn],
 
     /// The name of the function
-    pub name: &'a Identifier,
+    pub name: Cow<'a, Identifier>,
 
     /// Generic parameters for the function
     pub generic_params: Option<GenericParams<'a>>,

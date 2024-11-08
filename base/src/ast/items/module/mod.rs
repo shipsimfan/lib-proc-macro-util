@@ -1,4 +1,5 @@
 use crate::{tokens::Identifier, Token};
+use std::borrow::Cow;
 
 mod body;
 
@@ -17,7 +18,7 @@ pub struct Module<'a> {
     pub r#mod: Token![mod],
 
     /// The name of the module
-    pub identifier: &'a Identifier,
+    pub identifier: Cow<'a, Identifier>,
 
     /// The body of the module
     pub body: ModuleBody<'a>,

@@ -2,19 +2,19 @@ use crate::{ast::Lifetime, tokens::Identifier, Token};
 
 impl<'a> From<(Token!['_], &'a Identifier)> for Lifetime<'a> {
     fn from(value: (Token!['_], &'a Identifier)) -> Self {
-        Lifetime::Identifier(value.0, value.1)
+        Lifetime::Identifier(value.0, value.1.into())
     }
 }
 
 impl<'a> From<&'a Identifier> for Lifetime<'a> {
     fn from(identifier: &'a Identifier) -> Self {
-        Lifetime::Identifier(Token!['_](), identifier)
+        Lifetime::Identifier(Token!['_](), identifier.into())
     }
 }
 
 impl<'a, T: Into<Identifier>> From<(Token!['_], T)> for Lifetime<'a> {
     fn from(value: (Token!['_], T)) -> Self {
-        Lifetime::IdentifierOwned(value.0, value.1.into())
+        Lifetime::Identifier(value.0, value.1.into().into())
     }
 }
 

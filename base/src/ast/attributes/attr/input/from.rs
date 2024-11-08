@@ -13,13 +13,13 @@ impl<'a> From<Cow<'a, Group>> for AttrInput<'a> {
 
 impl<'a> From<&'a Group> for AttrInput<'a> {
     fn from(group: &'a Group) -> Self {
-        AttrInput::Group(Cow::Borrowed(group))
+        AttrInput::Group(group.into())
     }
 }
 
 impl<'a> From<Group> for AttrInput<'a> {
     fn from(group: Group) -> Self {
-        AttrInput::Group(Cow::Owned(group))
+        AttrInput::Group(group.into())
     }
 }
 

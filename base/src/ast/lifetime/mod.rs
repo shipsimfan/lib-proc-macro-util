@@ -1,3 +1,5 @@
+use std::borrow::Cow;
+
 use crate::{tokens::Identifier, Token};
 
 mod bounds;
@@ -15,11 +17,8 @@ pub use r#for::ForLifetimes;
 /// A lifetime denoting scope of a variable
 #[derive(Debug, Clone)]
 pub enum Lifetime<'a> {
-    /// The lifetime is named and the name is borrowed
-    Identifier(Token!['_], &'a Identifier),
-
-    /// The lifetime is named and the name is owned
-    IdentifierOwned(Token!['_], Identifier),
+    /// The lifetime is named
+    Identifier(Token!['_], Cow<'a, Identifier>),
 
     /// The lifetime is anonymous
     Underscore(Token!['_], Token![_]),

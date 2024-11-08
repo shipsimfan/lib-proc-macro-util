@@ -1,4 +1,5 @@
 use crate::{tokens::Identifier, Token};
+use std::borrow::Cow;
 
 mod parse;
 mod to_tokens;
@@ -7,7 +8,7 @@ mod to_tokens;
 #[derive(Debug, Clone)]
 pub enum MaybeIdentifier<'a> {
     /// The identifier is named
-    Identifier(&'a Identifier),
+    Identifier(Cow<'a, Identifier>),
 
     /// The identifier is anonymous
     Underscore(Token![_]),

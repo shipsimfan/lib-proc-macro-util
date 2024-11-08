@@ -2,6 +2,7 @@ use crate::{
     tokens::{Identifier, Type},
     Token,
 };
+use std::borrow::Cow;
 
 mod value;
 
@@ -17,7 +18,7 @@ pub struct ConstParam<'a> {
     pub r#const: Token![const],
 
     /// The name of this parameter
-    pub identifier: Identifier,
+    pub identifier: Cow<'a, Identifier>,
 
     /// The colon separating the type
     pub colon: Token![:],

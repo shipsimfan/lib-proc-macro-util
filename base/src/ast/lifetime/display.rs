@@ -7,10 +7,6 @@ impl<'a> std::fmt::Display for Lifetime<'a> {
                 quote.fmt(f)?;
                 identifier.fmt(f)
             }
-            Lifetime::IdentifierOwned(quote, identifier) => {
-                quote.fmt(f)?;
-                identifier.fmt(f)
-            }
             Lifetime::Underscore(quote, underscore) => {
                 quote.fmt(f)?;
                 underscore.fmt(f)

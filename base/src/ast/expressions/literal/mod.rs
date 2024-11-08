@@ -1,4 +1,5 @@
 use crate::{tokens::Literal, Token};
+use std::borrow::Cow;
 
 mod display;
 mod from;
@@ -10,10 +11,7 @@ mod to_tokens;
 #[derive(Debug, Clone)]
 pub enum LiteralExpression<'a> {
     /// A normal borrowed literal
-    Literal(&'a Literal),
-
-    /// A normal owned literal
-    OwnedLiteral(Literal),
+    Literal(Cow<'a, Literal>),
 
     /// Boolean value `true`
     True(Token![true]),

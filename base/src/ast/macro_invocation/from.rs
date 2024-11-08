@@ -20,7 +20,7 @@ impl<'a> From<(SimplePath<'a>, Token![!], &'a Group)> for MacroInvocation<'a> {
         MacroInvocation {
             path: value.0,
             exclamation: value.1,
-            group: Cow::Borrowed(value.2),
+            group: value.2.into(),
         }
     }
 }
@@ -30,7 +30,7 @@ impl<'a> From<(SimplePath<'a>, Token![!], Group)> for MacroInvocation<'a> {
         MacroInvocation {
             path: value.0,
             exclamation: value.1,
-            group: Cow::Owned(value.2),
+            group: value.2.into(),
         }
     }
 }
@@ -50,7 +50,7 @@ impl<'a> From<(SimplePath<'a>, &'a Group)> for MacroInvocation<'a> {
         MacroInvocation {
             path: value.0,
             exclamation: Token![!](),
-            group: Cow::Borrowed(value.1),
+            group: value.1.into(),
         }
     }
 }
@@ -60,7 +60,7 @@ impl<'a> From<(SimplePath<'a>, Group)> for MacroInvocation<'a> {
         MacroInvocation {
             path: value.0,
             exclamation: Token![!](),
-            group: Cow::Owned(value.1),
+            group: value.1.into(),
         }
     }
 }

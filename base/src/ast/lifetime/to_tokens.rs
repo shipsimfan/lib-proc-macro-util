@@ -7,10 +7,6 @@ impl<'a> ToTokens for Lifetime<'a> {
                 quote.to_tokens(generator);
                 identifier.clone().to_tokens(generator);
             }
-            Lifetime::IdentifierOwned(quote, identifier) => {
-                quote.to_tokens(generator);
-                identifier.to_tokens(generator);
-            }
             Lifetime::Underscore(quote, underscore) => {
                 quote.to_tokens(generator);
                 underscore.to_tokens(generator);

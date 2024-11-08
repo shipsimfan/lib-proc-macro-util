@@ -1,4 +1,5 @@
 use crate::{tokens::Identifier, Token};
+use std::borrow::Cow;
 
 mod parse;
 mod to_tokens;
@@ -7,7 +8,7 @@ mod to_tokens;
 #[derive(Debug, Clone)]
 pub enum CrateRef<'a> {
     /// The name of a crate
-    Identifier(&'a Identifier),
+    Identifier(Cow<'a, Identifier>),
 
     /// This crate
     _Self(Token![self]),

@@ -3,6 +3,7 @@ use crate::{
     tokens::{Identifier, Type},
     Token,
 };
+use std::borrow::Cow;
 
 mod new;
 mod parse;
@@ -12,7 +13,7 @@ mod to_tokens;
 #[derive(Debug, Clone)]
 pub struct GenericArgsBinding<'a> {
     /// The name of the generic argument
-    pub identifier: Identifier,
+    pub identifier: Cow<'a, Identifier>,
 
     /// Arguments for this argument
     pub args: Option<Box<GenericArgs<'a>>>,
