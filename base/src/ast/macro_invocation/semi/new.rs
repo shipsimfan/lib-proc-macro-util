@@ -1,12 +1,14 @@
 use crate::{
-    ast::{DelimTokenTree, MacroInvocationSemi, SimplePath},
+    ast::{MacroInvocationSemi, SimplePath},
+    tokens::Group,
     Token,
 };
 use proc_macro::Delimiter;
+use std::borrow::Cow;
 
 impl<'a> MacroInvocationSemi<'a> {
     /// Create a new [`MacroInvocationSemi`]
-    pub fn new<T: Into<DelimTokenTree<'a>>>(path: SimplePath<'a>, group: T) -> Self {
+    pub fn new<T: Into<Cow<'a, Group>>>(path: SimplePath<'a>, group: T) -> Self {
         let group = group.into();
         match group.delimiter {
             Delimiter::Parenthesis | Delimiter::Bracket => {

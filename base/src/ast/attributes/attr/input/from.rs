@@ -1,24 +1,25 @@
 use crate::{
-    ast::{AttrInput, DelimTokenTree, Expression},
+    ast::{AttrInput, Expression},
     tokens::Group,
     Token,
 };
+use std::borrow::Cow;
 
-impl<'a> From<DelimTokenTree<'a>> for AttrInput<'a> {
-    fn from(group: DelimTokenTree<'a>) -> Self {
+impl<'a> From<Cow<'a, Group>> for AttrInput<'a> {
+    fn from(group: Cow<'a, Group>) -> Self {
         AttrInput::Group(group)
     }
 }
 
 impl<'a> From<&'a Group> for AttrInput<'a> {
     fn from(group: &'a Group) -> Self {
-        AttrInput::Group(group.into())
+        AttrInput::Group(Cow::Borrowed(group))
     }
 }
 
 impl<'a> From<Group> for AttrInput<'a> {
     fn from(group: Group) -> Self {
-        AttrInput::Group(group.into())
+        AttrInput::Group(Cow::Owned(group))
     }
 }
 

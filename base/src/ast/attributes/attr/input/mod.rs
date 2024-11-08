@@ -1,7 +1,5 @@
-use crate::{
-    ast::{DelimTokenTree, Expression},
-    Token,
-};
+use crate::{ast::Expression, tokens::Group, Token};
+use std::borrow::Cow;
 
 mod from;
 mod new;
@@ -12,7 +10,7 @@ mod to_tokens;
 #[derive(Debug, Clone)]
 pub enum AttrInput<'a> {
     /// The input is made up of an arbitrary delimted token tree
-    Group(DelimTokenTree<'a>),
+    Group(Cow<'a, Group>),
 
     /// The input is equal to an expression
     Expression(Token![=], Expression<'a>),

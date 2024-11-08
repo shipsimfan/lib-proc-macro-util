@@ -1,7 +1,5 @@
-use crate::{
-    ast::{DelimTokenTree, SimplePath},
-    Token,
-};
+use crate::{ast::SimplePath, tokens::Group, Token};
+use std::borrow::Cow;
 
 mod from;
 mod new;
@@ -12,8 +10,8 @@ mod to_tokens;
 #[derive(Debug, Clone)]
 pub enum MacroInvocationSemi<'a> {
     /// The body is surrounded by parentheses or brackets
-    ParenthesesOrBracket(SimplePath<'a>, Token![!], DelimTokenTree<'a>, Token![;]),
+    ParenthesesOrBracket(SimplePath<'a>, Token![!], Cow<'a, Group>, Token![;]),
 
     /// The body is surrounded by braces
-    Brace(SimplePath<'a>, Token![!], DelimTokenTree<'a>),
+    Brace(SimplePath<'a>, Token![!], Cow<'a, Group>),
 }

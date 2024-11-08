@@ -1,11 +1,13 @@
 use crate::{
-    ast::{DelimTokenTree, MacroInvocation, SimplePath},
+    ast::{MacroInvocation, SimplePath},
+    tokens::Group,
     Token,
 };
+use std::borrow::Cow;
 
 impl<'a> MacroInvocation<'a> {
     /// Create a new [`MacroInvocation`]
-    pub fn new<T: Into<DelimTokenTree<'a>>>(path: SimplePath<'a>, group: T) -> Self {
+    pub fn new<T: Into<Cow<'a, Group>>>(path: SimplePath<'a>, group: T) -> Self {
         MacroInvocation {
             path,
             exclamation: Token![!](),

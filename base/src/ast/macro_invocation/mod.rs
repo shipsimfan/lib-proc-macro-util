@@ -1,4 +1,5 @@
-use crate::{ast::SimplePath, Token};
+use crate::{ast::SimplePath, tokens::Group, Token};
+use std::borrow::Cow;
 
 mod semi;
 
@@ -8,8 +9,6 @@ mod parse;
 mod to_tokens;
 
 pub use semi::MacroInvocationSemi;
-
-use super::DelimTokenTree;
 
 /// A macro invocation expands a macro at compile time and replaces the invocation with the result
 /// of the macro.
@@ -22,5 +21,5 @@ pub struct MacroInvocation<'a> {
     pub exclamation: Token![!],
 
     /// The body of the macro invocation
-    pub group: DelimTokenTree<'a>,
+    pub group: Cow<'a, Group>,
 }

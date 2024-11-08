@@ -1,7 +1,6 @@
 //! Utility definitions for working with standard parts of the Rust abstract syntax tree
 
 mod attributes;
-mod delim_token_tree;
 mod generic_args;
 mod generic_params;
 mod lifetime;
@@ -18,7 +17,6 @@ pub mod statements;
 pub mod types;
 
 pub use attributes::*;
-pub use delim_token_tree::*;
 pub use generic_args::*;
 pub use generic_params::*;
 pub use lifetime::*;
