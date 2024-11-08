@@ -1,5 +1,3 @@
-use std::borrow::Cow;
-
 use crate::{ast::items::StructField, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for StructField<'a> {
@@ -7,7 +5,7 @@ impl<'a> Parse<'a> for StructField<'a> {
         Ok(StructField {
             attributes: parser.parse()?,
             visibility: parser.parse()?,
-            name: Cow::Borrowed(parser.parse()?),
+            name: parser.parse()?,
             colon: parser.parse()?,
             r#type: parser.parse()?,
         })

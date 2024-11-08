@@ -3,6 +3,7 @@ use crate::Generator;
 mod bool;
 mod r#box;
 mod char;
+mod cow;
 mod number;
 mod option;
 mod slice;

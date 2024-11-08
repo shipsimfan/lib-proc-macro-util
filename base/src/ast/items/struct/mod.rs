@@ -5,6 +5,9 @@ mod body;
 mod struct_fields;
 mod tuple_fields;
 
+mod parse;
+mod to_tokens;
+
 pub use body::StructBody;
 pub use struct_fields::{StructField, StructFields};
 pub use tuple_fields::{TupleField, TupleFields};
