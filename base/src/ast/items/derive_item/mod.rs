@@ -1,6 +1,8 @@
 use crate::ast::{OuterAttribute, Visibility};
 
 mod kind;
+mod parse;
+mod to_tokens;
 
 pub use kind::DeriveItemKind;
 
