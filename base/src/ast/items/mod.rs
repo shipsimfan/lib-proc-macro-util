@@ -1,5 +1,6 @@
 //! Definitions for all items in Rust
 
+mod derive_item;
 mod extern_crate;
 mod function;
 mod module;
@@ -20,6 +21,7 @@ pub use module::{Module, ModuleBody};
 pub use r#struct::{Struct, StructBody, StructField, StructFields, TupleField, TupleFields};
 pub use r#use::{UseDeclaration, UseTree};
 
+pub use derive_item::{DeriveItem, DeriveItemKind};
 pub use function::Abi;
 pub use item::{Item, ItemKind};
 pub use macro_item::MacroItem;
