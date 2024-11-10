@@ -1,7 +1,7 @@
 use crate::{supported_languages::*, tokens::TokenTree, Parse, Parser, Result};
-use i18n::translation::m;
+use i18n_translation::m;
 
-i18n::translation::message_key!( EXPECTED_TOKEN_TREE [
+i18n_translation::message_key!( EXPECTED_TOKEN_TREE [
     EN => { "expected a token tree" },
     FR => { "un arbre de jetons était attendu" },
     ZH => { "预期的标记树" },

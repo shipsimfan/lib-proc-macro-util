@@ -1,7 +1,7 @@
 use crate::{ast::Lifetime, supported_languages::*, Parse, Parser, Result};
-use i18n::translation::m;
+use i18n_translation::m;
 
-i18n::translation::message_key!( EXPECTED_LIFETIME [
+i18n_translation::message_key!( EXPECTED_LIFETIME [
     EN => { "expected a lifetime" },
     FR => { "une durée de vie était attendue" },
     ZH => { "预期的生命周期" },

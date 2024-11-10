@@ -1,9 +1,9 @@
 use crate::{
     ast::Visibility, supported_languages::*, tokens::Group, Delimiter, Error, Parse, Parser, Result,
 };
-use i18n::translation::m;
+use i18n_translation::m;
 
-i18n::translation::message_key!( EXPECTED_GROUP_WITH_PARENTHESIS [
+i18n_translation::message_key!( EXPECTED_GROUP_WITH_PARENTHESIS [
     EN => { "expected a group delimited by parentheses" },
     FR => { "un groupe délimité par des parenthèses était attendu" },
     ZH => { "预期的由括号分隔的组" },

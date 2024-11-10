@@ -1,7 +1,7 @@
 use crate::{ast::ExpressionWithBlockKind, supported_languages::*, Parse, Parser, Result};
-use i18n::translation::m;
+use i18n_translation::m;
 
-i18n::translation::message_key!( EXPECTED_EXPESSION_WITH_BLOCK [
+i18n_translation::message_key!( EXPECTED_EXPESSION_WITH_BLOCK [
     EN => { "expected an expression with a block" },
     FR => { "une expression avec un bloc était attendue" },
     ZH => { "预期的带代码块的表达式" },

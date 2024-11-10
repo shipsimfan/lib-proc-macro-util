@@ -1,7 +1,7 @@
 use crate::{ast::items::DeriveItemKind, supported_languages::*, Parse, Parser, Result, Token};
-use i18n::translation::m;
+use i18n_translation::m;
 
-i18n::translation::message_key!(EXPECTED_ITEM [
+i18n_translation::message_key!(EXPECTED_ITEM [
     EN => { "expected an item" },
     FR => { "un élément était attendu" },
     ZH => { "预期的条目" },

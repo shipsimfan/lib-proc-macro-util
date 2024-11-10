@@ -1,7 +1,7 @@
 use crate::{ast::Type, supported_languages::*, Parse, Parser, Result};
-use i18n::translation::m;
+use i18n_translation::m;
 
-i18n::translation::message_key!(EXPECTED_TYPE [
+i18n_translation::message_key!(EXPECTED_TYPE [
     EN => { "expected a type" },
     FR => { "un type était attendu" },
     ZH => { "预期的类型" },

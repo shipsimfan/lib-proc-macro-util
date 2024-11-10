@@ -2,9 +2,9 @@ use crate::{
     ast::types::ParenthesizedType, supported_languages::*, tokens::Group, Delimiter, Parse, Parser,
     Result,
 };
-use i18n::translation::m;
+use i18n_translation::m;
 
-i18n::translation::message_key!(EXPECTED_PARENTHESIZED_TYPE [
+i18n_translation::message_key!(EXPECTED_PARENTHESIZED_TYPE [
     EN => { "expected a parenthesized type" },
     FR => { "un type entre parenthèses était attendu" },
     ZH => { "预期的括号括起来的类型" },

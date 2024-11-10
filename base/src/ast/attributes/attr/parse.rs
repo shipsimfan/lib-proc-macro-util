@@ -1,7 +1,7 @@
 use crate::{ast::Attr, supported_languages::*, Parse, Parser, Result};
-use i18n::translation::m;
+use i18n_translation::m;
 
-i18n::translation::message_key!( EXPECTED_ATTRIBUTE [
+i18n_translation::message_key!( EXPECTED_ATTRIBUTE [
     EN => { "expected an attribute" },
     FR => { "un attribut était attendu" },
     ZH => { "预期的属性" },

@@ -1,9 +1,9 @@
 use crate::{
     ast::types::TupleType, supported_languages::*, tokens::Group, Delimiter, Parse, Parser,
 };
-use i18n::translation::m;
+use i18n_translation::m;
 
-i18n::translation::message_key!(EXPECTED_TUPLE [
+i18n_translation::message_key!(EXPECTED_TUPLE [
     EN => { "expected a tuple" },
     FR => { "un tuple était attendu" },
     ZH => { "预期的元组" },

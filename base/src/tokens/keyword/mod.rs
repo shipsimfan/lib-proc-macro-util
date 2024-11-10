@@ -3,7 +3,7 @@ use crate::{
     tokens::{Identifier, TokenTree},
     Generator, Parse, Parser, Result, Span, ToTokens,
 };
-use i18n::translation::m;
+use i18n_translation::m;
 
 mod r#macro;
 

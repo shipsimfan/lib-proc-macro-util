@@ -1,7 +1,7 @@
 use crate::{ast::AttrInput, supported_languages::*, Parse, Parser, Result};
-use i18n::translation::m;
+use i18n_translation::m;
 
-i18n::translation::message_key!( EXPECTED_ATTR_INPUT [
+i18n_translation::message_key!( EXPECTED_ATTR_INPUT [
     EN => { "expected a group or an '='" },
     FR => { "un groupe ou un '=' était attendu" },
     ZH => { "预期的组或 '='" },

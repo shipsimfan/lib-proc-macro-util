@@ -1,7 +1,7 @@
 use crate::{ast::ConstParamValue, supported_languages::*, Parse, Parser, Result};
-use i18n::translation::m;
+use i18n_translation::m;
 
-i18n::translation::message_key!(EXPECTED_CONST_PARAM_VALUE [
+i18n_translation::message_key!(EXPECTED_CONST_PARAM_VALUE [
     EN => { "expected a constant value" },
     FR => { "une valeur constante était attendue" },
     ZH => { "预期的常量值" },

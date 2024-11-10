@@ -1,9 +1,9 @@
 use crate::{
     ast::types::ArrayType, supported_languages::*, tokens::Group, Delimiter, Parse, Parser, Result,
 };
-use i18n::translation::m;
+use i18n_translation::m;
 
-i18n::translation::message_key!(EXPECTED_ARRAY [
+i18n_translation::message_key!(EXPECTED_ARRAY [
     EN => { "expected an array" },
     FR => { "un tableau était attendu" },
     ZH => { "预期的数组" },

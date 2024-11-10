@@ -2,15 +2,15 @@ use crate::{
     ast::items::StructBody, supported_languages::*, tokens::Group, Delimiter, Error, Parse, Parser,
     Result,
 };
-use i18n::translation::m;
+use i18n_translation::m;
 
-i18n::translation::message_key!(EXPECTED_STRUCT_END [
+i18n_translation::message_key!(EXPECTED_STRUCT_END [
     EN => { "expected the end of structure fields" },
     FR => { "la fin des champs de structure était attendue" },
     ZH => { "预期的结构字段结束" },
 ]);
 
-i18n::translation::message_key!(EXPECTED_STRUCT_BODY [
+i18n_translation::message_key!(EXPECTED_STRUCT_BODY [
     EN => { "expected the structure body" },
     FR => { "le corps de la structure était attendu" },
     ZH => { "预期的结构体主体" },

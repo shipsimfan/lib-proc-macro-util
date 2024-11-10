@@ -1,8 +1,8 @@
-use i18n::translation::m;
+use i18n_translation::m;
 
 use crate::{ast::expressions::LiteralExpression, supported_languages::*, Parse, Parser, Result};
 
-i18n::translation::message_key!( EXPECTED_ATTR_INPUT [
+i18n_translation::message_key!( EXPECTED_ATTR_INPUT [
     EN => { "expected an attribute input" },
     FR => { "une entrée d'attribut était attendue" },
     ZH => { "预期的属性输入" },

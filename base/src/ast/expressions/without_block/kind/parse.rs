@@ -1,7 +1,7 @@
 use crate::{ast::ExpressionWithoutBlockKind, supported_languages::*, Parse, Parser, Result};
-use i18n::translation::m;
+use i18n_translation::m;
 
-i18n::translation::message_key!( EXPECTED_EXPESSION_WITHOUT_BLOCK [
+i18n_translation::message_key!( EXPECTED_EXPESSION_WITHOUT_BLOCK [
     EN => { "expected an expression without a block" },
     FR => { "une expression sans bloc était attendue" },
     ZH => { "不含代码块的预期表达式" },

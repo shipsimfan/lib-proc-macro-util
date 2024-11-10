@@ -3,9 +3,9 @@ use crate::{
     supported_languages::*,
     Parse, Parser, Result, Token,
 };
-use i18n::translation::m;
+use i18n_translation::m;
 
-i18n::translation::message_key!(EXPECTED_GENERIC_PARAMETER [
+i18n_translation::message_key!(EXPECTED_GENERIC_PARAMETER [
     EN => { "expected a generic paramter" },
     FR => { "un paramètre générique était attendu" },
     ZH => { "预期的泛型参数" },

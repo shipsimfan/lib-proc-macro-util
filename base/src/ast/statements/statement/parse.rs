@@ -1,7 +1,7 @@
 use crate::{ast::Statement, supported_languages::*, Parse, Parser, Result};
-use i18n::translation::m;
+use i18n_translation::m;
 
-i18n::translation::message_key!( EXPECTED_STATEMENT [
+i18n_translation::message_key!( EXPECTED_STATEMENT [
     EN => { "expected a statement" },
     FR => { "une instruction était attendue" },
     ZH => { "预期的语句" },

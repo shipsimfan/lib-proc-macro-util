@@ -1,6 +1,6 @@
 //! The set of languages supported by this library
 
-use i18n::locale::LanguageTag;
+use i18n_translation::locale::LanguageTag;
 
 /// English (United States)
 pub const EN: &LanguageTag = &LanguageTag::from_language(b"en").unwrap();
