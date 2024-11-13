@@ -11,7 +11,7 @@ pub use error::{Error, ErrorMessage, Result};
 pub use parse::Parse;
 pub use parser::Parser;
 
-i18n_translation::message_key!(EXPECTED_END [
+i18n_translation::message_key!(ExpectedEnd [
     EN => { "expected the end of the macro" },
     FR => { "la fin de la macro était attendue" },
     ZH => { "预期的宏结束" },
@@ -32,6 +32,6 @@ pub fn parse<'a, T: Parse<'a>>(tokens: &'a [TokenTree], full: bool) -> Result<T>
     if !full || parser.empty() {
         Ok(result)
     } else {
-        Err(Error::new(m!(EXPECTED_END)))
+        Err(Error::new(m!(ExpectedEnd)))
     }
 }

@@ -4,7 +4,7 @@ use crate::{
 };
 use i18n_translation::m;
 
-i18n_translation::message_key!(EXPECTED_MODULE_BODY [
+i18n_translation::message_key!(ExpectedModuleBody [
     EN => { "expected a module body" },
     FR => { "le corps du module était attendu" },
     ZH => { "预期的模块体" },
@@ -18,7 +18,7 @@ impl<'a> Parse<'a> for ModuleBody<'a> {
 
         let group: &'a Group = parser.parse()?;
         if group.delimiter != Delimiter::Brace {
-            return Err(Error::new_at(m!(EXPECTED_MODULE_BODY), group.span));
+            return Err(Error::new_at(m!(ExpectedModuleBody), group.span));
         }
 
         let mut parser = group.parser();

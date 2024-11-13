@@ -1,7 +1,7 @@
 use crate::{ast::expressions::PathExpression, supported_languages::*, Parse, Parser, Result};
 use i18n_translation::m;
 
-i18n_translation::message_key!(EXPECTED_PATH [
+i18n_translation::message_key!(ExpectedPath [
     EN => { "expected a path" },
     FR => { "un chemin était attendu" },
     ZH => { "预期的路径" },
@@ -17,6 +17,6 @@ impl<'a> Parse<'a> for PathExpression<'a> {
             return Ok(PathExpression::QualifiedPathInExpression(qualified_path));
         }
 
-        Err(parser.error(m!(EXPECTED_PATH)))
+        Err(parser.error(m!(ExpectedPath)))
     }
 }

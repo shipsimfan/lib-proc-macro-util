@@ -5,7 +5,7 @@ use crate::{
 };
 use i18n_translation::m;
 
-i18n_translation::message_key!(EXPECTED_GENERIC_PARAMETER [
+i18n_translation::message_key!(ExpectedGenericParameter [
     EN => { "expected a generic paramter" },
     FR => { "un paramètre générique était attendu" },
     ZH => { "预期的泛型参数" },
@@ -29,6 +29,6 @@ impl<'a> Parse<'a> for GenericParamKind<'a> {
             return Ok(GenericParamKind::Type(r#type));
         }
 
-        Err(parser.error(m!(EXPECTED_GENERIC_PARAMETER)))
+        Err(parser.error(m!(ExpectedGenericParameter)))
     }
 }

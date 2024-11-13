@@ -1,7 +1,7 @@
 use crate::{ast::ConstParamValue, supported_languages::*, Parse, Parser, Result};
 use i18n_translation::m;
 
-i18n_translation::message_key!(EXPECTED_CONST_PARAM_VALUE [
+i18n_translation::message_key!(ExpectedConstParamValue [
     EN => { "expected a constant value" },
     FR => { "une valeur constante était attendue" },
     ZH => { "预期的常量值" },
@@ -21,7 +21,7 @@ impl<'a> Parse<'a> for ConstParamValue<'a> {
             parser.parse()?,
             parser
                 .parse()
-                .map_err(|error| error.append_at(m!(EXPECTED_CONST_PARAM_VALUE), parser.span()))?,
+                .map_err(|error| error.append_at(m!(ExpectedConstParamValue), parser.span()))?,
         ))
     }
 }

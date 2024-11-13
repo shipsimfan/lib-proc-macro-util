@@ -4,13 +4,13 @@ use crate::{
 };
 use i18n_translation::m;
 
-i18n_translation::message_key!( EXPECTED_BLOCK_EXPRESSION [
+i18n_translation::message_key!( ExpectedBlockExpression [
     EN => { "expected a block expression" },
     FR => { "une expression de bloc était attendue" },
     ZH => { "预期的代码块表达式" },
 ]);
 
-i18n_translation::message_key!( EXPECTED_CLOSING_BRACE [
+i18n_translation::message_key!( ExpectedClosingBrace [
     EN => { "expected \"}\" for block" },
     FR => { "« } » pour le bloc était attendu" },
     ZH => { "预期的用于块的 \"}\"" },
@@ -20,9 +20,9 @@ impl<'a> Parse<'a> for BlockExpression<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         let group: &'a Group = parser
             .parse()
-            .map_err(|error| error.append(m!(EXPECTED_BLOCK_EXPRESSION)))?;
+            .map_err(|error| error.append(m!(ExpectedBlockExpression)))?;
         if group.delimiter != Delimiter::Brace {
-            return Err(parser.error(m!(EXPECTED_BLOCK_EXPRESSION)));
+            return Err(parser.error(m!(ExpectedBlockExpression)));
         }
 
         let mut group = group.parser();
@@ -32,7 +32,7 @@ impl<'a> Parse<'a> for BlockExpression<'a> {
         let end = group.parse()?;
 
         if !parser.empty() {
-            return Err(parser.error(m!(EXPECTED_CLOSING_BRACE)));
+            return Err(parser.error(m!(ExpectedClosingBrace)));
         }
 
         Ok(BlockExpression {

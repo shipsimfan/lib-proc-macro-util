@@ -7,7 +7,6 @@
 #![deny(rustdoc::redundant_explicit_links)]
 #![warn(rustdoc::broken_intra_doc_links)]
 #![feature(proc_macro_span)]
-#![feature(const_option)]
 
 extern crate proc_macro;
 

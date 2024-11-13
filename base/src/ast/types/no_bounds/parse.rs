@@ -1,7 +1,7 @@
 use crate::{ast::TypeNoBounds, supported_languages::*, Parse, Parser, Result};
 use i18n_translation::m;
 
-i18n_translation::message_key!(EXPECTED_TYPE_NO_BOUNDS [
+i18n_translation::message_key!(ExpectedTypeNoBounds [
     EN => { "expected a type with no bounds" },
     FR => { "un type sans contraintes était attendu" },
     ZH => { "预期的无边界类型" },
@@ -65,6 +65,6 @@ impl<'a> Parse<'a> for TypeNoBounds<'a> {
             return Ok(TypeNoBounds::TraitObjectOneBound(trait_object));
         }
 
-        Err(parser.error(m!(EXPECTED_TYPE_NO_BOUNDS)))
+        Err(parser.error(m!(ExpectedTypeNoBounds)))
     }
 }

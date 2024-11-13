@@ -3,7 +3,7 @@ use crate::{
 };
 use i18n_translation::m;
 
-i18n_translation::message_key!( EXPECTED_GROUP_WITH_PARENTHESIS [
+i18n_translation::message_key!( ExpectedGroupWithParenthesis [
     EN => { "expected a group delimited by parentheses" },
     FR => { "un groupe délimité par des parenthèses était attendu" },
     ZH => { "预期的由括号分隔的组" },
@@ -15,10 +15,7 @@ impl<'a> Parse<'a> for Visibility<'a> {
         let scope = match parser.step::<&'a Group, _>(Parser::parse) {
             Ok(group) => {
                 if group.delimiter != Delimiter::Parenthesis {
-                    return Err(Error::new_at(
-                        m!(EXPECTED_GROUP_WITH_PARENTHESIS),
-                        group.span,
-                    ));
+                    return Err(Error::new_at(m!(ExpectedGroupWithParenthesis), group.span));
                 }
 
                 group.parser().parse()?

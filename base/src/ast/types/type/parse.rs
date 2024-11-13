@@ -1,7 +1,7 @@
 use crate::{ast::Type, supported_languages::*, Parse, Parser, Result};
 use i18n_translation::m;
 
-i18n_translation::message_key!(EXPECTED_TYPE [
+i18n_translation::message_key!(ExpectedType [
     EN => { "expected a type" },
     FR => { "un type était attendu" },
     ZH => { "预期的类型" },
@@ -73,6 +73,6 @@ impl<'a> Parse<'a> for Type<'a> {
             return Ok(Type::TraitObject(trait_object));
         }
 
-        Err(parser.error(m!(EXPECTED_TYPE)))
+        Err(parser.error(m!(ExpectedType)))
     }
 }

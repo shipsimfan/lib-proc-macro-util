@@ -5,7 +5,7 @@ version = 4
 [[package]]
 name = "i18n-locale"
 version = "0.1.0"
-source = "git+https://github.com/shipsimfan/lib-i18n#f458b3d7de8ad2bffb6845eff909fe126596a312"
+source = "git+https://github.com/shipsimfan/lib-i18n#cce2c50772fc1b0d60a98b8fb1d05e2db6585161"
 dependencies = [
  "win32",
 ]
@@ -13,7 +13,7 @@ dependencies = [
 [[package]]
 name = "i18n-translation"
 version = "0.1.0"
-source = "git+https://github.com/shipsimfan/lib-i18n#f458b3d7de8ad2bffb6845eff909fe126596a312"
+source = "git+https://github.com/shipsimfan/lib-i18n#cce2c50772fc1b0d60a98b8fb1d05e2db6585161"
 dependencies = [
  "i18n-locale",
 ]

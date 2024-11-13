@@ -4,13 +4,13 @@ use crate::{
 };
 use i18n_translation::m;
 
-i18n_translation::message_key!(EXPECTED_STRUCT_END [
+i18n_translation::message_key!(ExpectedStructEnd [
     EN => { "expected the end of structure fields" },
     FR => { "la fin des champs de structure était attendue" },
     ZH => { "预期的结构字段结束" },
 ]);
 
-i18n_translation::message_key!(EXPECTED_STRUCT_BODY [
+i18n_translation::message_key!(ExpectedStructBody [
     EN => { "expected the structure body" },
     FR => { "le corps de la structure était attendu" },
     ZH => { "预期的结构体主体" },
@@ -25,7 +25,7 @@ impl<'a> Parse<'a> for StructBody<'a> {
                 Delimiter::Parenthesis => {
                     let fields = group_parser.parse()?;
                     if !group_parser.empty() {
-                        return Err(group_parser.error(m!(EXPECTED_STRUCT_END)));
+                        return Err(group_parser.error(m!(ExpectedStructEnd)));
                     }
 
                     return Ok(StructBody::Tuple {
@@ -37,7 +37,7 @@ impl<'a> Parse<'a> for StructBody<'a> {
                 Delimiter::Brace => {
                     let fields = group_parser.parse()?;
                     if !group_parser.empty() {
-                        return Err(group_parser.error(m!(EXPECTED_STRUCT_END)));
+                        return Err(group_parser.error(m!(ExpectedStructEnd)));
                     }
 
                     return Ok(StructBody::Normal {
@@ -45,7 +45,7 @@ impl<'a> Parse<'a> for StructBody<'a> {
                         fields,
                     });
                 }
-                _ => return Err(Error::new_at(m!(EXPECTED_STRUCT_BODY), group.span)),
+                _ => return Err(Error::new_at(m!(ExpectedStructBody), group.span)),
             }
         }
 
@@ -57,13 +57,13 @@ impl<'a> Parse<'a> for StructBody<'a> {
 
         let group = parser.parse::<&'a Group>()?;
         if group.delimiter != Delimiter::Brace {
-            return Err(Error::new_at(m!(EXPECTED_STRUCT_BODY), group.span));
+            return Err(Error::new_at(m!(ExpectedStructBody), group.span));
         }
 
         let mut group_parser = group.parser();
         let fields = group_parser.parse()?;
         if !group_parser.empty() {
-            return Err(group_parser.error(m!(EXPECTED_STRUCT_END)));
+            return Err(group_parser.error(m!(ExpectedStructEnd)));
         }
 
         Ok(StructBody::Normal {

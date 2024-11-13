@@ -6,7 +6,7 @@ use proc_macro_util_base::{
     Parser, Result,
 };
 
-i18n_translation::message_key!( EXPECTED_TOKEN [
+i18n_translation::message_key!( ExpectedToken [
     EN => { "expected a token" },
     FR => { "un jeton était attendu" },
     ZH => { "预期的标记" },
@@ -27,7 +27,7 @@ impl<'a> Token<'a> {
     pub fn parse(parser: &mut Parser<'a>, generator: &'a Identifier) -> Result<Self> {
         let token_tree = parser
             .next()
-            .ok_or_else(|| parser.error(m!(EXPECTED_TOKEN)))?;
+            .ok_or_else(|| parser.error(m!(ExpectedToken)))?;
 
         Ok(match token_tree {
             TokenTree::Group(group) => Token::Group(Group::parse(group, generator)?),

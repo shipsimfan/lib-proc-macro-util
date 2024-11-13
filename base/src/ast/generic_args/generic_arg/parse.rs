@@ -1,7 +1,7 @@
 use crate::{ast::GenericArg, supported_languages::*, Parse, Parser, Result};
 use i18n_translation::m;
 
-i18n_translation::message_key!(EXPECTED_GENERIC_ARG [
+i18n_translation::message_key!(ExpectedGenericArg [
     EN => { "expected a generic argument" },
     FR => { "un argument générique était attendu" },
     ZH => { "预期的泛型参数" },
@@ -29,6 +29,6 @@ impl<'a> Parse<'a> for GenericArg<'a> {
             return Ok(GenericArg::Const(r#const));
         }
 
-        Err(parser.error(m!(EXPECTED_GENERIC_ARG)))
+        Err(parser.error(m!(ExpectedGenericArg)))
     }
 }

@@ -5,7 +5,7 @@ use crate::{
 };
 use i18n_translation::m;
 
-i18n_translation::message_key!( EXPECTED_IDENTIFIER [
+i18n_translation::message_key!( ExpectedIdentifier [
     EN => { "expected an identifier" },
     FR => { "un identifiant était attendu" },
     ZH => { "预期的标识符" },
@@ -15,7 +15,7 @@ impl<'a> Parse<'a> for &'a Identifier {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         match parser.next() {
             Some(TokenTree::Identifier(identifier)) => Ok(identifier.into()),
-            _ => Err(parser.error(m!(EXPECTED_IDENTIFIER))),
+            _ => Err(parser.error(m!(ExpectedIdentifier))),
         }
     }
 }

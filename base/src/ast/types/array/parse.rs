@@ -3,7 +3,7 @@ use crate::{
 };
 use i18n_translation::m;
 
-i18n_translation::message_key!(EXPECTED_ARRAY [
+i18n_translation::message_key!(ExpectedArray [
     EN => { "expected an array" },
     FR => { "un tableau était attendu" },
     ZH => { "预期的数组" },
@@ -13,7 +13,7 @@ impl<'a> Parse<'a> for ArrayType<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         let group: &'a Group = parser.parse()?;
         if group.delimiter != Delimiter::Bracket {
-            return Err(parser.error(m!(EXPECTED_ARRAY)));
+            return Err(parser.error(m!(ExpectedArray)));
         }
 
         Ok(ArrayType {

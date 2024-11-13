@@ -1,7 +1,7 @@
 use crate::{ast::MaybeIdentifier, supported_languages::*, Parse, Parser, Result};
 use i18n_translation::m;
 
-i18n_translation::message_key!(EXPECTED_FUNCTION_PARAMETER_NAME [
+i18n_translation::message_key!(ExpectedFunctionParameterName [
     EN => { "expected a function parameter name" },
     FR => { "le nom d'un paramètre de fonction était attendu" },
     ZH => { "预期的函数参数名称" },
@@ -17,6 +17,6 @@ impl<'a> Parse<'a> for MaybeIdentifier<'a> {
             return Ok(MaybeIdentifier::Underscore(underscore));
         }
 
-        Err(parser.error(m!(EXPECTED_FUNCTION_PARAMETER_NAME)))
+        Err(parser.error(m!(ExpectedFunctionParameterName)))
     }
 }
