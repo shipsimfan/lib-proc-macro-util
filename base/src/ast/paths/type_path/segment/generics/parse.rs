@@ -6,6 +6,6 @@ impl<'a> Parse<'a> for TypePathSegmentGenerics<'a> {
             return Ok(TypePathSegmentGenerics::TypePathFn(type_path_fn));
         }
 
-        todo!()
+        parser.parse().map(TypePathSegmentGenerics::GenericArgs)
     }
 }
