@@ -30,7 +30,9 @@ pub use expressions::{
     Expression, ExpressionKind, ExpressionWithBlock, ExpressionWithBlockKind,
     ExpressionWithoutBlock, ExpressionWithoutBlockKind,
 };
-pub use items::{Abi, Item, ItemKind, MacroItem, TraitBound, VisItem, VisItemKind};
+pub use items::{
+    Abi, DeriveItem, DeriveItemKind, Item, ItemKind, MacroItem, TraitBound, VisItem, VisItemKind,
+};
 pub use patterns::PatternNoTopAlt;
 pub use statements::Statement;
 pub use types::{Type, TypeNoBounds, TypeParamBound, TypeParamBounds};
