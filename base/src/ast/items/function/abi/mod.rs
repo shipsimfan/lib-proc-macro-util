@@ -2,6 +2,7 @@ use crate::tokens::Literal;
 use std::borrow::Cow;
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 /// An application binary interface (ABI) a function can have

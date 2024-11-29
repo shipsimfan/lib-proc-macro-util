@@ -2,6 +2,7 @@ use crate::Token;
 
 mod generic_param;
 mod parse;
+mod to_static;
 mod to_tokens;
 
 pub use generic_param::*;

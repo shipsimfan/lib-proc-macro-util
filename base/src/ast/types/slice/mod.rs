@@ -1,6 +1,7 @@
 use crate::ast::Type;
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 /// A dynamically sized homogenous sequence

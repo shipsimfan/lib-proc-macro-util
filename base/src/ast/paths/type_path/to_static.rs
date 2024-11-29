@@ -1,6 +1,7 @@
 use crate::ast::TypePath;
 
 impl<'a> TypePath<'a> {
+    /// Takes ownership of any borrowed elements and converts the lifetime to `'static`
     pub fn into_static(self) -> TypePath<'static> {
         TypePath {
             leading: self.leading,

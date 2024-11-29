@@ -1,6 +1,7 @@
 use crate::{ast::TypeNoBounds, Token};
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 /// A return type from a bare function

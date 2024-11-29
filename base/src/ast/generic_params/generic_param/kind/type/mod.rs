@@ -1,11 +1,12 @@
 use crate::{
-    ast::TypeParamBounds,
-    tokens::{Identifier, Type},
+    ast::{Type, TypeParamBounds},
+    tokens::Identifier,
     Token,
 };
 use std::borrow::Cow;
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 /// A generic type parameter
@@ -18,5 +19,5 @@ pub struct TypeParam<'a> {
     pub bounds: Option<(Token![:], Option<TypeParamBounds<'a>>)>,
 
     /// A default type
-    pub default: Option<(Token![=], Type)>,
+    pub default: Option<(Token![=], Box<Type<'a>>)>,
 }

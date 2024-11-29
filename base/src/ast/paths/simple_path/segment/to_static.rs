@@ -3,6 +3,7 @@ use std::borrow::Cow;
 use crate::ast::SimplePathSegment;
 
 impl<'a> SimplePathSegment<'a> {
+    /// Takes ownership of any borrowed elements and converts the lifetime to `'static`
     pub fn into_static(self) -> SimplePathSegment<'static> {
         match self {
             SimplePathSegment::Identifier(identifier) => {

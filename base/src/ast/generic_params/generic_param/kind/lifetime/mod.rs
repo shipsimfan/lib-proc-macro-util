@@ -4,6 +4,7 @@ use crate::{
 };
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 /// A generic lifetime parameter

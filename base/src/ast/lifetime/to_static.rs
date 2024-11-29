@@ -2,6 +2,7 @@ use crate::ast::Lifetime;
 use std::borrow::Cow;
 
 impl<'a> Lifetime<'a> {
+    /// Takes ownership of any borrowed elements and converts the lifetime to `'static`
     pub fn into_static(self) -> Lifetime<'static> {
         match self {
             Lifetime::Identifier(quote, identifier) => Lifetime::Identifier(

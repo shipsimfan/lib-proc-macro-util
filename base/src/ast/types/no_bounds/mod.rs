@@ -8,6 +8,7 @@ use crate::ast::{
 };
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 /// A type which can be defined without bounds

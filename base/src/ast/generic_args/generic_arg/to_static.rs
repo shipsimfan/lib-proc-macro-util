@@ -1,6 +1,7 @@
 use crate::ast::GenericArg;
 
 impl<'a> GenericArg<'a> {
+    /// Takes ownership of any borrowed elements and converts the lifetime to `'static`
     pub fn into_static(self) -> GenericArg<'static> {
         match self {
             GenericArg::Lifetime(lifetime) => GenericArg::Lifetime(lifetime.into_static()),

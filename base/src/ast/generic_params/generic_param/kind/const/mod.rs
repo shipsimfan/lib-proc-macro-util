@@ -1,12 +1,10 @@
-use crate::{
-    tokens::{Identifier, Type},
-    Token,
-};
+use crate::{ast::Type, tokens::Identifier, Token};
 use std::borrow::Cow;
 
 mod value;
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 pub use value::ConstParamValue;
@@ -24,7 +22,7 @@ pub struct ConstParam<'a> {
     pub colon: Token![:],
 
     /// The type of the constant
-    pub r#type: Type,
+    pub r#type: Box<Type<'a>>,
 
     /// An optional default value for the constant
     pub value: Option<(Token![=], ConstParamValue<'a>)>,

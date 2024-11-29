@@ -1,6 +1,7 @@
 use crate::{ast::TypeParamBounds, Token};
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 /// A reference to an unnamed concrete type implementing one or more traits

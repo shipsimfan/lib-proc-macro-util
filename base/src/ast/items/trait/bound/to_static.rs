@@ -1,6 +1,7 @@
 use crate::ast::{ForLifetimes, TraitBound};
 
 impl<'a> TraitBound<'a> {
+    /// Takes ownership of any borrowed elements and converts the lifetime to `'static`
     pub fn into_static(self) -> TraitBound<'static> {
         TraitBound {
             delimited: self.delimited,

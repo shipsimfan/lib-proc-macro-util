@@ -2,6 +2,7 @@ use crate::ast::GenericArgsBounds;
 use std::borrow::Cow;
 
 impl<'a> GenericArgsBounds<'a> {
+    /// Takes ownership of any borrowed elements and converts the lifetime to `'static`
     pub fn into_static(self) -> GenericArgsBounds<'static> {
         GenericArgsBounds {
             identifier: Cow::Owned(match self.identifier {

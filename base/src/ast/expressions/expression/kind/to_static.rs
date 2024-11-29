@@ -1,6 +1,7 @@
 use crate::ast::ExpressionKind;
 
 impl<'a> ExpressionKind<'a> {
+    /// Takes ownership of any borrowed elements and converts the lifetime to `'static`
     pub fn into_static(self) -> ExpressionKind<'static> {
         match self {
             ExpressionKind::Literal(literal) => ExpressionKind::Literal(literal.into_static()),

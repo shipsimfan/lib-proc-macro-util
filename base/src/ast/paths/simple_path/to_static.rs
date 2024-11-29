@@ -1,6 +1,7 @@
 use crate::ast::SimplePath;
 
 impl<'a> SimplePath<'a> {
+    /// Takes ownership of any borrowed elements and converts the lifetime to `'static`
     pub fn into_static(self) -> SimplePath<'static> {
         SimplePath {
             leading: self.leading,

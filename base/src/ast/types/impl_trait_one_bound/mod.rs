@@ -1,6 +1,7 @@
 use crate::{ast::TraitBound, Token};
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 /// A reference to an unnamed type which only implements one trait

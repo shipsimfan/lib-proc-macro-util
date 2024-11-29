@@ -1,6 +1,7 @@
 use crate::{ast::Type, Token};
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 /// An ordered heterogenous list of types

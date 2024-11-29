@@ -1,6 +1,7 @@
 use crate::ast::PathExprSegment;
 
 impl<'a> PathExprSegment<'a> {
+    /// Takes ownership of any borrowed elements and converts the lifetime to `'static`
     pub fn into_static(self) -> PathExprSegment<'static> {
         PathExprSegment {
             ident: self.ident,

@@ -2,6 +2,7 @@ use crate::ast::expressions::LiteralExpression;
 use std::borrow::Cow;
 
 impl<'a> LiteralExpression<'a> {
+    /// Takes ownership of any borrowed elements and converts the lifetime to `'static`
     pub fn into_static(self) -> LiteralExpression<'static> {
         match self {
             LiteralExpression::Literal(literal) => {

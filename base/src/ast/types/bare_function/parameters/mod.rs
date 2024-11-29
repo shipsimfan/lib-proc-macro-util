@@ -3,6 +3,7 @@ use crate::{ast::OuterAttribute, Token};
 mod param;
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 pub use param::MaybeNamedParam;

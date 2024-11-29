@@ -1,6 +1,7 @@
 use crate::ast::VisibilityScope;
 
 impl<'a> VisibilityScope<'a> {
+    /// Takes ownership of any borrowed elements and converts the lifetime to `'static`
     pub fn into_static(self) -> VisibilityScope<'static> {
         match self {
             VisibilityScope::Crate(krate) => VisibilityScope::Crate(krate),

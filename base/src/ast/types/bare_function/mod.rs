@@ -5,6 +5,7 @@ mod qualifiers;
 mod return_type;
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 pub use parameters::{MaybeNamedFunctionParameters, MaybeNamedParam};

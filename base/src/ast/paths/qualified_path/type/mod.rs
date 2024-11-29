@@ -1,6 +1,10 @@
-use crate::{ast::TypePath, tokens::Type, Token};
+use crate::{
+    ast::{Type, TypePath},
+    Token,
+};
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 /// A qualified type
@@ -10,7 +14,7 @@ pub struct QualifiedPathType<'a> {
     pub start: Token![<],
 
     /// The type to be qualified
-    pub r#type: Type,
+    pub r#type: Box<Type<'a>>,
 
     /// The qualifier
     pub r#as: Option<(Token![as], TypePath<'a>)>,

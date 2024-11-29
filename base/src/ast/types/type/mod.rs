@@ -8,6 +8,7 @@ use crate::ast::{
 };
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 /// An syntax element referencing a type

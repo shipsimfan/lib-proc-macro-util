@@ -1,6 +1,7 @@
 use crate::ast::{ForLifetimes, TypeParamBounds, WhereClauseItem};
 
 impl<'a> WhereClauseItem<'a> {
+    /// Takes ownership of any borrowed elements and converts the lifetime to `'static`
     pub fn into_static(self) -> WhereClauseItem<'static> {
         match self {
             WhereClauseItem::Lifetime {
