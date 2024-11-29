@@ -1,6 +1,7 @@
 use crate::{ast::GenericParams, Token};
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 /// A set of lifetime restrictions a following bound must be applicable for

@@ -1,6 +1,7 @@
 use crate::ast::{PathInExpression, QualifiedPathInExpression};
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 /// A path to a type of variable in an expression

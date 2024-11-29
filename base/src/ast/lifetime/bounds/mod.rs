@@ -1,6 +1,7 @@
 use crate::{ast::Lifetime, Token};
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 /// A set of restrictions on a lifetime

@@ -4,6 +4,7 @@ mod from;
 mod kind;
 mod new;
 mod parse;
+mod to_static;
 mod to_tokens;
 
 pub use kind::ExpressionKind;

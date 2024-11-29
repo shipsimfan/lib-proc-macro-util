@@ -4,6 +4,7 @@ mod r#fn;
 mod segment;
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 pub use r#fn::{TypePathFn, TypePathFnInputs};

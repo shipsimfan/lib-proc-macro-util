@@ -4,6 +4,7 @@ mod default;
 mod from;
 mod new;
 mod parse;
+mod to_static;
 mod to_tokens;
 
 /// A block expression, or block, is a control flow expression and anonymous namespace scope for

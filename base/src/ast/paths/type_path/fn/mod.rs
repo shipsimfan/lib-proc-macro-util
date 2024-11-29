@@ -2,6 +2,7 @@ use crate::{ast::TypeNoBounds, Token};
 
 mod inputs;
 mod parse;
+mod to_static;
 mod to_tokens;
 
 pub use inputs::TypePathFnInputs;

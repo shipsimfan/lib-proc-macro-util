@@ -1,6 +1,7 @@
 use crate::ast::{GenericArgs, TypePathFn};
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 /// A set of generics which can modify a segment in a type path

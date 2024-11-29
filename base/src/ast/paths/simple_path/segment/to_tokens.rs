@@ -7,7 +7,7 @@ impl<'a> ToTokens for SimplePathSegment<'a> {
             SimplePathSegment::Crate(krate) => krate.to_tokens(generator),
             SimplePathSegment::_Self(_self) => _self.to_tokens(generator),
             SimplePathSegment::Super(_super) => _super.to_tokens(generator),
-            Self::DollarCrate(dollar, krate) => {
+            SimplePathSegment::DollarCrate(dollar, krate) => {
                 dollar.to_tokens(generator);
                 krate.to_tokens(generator);
             }

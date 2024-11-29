@@ -1,12 +1,12 @@
 use crate::{
-    ast::{GenericArgs, GenericArgsBinding},
-    tokens::{Identifier, Type},
+    ast::{GenericArgs, GenericArgsBinding, Type},
+    tokens::Identifier,
     Token,
 };
 
 impl<'a> GenericArgsBinding<'a> {
     /// Creates a new [`GenericArgsBinding`]
-    pub fn new<I: Into<Identifier>, T: Into<Type>>(
+    pub fn new<I: Into<Identifier>, T: Into<Type<'a>>>(
         identifier: I,
         args: Option<GenericArgs<'a>>,
         value: T,
@@ -15,7 +15,7 @@ impl<'a> GenericArgsBinding<'a> {
             identifier: identifier.into().into(),
             args: args.map(|args| Box::new(args)),
             equals: Token![=](),
-            value: value.into(),
+            value: Box::new(value.into()),
         }
     }
 }

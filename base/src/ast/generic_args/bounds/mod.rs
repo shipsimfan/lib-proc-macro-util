@@ -6,6 +6,7 @@ use crate::{
 use std::borrow::Cow;
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 /// Bounds on a generic argument

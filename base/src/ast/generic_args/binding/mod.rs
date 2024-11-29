@@ -1,12 +1,13 @@
 use crate::{
-    ast::GenericArgs,
-    tokens::{Identifier, Type},
+    ast::{GenericArgs, Type},
+    tokens::Identifier,
     Token,
 };
 use std::borrow::Cow;
 
 mod new;
 mod parse;
+mod to_static;
 mod to_tokens;
 
 /// A generic type which has a value
@@ -22,5 +23,5 @@ pub struct GenericArgsBinding<'a> {
     pub equals: Token![=],
 
     /// The value
-    pub value: Type,
+    pub value: Box<Type<'a>>,
 }

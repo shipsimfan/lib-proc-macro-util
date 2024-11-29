@@ -5,6 +5,7 @@ mod display;
 mod from;
 mod new;
 mod parse;
+mod to_static;
 mod to_tokens;
 
 /// An expression made up of a literal value

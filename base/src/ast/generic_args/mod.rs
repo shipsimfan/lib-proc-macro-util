@@ -6,6 +6,7 @@ mod r#const;
 mod generic_arg;
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 pub use binding::GenericArgsBinding;

@@ -4,6 +4,7 @@ mod display;
 mod from;
 mod new;
 mod parse;
+mod to_static;
 mod to_tokens;
 
 /// A scope restricting where the item can be accessed

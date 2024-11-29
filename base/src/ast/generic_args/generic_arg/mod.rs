@@ -1,9 +1,7 @@
-use crate::{
-    ast::{GenericArgsBinding, GenericArgsBounds, GenericArgsConst, Lifetime},
-    tokens::Type,
-};
+use crate::ast::{GenericArgsBinding, GenericArgsBounds, GenericArgsConst, Lifetime, Type};
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 /// A generic argument
@@ -13,7 +11,7 @@ pub enum GenericArg<'a> {
     Lifetime(Lifetime<'a>),
 
     /// The argument is a type
-    Type(Type),
+    Type(Box<Type<'a>>),
 
     /// The argument is constant
     Const(GenericArgsConst<'a>),

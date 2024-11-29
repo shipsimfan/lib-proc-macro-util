@@ -3,6 +3,7 @@ use crate::Token;
 mod item;
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 pub use item::WhereClauseItem;

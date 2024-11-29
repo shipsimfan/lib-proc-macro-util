@@ -2,6 +2,7 @@ mod type_param_bound;
 
 mod new;
 mod parse;
+mod to_static;
 mod to_tokens;
 
 pub use type_param_bound::TypeParamBound;
