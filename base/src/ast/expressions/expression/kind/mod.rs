@@ -1,4 +1,7 @@
-use crate::ast::expressions::{BlockExpression, LiteralExpression, PathExpression};
+use crate::ast::{
+    expressions::{BlockExpression, LiteralExpression, PathExpression},
+    MacroInvocation,
+};
 
 mod from;
 mod new;
@@ -17,4 +20,7 @@ pub enum ExpressionKind<'a> {
 
     /// A path to a type or a variable
     Path(PathExpression<'a>),
+
+    /// The calling of a macro
+    MacroInvocation(MacroInvocation<'a>),
 }

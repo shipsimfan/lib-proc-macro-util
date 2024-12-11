@@ -10,6 +10,9 @@ impl<'a> ExpressionWithoutBlockKind<'a> {
             ExpressionWithoutBlockKind::Path(path) => {
                 ExpressionWithoutBlockKind::Path(path.into_static())
             }
+            ExpressionWithoutBlockKind::MacroInvocation(macro_invocation) => {
+                ExpressionWithoutBlockKind::MacroInvocation(macro_invocation.into_static())
+            }
         }
     }
 }

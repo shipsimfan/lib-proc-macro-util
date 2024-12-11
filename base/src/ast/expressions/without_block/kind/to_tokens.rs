@@ -5,6 +5,9 @@ impl<'a> ToTokens for ExpressionWithoutBlockKind<'a> {
         match self {
             ExpressionWithoutBlockKind::Literal(literal) => literal.to_tokens(generator),
             ExpressionWithoutBlockKind::Path(path) => path.to_tokens(generator),
+            ExpressionWithoutBlockKind::MacroInvocation(macro_invocation) => {
+                macro_invocation.to_tokens(generator)
+            }
         }
     }
 }

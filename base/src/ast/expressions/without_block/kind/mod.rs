@@ -1,4 +1,7 @@
-use crate::ast::expressions::{LiteralExpression, PathExpression};
+use crate::ast::{
+    expressions::{LiteralExpression, PathExpression},
+    MacroInvocation,
+};
 
 mod from;
 mod new;
@@ -14,4 +17,7 @@ pub enum ExpressionWithoutBlockKind<'a> {
 
     /// A path to a type or a variable
     Path(PathExpression<'a>),
+
+    /// The calling of a macro
+    MacroInvocation(MacroInvocation<'a>),
 }

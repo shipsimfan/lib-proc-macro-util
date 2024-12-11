@@ -13,6 +13,10 @@ impl<'a> Parse<'a> for ExpressionKind<'a> {
             return Ok(ExpressionKind::Literal(literal));
         }
 
+        if let Ok(macro_invocation) = parser.step_parse() {
+            return Ok(ExpressionKind::MacroInvocation(macro_invocation));
+        }
+
         if let Ok(block) = parser.step_parse() {
             return Ok(ExpressionKind::Block(block));
         }
