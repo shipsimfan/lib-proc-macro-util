@@ -1,14 +1,7 @@
 use crate::{
-    ast::types::BareFunctionType, supported_languages::*, tokens::Group, Delimiter, Parse, Parser,
+    ast::types::BareFunctionType, tokens::Group, Delimiter, Parse, Parser,
     Result,
 };
-use i18n_translation::m;
-
-i18n_translation::message_key!(ExpectedFunctionParameters [
-    EN => { "expected function parameters" },
-    FR => { "les paramètres de fonction étaient attendus" },
-    ZH => { "预期的函数参数" },
-]);
 
 impl<'a> Parse<'a> for BareFunctionType<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -18,7 +11,7 @@ impl<'a> Parse<'a> for BareFunctionType<'a> {
 
         let group: &'a Group = parser.parse()?;
         if group.delimiter != Delimiter::Parenthesis {
-            return Err(parser.error(m!(ExpectedFunctionParameters)));
+            return Err(parser.error("expected function parameters"));
         }
 
         let parameters = group.parser().parse()?;

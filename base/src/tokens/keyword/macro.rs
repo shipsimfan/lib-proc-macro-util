@@ -48,19 +48,13 @@ macro_rules! keywords {
 
         impl<'a> Parse<'a> for $name {
             fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-                i18n_translation::message_key!( EXPECTED [
-                    EN => { concat!("expected \"", $keyword, "\"") },
-                    FR => { concat!("« ", $keyword, " » était attendu") },
-                    ZH => { concat!("预期的 \"", $keyword, "\"") },
-                ]);
-
                 if let Some(TokenTree::Identifier(identifier)) = parser.next() {
                     if identifier == $keyword {
                         return Ok(Self::new_at(identifier.span()))
                     }
                 }
 
-                Err(parser.error(m!(EXPECTED)))
+                Err(parser.error(concat!("expected \"", $keyword, "\"")))
             }
         }
 

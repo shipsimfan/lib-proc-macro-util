@@ -1,11 +1,4 @@
-use crate::{ast::AttrInput, supported_languages::*, Parse, Parser, Result};
-use i18n_translation::m;
-
-i18n_translation::message_key!( ExpectedAttrInput [
-    EN => { "expected a group or an '='" },
-    FR => { "un groupe ou un '=' était attendu" },
-    ZH => { "预期的组或 '='" },
-]);
+use crate::{ast::AttrInput, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for AttrInput<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -16,6 +9,6 @@ impl<'a> Parse<'a> for AttrInput<'a> {
         parser
             .parse()
             .map(|group| AttrInput::Group(group))
-            .map_err(|_| parser.error(m!(ExpectedAttrInput)))
+            .map_err(|_| parser.error("expected a group or an '='"))
     }
 }

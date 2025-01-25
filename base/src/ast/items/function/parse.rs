@@ -1,14 +1,4 @@
-use crate::{
-    ast::items::Function, supported_languages::*, tokens::Group, Delimiter, Error, Parse, Parser,
-    Result,
-};
-use i18n_translation::m;
-
-i18n_translation::message_key!(ExpectedFunctionParameters [
-    EN => { "expected function parameters" },
-    FR => { "les paramètres de fonction étaient attendus" },
-    ZH => { "预期的函数参数" },
-]);
+use crate::{ast::items::Function, tokens::Group, Delimiter, Error, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for Function<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -19,14 +9,14 @@ impl<'a> Parse<'a> for Function<'a> {
 
         let group: &'a Group = parser.parse()?;
         if group.delimiter != Delimiter::Parenthesis {
-            return Err(Error::new_at(m!(ExpectedFunctionParameters), group.span));
+            return Err(Error::new_at("expected function parameters", group.span));
         }
 
         let mut group_parser = group.parser();
         let parameters = group_parser.parse()?;
         if !group_parser.empty() {
             return Err(Error::new_at(
-                m!(ExpectedFunctionParameters),
+                "expected function parameters",
                 group_parser.span(),
             ));
         }

@@ -1,11 +1,4 @@
-use crate::{ast::ExpressionKind, supported_languages::*, Parse, Parser, Result};
-use i18n_translation::m;
-
-i18n_translation::message_key!(ExpectedExpression [
-    EN => { "expected an expression" },
-    FR => { "une expression était attendue" },
-    ZH => { "预期的表达式" },
-]);
+use crate::{ast::ExpressionKind, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for ExpressionKind<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -25,6 +18,6 @@ impl<'a> Parse<'a> for ExpressionKind<'a> {
             return Ok(ExpressionKind::Path(path));
         }
 
-        Err(parser.error(m!(ExpectedExpression)))
+        Err(parser.error("expected an expression"))
     }
 }

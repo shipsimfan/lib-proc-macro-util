@@ -1,5 +1,4 @@
-use crate::{supported_languages::*, tokens::TokenTree};
-use i18n_translation::m;
+use crate::{ tokens::TokenTree};
 
 mod collect_token_stream;
 mod error;
@@ -11,13 +10,7 @@ pub use error::{Error, ErrorMessage, Result};
 pub use parse::Parse;
 pub use parser::Parser;
 
-i18n_translation::message_key!(ExpectedEnd [
-    EN => { "expected the end of the macro" },
-    FR => { "la fin de la macro était attendue" },
-    ZH => { "预期的宏结束" },
-]);
 
-/// Attempts to parse an object from a [`proc_macro::TokenStream`]
 ///
 /// ## Parameters
 ///  * `input` - The [`proc_macro::TokenStream`] to parse
@@ -32,6 +25,6 @@ pub fn parse<'a, T: Parse<'a>>(tokens: &'a [TokenTree], full: bool) -> Result<T>
     if !full || parser.empty() {
         Ok(result)
     } else {
-        Err(Error::new(m!(ExpectedEnd)))
+        Err(Error::new("expected the end of the macro"))
     }
 }

@@ -1,28 +1,12 @@
-use crate::{
-    ast::expressions::BlockExpression, supported_languages::*, tokens::Group, Delimiter, Parse,
-    Parser, Result,
-};
-use i18n_translation::m;
-
-i18n_translation::message_key!( ExpectedBlockExpression [
-    EN => { "expected a block expression" },
-    FR => { "une expression de bloc était attendue" },
-    ZH => { "预期的代码块表达式" },
-]);
-
-i18n_translation::message_key!( ExpectedClosingBrace [
-    EN => { "expected \"}\" for block" },
-    FR => { "« } » pour le bloc était attendu" },
-    ZH => { "预期的用于块的 \"}\"" },
-]);
+use crate::{ast::expressions::BlockExpression, tokens::Group, Delimiter, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for BlockExpression<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         let group: &'a Group = parser
             .parse()
-            .map_err(|error| error.append(m!(ExpectedBlockExpression)))?;
+            .map_err(|error| error.append("expected a block expression"))?;
         if group.delimiter != Delimiter::Brace {
-            return Err(parser.error(m!(ExpectedBlockExpression)));
+            return Err(parser.error("expected a block expression"));
         }
 
         let mut group = group.parser();
@@ -32,7 +16,7 @@ impl<'a> Parse<'a> for BlockExpression<'a> {
         let end = group.parse()?;
 
         if !parser.empty() {
-            return Err(parser.error(m!(ExpectedClosingBrace)));
+            return Err(parser.error("expected a block expression"));
         }
 
         Ok(BlockExpression {

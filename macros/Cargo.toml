@@ -14,5 +14,3 @@ proc-macro = true
 
 [dependencies]
 proc-macro-util-base.workspace = true
-
-i18n-translation.workspace = true

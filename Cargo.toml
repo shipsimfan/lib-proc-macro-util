@@ -14,11 +14,6 @@ publish = false
 proc-macro-util-base.path = "base"
 proc-macro-util-macros.path = "macros"
 
-i18n-translation = { git = "https://github.com/shipsimfan/lib-i18n", default-features = false, features = [
-    'current',
-    'std',
-] }
-
 [package]
 name = "proc-macro-util"
 description = "Utilities to make writing procedural macros easier"

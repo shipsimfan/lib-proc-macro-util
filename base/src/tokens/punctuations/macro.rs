@@ -63,23 +63,17 @@ macro_rules! punctuation {
 
         impl<'a> Parse<'a> for $name {
             fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-                i18n_translation::message_key!( EXPECTED [
-                    EN => { concat!("expected \"", $punctuation, "\"") },
-                    FR => { concat!("« ", $punctuation, " » était attendu") },
-                    ZH => { concat!("预期的 \"", $punctuation, "\"") },
-                ]);
-
                 let mut spans = [parser.span(); Self::LEN];
                 let mut final_spacing = Spacing::Alone;
                 for (i, c) in $punctuation.chars().enumerate() {
                     let punctuation: Punctuation = parser.parse().map_err(
-                        |error| error.append(m!(EXPECTED))
+                        |error| error.append(concat!("expected \"", $punctuation, "\""))
                     )?;
 
                     if punctuation.as_char() != c || (
                         i < Self::LEN - 1 && punctuation.spacing() != Spacing::Joint
                     ) {
-                        return Err(parser.error(m!(EXPECTED)));
+                        return Err(parser.error(concat!("expected \"", $punctuation, "\"")));
                     }
 
                     spans[i] = punctuation.span();

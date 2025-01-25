@@ -1,11 +1,4 @@
-use crate::{ast::items::DeriveItemKind, supported_languages::*, Parse, Parser, Result, Token};
-use i18n_translation::m;
-
-i18n_translation::message_key!(ExpectedItem [
-    EN => { "expected an item" },
-    FR => { "un élément était attendu" },
-    ZH => { "预期的条目" },
-]);
+use crate::{ast::items::DeriveItemKind, Parse, Parser, Result, Token};
 
 impl<'a> Parse<'a> for DeriveItemKind<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -15,6 +8,6 @@ impl<'a> Parse<'a> for DeriveItemKind<'a> {
                 .map(|r#struct| DeriveItemKind::Struct(r#struct));
         }
 
-        Err(parser.error(m!(ExpectedItem)))
+        Err(parser.error("expected an item"))
     }
 }

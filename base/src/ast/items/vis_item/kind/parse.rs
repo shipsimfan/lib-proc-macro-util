@@ -1,11 +1,4 @@
-use crate::{ast::VisItemKind, supported_languages::*, Parse, Parser, Result, Token};
-use i18n_translation::m;
-
-i18n_translation::message_key!(ExpectedItem [
-    EN => { "expected an item" },
-    FR => { "un élément était attendu" },
-    ZH => { "预期的条目" },
-]);
+use crate::{ast::VisItemKind, Parse, Parser, Result, Token};
 
 impl<'a> Parse<'a> for VisItemKind<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -31,6 +24,6 @@ impl<'a> Parse<'a> for VisItemKind<'a> {
             return Ok(VisItemKind::Function(function));
         }
 
-        Err(parser.error(m!(ExpectedItem)))
+        Err(parser.error("expected an item"))
     }
 }

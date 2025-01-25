@@ -1,13 +1,4 @@
-use crate::{
-    ast::Visibility, supported_languages::*, tokens::Group, Delimiter, Error, Parse, Parser, Result,
-};
-use i18n_translation::m;
-
-i18n_translation::message_key!( ExpectedGroupWithParenthesis [
-    EN => { "expected a group delimited by parentheses" },
-    FR => { "un groupe délimité par des parenthèses était attendu" },
-    ZH => { "预期的由括号分隔的组" },
-]);
+use crate::{ast::Visibility, tokens::Group, Delimiter, Error, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for Visibility<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -15,7 +6,10 @@ impl<'a> Parse<'a> for Visibility<'a> {
         let scope = match parser.step::<&'a Group, _>(Parser::parse) {
             Ok(group) => {
                 if group.delimiter != Delimiter::Parenthesis {
-                    return Err(Error::new_at(m!(ExpectedGroupWithParenthesis), group.span));
+                    return Err(Error::new_at(
+                        "expected a group delimited by parentheses",
+                        group.span,
+                    ));
                 }
 
                 group.parser().parse()?

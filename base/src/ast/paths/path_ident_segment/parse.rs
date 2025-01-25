@@ -1,11 +1,4 @@
-use crate::{ast::PathIdentSegment, supported_languages::*, Parse, Parser, Result};
-use i18n_translation::m;
-
-i18n_translation::message_key!(ExpectedPathSegment [
-    EN => { "expected a path segment" },
-    FR => { "un segment de chemin était attendu" },
-    ZH => { "预期的路径段" },
-]);
+use crate::{ast::PathIdentSegment, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for PathIdentSegment {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -16,6 +9,6 @@ impl<'a> Parse<'a> for PathIdentSegment {
         parser
             .parse()
             .map(|identifier| PathIdentSegment::Identifier(identifier))
-            .map_err(|_| parser.error(m!(ExpectedPathSegment)))
+            .map_err(|_| parser.error("expected a path segment"))
     }
 }

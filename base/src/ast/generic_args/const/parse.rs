@@ -1,11 +1,4 @@
-use crate::{ast::GenericArgsConst, supported_languages::*, Parse, Parser, Result};
-use i18n_translation::m;
-
-i18n_translation::message_key!(ExpectedConstantGenericArg [
-    EN => { "expected a constant generic argument" },
-    FR => { "un argument générique constant était attendu" },
-    ZH => { "预期的常量泛型参数" },
-]);
+use crate::{ast::GenericArgsConst, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for GenericArgsConst<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -25,6 +18,6 @@ impl<'a> Parse<'a> for GenericArgsConst<'a> {
             return Ok(GenericArgsConst::SimplePathSegment(simple_path_segment));
         }
 
-        Err(parser.error(m!(ExpectedConstantGenericArg)))
+        Err(parser.error("expected a constant generic argument"))
     }
 }

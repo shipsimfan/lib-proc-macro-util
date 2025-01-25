@@ -1,11 +1,4 @@
-use crate::{ast::VisibilityScope, supported_languages::*, Parse, Parser, Result};
-use i18n_translation::m;
-
-i18n_translation::message_key!( ExpectedVisibilityScope [
-    EN => { "expected \"crate\", \"super\", \"self\", or \"in\"" },
-    FR => { "« crate », « super », « self » ou « in » était attendu" },
-    ZH => { "预期的 'crate'、'super'、'self' 或 'in'" },
-]);
+use crate::{ast::VisibilityScope, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for VisibilityScope<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -24,7 +17,7 @@ impl<'a> Parse<'a> for VisibilityScope<'a> {
         Ok(VisibilityScope::Path(
             parser
                 .parse()
-                .map_err(|_| parser.error(m!(ExpectedVisibilityScope)))?,
+                .map_err(|_| parser.error("expected \"crate\", \"super\", \"self\", or \"in\""))?,
             parser.parse()?,
         ))
     }

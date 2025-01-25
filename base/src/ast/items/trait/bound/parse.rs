@@ -1,20 +1,13 @@
 use crate::{
-    ast::TraitBound, supported_languages::*, tokens::Group, Delimiter, Parse, Parser, Result,
+    ast::TraitBound, tokens::Group, Delimiter, Parse, Parser, Result,
 };
-use i18n_translation::m;
-
-i18n_translation::message_key!(ExpectedTraitBound [
-    EN => { "expected a trait bound" },
-    FR => { "une contrainte de trait était attendue" },
-    ZH => { "预期的特征约束" },
-]);
 
 impl<'a> Parse<'a> for TraitBound<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         let mut group = match parser.step(Parser::parse::<&'a Group>).ok() {
             Some(group) => {
                 if group.delimiter != Delimiter::Parenthesis {
-                    return Err(parser.error(m!(ExpectedTraitBound)));
+                    return Err(parser.error("expected a trait bound"));
                 }
 
                 Some(group.parser())

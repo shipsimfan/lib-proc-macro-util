@@ -1,11 +1,4 @@
-use crate::{ast::types::RawPointerTypeMutability, supported_languages::*, Parse, Parser, Result};
-use i18n_translation::m;
-
-i18n_translation::message_key!(ExpectedMutOrConst [
-    EN => { "expected `mut` or `const`" },
-    FR => { "« mut » ou « const » était attendu" },
-    ZH => { "预期的 `mut` 或 `const`" },
-]);
+use crate::{ast::types::RawPointerTypeMutability, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for RawPointerTypeMutability {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -17,6 +10,6 @@ impl<'a> Parse<'a> for RawPointerTypeMutability {
             return Ok(RawPointerTypeMutability::Const(r#const));
         }
 
-        Err(parser.error(m!(ExpectedMutOrConst)))
+        Err(parser.error("expected `mut` or `const`"))
     }
 }
