@@ -2,6 +2,7 @@
 
 mod block;
 mod literal;
+mod operator;
 mod path;
 
 mod expression;
@@ -10,6 +11,7 @@ mod without_block;
 
 pub use block::BlockExpression;
 pub use literal::LiteralExpression;
+pub use operator::*;
 pub use path::PathExpression;
 
 pub use expression::{Expression, ExpressionKind};

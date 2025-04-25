@@ -13,6 +13,9 @@ impl<'a> ExpressionWithoutBlockKind<'a> {
             ExpressionWithoutBlockKind::MacroInvocation(macro_invocation) => {
                 ExpressionWithoutBlockKind::MacroInvocation(macro_invocation.into_static())
             }
+            ExpressionWithoutBlockKind::Operator(operator) => {
+                ExpressionWithoutBlockKind::Operator(operator.into_static())
+            }
         }
     }
 }

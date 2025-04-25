@@ -16,6 +16,10 @@ impl<'a> Parse<'a> for ExpressionWithoutBlockKind<'a> {
             return Ok(ExpressionWithoutBlockKind::Path(path));
         }
 
+        if let Ok(operator) = parser.step_parse() {
+            return Ok(ExpressionWithoutBlockKind::Operator(operator));
+        }
+
         Err(parser.error("expected an expression without a block"))
     }
 }

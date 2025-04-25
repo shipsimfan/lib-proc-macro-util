@@ -9,6 +9,7 @@ impl<'a> ToTokens for ExpressionKind<'a> {
             ExpressionKind::MacroInvocation(macro_invocation) => {
                 macro_invocation.to_tokens(generator)
             }
+            ExpressionKind::Operator(operator) => operator.to_tokens(generator),
         }
     }
 }

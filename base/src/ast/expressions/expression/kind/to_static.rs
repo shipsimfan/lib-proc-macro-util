@@ -10,6 +10,7 @@ impl<'a> ExpressionKind<'a> {
             ExpressionKind::MacroInvocation(macro_invocation) => {
                 ExpressionKind::MacroInvocation(macro_invocation.into_static())
             }
+            ExpressionKind::Operator(operator) => ExpressionKind::Operator(operator.into_static()),
         }
     }
 }

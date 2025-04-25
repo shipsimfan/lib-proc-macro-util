@@ -1,5 +1,5 @@
 use crate::ast::{
-    expressions::{BlockExpression, LiteralExpression, PathExpression},
+    expressions::{BlockExpression, LiteralExpression, OperatorExpression, PathExpression},
     MacroInvocation,
 };
 
@@ -23,4 +23,7 @@ pub enum ExpressionKind<'a> {
 
     /// The calling of a macro
     MacroInvocation(MacroInvocation<'a>),
+
+    /// An expression that contains an operator
+    Operator(OperatorExpression<'a>),
 }

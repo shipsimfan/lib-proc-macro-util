@@ -1,5 +1,5 @@
 use crate::ast::{
-    expressions::{BlockExpression, LiteralExpression, PathExpression},
+    expressions::{BlockExpression, LiteralExpression, OperatorExpression, PathExpression},
     ExpressionKind, MacroInvocation,
 };
 
@@ -24,5 +24,11 @@ impl<'a> From<PathExpression<'a>> for ExpressionKind<'a> {
 impl<'a> From<MacroInvocation<'a>> for ExpressionKind<'a> {
     fn from(macro_invocation: MacroInvocation<'a>) -> Self {
         ExpressionKind::MacroInvocation(macro_invocation)
+    }
+}
+
+impl<'a> From<OperatorExpression<'a>> for ExpressionKind<'a> {
+    fn from(operator: OperatorExpression<'a>) -> Self {
+        ExpressionKind::Operator(operator)
     }
 }

@@ -18,6 +18,10 @@ impl<'a> Parse<'a> for ExpressionKind<'a> {
             return Ok(ExpressionKind::Path(path));
         }
 
+        if let Ok(operator) = parser.step_parse() {
+            return Ok(ExpressionKind::Operator(operator));
+        }
+
         Err(parser.error("expected an expression"))
     }
 }
