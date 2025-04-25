@@ -5,6 +5,7 @@ mod call;
 mod literal;
 mod operator;
 mod path;
+mod unsafe_block;
 
 mod expression;
 mod with_block;
@@ -15,6 +16,7 @@ pub use call::{CallExpression, CallParams};
 pub use literal::LiteralExpression;
 pub use operator::*;
 pub use path::PathExpression;
+pub use unsafe_block::UnsafeBlockExpression;
 
 pub use expression::{Expression, ExpressionKind};
 pub use with_block::{ExpressionWithBlock, ExpressionWithBlockKind};

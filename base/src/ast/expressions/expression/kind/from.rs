@@ -1,6 +1,7 @@
 use crate::ast::{
     expressions::{
         BlockExpression, CallExpression, LiteralExpression, OperatorExpression, PathExpression,
+        UnsafeBlockExpression,
     },
     ExpressionKind, MacroInvocation,
 };
@@ -38,5 +39,11 @@ impl<'a> From<OperatorExpression<'a>> for ExpressionKind<'a> {
 impl<'a> From<CallExpression<'a>> for ExpressionKind<'a> {
     fn from(call: CallExpression<'a>) -> Self {
         ExpressionKind::Call(call)
+    }
+}
+
+impl<'a> From<UnsafeBlockExpression<'a>> for ExpressionKind<'a> {
+    fn from(r#unsafe: UnsafeBlockExpression<'a>) -> Self {
+        ExpressionKind::Unsafe(r#unsafe)
     }
 }

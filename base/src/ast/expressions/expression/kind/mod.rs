@@ -1,6 +1,7 @@
 use crate::ast::{
     expressions::{
         BlockExpression, CallExpression, LiteralExpression, OperatorExpression, PathExpression,
+        UnsafeBlockExpression,
     },
     MacroInvocation,
 };
@@ -31,4 +32,7 @@ pub enum ExpressionKind<'a> {
 
     /// A function call
     Call(CallExpression<'a>),
+
+    /// A block of unsafe code
+    Unsafe(UnsafeBlockExpression<'a>),
 }

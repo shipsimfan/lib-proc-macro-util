@@ -1,4 +1,4 @@
-use crate::ast::expressions::BlockExpression;
+use crate::ast::expressions::{BlockExpression, UnsafeBlockExpression};
 
 mod from;
 mod new;
@@ -10,4 +10,7 @@ mod to_tokens;
 pub enum ExpressionWithBlockKind<'a> {
     /// An expression made up of only a block
     Block(BlockExpression<'a>),
+
+    /// A block of unsafe code
+    Unsafe(UnsafeBlockExpression<'a>),
 }

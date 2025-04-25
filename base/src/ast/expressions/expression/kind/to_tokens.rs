@@ -11,6 +11,7 @@ impl<'a> ToTokens for ExpressionKind<'a> {
             }
             ExpressionKind::Operator(operator) => operator.to_tokens(generator),
             ExpressionKind::Call(call) => call.to_tokens(generator),
+            ExpressionKind::Unsafe(r#unsafe) => r#unsafe.to_tokens(generator),
         }
     }
 }

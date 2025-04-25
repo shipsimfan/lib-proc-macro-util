@@ -12,6 +12,7 @@ impl<'a> ExpressionKind<'a> {
             }
             ExpressionKind::Operator(operator) => ExpressionKind::Operator(operator.into_static()),
             ExpressionKind::Call(call) => ExpressionKind::Call(call.into_static()),
+            ExpressionKind::Unsafe(r#unsafe) => ExpressionKind::Unsafe(r#unsafe.into_static()),
         }
     }
 }

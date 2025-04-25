@@ -1,9 +1,20 @@
-use crate::{ast::ExpressionKind, Parse, Parser, Result};
+use crate::{ast::ExpressionKind, tokens::Literal, Parse, Parser, Result, Token};
 
 impl<'a> Parse<'a> for ExpressionKind<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        if let Ok(literal) = parser.step_parse() {
-            return Ok(ExpressionKind::Literal(literal));
+        if parser.peek::<Token![unsafe]>() {
+            return parser.parse().map(ExpressionKind::Unsafe);
+        }
+
+        if parser.peek::<&'a Literal>()
+            || parser.peek::<Token![true]>()
+            || parser.peek::<Token![false]>()
+        {
+            return parser.parse().map(ExpressionKind::Literal);
+        }
+
+        if parser.peek::<Token![&]>() || parser.peek::<Token![&&]>() || parser.peek::<Token![*]>() {
+            return parser.parse().map(ExpressionKind::Operator);
         }
 
         if let Ok(macro_invocation) = parser.step_parse() {
@@ -16,10 +27,6 @@ impl<'a> Parse<'a> for ExpressionKind<'a> {
 
         if let Ok(path) = parser.step_parse() {
             return Ok(ExpressionKind::Path(path));
-        }
-
-        if let Ok(operator) = parser.step_parse() {
-            return Ok(ExpressionKind::Operator(operator));
         }
 
         Err(parser.error("expected an expression"))

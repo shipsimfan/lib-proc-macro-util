@@ -1,9 +1,16 @@
-use crate::{ast::ExpressionWithoutBlockKind, Parse, Parser, Result};
+use crate::{ast::ExpressionWithoutBlockKind, tokens::Literal, Parse, Parser, Result, Token};
 
 impl<'a> Parse<'a> for ExpressionWithoutBlockKind<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        if let Ok(literal) = parser.step_parse() {
-            return Ok(ExpressionWithoutBlockKind::Literal(literal));
+        if parser.peek::<&'a Literal>()
+            || parser.peek::<Token![true]>()
+            || parser.peek::<Token![false]>()
+        {
+            return parser.parse().map(ExpressionWithoutBlockKind::Literal);
+        }
+
+        if parser.peek::<Token![&]>() || parser.peek::<Token![&&]>() || parser.peek::<Token![*]>() {
+            return parser.parse().map(ExpressionWithoutBlockKind::Operator);
         }
 
         if let Ok(macro_invocation) = parser.step_parse() {
@@ -14,10 +21,6 @@ impl<'a> Parse<'a> for ExpressionWithoutBlockKind<'a> {
 
         if let Ok(path) = parser.step_parse() {
             return Ok(ExpressionWithoutBlockKind::Path(path));
-        }
-
-        if let Ok(operator) = parser.step_parse() {
-            return Ok(ExpressionWithoutBlockKind::Operator(operator));
         }
 
         Err(parser.error("expected an expression without a block"))
