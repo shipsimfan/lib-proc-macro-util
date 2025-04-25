@@ -1,9 +1,13 @@
-use crate::{ast::expressions::OperatorExpression, Parse, Parser, Result};
+use crate::{ast::expressions::OperatorExpression, Parse, Parser, Result, Token};
 
 impl<'a> Parse<'a> for OperatorExpression<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        if let Ok(borrow) = parser.step_parse() {
-            return Ok(OperatorExpression::Borrow(borrow));
+        if parser.peek::<Token![*]>() {
+            return parser.parse().map(OperatorExpression::Dereference);
+        }
+
+        if parser.peek::<Token![&]>() || parser.peek::<Token![&&]>() {
+            return parser.parse().map(OperatorExpression::Borrow);
         }
 
         Err(parser.error("expected an opeator expression"))
