@@ -1,6 +1,7 @@
 //! Definitions for all expression types in Rust
 
 mod block;
+mod call;
 mod literal;
 mod operator;
 mod path;
@@ -10,6 +11,7 @@ mod with_block;
 mod without_block;
 
 pub use block::BlockExpression;
+pub use call::{CallExpression, CallParams};
 pub use literal::LiteralExpression;
 pub use operator::*;
 pub use path::PathExpression;

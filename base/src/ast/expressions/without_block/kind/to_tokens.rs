@@ -9,6 +9,7 @@ impl<'a> ToTokens for ExpressionWithoutBlockKind<'a> {
                 macro_invocation.to_tokens(generator)
             }
             ExpressionWithoutBlockKind::Operator(operator) => operator.to_tokens(generator),
+            ExpressionWithoutBlockKind::Call(call) => call.to_tokens(generator),
         }
     }
 }

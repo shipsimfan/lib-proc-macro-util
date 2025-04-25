@@ -16,6 +16,9 @@ impl<'a> ExpressionWithoutBlockKind<'a> {
             ExpressionWithoutBlockKind::Operator(operator) => {
                 ExpressionWithoutBlockKind::Operator(operator.into_static())
             }
+            ExpressionWithoutBlockKind::Call(call) => {
+                ExpressionWithoutBlockKind::Call(call.into_static())
+            }
         }
     }
 }
