@@ -48,7 +48,6 @@
          1. MacroRulesDefinition
      4. Statement
        1. LetStatement
-       2. ExpressionStatement
      5. Expression
        1. GroupedExpression
        2. ArrayExpression

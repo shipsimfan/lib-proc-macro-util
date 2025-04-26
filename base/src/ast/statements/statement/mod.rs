@@ -1,4 +1,4 @@
-use crate::ast::Item;
+use crate::ast::{statements::ExpressionStatement, Item};
 
 mod parse;
 mod to_static;
@@ -10,4 +10,7 @@ mod to_tokens;
 pub enum Statement<'a> {
     /// A definition of an item
     Item(Item<'a>),
+
+    /// An expression whose results are ignored
+    Expression(ExpressionStatement<'a>),
 }
