@@ -1,7 +1,9 @@
 use crate::{ast::PatternNoTopAlt, Generator, ToTokens};
 
-impl ToTokens for PatternNoTopAlt {
+impl<'a> ToTokens for PatternNoTopAlt<'a> {
     fn to_tokens(self, generator: &mut Generator) {
-        todo!("PatternNoTopAlt::to_tokens")
+        match self {
+            PatternNoTopAlt::Range(range) => range.to_tokens(generator),
+        }
     }
 }

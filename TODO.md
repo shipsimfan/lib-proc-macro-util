@@ -32,8 +32,6 @@
          10. SlicePattern
          11. PathPattern
          12. MacroInvocation
-       2. PatternNoTopAlt
-         1. RangePattern
      3. Item
        1. VisItem
          1. TypeAlias
@@ -56,19 +54,18 @@
        5. TupleExpression
        6. TupleIndexingExpression
        7. StructExpression
-       8. MethodCallExpression
-       9. ClosureExpression
-       10. AsyncBlockExpression
-       11. ContinueExpression
-       12. BreakExpression
-       13. RangeExpression
-       14. ReturnExpression
-       15. UnderscoreExpression
-       16. ConstBlockExpression
-       17. LoopExpression
-       18. IfExpression
-       19. IfLetExpression
-       20. MatchExpression
+       8. ClosureExpression
+       9. AsyncBlockExpression
+       10. ContinueExpression
+       11. BreakExpression
+       12. RangeExpression
+       13. ReturnExpression
+       14. UnderscoreExpression
+       15. ConstBlockExpression
+       16. LoopExpression
+       17. IfExpression
+       18. IfLetExpression
+       19. MatchExpression
      6. Crate
    2. macros
      1. attribute

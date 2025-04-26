@@ -25,7 +25,7 @@ pub enum FunctionParam<'a> {
         attributes: Vec<OuterAttribute<'a>>,
 
         /// The pattern giving the parameter name
-        pattern: PatternNoTopAlt,
+        pattern: PatternNoTopAlt<'a>,
 
         /// The colon separating the pattern from the type
         colon: Token![:],

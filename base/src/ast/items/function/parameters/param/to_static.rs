@@ -14,7 +14,7 @@ impl<'a> FunctionParam<'a> {
                     .into_iter()
                     .map(OuterAttribute::into_static)
                     .collect(),
-                pattern,
+                pattern: pattern.into_static(),
                 colon,
                 r#type: r#type.into_static(),
             },

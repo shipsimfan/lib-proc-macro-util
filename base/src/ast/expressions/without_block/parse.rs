@@ -1,6 +1,6 @@
 use crate::{
     ast::{
-        expressions::{CallExpression, FieldExpression},
+        expressions::{CallExpression, FieldExpression, MethodCallExpression},
         ExpressionWithoutBlock, ExpressionWithoutBlockKind,
     },
     Parse, Parser, Result, Token,
@@ -18,13 +18,26 @@ impl<'a> Parse<'a> for ExpressionWithoutBlock<'a> {
                 let mut attributes = Vec::new();
                 std::mem::swap(&mut attributes, &mut ret.attributes);
 
+                let dot = parser.parse()?;
+
                 ret = ExpressionWithoutBlock {
                     attributes,
-                    kind: ExpressionWithoutBlockKind::Field(FieldExpression {
-                        expression: Box::new(ret.into_expression()),
-                        dot: parser.parse()?,
-                        identifier: parser.parse()?,
-                    }),
+                    kind: if let Ok((name, parameters)) =
+                        parser.step(|parser| Ok((parser.parse()?, parser.parse()?)))
+                    {
+                        ExpressionWithoutBlockKind::MethodCall(MethodCallExpression {
+                            function: Box::new(ret.into_expression()),
+                            dot,
+                            name,
+                            parameters,
+                        })
+                    } else {
+                        ExpressionWithoutBlockKind::Field(FieldExpression {
+                            expression: Box::new(ret.into_expression()),
+                            dot,
+                            identifier: parser.parse()?,
+                        })
+                    },
                 };
 
                 continue;

@@ -1,6 +1,7 @@
 use crate::ast::{
     expressions::{
-        CallExpression, FieldExpression, LiteralExpression, OperatorExpression, PathExpression,
+        CallExpression, FieldExpression, LiteralExpression, MethodCallExpression,
+        OperatorExpression, PathExpression,
     },
     ExpressionWithoutBlockKind, MacroInvocation,
 };
@@ -38,5 +39,11 @@ impl<'a> From<CallExpression<'a>> for ExpressionWithoutBlockKind<'a> {
 impl<'a> From<FieldExpression<'a>> for ExpressionWithoutBlockKind<'a> {
     fn from(field: FieldExpression<'a>) -> Self {
         ExpressionWithoutBlockKind::Field(field)
+    }
+}
+
+impl<'a> From<MethodCallExpression<'a>> for ExpressionWithoutBlockKind<'a> {
+    fn from(method_call: MethodCallExpression<'a>) -> Self {
+        ExpressionWithoutBlockKind::MethodCall(method_call)
     }
 }
