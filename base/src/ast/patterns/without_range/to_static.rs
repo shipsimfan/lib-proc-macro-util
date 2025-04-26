@@ -7,6 +7,9 @@ impl<'a> PatternWithoutRange<'a> {
             PatternWithoutRange::Literal(literal) => {
                 PatternWithoutRange::Literal(literal.into_static())
             }
+            PatternWithoutRange::Identifier(identifier) => {
+                PatternWithoutRange::Identifier(identifier.into_static())
+            }
             PatternWithoutRange::MacroInvocation(macro_invocation) => {
                 PatternWithoutRange::MacroInvocation(macro_invocation.into_static())
             }
