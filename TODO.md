@@ -20,18 +20,17 @@
      1. WhereClause
      2. Pattern
        1. PatternWithoutRange
-         1. LiteralPattern
-         2. IdentifierPattern
-         3. WildcardPattern
-         4. RestPattern
-         5. ReferencePattern
-         6. StructPattern
-         7. TupleStructPattern
-         8. TuplePattern
-         9. GroupedPattern
-         10. SlicePattern
-         11. PathPattern
-         12. MacroInvocation
+         1. IdentifierPattern
+         2. WildcardPattern
+         3. RestPattern
+         4. ReferencePattern
+         5. StructPattern
+         6. TupleStructPattern
+         7. TuplePattern
+         8. GroupedPattern
+         9. SlicePattern
+         10. PathPattern
+         11. MacroInvocation
      3. Item
        1. VisItem
          1. TypeAlias

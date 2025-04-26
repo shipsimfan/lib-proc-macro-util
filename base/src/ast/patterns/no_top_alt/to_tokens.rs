@@ -4,6 +4,7 @@ impl<'a> ToTokens for PatternNoTopAlt<'a> {
     fn to_tokens(self, generator: &mut Generator) {
         match self {
             PatternNoTopAlt::Range(range) => range.to_tokens(generator),
+            PatternNoTopAlt::WithoutRange(pattern) => pattern.to_tokens(generator),
         }
     }
 }

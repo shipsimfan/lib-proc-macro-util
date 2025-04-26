@@ -1,4 +1,4 @@
-use crate::ast::patterns::RangePattern;
+use crate::ast::{patterns::RangePattern, PatternWithoutRange};
 
 mod parse;
 mod to_static;
@@ -9,4 +9,7 @@ mod to_tokens;
 pub enum PatternNoTopAlt<'a> {
     /// A range of values
     Range(RangePattern<'a>),
+
+    /// The pattern is not a range
+    WithoutRange(PatternWithoutRange<'a>),
 }
