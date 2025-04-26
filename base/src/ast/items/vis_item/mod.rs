@@ -3,6 +3,7 @@ use crate::ast::Visibility;
 mod kind;
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 pub use kind::VisItemKind;

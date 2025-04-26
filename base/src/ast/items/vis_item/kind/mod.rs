@@ -1,6 +1,7 @@
 use crate::ast::items::{ExternCrate, Function, Module, Struct, UseDeclaration};
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 /// A type of item prefixed with a visibility

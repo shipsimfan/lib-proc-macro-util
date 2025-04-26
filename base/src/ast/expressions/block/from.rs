@@ -3,14 +3,14 @@ use crate::ast::{expressions::BlockExpression, ExpressionWithoutBlock, InnerAttr
 impl<'a>
     From<(
         Vec<InnerAttribute<'a>>,
-        Vec<Statement>,
+        Vec<Statement<'a>>,
         Option<ExpressionWithoutBlock<'a>>,
     )> for BlockExpression<'a>
 {
     fn from(
         value: (
             Vec<InnerAttribute<'a>>,
-            Vec<Statement>,
+            Vec<Statement<'a>>,
             Option<ExpressionWithoutBlock<'a>>,
         ),
     ) -> Self {
@@ -22,8 +22,8 @@ impl<'a>
     }
 }
 
-impl<'a> From<(Vec<InnerAttribute<'a>>, Vec<Statement>)> for BlockExpression<'a> {
-    fn from(value: (Vec<InnerAttribute<'a>>, Vec<Statement>)) -> Self {
+impl<'a> From<(Vec<InnerAttribute<'a>>, Vec<Statement<'a>>)> for BlockExpression<'a> {
+    fn from(value: (Vec<InnerAttribute<'a>>, Vec<Statement<'a>>)) -> Self {
         BlockExpression {
             attributes: value.0,
             statements: value.1,
@@ -35,14 +35,14 @@ impl<'a> From<(Vec<InnerAttribute<'a>>, Vec<Statement>)> for BlockExpression<'a>
 impl<'a>
     From<(
         Vec<InnerAttribute<'a>>,
-        Vec<Statement>,
+        Vec<Statement<'a>>,
         ExpressionWithoutBlock<'a>,
     )> for BlockExpression<'a>
 {
     fn from(
         value: (
             Vec<InnerAttribute<'a>>,
-            Vec<Statement>,
+            Vec<Statement<'a>>,
             ExpressionWithoutBlock<'a>,
         ),
     ) -> Self {
@@ -57,14 +57,14 @@ impl<'a>
 impl<'a>
     From<(
         InnerAttribute<'a>,
-        Vec<Statement>,
+        Vec<Statement<'a>>,
         Option<ExpressionWithoutBlock<'a>>,
     )> for BlockExpression<'a>
 {
     fn from(
         value: (
             InnerAttribute<'a>,
-            Vec<Statement>,
+            Vec<Statement<'a>>,
             Option<ExpressionWithoutBlock<'a>>,
         ),
     ) -> Self {
@@ -76,8 +76,8 @@ impl<'a>
     }
 }
 
-impl<'a> From<(InnerAttribute<'a>, Vec<Statement>)> for BlockExpression<'a> {
-    fn from(value: (InnerAttribute<'a>, Vec<Statement>)) -> Self {
+impl<'a> From<(InnerAttribute<'a>, Vec<Statement<'a>>)> for BlockExpression<'a> {
+    fn from(value: (InnerAttribute<'a>, Vec<Statement<'a>>)) -> Self {
         BlockExpression {
             attributes: vec![value.0],
             statements: value.1,
@@ -89,14 +89,14 @@ impl<'a> From<(InnerAttribute<'a>, Vec<Statement>)> for BlockExpression<'a> {
 impl<'a>
     From<(
         InnerAttribute<'a>,
-        Vec<Statement>,
+        Vec<Statement<'a>>,
         ExpressionWithoutBlock<'a>,
     )> for BlockExpression<'a>
 {
     fn from(
         value: (
             InnerAttribute<'a>,
-            Vec<Statement>,
+            Vec<Statement<'a>>,
             ExpressionWithoutBlock<'a>,
         ),
     ) -> Self {
@@ -108,8 +108,8 @@ impl<'a>
     }
 }
 
-impl<'a> From<(Vec<Statement>, Option<ExpressionWithoutBlock<'a>>)> for BlockExpression<'a> {
-    fn from(value: (Vec<Statement>, Option<ExpressionWithoutBlock<'a>>)) -> Self {
+impl<'a> From<(Vec<Statement<'a>>, Option<ExpressionWithoutBlock<'a>>)> for BlockExpression<'a> {
+    fn from(value: (Vec<Statement<'a>>, Option<ExpressionWithoutBlock<'a>>)) -> Self {
         BlockExpression {
             attributes: Vec::new(),
             statements: value.0,
@@ -118,8 +118,8 @@ impl<'a> From<(Vec<Statement>, Option<ExpressionWithoutBlock<'a>>)> for BlockExp
     }
 }
 
-impl<'a> From<Vec<Statement>> for BlockExpression<'a> {
-    fn from(statements: Vec<Statement>) -> Self {
+impl<'a> From<Vec<Statement<'a>>> for BlockExpression<'a> {
+    fn from(statements: Vec<Statement<'a>>) -> Self {
         BlockExpression {
             attributes: Vec::new(),
             statements,
@@ -128,8 +128,8 @@ impl<'a> From<Vec<Statement>> for BlockExpression<'a> {
     }
 }
 
-impl<'a> From<(Vec<Statement>, ExpressionWithoutBlock<'a>)> for BlockExpression<'a> {
-    fn from(value: (Vec<Statement>, ExpressionWithoutBlock<'a>)) -> Self {
+impl<'a> From<(Vec<Statement<'a>>, ExpressionWithoutBlock<'a>)> for BlockExpression<'a> {
+    fn from(value: (Vec<Statement<'a>>, ExpressionWithoutBlock<'a>)) -> Self {
         BlockExpression {
             attributes: Vec::new(),
             statements: value.0,
@@ -141,14 +141,14 @@ impl<'a> From<(Vec<Statement>, ExpressionWithoutBlock<'a>)> for BlockExpression<
 impl<'a>
     From<(
         Vec<InnerAttribute<'a>>,
-        Statement,
+        Statement<'a>,
         Option<ExpressionWithoutBlock<'a>>,
     )> for BlockExpression<'a>
 {
     fn from(
         value: (
             Vec<InnerAttribute<'a>>,
-            Statement,
+            Statement<'a>,
             Option<ExpressionWithoutBlock<'a>>,
         ),
     ) -> Self {
@@ -160,8 +160,8 @@ impl<'a>
     }
 }
 
-impl<'a> From<(Vec<InnerAttribute<'a>>, Statement)> for BlockExpression<'a> {
-    fn from(value: (Vec<InnerAttribute<'a>>, Statement)) -> Self {
+impl<'a> From<(Vec<InnerAttribute<'a>>, Statement<'a>)> for BlockExpression<'a> {
+    fn from(value: (Vec<InnerAttribute<'a>>, Statement<'a>)) -> Self {
         BlockExpression {
             attributes: value.0,
             statements: vec![value.1],
@@ -173,14 +173,14 @@ impl<'a> From<(Vec<InnerAttribute<'a>>, Statement)> for BlockExpression<'a> {
 impl<'a>
     From<(
         Vec<InnerAttribute<'a>>,
-        Statement,
+        Statement<'a>,
         ExpressionWithoutBlock<'a>,
     )> for BlockExpression<'a>
 {
     fn from(
         value: (
             Vec<InnerAttribute<'a>>,
-            Statement,
+            Statement<'a>,
             ExpressionWithoutBlock<'a>,
         ),
     ) -> Self {
@@ -195,14 +195,14 @@ impl<'a>
 impl<'a>
     From<(
         InnerAttribute<'a>,
-        Statement,
+        Statement<'a>,
         Option<ExpressionWithoutBlock<'a>>,
     )> for BlockExpression<'a>
 {
     fn from(
         value: (
             InnerAttribute<'a>,
-            Statement,
+            Statement<'a>,
             Option<ExpressionWithoutBlock<'a>>,
         ),
     ) -> Self {
@@ -214,8 +214,8 @@ impl<'a>
     }
 }
 
-impl<'a> From<(InnerAttribute<'a>, Statement)> for BlockExpression<'a> {
-    fn from(value: (InnerAttribute<'a>, Statement)) -> Self {
+impl<'a> From<(InnerAttribute<'a>, Statement<'a>)> for BlockExpression<'a> {
+    fn from(value: (InnerAttribute<'a>, Statement<'a>)) -> Self {
         BlockExpression {
             attributes: vec![value.0],
             statements: vec![value.1],
@@ -224,8 +224,20 @@ impl<'a> From<(InnerAttribute<'a>, Statement)> for BlockExpression<'a> {
     }
 }
 
-impl<'a> From<(InnerAttribute<'a>, Statement, ExpressionWithoutBlock<'a>)> for BlockExpression<'a> {
-    fn from(value: (InnerAttribute<'a>, Statement, ExpressionWithoutBlock<'a>)) -> Self {
+impl<'a>
+    From<(
+        InnerAttribute<'a>,
+        Statement<'a>,
+        ExpressionWithoutBlock<'a>,
+    )> for BlockExpression<'a>
+{
+    fn from(
+        value: (
+            InnerAttribute<'a>,
+            Statement<'a>,
+            ExpressionWithoutBlock<'a>,
+        ),
+    ) -> Self {
         BlockExpression {
             attributes: vec![value.0],
             statements: vec![value.1],
@@ -234,8 +246,8 @@ impl<'a> From<(InnerAttribute<'a>, Statement, ExpressionWithoutBlock<'a>)> for B
     }
 }
 
-impl<'a> From<(Statement, Option<ExpressionWithoutBlock<'a>>)> for BlockExpression<'a> {
-    fn from(value: (Statement, Option<ExpressionWithoutBlock<'a>>)) -> Self {
+impl<'a> From<(Statement<'a>, Option<ExpressionWithoutBlock<'a>>)> for BlockExpression<'a> {
+    fn from(value: (Statement<'a>, Option<ExpressionWithoutBlock<'a>>)) -> Self {
         BlockExpression {
             attributes: Vec::new(),
             statements: vec![value.0],
@@ -244,8 +256,8 @@ impl<'a> From<(Statement, Option<ExpressionWithoutBlock<'a>>)> for BlockExpressi
     }
 }
 
-impl<'a> From<Statement> for BlockExpression<'a> {
-    fn from(statement: Statement) -> Self {
+impl<'a> From<Statement<'a>> for BlockExpression<'a> {
+    fn from(statement: Statement<'a>) -> Self {
         BlockExpression {
             attributes: Vec::new(),
             statements: vec![statement],
@@ -254,8 +266,8 @@ impl<'a> From<Statement> for BlockExpression<'a> {
     }
 }
 
-impl<'a> From<(Statement, ExpressionWithoutBlock<'a>)> for BlockExpression<'a> {
-    fn from(value: (Statement, ExpressionWithoutBlock<'a>)) -> Self {
+impl<'a> From<(Statement<'a>, ExpressionWithoutBlock<'a>)> for BlockExpression<'a> {
+    fn from(value: (Statement<'a>, ExpressionWithoutBlock<'a>)) -> Self {
         BlockExpression {
             attributes: Vec::new(),
             statements: vec![value.0],

@@ -1,6 +1,7 @@
 use crate::ast::{MacroItem, VisItem};
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 /// Kinds that items can be

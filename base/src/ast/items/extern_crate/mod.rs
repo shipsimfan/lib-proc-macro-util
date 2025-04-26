@@ -3,6 +3,7 @@ use crate::{ast::MaybeIdentifier, Token};
 mod r#ref;
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 pub use r#ref::CrateRef;

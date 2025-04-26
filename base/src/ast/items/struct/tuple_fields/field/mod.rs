@@ -1,6 +1,7 @@
 use crate::ast::{OuterAttribute, Type, Visibility};
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 /// A single field in a tuple-style struct

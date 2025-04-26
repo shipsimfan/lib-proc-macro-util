@@ -1,5 +1,9 @@
 use crate::{ast::Statement, Generator, ToTokens};
 
-impl ToTokens for Statement {
-    fn to_tokens(self, _: &mut Generator) {}
+impl<'a> ToTokens for Statement<'a> {
+    fn to_tokens(self, generator: &mut Generator) {
+        match self {
+            Statement::Item(item) => item.to_tokens(generator),
+        }
+    }
 }

@@ -37,20 +37,18 @@
      3. Item
        1. VisItem
          1. TypeAlias
-         2. Struct
-         3. Enumeration
-         4. Union
-         5. ConstantItem
-         6. StaticItem
-         7. Trait
-         8. Implementation
-         9. ExternBlock
+         2. Enumeration
+         3. Union
+         4. ConstantItem
+         5. StaticItem
+         6. Trait
+         7. Implementation
+         8. ExternBlock
        2. MacroItem
          1. MacroRulesDefinition
      4. Statement
-       1. Item
-       2. LetStatement
-       3. ExpressionStatement
+       1. LetStatement
+       2. ExpressionStatement
      5. Expression
        1. GroupedExpression
        2. ArrayExpression
@@ -59,23 +57,20 @@
        5. TupleExpression
        6. TupleIndexingExpression
        7. StructExpression
-       8. CallExpression
-       9. MethodCallExpression
-       10. FieldExpression
-       11. ClosureExpression
-       12. AsyncBlockExpression
-       13. ContinueExpression
-       14. BreakExpression
-       15. RangeExpression
-       16. ReturnExpression
-       17. UnderscoreExpression
-       18. ConstBlockExpression
-       19. UnsafeBlockExpression
-       20. LoopExpression
-       21. IfExpression
-       22. IfLetExpression
-       23. MatchExpression
+       8. MethodCallExpression
+       9. FieldExpression
+       10. ClosureExpression
+       11. AsyncBlockExpression
+       12. ContinueExpression
+       13. BreakExpression
+       14. RangeExpression
+       15. ReturnExpression
+       16. UnderscoreExpression
+       17. ConstBlockExpression
+       18. LoopExpression
+       19. IfExpression
+       20. IfLetExpression
+       21. MatchExpression
      6. Crate
    2. macros
-     1. derive
-     2. attribute
+     1. attribute

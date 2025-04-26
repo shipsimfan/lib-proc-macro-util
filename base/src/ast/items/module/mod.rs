@@ -4,6 +4,7 @@ use std::borrow::Cow;
 mod body;
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 pub use body::ModuleBody;

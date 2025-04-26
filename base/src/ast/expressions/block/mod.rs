@@ -15,7 +15,7 @@ pub struct BlockExpression<'a> {
     pub attributes: Vec<InnerAttribute<'a>>,
 
     /// The statements making up the block
-    pub statements: Vec<Statement>,
+    pub statements: Vec<Statement<'a>>,
 
     /// A final return value
     pub end: Option<Box<ExpressionWithoutBlock<'a>>>,

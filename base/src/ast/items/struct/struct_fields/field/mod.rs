@@ -6,6 +6,7 @@ use crate::{
 use std::borrow::Cow;
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 /// A named field in a normal structure

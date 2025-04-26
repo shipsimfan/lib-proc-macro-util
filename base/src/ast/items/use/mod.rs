@@ -3,6 +3,7 @@ use crate::Token;
 mod tree;
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 pub use tree::UseTree;

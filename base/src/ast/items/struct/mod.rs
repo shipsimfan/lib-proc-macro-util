@@ -6,6 +6,7 @@ mod struct_fields;
 mod tuple_fields;
 
 mod parse;
+mod to_static;
 mod to_tokens;
 
 pub use body::StructBody;
