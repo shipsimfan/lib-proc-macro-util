@@ -1,4 +1,4 @@
-use crate::{ast::statements::ExpressionStatement, Parse, Parser, Result};
+use crate::{ast::statements::ExpressionStatement, Error, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for ExpressionStatement<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -9,9 +9,13 @@ impl<'a> Parse<'a> for ExpressionStatement<'a> {
             ));
         }
 
-        Ok(ExpressionStatement::WithoutBlock(
-            parser.parse()?,
-            parser.parse()?,
-        ))
+        if let Ok(expression) = parser.step_parse() {
+            return Ok(ExpressionStatement::WithoutBlock(
+                expression,
+                parser.parse()?,
+            ));
+        }
+
+        Err(Error::new_at("expected an expression", parser.span()))
     }
 }

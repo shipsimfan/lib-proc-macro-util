@@ -1,15 +1,13 @@
-use crate::ast::{Expression, OuterAttribute};
+use crate::ast::Expression;
 
 impl<'a> Expression<'a> {
     /// Takes ownership of any borrowed elements and converts the lifetime to `'static`
     pub fn into_static(self) -> Expression<'static> {
-        Expression {
-            attributes: self
-                .attributes
-                .into_iter()
-                .map(OuterAttribute::into_static)
-                .collect(),
-            kind: self.kind.into_static(),
+        match self {
+            Expression::WithBlock(expression) => Expression::WithBlock(expression.into_static()),
+            Expression::WithoutBlock(expression) => {
+                Expression::WithoutBlock(expression.into_static())
+            }
         }
     }
 }

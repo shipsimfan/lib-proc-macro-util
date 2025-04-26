@@ -27,8 +27,8 @@ pub use visibility::*;
 pub use where_clause::*;
 
 pub use expressions::{
-    Expression, ExpressionKind, ExpressionWithBlock, ExpressionWithBlockKind,
-    ExpressionWithoutBlock, ExpressionWithoutBlockKind,
+    Expression, ExpressionWithBlock, ExpressionWithBlockKind, ExpressionWithoutBlock,
+    ExpressionWithoutBlockKind,
 };
 pub use items::{
     Abi, DeriveItem, DeriveItemKind, Item, ItemKind, MacroItem, TraitBound, VisItem, VisItemKind,

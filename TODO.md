@@ -57,19 +57,18 @@
        6. TupleIndexingExpression
        7. StructExpression
        8. MethodCallExpression
-       9. FieldExpression
-       10. ClosureExpression
-       11. AsyncBlockExpression
-       12. ContinueExpression
-       13. BreakExpression
-       14. RangeExpression
-       15. ReturnExpression
-       16. UnderscoreExpression
-       17. ConstBlockExpression
-       18. LoopExpression
-       19. IfExpression
-       20. IfLetExpression
-       21. MatchExpression
+       9. ClosureExpression
+       10. AsyncBlockExpression
+       11. ContinueExpression
+       12. BreakExpression
+       13. RangeExpression
+       14. ReturnExpression
+       15. UnderscoreExpression
+       16. ConstBlockExpression
+       17. LoopExpression
+       18. IfExpression
+       19. IfLetExpression
+       20. MatchExpression
      6. Crate
    2. macros
      1. attribute

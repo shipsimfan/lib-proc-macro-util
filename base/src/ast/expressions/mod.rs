@@ -2,6 +2,7 @@
 
 mod block;
 mod call;
+mod field;
 mod literal;
 mod operator;
 mod path;
@@ -13,11 +14,12 @@ mod without_block;
 
 pub use block::BlockExpression;
 pub use call::{CallExpression, CallParams};
+pub use field::FieldExpression;
 pub use literal::LiteralExpression;
 pub use operator::*;
 pub use path::PathExpression;
 pub use unsafe_block::UnsafeBlockExpression;
 
-pub use expression::{Expression, ExpressionKind};
+pub use expression::Expression;
 pub use with_block::{ExpressionWithBlock, ExpressionWithBlockKind};
 pub use without_block::{ExpressionWithoutBlock, ExpressionWithoutBlockKind};

@@ -19,6 +19,9 @@ impl<'a> ExpressionWithoutBlockKind<'a> {
             ExpressionWithoutBlockKind::Call(call) => {
                 ExpressionWithoutBlockKind::Call(call.into_static())
             }
+            ExpressionWithoutBlockKind::Field(field) => {
+                ExpressionWithoutBlockKind::Field(field.into_static())
+            }
         }
     }
 }

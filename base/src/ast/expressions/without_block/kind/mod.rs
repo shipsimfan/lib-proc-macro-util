@@ -1,12 +1,13 @@
 use crate::ast::{
-    expressions::{CallExpression, LiteralExpression, OperatorExpression, PathExpression},
+    expressions::{
+        CallExpression, FieldExpression, LiteralExpression, OperatorExpression, PathExpression,
+    },
     MacroInvocation,
 };
 
 mod from;
 mod new;
 mod parse;
-mod to_expression;
 mod to_static;
 mod to_tokens;
 
@@ -27,4 +28,7 @@ pub enum ExpressionWithoutBlockKind<'a> {
 
     /// A function call
     Call(CallExpression<'a>),
+
+    /// An accessor of a field
+    Field(FieldExpression<'a>),
 }
