@@ -4,6 +4,9 @@ impl<'a> ToTokens for PatternWithoutRange<'a> {
     fn to_tokens(self, generator: &mut Generator) {
         match self {
             PatternWithoutRange::Literal(literal) => literal.to_tokens(generator),
+            PatternWithoutRange::MacroInvocation(macro_invocation) => {
+                macro_invocation.to_tokens(generator)
+            }
         }
     }
 }

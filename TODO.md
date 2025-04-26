@@ -30,7 +30,6 @@
          8. GroupedPattern
          9. SlicePattern
          10. PathPattern
-         11. MacroInvocation
      3. Item
        1. VisItem
          1. TypeAlias

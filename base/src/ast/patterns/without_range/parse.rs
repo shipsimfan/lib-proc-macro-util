@@ -6,6 +6,10 @@ impl<'a> Parse<'a> for PatternWithoutRange<'a> {
             return Ok(PatternWithoutRange::Literal(literal));
         }
 
+        if let Ok(macro_invocation) = parser.step_parse() {
+            return Ok(PatternWithoutRange::MacroInvocation(macro_invocation));
+        }
+
         Err(Error::new_at(
             "expected a pattern without range",
             parser.span(),

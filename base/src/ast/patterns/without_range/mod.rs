@@ -1,4 +1,4 @@
-use crate::ast::patterns::LiteralPattern;
+use crate::ast::{patterns::LiteralPattern, MacroInvocation};
 
 mod parse;
 mod to_static;
@@ -9,4 +9,7 @@ mod to_tokens;
 pub enum PatternWithoutRange<'a> {
     /// A literal value
     Literal(LiteralPattern<'a>),
+
+    /// The invocation of a macro
+    MacroInvocation(MacroInvocation<'a>),
 }
