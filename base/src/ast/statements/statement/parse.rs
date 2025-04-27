@@ -6,6 +6,10 @@ impl<'a> Parse<'a> for Statement<'a> {
             return Ok(Statement::Item(item));
         }
 
+        if let Some(r#let) = parser.step_parse()? {
+            return Ok(Statement::Let(r#let));
+        }
+
         if let Some(expression) = parser.step_parse()? {
             return Ok(Statement::Expression(expression));
         }
