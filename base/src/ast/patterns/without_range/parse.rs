@@ -25,6 +25,10 @@ impl<'a> Parse<'a> for PatternWithoutRange<'a> {
             return Ok(PatternWithoutRange::Identifier(identifier));
         }
 
+        if let Ok(path) = parser.step_parse() {
+            return Ok(PatternWithoutRange::Path(path));
+        }
+
         if let Ok(macro_invocation) = parser.step_parse() {
             return Ok(PatternWithoutRange::MacroInvocation(macro_invocation));
         }

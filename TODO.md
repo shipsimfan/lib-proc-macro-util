@@ -25,7 +25,6 @@
          3. TuplePattern
          4. GroupedPattern
          5. SlicePattern
-         6. PathPattern
      3. Item
        1. VisItem
          1. TypeAlias

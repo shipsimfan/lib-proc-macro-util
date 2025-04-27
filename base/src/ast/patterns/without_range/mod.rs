@@ -3,6 +3,8 @@ use crate::ast::{
     MacroInvocation,
 };
 
+use super::PathPattern;
+
 mod parse;
 mod to_static;
 mod to_tokens;
@@ -24,6 +26,9 @@ pub enum PatternWithoutRange<'a> {
 
     /// A reference to a pattern
     Reference(ReferencePattern<'a>),
+
+    /// A path to an item
+    Path(PathPattern<'a>),
 
     /// The invocation of a macro
     MacroInvocation(MacroInvocation<'a>),

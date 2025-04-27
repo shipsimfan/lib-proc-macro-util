@@ -2,6 +2,7 @@
 
 mod identifier;
 mod literal;
+mod path;
 mod range;
 mod reference;
 mod rest;
@@ -12,6 +13,7 @@ mod without_range;
 
 pub use identifier::IdentifierPattern;
 pub use literal::LiteralPattern;
+pub use path::PathPattern;
 pub use range::*;
 pub use reference::ReferencePattern;
 pub use rest::RestPattern;
