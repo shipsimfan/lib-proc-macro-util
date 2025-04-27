@@ -33,6 +33,6 @@ pub use expressions::{
 pub use items::{
     Abi, DeriveItem, DeriveItemKind, Item, ItemKind, MacroItem, TraitBound, VisItem, VisItemKind,
 };
-pub use patterns::{PatternNoTopAlt, PatternWithoutRange};
+pub use patterns::{Pattern, PatternNoTopAlt, PatternWithoutRange};
 pub use statements::Statement;
 pub use types::{Type, TypeNoBounds, TypeParamBound, TypeParamBounds};

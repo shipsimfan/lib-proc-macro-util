@@ -1,5 +1,6 @@
 //! Definitions for all patterns in Rust
 
+mod grouped;
 mod identifier;
 mod literal;
 mod path;
@@ -9,8 +10,10 @@ mod rest;
 mod wildcard;
 
 mod no_top_alt;
+mod pattern;
 mod without_range;
 
+pub use grouped::GroupedPattern;
 pub use identifier::IdentifierPattern;
 pub use literal::LiteralPattern;
 pub use path::PathPattern;
@@ -20,4 +23,5 @@ pub use rest::RestPattern;
 pub use wildcard::WildcardPattern;
 
 pub use no_top_alt::PatternNoTopAlt;
+pub use pattern::Pattern;
 pub use without_range::PatternWithoutRange;

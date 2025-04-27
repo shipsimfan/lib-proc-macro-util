@@ -1,5 +1,8 @@
 use crate::ast::{
-    patterns::{IdentifierPattern, LiteralPattern, ReferencePattern, RestPattern, WildcardPattern},
+    patterns::{
+        GroupedPattern, IdentifierPattern, LiteralPattern, ReferencePattern, RestPattern,
+        WildcardPattern,
+    },
     MacroInvocation,
 };
 
@@ -26,6 +29,9 @@ pub enum PatternWithoutRange<'a> {
 
     /// A reference to a pattern
     Reference(ReferencePattern<'a>),
+
+    /// A pattern surrounded by parentheses
+    Grouped(GroupedPattern<'a>),
 
     /// A path to an item
     Path(PathPattern<'a>),

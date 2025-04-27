@@ -25,6 +25,10 @@ impl<'a> Parse<'a> for PatternWithoutRange<'a> {
             return Ok(PatternWithoutRange::Identifier(identifier));
         }
 
+        if let Ok(grouped) = parser.step_parse() {
+            return Ok(PatternWithoutRange::Grouped(grouped));
+        }
+
         if let Ok(path) = parser.step_parse() {
             return Ok(PatternWithoutRange::Path(path));
         }
