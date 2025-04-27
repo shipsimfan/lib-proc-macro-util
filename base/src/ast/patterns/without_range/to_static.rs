@@ -15,6 +15,9 @@ impl<'a> PatternWithoutRange<'a> {
             PatternWithoutRange::Reference(reference) => {
                 PatternWithoutRange::Reference(reference.into_static())
             }
+            PatternWithoutRange::TupleStruct(tuple_struct) => {
+                PatternWithoutRange::TupleStruct(tuple_struct.into_static())
+            }
             PatternWithoutRange::Tuple(tuple) => PatternWithoutRange::Tuple(tuple.into_static()),
             PatternWithoutRange::Grouped(grouped) => {
                 PatternWithoutRange::Grouped(grouped.into_static())

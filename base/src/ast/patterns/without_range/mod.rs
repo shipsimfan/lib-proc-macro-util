@@ -1,7 +1,7 @@
 use crate::ast::{
     patterns::{
         GroupedPattern, IdentifierPattern, LiteralPattern, PathPattern, ReferencePattern,
-        RestPattern, SlicePattern, TuplePattern, WildcardPattern,
+        RestPattern, SlicePattern, TuplePattern, TupleStructPattern, WildcardPattern,
     },
     MacroInvocation,
 };
@@ -27,6 +27,9 @@ pub enum PatternWithoutRange<'a> {
 
     /// A reference to a pattern
     Reference(ReferencePattern<'a>),
+
+    /// A tuple structure
+    TupleStruct(TupleStructPattern<'a>),
 
     /// A tuple of multiple patterns
     Tuple(TuplePattern<'a>),

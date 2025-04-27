@@ -72,6 +72,10 @@ impl<'a> Parse<'a> for PatternWithoutRange<'a> {
             return Ok(PatternWithoutRange::Literal(literal));
         }
 
+        if let Ok(tuple_struct) = parser.step_parse() {
+            return Ok(PatternWithoutRange::TupleStruct(tuple_struct));
+        }
+
         if let Ok(path) = parser.step_parse() {
             return Ok(PatternWithoutRange::Path(path));
         }
