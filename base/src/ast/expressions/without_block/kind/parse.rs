@@ -2,6 +2,10 @@ use crate::{ast::ExpressionWithoutBlockKind, tokens::Literal, Parse, Parser, Res
 
 impl<'a> Parse<'a> for ExpressionWithoutBlockKind<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
+        if parser.peek::<Token![_]>() {
+            return parser.parse().map(ExpressionWithoutBlockKind::Underscore);
+        }
+
         if parser.peek::<&'a Literal>()
             || parser.peek::<Token![true]>()
             || parser.peek::<Token![false]>()

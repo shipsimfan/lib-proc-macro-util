@@ -1,7 +1,7 @@
 use crate::ast::{
     expressions::{
         CallExpression, FieldExpression, LiteralExpression, MethodCallExpression,
-        OperatorExpression, PathExpression,
+        OperatorExpression, PathExpression, UnderscoreExpression,
     },
     ExpressionWithoutBlockKind, MacroInvocation,
 };
@@ -39,6 +39,12 @@ impl<'a> From<CallExpression<'a>> for ExpressionWithoutBlockKind<'a> {
 impl<'a> From<FieldExpression<'a>> for ExpressionWithoutBlockKind<'a> {
     fn from(field: FieldExpression<'a>) -> Self {
         ExpressionWithoutBlockKind::Field(field)
+    }
+}
+
+impl<'a> From<UnderscoreExpression> for ExpressionWithoutBlockKind<'a> {
+    fn from(underscore: UnderscoreExpression) -> Self {
+        ExpressionWithoutBlockKind::Underscore(underscore)
     }
 }
 

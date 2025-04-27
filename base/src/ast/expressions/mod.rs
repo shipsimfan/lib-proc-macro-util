@@ -8,6 +8,7 @@ mod literal;
 mod method_call;
 mod operator;
 mod path;
+mod underscore;
 mod unsafe_block;
 
 mod expression;
@@ -22,6 +23,7 @@ pub use literal::LiteralExpression;
 pub use method_call::MethodCallExpression;
 pub use operator::*;
 pub use path::PathExpression;
+pub use underscore::UnderscoreExpression;
 pub use unsafe_block::UnsafeBlockExpression;
 
 pub use expression::Expression;

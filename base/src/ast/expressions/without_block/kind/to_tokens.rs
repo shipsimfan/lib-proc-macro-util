@@ -11,6 +11,7 @@ impl<'a> ToTokens for ExpressionWithoutBlockKind<'a> {
             ExpressionWithoutBlockKind::Operator(operator) => operator.to_tokens(generator),
             ExpressionWithoutBlockKind::Call(call) => call.to_tokens(generator),
             ExpressionWithoutBlockKind::Field(field) => field.to_tokens(generator),
+            ExpressionWithoutBlockKind::Underscore(underscore) => underscore.to_tokens(generator),
             ExpressionWithoutBlockKind::MethodCall(method_call) => method_call.to_tokens(generator),
         }
     }

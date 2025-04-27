@@ -43,11 +43,10 @@
        11. BreakExpression
        12. RangeExpression
        13. ReturnExpression
-       14. UnderscoreExpression
-       15. LoopExpression
-       16. IfExpression
-       17. IfLetExpression
-       18. MatchExpression
+       14. LoopExpression
+       15. IfExpression
+       16. IfLetExpression
+       17. MatchExpression
      3. Crate
    2. macros
      1. attribute

@@ -22,6 +22,9 @@ impl<'a> ExpressionWithoutBlockKind<'a> {
             ExpressionWithoutBlockKind::Field(field) => {
                 ExpressionWithoutBlockKind::Field(field.into_static())
             }
+            ExpressionWithoutBlockKind::Underscore(underscore) => {
+                ExpressionWithoutBlockKind::Underscore(underscore)
+            }
             ExpressionWithoutBlockKind::MethodCall(method_call) => {
                 ExpressionWithoutBlockKind::MethodCall(method_call.into_static())
             }
