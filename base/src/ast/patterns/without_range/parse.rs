@@ -6,6 +6,10 @@ impl<'a> Parse<'a> for PatternWithoutRange<'a> {
             return Ok(PatternWithoutRange::Wildcard(wildcard));
         }
 
+        if let Ok(rest) = parser.step_parse() {
+            return Ok(PatternWithoutRange::Rest(rest));
+        }
+
         if let Ok(literal) = parser.step_parse() {
             return Ok(PatternWithoutRange::Literal(literal));
         }
