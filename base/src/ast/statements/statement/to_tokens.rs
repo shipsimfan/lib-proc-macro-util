@@ -5,6 +5,7 @@ impl<'a> ToTokens for Statement<'a> {
         match self {
             Statement::Item(item) => item.to_tokens(generator),
             Statement::Expression(expression) => expression.to_tokens(generator),
+            Statement::MacroInvocation(macro_invocation) => macro_invocation.to_tokens(generator),
         }
     }
 }

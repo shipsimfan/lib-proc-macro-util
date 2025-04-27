@@ -1,4 +1,4 @@
-use crate::ast::{statements::ExpressionStatement, Item};
+use crate::ast::{statements::ExpressionStatement, Item, MacroInvocationSemi};
 
 mod parse;
 mod to_static;
@@ -13,4 +13,7 @@ pub enum Statement<'a> {
 
     /// An expression whose results are ignored
     Expression(ExpressionStatement<'a>),
+
+    /// An macro invokation that may not have a semi colon after it
+    MacroInvocation(MacroInvocationSemi<'a>),
 }

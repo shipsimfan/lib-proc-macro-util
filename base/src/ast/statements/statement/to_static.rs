@@ -6,6 +6,9 @@ impl<'a> Statement<'a> {
         match self {
             Statement::Item(item) => Statement::Item(item.into_static()),
             Statement::Expression(expression) => Statement::Expression(expression.into_static()),
+            Statement::MacroInvocation(macro_invocation) => {
+                Statement::MacroInvocation(macro_invocation.into_static())
+            }
         }
     }
 }

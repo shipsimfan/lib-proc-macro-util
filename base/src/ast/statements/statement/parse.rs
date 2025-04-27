@@ -10,6 +10,10 @@ impl<'a> Parse<'a> for Statement<'a> {
             return Ok(Statement::Expression(expression));
         }
 
+        if let Some(macro_invocation) = parser.step_parse()? {
+            return Ok(Statement::MacroInvocation(macro_invocation));
+        }
+
         Err(parser.error("expected a statement"))
     }
 }
