@@ -1,5 +1,5 @@
 use crate::ast::{
-    patterns::{IdentifierPattern, LiteralPattern},
+    patterns::{IdentifierPattern, LiteralPattern, WildcardPattern},
     MacroInvocation,
 };
 
@@ -15,6 +15,9 @@ pub enum PatternWithoutRange<'a> {
 
     /// An identifier
     Identifier(IdentifierPattern<'a>),
+
+    /// Match any value
+    Wildcard(WildcardPattern),
 
     /// The invocation of a macro
     MacroInvocation(MacroInvocation<'a>),

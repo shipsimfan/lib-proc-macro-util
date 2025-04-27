@@ -10,6 +10,7 @@ impl<'a> PatternWithoutRange<'a> {
             PatternWithoutRange::Identifier(identifier) => {
                 PatternWithoutRange::Identifier(identifier.into_static())
             }
+            PatternWithoutRange::Wildcard(wildcard) => PatternWithoutRange::Wildcard(wildcard),
             PatternWithoutRange::MacroInvocation(macro_invocation) => {
                 PatternWithoutRange::MacroInvocation(macro_invocation.into_static())
             }
