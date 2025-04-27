@@ -1,7 +1,14 @@
-use crate::{ast::PatternWithoutRange, Error, Parse, Parser, Result};
+use crate::{
+    ast::{patterns::ReferencePattern, PatternWithoutRange},
+    Error, Parse, Parser, Result, Token,
+};
 
 impl<'a> Parse<'a> for PatternWithoutRange<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
+        if parser.peek::<Token![&]>() || parser.peek::<Token![&&]>() {
+            return ReferencePattern::parse(parser).map(PatternWithoutRange::Reference);
+        }
+
         if let Ok(wildcard) = parser.step_parse() {
             return Ok(PatternWithoutRange::Wildcard(wildcard));
         }

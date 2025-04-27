@@ -12,6 +12,9 @@ impl<'a> PatternWithoutRange<'a> {
             }
             PatternWithoutRange::Wildcard(wildcard) => PatternWithoutRange::Wildcard(wildcard),
             PatternWithoutRange::Rest(rest) => PatternWithoutRange::Rest(rest),
+            PatternWithoutRange::Reference(reference) => {
+                PatternWithoutRange::Reference(reference.into_static())
+            }
             PatternWithoutRange::MacroInvocation(macro_invocation) => {
                 PatternWithoutRange::MacroInvocation(macro_invocation.into_static())
             }

@@ -3,6 +3,7 @@
 mod identifier;
 mod literal;
 mod range;
+mod reference;
 mod rest;
 mod wildcard;
 
@@ -12,6 +13,7 @@ mod without_range;
 pub use identifier::IdentifierPattern;
 pub use literal::LiteralPattern;
 pub use range::*;
+pub use reference::ReferencePattern;
 pub use rest::RestPattern;
 pub use wildcard::WildcardPattern;
 

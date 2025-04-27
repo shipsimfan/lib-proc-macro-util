@@ -7,6 +7,7 @@ impl<'a> ToTokens for PatternWithoutRange<'a> {
             PatternWithoutRange::Identifier(identifier) => identifier.to_tokens(generator),
             PatternWithoutRange::Wildcard(wildcard) => wildcard.to_tokens(generator),
             PatternWithoutRange::Rest(rest) => rest.to_tokens(generator),
+            PatternWithoutRange::Reference(reference) => reference.to_tokens(generator),
             PatternWithoutRange::MacroInvocation(macro_invocation) => {
                 macro_invocation.to_tokens(generator)
             }
