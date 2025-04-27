@@ -6,6 +6,10 @@ impl<'a> Parse<'a> for ExpressionWithBlockKind<'a> {
             return parser.parse().map(ExpressionWithBlockKind::Unsafe);
         }
 
+        if parser.peek::<Token![const]>() {
+            return parser.parse().map(ExpressionWithBlockKind::Const);
+        }
+
         if let Ok(block) = parser.step_parse() {
             return Ok(ExpressionWithBlockKind::Block(block));
         }

@@ -10,6 +10,9 @@ impl<'a> ExpressionWithBlockKind<'a> {
             ExpressionWithBlockKind::Unsafe(r#unsafe) => {
                 ExpressionWithBlockKind::Unsafe(r#unsafe.into_static())
             }
+            ExpressionWithBlockKind::Const(r#const) => {
+                ExpressionWithBlockKind::Const(r#const.into_static())
+            }
         }
     }
 }

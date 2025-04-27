@@ -1,4 +1,4 @@
-use crate::ast::expressions::{BlockExpression, UnsafeBlockExpression};
+use crate::ast::expressions::{BlockExpression, ConstBlockExpression, UnsafeBlockExpression};
 
 mod from;
 mod new;
@@ -14,4 +14,7 @@ pub enum ExpressionWithBlockKind<'a> {
 
     /// A block of unsafe code
     Unsafe(UnsafeBlockExpression<'a>),
+
+    /// A block of constant code
+    Const(ConstBlockExpression<'a>),
 }

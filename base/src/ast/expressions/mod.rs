@@ -2,6 +2,7 @@
 
 mod block;
 mod call;
+mod const_block;
 mod field;
 mod literal;
 mod method_call;
@@ -15,6 +16,7 @@ mod without_block;
 
 pub use block::BlockExpression;
 pub use call::{CallExpression, CallParams};
+pub use const_block::ConstBlockExpression;
 pub use field::FieldExpression;
 pub use literal::LiteralExpression;
 pub use method_call::MethodCallExpression;
