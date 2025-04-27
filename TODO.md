@@ -23,7 +23,6 @@
          1. StructPattern
          2. TupleStructPattern
          3. TuplePattern
-         4. SlicePattern
      3. Item
        1. VisItem
          1. TypeAlias

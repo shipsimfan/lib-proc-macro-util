@@ -18,6 +18,7 @@ impl<'a> PatternWithoutRange<'a> {
             PatternWithoutRange::Grouped(grouped) => {
                 PatternWithoutRange::Grouped(grouped.into_static())
             }
+            PatternWithoutRange::Slice(slice) => PatternWithoutRange::Slice(slice.into_static()),
             PatternWithoutRange::Path(path) => PatternWithoutRange::Path(path.into_static()),
             PatternWithoutRange::MacroInvocation(macro_invocation) => {
                 PatternWithoutRange::MacroInvocation(macro_invocation.into_static())

@@ -1,12 +1,10 @@
 use crate::ast::{
     patterns::{
-        GroupedPattern, IdentifierPattern, LiteralPattern, ReferencePattern, RestPattern,
-        WildcardPattern,
+        GroupedPattern, IdentifierPattern, LiteralPattern, PathPattern, ReferencePattern,
+        RestPattern, SlicePattern, WildcardPattern,
     },
     MacroInvocation,
 };
-
-use super::PathPattern;
 
 mod parse;
 mod to_static;
@@ -32,6 +30,9 @@ pub enum PatternWithoutRange<'a> {
 
     /// A pattern surrounded by parentheses
     Grouped(GroupedPattern<'a>),
+
+    /// A slice of patterns
+    Slice(SlicePattern<'a>),
 
     /// A path to an item
     Path(PathPattern<'a>),

@@ -7,6 +7,7 @@ mod path;
 mod range;
 mod reference;
 mod rest;
+mod slice;
 mod wildcard;
 
 mod no_top_alt;
@@ -20,6 +21,7 @@ pub use path::PathPattern;
 pub use range::*;
 pub use reference::ReferencePattern;
 pub use rest::RestPattern;
+pub use slice::{SlicePattern, SlicePatternItems};
 pub use wildcard::WildcardPattern;
 
 pub use no_top_alt::PatternNoTopAlt;
