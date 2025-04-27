@@ -44,9 +44,21 @@
        12. RangeExpression
        13. ReturnExpression
        14. LoopExpression
+         1. Infinite
+         2. Predicate
+         3. Predicate Pattern
+         4. Block
        15. IfExpression
        16. IfLetExpression
        17. MatchExpression
+       18. ErrorPropagationExpression
+       19. NegationExpression
+       20. ArithmeticOrLogicalExpression
+       21. ComparisonExpression
+       22. LazyBooleanExpression
+       23. TypeCastExpression
+       24. AssignmentExpression
+       25. CompoundAssignmentExpression
      3. Crate
    2. macros
      1. attribute
