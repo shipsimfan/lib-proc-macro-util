@@ -1,7 +1,9 @@
 use crate::{
     ast::{
+        expressions::PathExpression,
         patterns::{
-            GroupedPattern, ReferencePattern, SlicePattern, TuplePattern, TuplePatternItems,
+            GroupedPattern, PathPattern, ReferencePattern, SlicePattern, StructPattern,
+            TuplePattern, TuplePatternItems, TupleStructPattern,
         },
         PatternWithoutRange,
     },
@@ -72,12 +74,45 @@ impl<'a> Parse<'a> for PatternWithoutRange<'a> {
             return Ok(PatternWithoutRange::Literal(literal));
         }
 
-        if let Ok(tuple_struct) = parser.step_parse() {
-            return Ok(PatternWithoutRange::TupleStruct(tuple_struct));
+        if let Ok(path) = parser.step_parse() {
+            if let Ok(group) = parser.step(|parser| {
+                let group: &'a Group = parser.parse()?;
+                match group.delimiter {
+                    Delimiter::Brace | Delimiter::Bracket => Ok(group),
+                    _ => Err(Error::new_at("unexpected token", group.span)),
+                }
+            }) {
+                let mut parser = group.parser();
+                let pattern = match group.delimiter {
+                    Delimiter::Brace => PatternWithoutRange::Struct(StructPattern {
+                        path,
+                        elements: parser.parse()?,
+                    }),
+                    Delimiter::Parenthesis => {
+                        PatternWithoutRange::TupleStruct(TupleStructPattern {
+                            path,
+                            items: parser.parse()?,
+                        })
+                    }
+                    _ => return Err(Error::new_at("unexpected token", group.span)),
+                };
+
+                if !parser.empty() {
+                    return Err(Error::new_at("unexpected token", parser.span()));
+                }
+
+                return Ok(pattern);
+            }
+
+            return Ok(PatternWithoutRange::Path(PathPattern {
+                path: PathExpression::Normal(path),
+            }));
         }
 
         if let Ok(path) = parser.step_parse() {
-            return Ok(PatternWithoutRange::Path(path));
+            return Ok(PatternWithoutRange::Path(PathPattern {
+                path: PathExpression::QualifiedPathInExpression(path),
+            }));
         }
 
         if let Ok(macro_invocation) = parser.step_parse() {

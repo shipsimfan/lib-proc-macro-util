@@ -4,7 +4,7 @@ mod parse;
 mod to_static;
 mod to_tokens;
 
-/// The items which make up a slice pattern
+/// The items which make up a tuple struct pattern
 #[derive(Debug, Clone)]
 pub struct TupleStructItems<'a> {
     /// The first item in the struct

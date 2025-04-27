@@ -18,10 +18,7 @@
   *Things to implement:*
    1. ast
      1. WhereClause
-     2. Pattern
-       1. PatternWithoutRange
-         1. StructPattern
-     3. Item
+     2. Item
        1. VisItem
          1. TypeAlias
          2. Enumeration
@@ -33,9 +30,9 @@
          8. ExternBlock
        2. MacroItem
          1. MacroRulesDefinition
-     4. Statement
+     3. Statement
        1. LetStatement
-     5. Expression
+     4. Expression
        1. GroupedExpression
        2. ArrayExpression
        3. AwaitExpression
@@ -55,6 +52,6 @@
        17. IfExpression
        18. IfLetExpression
        19. MatchExpression
-     6. Crate
+     5. Crate
    2. macros
      1. attribute
