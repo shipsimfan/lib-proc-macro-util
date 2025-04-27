@@ -22,7 +22,6 @@
        1. PatternWithoutRange
          1. StructPattern
          2. TupleStructPattern
-         3. TuplePattern
      3. Item
        1. VisItem
          1. TypeAlias

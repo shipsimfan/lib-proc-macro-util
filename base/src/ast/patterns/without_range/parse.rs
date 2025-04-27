@@ -1,6 +1,8 @@
 use crate::{
     ast::{
-        patterns::{GroupedPattern, ReferencePattern, SlicePattern},
+        patterns::{
+            GroupedPattern, ReferencePattern, SlicePattern, TuplePattern, TuplePatternItems,
+        },
         PatternWithoutRange,
     },
     tokens::Group,
@@ -20,9 +22,33 @@ impl<'a> Parse<'a> for PatternWithoutRange<'a> {
                     items: parser.parse()?,
                 })
             } else if group.delimiter == Delimiter::Parenthesis {
-                PatternWithoutRange::Grouped(GroupedPattern {
-                    pattern: parser.parse()?,
-                })
+                if parser.empty() {
+                    PatternWithoutRange::Tuple(TuplePattern { items: None })
+                } else if let Ok(rest) = parser.step_parse() {
+                    PatternWithoutRange::Tuple(TuplePattern {
+                        items: Some(TuplePatternItems::Rest(rest)),
+                    })
+                } else {
+                    let pattern = parser.parse()?;
+
+                    if let Ok(comma) = parser.step_parse() {
+                        PatternWithoutRange::Tuple(TuplePattern {
+                            items: Some(if let Ok(second) = parser.step_parse() {
+                                TuplePatternItems::Multiple {
+                                    first: pattern,
+                                    first_comma: comma,
+                                    second,
+                                    remaining: parser.parse()?,
+                                    last: parser.parse()?,
+                                }
+                            } else {
+                                TuplePatternItems::Single(pattern, comma)
+                            }),
+                        })
+                    } else {
+                        PatternWithoutRange::Grouped(GroupedPattern { pattern })
+                    }
+                }
             } else {
                 return Err(Error::new_at("unexpected token", group.span));
             };
@@ -46,16 +72,16 @@ impl<'a> Parse<'a> for PatternWithoutRange<'a> {
             return Ok(PatternWithoutRange::Literal(literal));
         }
 
-        if let Ok(identifier) = parser.step_parse() {
-            return Ok(PatternWithoutRange::Identifier(identifier));
-        }
-
         if let Ok(path) = parser.step_parse() {
             return Ok(PatternWithoutRange::Path(path));
         }
 
         if let Ok(macro_invocation) = parser.step_parse() {
             return Ok(PatternWithoutRange::MacroInvocation(macro_invocation));
+        }
+
+        if let Ok(identifier) = parser.step_parse() {
+            return Ok(PatternWithoutRange::Identifier(identifier));
         }
 
         Err(Error::new_at(
