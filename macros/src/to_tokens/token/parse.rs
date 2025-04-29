@@ -1,10 +1,8 @@
 use super::{Group, Token};
 use proc_macro_util_base::{
-    
     tokens::{Identifier, Punctuation, TokenTree},
     Parser, Result,
 };
-
 
 fn parse_punctuation<'a>(punctuation: &'a Punctuation, parser: &mut Parser<'a>) -> Token<'a> {
     if punctuation.as_char() == '#' {

@@ -1,4 +1,4 @@
-use crate::{ tokens::TokenTree};
+use crate::tokens::TokenTree;
 
 mod collect_token_stream;
 mod error;
@@ -9,7 +9,6 @@ pub use collect_token_stream::collect_token_stream;
 pub use error::{Error, ErrorMessage, Result};
 pub use parse::Parse;
 pub use parser::Parser;
-
 
 ///
 /// ## Parameters

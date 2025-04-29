@@ -1,5 +1,5 @@
 use crate::ast::expressions::{
-    BlockExpression, ConstBlockExpression, LoopExpression, UnsafeBlockExpression,
+    BlockExpression, ConstBlockExpression, IfExpression, LoopExpression, UnsafeBlockExpression,
 };
 
 mod from;
@@ -22,4 +22,7 @@ pub enum ExpressionWithBlockKind<'a> {
 
     /// A block of code that loops
     Loop(LoopExpression<'a>),
+
+    /// A conditional expression
+    If(IfExpression<'a>),
 }

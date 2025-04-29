@@ -1,5 +1,4 @@
 use crate::{
-    
     tokens::{Identifier, TokenTree},
     Generator, Parse, Parser, Result, Span, ToTokens,
 };

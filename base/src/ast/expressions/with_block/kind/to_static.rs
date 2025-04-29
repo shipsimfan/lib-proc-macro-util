@@ -16,6 +16,7 @@ impl<'a> ExpressionWithBlockKind<'a> {
             ExpressionWithBlockKind::Loop(r#loop) => {
                 ExpressionWithBlockKind::Loop(r#loop.into_static())
             }
+            ExpressionWithBlockKind::If(r#if) => ExpressionWithBlockKind::If(r#if.into_static()),
         }
     }
 }

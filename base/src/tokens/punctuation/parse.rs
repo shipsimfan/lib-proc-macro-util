@@ -1,5 +1,4 @@
 use crate::{
-    
     tokens::{Punctuation, TokenTree},
     Parse, Parser, Result,
 };

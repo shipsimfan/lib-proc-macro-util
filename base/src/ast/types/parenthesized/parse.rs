@@ -1,7 +1,4 @@
-use crate::{
-    ast::types::ParenthesizedType, tokens::Group, Delimiter, Parse, Parser,
-    Result,
-};
+use crate::{ast::types::ParenthesizedType, tokens::Group, Delimiter, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for ParenthesizedType<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {

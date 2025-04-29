@@ -1,6 +1,4 @@
-use crate::{
-    ast::TraitBound, tokens::Group, Delimiter, Parse, Parser, Result,
-};
+use crate::{ast::TraitBound, tokens::Group, Delimiter, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for TraitBound<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {

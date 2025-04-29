@@ -1,6 +1,4 @@
-use crate::{
-    ast::types::ArrayType, tokens::Group, Delimiter, Parse, Parser, Result,
-};
+use crate::{ast::types::ArrayType, tokens::Group, Delimiter, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for ArrayType<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {

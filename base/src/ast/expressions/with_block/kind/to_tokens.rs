@@ -7,6 +7,7 @@ impl<'a> ToTokens for ExpressionWithBlockKind<'a> {
             ExpressionWithBlockKind::Unsafe(r#unsafe) => r#unsafe.to_tokens(generator),
             ExpressionWithBlockKind::Const(r#const) => r#const.to_tokens(generator),
             ExpressionWithBlockKind::Loop(r#loop) => r#loop.to_tokens(generator),
+            ExpressionWithBlockKind::If(r#if) => r#if.to_tokens(generator),
         }
     }
 }

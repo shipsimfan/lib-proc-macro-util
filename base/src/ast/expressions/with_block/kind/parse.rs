@@ -13,6 +13,10 @@ impl<'a> Parse<'a> for ExpressionWithBlockKind<'a> {
             return parser.parse().map(ExpressionWithBlockKind::Const);
         }
 
+        if parser.peek::<Token![if]>() {
+            return parser.parse().map(ExpressionWithBlockKind::If);
+        }
+
         if let Ok(block) = parser.step_parse() {
             return Ok(ExpressionWithBlockKind::Block(block));
         }

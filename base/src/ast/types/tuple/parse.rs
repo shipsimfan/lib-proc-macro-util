@@ -1,6 +1,4 @@
-use crate::{
-    ast::types::TupleType, tokens::Group, Delimiter, Parse, Parser,
-};
+use crate::{ast::types::TupleType, tokens::Group, Delimiter, Parse, Parser};
 
 impl<'a> Parse<'a> for TupleType<'a> {
     fn parse(parser: &mut Parser<'a>) -> crate::Result<Self> {

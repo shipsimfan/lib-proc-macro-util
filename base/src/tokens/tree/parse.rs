@@ -1,4 +1,4 @@
-use crate::{ tokens::TokenTree, Parse, Parser, Result};
+use crate::{tokens::TokenTree, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for &'a TokenTree {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
