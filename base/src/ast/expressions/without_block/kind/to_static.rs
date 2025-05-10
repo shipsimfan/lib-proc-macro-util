@@ -31,6 +31,9 @@ impl<'a> ExpressionWithoutBlockKind<'a> {
             ExpressionWithoutBlockKind::Continue(r#continue) => {
                 ExpressionWithoutBlockKind::Continue(r#continue.into_static())
             }
+            ExpressionWithoutBlockKind::Break(r#break) => {
+                ExpressionWithoutBlockKind::Break(r#break.into_static())
+            }
         }
     }
 }

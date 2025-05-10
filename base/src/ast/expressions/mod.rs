@@ -1,6 +1,7 @@
 //! Definitions for all expression types in Rust
 
 mod block;
+mod r#break;
 mod call;
 mod const_block;
 mod r#continue;
@@ -27,6 +28,7 @@ pub use loops::*;
 pub use method_call::MethodCallExpression;
 pub use operator::*;
 pub use path::PathExpression;
+pub use r#break::BreakExpression;
 pub use r#continue::ContinueExpression;
 pub use r#if::{ElseBlockExpression, IfExpression};
 pub use underscore::UnderscoreExpression;
