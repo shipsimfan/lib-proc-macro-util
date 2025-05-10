@@ -8,6 +8,7 @@ impl<'a> ToTokens for ExpressionWithBlockKind<'a> {
             ExpressionWithBlockKind::Const(r#const) => r#const.to_tokens(generator),
             ExpressionWithBlockKind::Loop(r#loop) => r#loop.to_tokens(generator),
             ExpressionWithBlockKind::If(r#if) => r#if.to_tokens(generator),
+            ExpressionWithBlockKind::Match(r#match) => r#match.to_tokens(generator),
         }
     }
 }

@@ -1,5 +1,6 @@
 use crate::ast::expressions::{
-    BlockExpression, ConstBlockExpression, IfExpression, LoopExpression, UnsafeBlockExpression,
+    BlockExpression, ConstBlockExpression, IfExpression, LoopExpression, MatchExpression,
+    UnsafeBlockExpression,
 };
 
 mod from;
@@ -25,4 +26,7 @@ pub enum ExpressionWithBlockKind<'a> {
 
     /// A conditional expression
     If(IfExpression<'a>),
+
+    /// An expression which runs code conditionally on matching a pattern
+    Match(MatchExpression<'a>),
 }

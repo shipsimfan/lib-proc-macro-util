@@ -1,6 +1,7 @@
 use crate::ast::{
     expressions::{
-        BlockExpression, ConstBlockExpression, IfExpression, LoopExpression, UnsafeBlockExpression,
+        BlockExpression, ConstBlockExpression, IfExpression, LoopExpression, MatchExpression,
+        UnsafeBlockExpression,
     },
     ExpressionWithBlockKind,
 };
@@ -32,5 +33,11 @@ impl<'a> From<LoopExpression<'a>> for ExpressionWithBlockKind<'a> {
 impl<'a> From<IfExpression<'a>> for ExpressionWithBlockKind<'a> {
     fn from(r#if: IfExpression<'a>) -> Self {
         ExpressionWithBlockKind::If(r#if)
+    }
+}
+
+impl<'a> From<MatchExpression<'a>> for ExpressionWithBlockKind<'a> {
+    fn from(r#match: MatchExpression<'a>) -> Self {
+        ExpressionWithBlockKind::Match(r#match)
     }
 }

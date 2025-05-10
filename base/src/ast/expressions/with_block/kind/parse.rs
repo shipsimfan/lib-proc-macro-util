@@ -17,6 +17,10 @@ impl<'a> Parse<'a> for ExpressionWithBlockKind<'a> {
             return parser.parse().map(ExpressionWithBlockKind::If);
         }
 
+        if parser.peek::<Token![match]>() {
+            return parser.parse().map(ExpressionWithBlockKind::Match);
+        }
+
         if let Ok(block) = parser.step_parse() {
             return Ok(ExpressionWithBlockKind::Block(block));
         }
