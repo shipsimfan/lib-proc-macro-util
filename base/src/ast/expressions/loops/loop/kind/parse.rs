@@ -12,6 +12,10 @@ impl<'a> Parse<'a> for LoopExpressionKind<'a> {
             return parser.parse().map(LoopExpressionKind::Infinite);
         }
 
+        if parser.peek::<Token![while]>() {
+            return parser.parse().map(LoopExpressionKind::Predicate);
+        }
+
         if parser.peek::<&'a Group>() {
             return parser.parse().map(LoopExpressionKind::Block);
         }

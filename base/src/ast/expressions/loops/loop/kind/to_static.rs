@@ -10,6 +10,9 @@ impl<'a> LoopExpressionKind<'a> {
             LoopExpressionKind::Infinite(infinite) => {
                 LoopExpressionKind::Infinite(infinite.into_static())
             }
+            LoopExpressionKind::Predicate(predicate) => {
+                LoopExpressionKind::Predicate(predicate.into_static())
+            }
             LoopExpressionKind::Block(block) => LoopExpressionKind::Block(block.into_static()),
         }
     }

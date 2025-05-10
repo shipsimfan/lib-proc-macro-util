@@ -5,6 +5,7 @@ impl<'a> ToTokens for LoopExpressionKind<'a> {
         match self {
             LoopExpressionKind::Iterator(iterator) => iterator.to_tokens(generator),
             LoopExpressionKind::Infinite(infinite) => infinite.to_tokens(generator),
+            LoopExpressionKind::Predicate(predicate) => predicate.to_tokens(generator),
             LoopExpressionKind::Block(block) => block.to_tokens(generator),
         }
     }
