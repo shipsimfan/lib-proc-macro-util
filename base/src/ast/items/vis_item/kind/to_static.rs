@@ -9,6 +9,7 @@ impl<'a> VisItemKind<'a> {
             VisItemKind::Use(r#use) => VisItemKind::Use(r#use.into_static()),
             VisItemKind::Function(function) => VisItemKind::Function(function.into_static()),
             VisItemKind::Struct(r#struct) => VisItemKind::Struct(r#struct.into_static()),
+            VisItemKind::Enumeration(r#enum) => VisItemKind::Enumeration(r#enum.into_static()),
         }
     }
 }

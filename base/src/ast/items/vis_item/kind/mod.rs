@@ -1,4 +1,4 @@
-use crate::ast::items::{ExternCrate, Function, Module, Struct, UseDeclaration};
+use crate::ast::items::{Enumeration, ExternCrate, Function, Module, Struct, UseDeclaration};
 
 mod parse;
 mod to_static;
@@ -21,4 +21,7 @@ pub enum VisItemKind<'a> {
 
     /// A structure definition
     Struct(Struct<'a>),
+
+    /// An enum definition
+    Enumeration(Enumeration<'a>),
 }

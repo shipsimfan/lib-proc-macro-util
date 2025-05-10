@@ -20,13 +20,12 @@
      1. Item
        1. VisItem
          1. TypeAlias
-         2. Enumeration
-         3. Union
-         4. ConstantItem
-         5. StaticItem
-         6. Trait
-         7. Implementation
-         8. ExternBlock
+         2. Union
+         3. ConstantItem
+         4. StaticItem
+         5. Trait
+         6. Implementation
+         7. ExternBlock
        2. MacroItem
          1. MacroRulesDefinition
      2. Expression
