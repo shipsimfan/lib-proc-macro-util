@@ -1,7 +1,7 @@
 use crate::ast::{
     expressions::{
-        CallExpression, FieldExpression, LiteralExpression, MethodCallExpression,
-        OperatorExpression, PathExpression, UnderscoreExpression,
+        CallExpression, ContinueExpression, FieldExpression, LiteralExpression,
+        MethodCallExpression, OperatorExpression, PathExpression, UnderscoreExpression,
     },
     ExpressionWithoutBlockKind, MacroInvocation,
 };
@@ -51,5 +51,11 @@ impl<'a> From<UnderscoreExpression> for ExpressionWithoutBlockKind<'a> {
 impl<'a> From<MethodCallExpression<'a>> for ExpressionWithoutBlockKind<'a> {
     fn from(method_call: MethodCallExpression<'a>) -> Self {
         ExpressionWithoutBlockKind::MethodCall(method_call)
+    }
+}
+
+impl<'a> From<ContinueExpression<'a>> for ExpressionWithoutBlockKind<'a> {
+    fn from(r#continue: ContinueExpression<'a>) -> Self {
+        ExpressionWithoutBlockKind::Continue(r#continue)
     }
 }

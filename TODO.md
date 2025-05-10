@@ -38,26 +38,25 @@
        7. StructExpression
        8. ClosureExpression
        9. AsyncBlockExpression
-       10. ContinueExpression
-       11. BreakExpression
-       12. RangeExpression
-       13. ReturnExpression
-       14. LoopExpression
+       10. BreakExpression
+       11. RangeExpression
+       12. ReturnExpression
+       13. LoopExpression
          1. Infinite
          2. Predicate
          3. Predicate Pattern
          4. Block
-       15. IfExpression
-       16. IfLetExpression
-       17. MatchExpression
-       18. ErrorPropagationExpression
-       19. NegationExpression
-       20. ArithmeticOrLogicalExpression
-       21. ComparisonExpression
-       22. LazyBooleanExpression
-       23. TypeCastExpression
-       24. AssignmentExpression
-       25. CompoundAssignmentExpression
+       14. IfExpression
+       15. IfLetExpression
+       16. MatchExpression
+       17. ErrorPropagationExpression
+       18. NegationExpression
+       19. ArithmeticOrLogicalExpression
+       20. ComparisonExpression
+       21. LazyBooleanExpression
+       22. TypeCastExpression
+       23. AssignmentExpression
+       24. CompoundAssignmentExpression
      3. Crate
    2. macros
      1. attribute

@@ -3,6 +3,7 @@
 mod block;
 mod call;
 mod const_block;
+mod r#continue;
 mod field;
 mod r#if;
 mod literal;
@@ -26,6 +27,7 @@ pub use loops::*;
 pub use method_call::MethodCallExpression;
 pub use operator::*;
 pub use path::PathExpression;
+pub use r#continue::ContinueExpression;
 pub use r#if::{ElseBlockExpression, IfExpression};
 pub use underscore::UnderscoreExpression;
 pub use unsafe_block::UnsafeBlockExpression;

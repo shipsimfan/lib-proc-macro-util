@@ -6,6 +6,10 @@ impl<'a> Parse<'a> for ExpressionWithoutBlockKind<'a> {
             return parser.parse().map(ExpressionWithoutBlockKind::Underscore);
         }
 
+        if parser.peek::<Token![continue]>() {
+            return parser.parse().map(ExpressionWithoutBlockKind::Continue);
+        }
+
         if parser.peek::<&'a Literal>()
             || parser.peek::<Token![true]>()
             || parser.peek::<Token![false]>()

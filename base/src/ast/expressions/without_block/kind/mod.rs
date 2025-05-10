@@ -1,7 +1,7 @@
 use crate::ast::{
     expressions::{
-        CallExpression, FieldExpression, LiteralExpression, MethodCallExpression,
-        OperatorExpression, PathExpression, UnderscoreExpression,
+        CallExpression, ContinueExpression, FieldExpression, LiteralExpression,
+        MethodCallExpression, OperatorExpression, PathExpression, UnderscoreExpression,
     },
     MacroInvocation,
 };
@@ -38,4 +38,7 @@ pub enum ExpressionWithoutBlockKind<'a> {
 
     /// A call to a method
     MethodCall(MethodCallExpression<'a>),
+
+    /// Continues on to the next iteration of a loop
+    Continue(ContinueExpression<'a>),
 }

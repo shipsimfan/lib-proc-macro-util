@@ -13,6 +13,7 @@ impl<'a> ToTokens for ExpressionWithoutBlockKind<'a> {
             ExpressionWithoutBlockKind::Field(field) => field.to_tokens(generator),
             ExpressionWithoutBlockKind::Underscore(underscore) => underscore.to_tokens(generator),
             ExpressionWithoutBlockKind::MethodCall(method_call) => method_call.to_tokens(generator),
+            ExpressionWithoutBlockKind::Continue(r#continue) => r#continue.to_tokens(generator),
         }
     }
 }

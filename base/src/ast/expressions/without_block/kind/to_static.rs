@@ -28,6 +28,9 @@ impl<'a> ExpressionWithoutBlockKind<'a> {
             ExpressionWithoutBlockKind::MethodCall(method_call) => {
                 ExpressionWithoutBlockKind::MethodCall(method_call.into_static())
             }
+            ExpressionWithoutBlockKind::Continue(r#continue) => {
+                ExpressionWithoutBlockKind::Continue(r#continue.into_static())
+            }
         }
     }
 }
