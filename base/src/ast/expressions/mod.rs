@@ -12,6 +12,7 @@ mod loops;
 mod method_call;
 mod operator;
 mod path;
+mod r#return;
 mod underscore;
 mod unsafe_block;
 
@@ -31,6 +32,7 @@ pub use path::PathExpression;
 pub use r#break::BreakExpression;
 pub use r#continue::ContinueExpression;
 pub use r#if::{ElseBlockExpression, IfExpression};
+pub use r#return::ReturnExpression;
 pub use underscore::UnderscoreExpression;
 pub use unsafe_block::UnsafeBlockExpression;
 

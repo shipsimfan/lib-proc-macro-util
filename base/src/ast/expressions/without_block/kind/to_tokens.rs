@@ -15,6 +15,7 @@ impl<'a> ToTokens for ExpressionWithoutBlockKind<'a> {
             ExpressionWithoutBlockKind::MethodCall(method_call) => method_call.to_tokens(generator),
             ExpressionWithoutBlockKind::Continue(r#continue) => r#continue.to_tokens(generator),
             ExpressionWithoutBlockKind::Break(r#break) => r#break.to_tokens(generator),
+            ExpressionWithoutBlockKind::Return(r#return) => r#return.to_tokens(generator),
         }
     }
 }

@@ -34,6 +34,9 @@ impl<'a> ExpressionWithoutBlockKind<'a> {
             ExpressionWithoutBlockKind::Break(r#break) => {
                 ExpressionWithoutBlockKind::Break(r#break.into_static())
             }
+            ExpressionWithoutBlockKind::Return(r#return) => {
+                ExpressionWithoutBlockKind::Return(r#return.into_static())
+            }
         }
     }
 }

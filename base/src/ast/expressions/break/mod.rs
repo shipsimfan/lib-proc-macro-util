@@ -1,6 +1,7 @@
-use crate::{ast::Lifetime, Token};
-
-use super::Expression;
+use crate::{
+    ast::{Expression, Lifetime},
+    Token,
+};
 
 mod parse;
 mod to_static;

@@ -1,7 +1,8 @@
 use crate::ast::{
     expressions::{
         BreakExpression, CallExpression, ContinueExpression, FieldExpression, LiteralExpression,
-        MethodCallExpression, OperatorExpression, PathExpression, UnderscoreExpression,
+        MethodCallExpression, OperatorExpression, PathExpression, ReturnExpression,
+        UnderscoreExpression,
     },
     MacroInvocation,
 };
@@ -44,4 +45,7 @@ pub enum ExpressionWithoutBlockKind<'a> {
 
     /// Stops running a loop
     Break(BreakExpression<'a>),
+
+    /// Stops running a function
+    Return(ReturnExpression<'a>),
 }

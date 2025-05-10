@@ -14,6 +14,10 @@ impl<'a> Parse<'a> for ExpressionWithoutBlockKind<'a> {
             return parser.parse().map(ExpressionWithoutBlockKind::Break);
         }
 
+        if parser.peek::<Token![return]>() {
+            return parser.parse().map(ExpressionWithoutBlockKind::Return);
+        }
+
         if parser.peek::<&'a Literal>()
             || parser.peek::<Token![true]>()
             || parser.peek::<Token![false]>()
