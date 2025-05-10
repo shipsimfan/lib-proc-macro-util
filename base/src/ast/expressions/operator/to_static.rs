@@ -8,6 +8,9 @@ impl<'a> OperatorExpression<'a> {
             OperatorExpression::Dereference(dereference) => {
                 OperatorExpression::Dereference(dereference.into_static())
             }
+            OperatorExpression::Comparison(comparison) => {
+                OperatorExpression::Comparison(comparison.into_static())
+            }
         }
     }
 }

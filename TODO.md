@@ -48,11 +48,8 @@
        13. ErrorPropagationExpression
        14. NegationExpression
        15. ArithmeticOrLogicalExpression
-       16. ComparisonExpression
-       17. LazyBooleanExpression
-       18. TypeCastExpression
-       19. AssignmentExpression
-       20. CompoundAssignmentExpression
+       16. LazyBooleanExpression
+       17. TypeCastExpression
+       18. AssignmentExpression
+       19. CompoundAssignmentExpression
      3. Crate
-   2. macros
-     1. attribute

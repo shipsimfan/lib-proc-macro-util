@@ -1,4 +1,5 @@
 mod borrow;
+mod comparison;
 mod dereference;
 
 mod from;
@@ -8,6 +9,7 @@ mod to_static;
 mod to_tokens;
 
 pub use borrow::*;
+pub use comparison::{ComparisonExpression, ComparisonOperator};
 pub use dereference::DereferenceExpression;
 
 /// An expression that contains an operator
@@ -18,4 +20,7 @@ pub enum OperatorExpression<'a> {
 
     /// A dereference of another expression
     Dereference(DereferenceExpression<'a>),
+
+    /// A comparison between two expressions
+    Comparison(ComparisonExpression<'a>),
 }

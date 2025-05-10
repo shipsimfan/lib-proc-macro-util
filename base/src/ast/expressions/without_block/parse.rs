@@ -1,6 +1,9 @@
 use crate::{
     ast::{
-        expressions::{CallExpression, FieldExpression, MethodCallExpression},
+        expressions::{
+            CallExpression, ComparisonExpression, FieldExpression, MethodCallExpression,
+            OperatorExpression,
+        },
         ExpressionWithoutBlock, ExpressionWithoutBlockKind,
     },
     Parse, Parser, Result, Token,
@@ -41,6 +44,22 @@ impl<'a> Parse<'a> for ExpressionWithoutBlock<'a> {
                 };
 
                 continue;
+            }
+
+            if let Ok(comparison_operator) = parser.step_parse() {
+                let mut attributes = Vec::new();
+                std::mem::swap(&mut attributes, &mut ret.attributes);
+
+                ret = ExpressionWithoutBlock {
+                    attributes,
+                    kind: ExpressionWithoutBlockKind::Operator(OperatorExpression::Comparison(
+                        ComparisonExpression {
+                            left: Box::new(ret.into_expression()),
+                            operator: comparison_operator,
+                            right: parser.parse()?,
+                        },
+                    )),
+                };
             }
 
             if let Ok(parameters) = parser.step_parse() {
