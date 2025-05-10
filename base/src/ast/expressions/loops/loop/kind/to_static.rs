@@ -7,6 +7,9 @@ impl<'a> LoopExpressionKind<'a> {
             LoopExpressionKind::Iterator(iterator) => {
                 LoopExpressionKind::Iterator(iterator.into_static())
             }
+            LoopExpressionKind::Infinite(infinite) => {
+                LoopExpressionKind::Infinite(infinite.into_static())
+            }
         }
     }
 }

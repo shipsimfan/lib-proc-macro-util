@@ -1,4 +1,4 @@
-use crate::ast::expressions::IteratorLoopExpression;
+use crate::ast::expressions::{InfiniteLoopExpression, IteratorLoopExpression};
 
 mod parse;
 mod to_static;
@@ -9,4 +9,7 @@ mod to_tokens;
 pub enum LoopExpressionKind<'a> {
     /// The expression loops over the results of an iterator
     Iterator(IteratorLoopExpression<'a>),
+
+    /// An expression that loops continously
+    Infinite(InfiniteLoopExpression<'a>),
 }

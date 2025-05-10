@@ -40,7 +40,6 @@
        9. AsyncBlockExpression
        10. RangeExpression
        11. LoopExpression
-         1. Infinite
          2. Predicate
          3. Predicate Pattern
          4. Block
