@@ -40,9 +40,8 @@
        9. AsyncBlockExpression
        10. RangeExpression
        11. LoopExpression
-         2. Predicate
-         3. Predicate Pattern
-         4. Block
+         1. Predicate
+         2. Predicate Pattern
        12. MatchExpression
        13. ErrorPropagationExpression
        14. NegationExpression
