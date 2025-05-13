@@ -8,6 +8,10 @@ impl<'a> Parse<'a> for DeriveItemKind<'a> {
                 .map(|r#struct| DeriveItemKind::Struct(r#struct));
         }
 
+        if parser.peek::<Token![enum]>() {
+            return parser.parse().map(|r#enum| DeriveItemKind::Enum(r#enum));
+        }
+
         Err(parser.error("expected an item"))
     }
 }
