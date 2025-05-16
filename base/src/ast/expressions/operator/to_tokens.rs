@@ -10,6 +10,7 @@ impl<'a> ToTokens for OperatorExpression<'a> {
                 error_propagation.to_tokens(generator)
             }
             OperatorExpression::TypeCast(type_cast) => type_cast.to_tokens(generator),
+            OperatorExpression::Negation(negation) => negation.to_tokens(generator),
         }
     }
 }

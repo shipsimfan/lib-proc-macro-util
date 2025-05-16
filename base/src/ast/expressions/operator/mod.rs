@@ -2,6 +2,7 @@ mod borrow;
 mod comparison;
 mod dereference;
 mod error_propagation;
+mod negation;
 mod type_cast;
 
 mod from;
@@ -14,6 +15,7 @@ pub use borrow::*;
 pub use comparison::{ComparisonExpression, ComparisonOperator};
 pub use dereference::DereferenceExpression;
 pub use error_propagation::ErrorPropagationExpression;
+pub use negation::{NegationExpression, NegationOperator};
 pub use type_cast::TypeCastExpression;
 
 /// An expression that contains an operator
@@ -33,4 +35,7 @@ pub enum OperatorExpression<'a> {
 
     /// Converts an expression to a type
     TypeCast(TypeCastExpression<'a>),
+
+    /// Negates another expression
+    Negation(NegationExpression<'a>),
 }

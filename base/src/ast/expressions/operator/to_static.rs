@@ -17,6 +17,9 @@ impl<'a> OperatorExpression<'a> {
             OperatorExpression::TypeCast(type_cast) => {
                 OperatorExpression::TypeCast(type_cast.into_static())
             }
+            OperatorExpression::Negation(negation) => {
+                OperatorExpression::Negation(negation.into_static())
+            }
         }
     }
 }

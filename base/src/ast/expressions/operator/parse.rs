@@ -10,6 +10,10 @@ impl<'a> Parse<'a> for OperatorExpression<'a> {
             return parser.parse().map(OperatorExpression::Borrow);
         }
 
+        if parser.peek::<Token![-]>() || parser.peek::<Token![!]>() {
+            return parser.parse().map(OperatorExpression::Negation);
+        }
+
         Err(parser.error("expected an opeator expression"))
     }
 }
