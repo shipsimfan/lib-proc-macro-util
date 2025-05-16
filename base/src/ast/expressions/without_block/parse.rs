@@ -1,15 +1,14 @@
-use proc_macro::Delimiter;
-
 use crate::{
     ast::{
         expressions::{
-            CallExpression, ComparisonExpression, ErrorPropagationExpression, FieldExpression,
-            IndexExpression, MethodCallExpression, OperatorExpression, TypeCastExpression,
+            AwaitExpression, CallExpression, ComparisonExpression, ErrorPropagationExpression,
+            FieldExpression, IndexExpression, MethodCallExpression, OperatorExpression,
+            TypeCastExpression,
         },
         ExpressionWithoutBlock, ExpressionWithoutBlockKind,
     },
     tokens::Group,
-    Error, Parse, Parser, Result,
+    Delimiter, Error, Parse, Parser, Result,
 };
 
 impl<'a> Parse<'a> for ExpressionWithoutBlock<'a> {
@@ -26,7 +25,13 @@ impl<'a> Parse<'a> for ExpressionWithoutBlock<'a> {
 
                 ret = ExpressionWithoutBlock {
                     attributes,
-                    kind: if let Ok((name, parameters)) =
+                    kind: if let Ok(r#await) = parser.step_parse() {
+                        ExpressionWithoutBlockKind::Await(AwaitExpression {
+                            expression: Box::new(ret.into_expression()),
+                            dot,
+                            r#await,
+                        })
+                    } else if let Ok((name, parameters)) =
                         parser.step(|parser| Ok((parser.parse()?, parser.parse()?)))
                     {
                         ExpressionWithoutBlockKind::MethodCall(MethodCallExpression {

@@ -2,6 +2,7 @@
 
 mod array;
 mod async_block;
+mod r#await;
 mod block;
 mod r#break;
 mod call;
@@ -38,6 +39,7 @@ pub use loops::*;
 pub use method_call::MethodCallExpression;
 pub use operator::*;
 pub use path::PathExpression;
+pub use r#await::AwaitExpression;
 pub use r#break::BreakExpression;
 pub use r#continue::ContinueExpression;
 pub use r#if::{ElseBlockExpression, IfExpression};

@@ -1,7 +1,7 @@
 use crate::ast::{
     expressions::{
-        ArrayExpression, AsyncBlockExpression, BreakExpression, CallExpression, ContinueExpression,
-        FieldExpression, GroupedExpression, IndexExpression, LiteralExpression,
+        ArrayExpression, AsyncBlockExpression, AwaitExpression, BreakExpression, CallExpression,
+        ContinueExpression, FieldExpression, GroupedExpression, IndexExpression, LiteralExpression,
         MethodCallExpression, OperatorExpression, PathExpression, ReturnExpression,
         UnderscoreExpression,
     },
@@ -61,4 +61,7 @@ pub enum ExpressionWithoutBlockKind<'a> {
 
     /// Accesss an element at an index in an item
     Index(IndexExpression<'a>),
+
+    /// Waits for a future to complete
+    Await(AwaitExpression<'a>),
 }

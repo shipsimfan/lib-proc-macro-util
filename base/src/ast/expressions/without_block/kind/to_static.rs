@@ -49,6 +49,9 @@ impl<'a> ExpressionWithoutBlockKind<'a> {
             ExpressionWithoutBlockKind::Index(index) => {
                 ExpressionWithoutBlockKind::Index(index.into_static())
             }
+            ExpressionWithoutBlockKind::Await(r#await) => {
+                ExpressionWithoutBlockKind::Await(r#await.into_static())
+            }
         }
     }
 }
