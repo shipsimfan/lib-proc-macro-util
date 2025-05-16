@@ -2,7 +2,7 @@ use crate::{
     ast::{
         expressions::{
             CallExpression, ComparisonExpression, ErrorPropagationExpression, FieldExpression,
-            MethodCallExpression, OperatorExpression,
+            MethodCallExpression, OperatorExpression, TypeCastExpression,
         },
         ExpressionWithoutBlock, ExpressionWithoutBlockKind,
     },
@@ -61,11 +61,29 @@ impl<'a> Parse<'a> for ExpressionWithoutBlock<'a> {
                 continue;
             }
 
-            if let Ok(comparison_operator) = parser.step_parse() {
+            if let Ok(r#as) = parser.step_parse() {
                 let mut attributes = Vec::new();
                 std::mem::swap(&mut attributes, &mut ret.attributes);
 
                 ret = ExpressionWithoutBlock {
+                    attributes,
+                    kind: ExpressionWithoutBlockKind::Operator(OperatorExpression::TypeCast(
+                        TypeCastExpression {
+                            expression: Box::new(ret.into_expression()),
+                            r#as,
+                            r#type: parser.parse()?,
+                        },
+                    )),
+                };
+
+                continue;
+            }
+
+            if let Ok(comparison_operator) = parser.step_parse() {
+                let mut attributes = Vec::new();
+                std::mem::swap(&mut attributes, &mut ret.attributes);
+
+                return Ok(ExpressionWithoutBlock {
                     attributes,
                     kind: ExpressionWithoutBlockKind::Operator(OperatorExpression::Comparison(
                         ComparisonExpression {
@@ -74,7 +92,7 @@ impl<'a> Parse<'a> for ExpressionWithoutBlock<'a> {
                             right: parser.parse()?,
                         },
                     )),
-                };
+                });
             }
 
             if let Ok(parameters) = parser.step_parse() {

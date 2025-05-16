@@ -1,6 +1,6 @@
 use crate::ast::expressions::{
     BorrowExpression, ComparisonExpression, DereferenceExpression, ErrorPropagationExpression,
-    OperatorExpression,
+    OperatorExpression, TypeCastExpression,
 };
 
 impl<'a> From<BorrowExpression<'a>> for OperatorExpression<'a> {
@@ -24,5 +24,11 @@ impl<'a> From<ComparisonExpression<'a>> for OperatorExpression<'a> {
 impl<'a> From<ErrorPropagationExpression<'a>> for OperatorExpression<'a> {
     fn from(error_propagation: ErrorPropagationExpression<'a>) -> Self {
         OperatorExpression::ErrorPropagation(error_propagation)
+    }
+}
+
+impl<'a> From<TypeCastExpression<'a>> for OperatorExpression<'a> {
+    fn from(type_cast: TypeCastExpression<'a>) -> Self {
+        OperatorExpression::TypeCast(type_cast)
     }
 }

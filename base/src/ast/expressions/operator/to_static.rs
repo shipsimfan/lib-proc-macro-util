@@ -14,6 +14,9 @@ impl<'a> OperatorExpression<'a> {
             OperatorExpression::ErrorPropagation(error_propagation) => {
                 OperatorExpression::ErrorPropagation(error_propagation.into_static())
             }
+            OperatorExpression::TypeCast(type_cast) => {
+                OperatorExpression::TypeCast(type_cast.into_static())
+            }
         }
     }
 }

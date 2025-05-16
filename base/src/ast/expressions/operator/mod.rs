@@ -2,6 +2,7 @@ mod borrow;
 mod comparison;
 mod dereference;
 mod error_propagation;
+mod type_cast;
 
 mod from;
 mod new;
@@ -13,6 +14,7 @@ pub use borrow::*;
 pub use comparison::{ComparisonExpression, ComparisonOperator};
 pub use dereference::DereferenceExpression;
 pub use error_propagation::ErrorPropagationExpression;
+pub use type_cast::TypeCastExpression;
 
 /// An expression that contains an operator
 #[derive(Debug, Clone)]
@@ -28,4 +30,7 @@ pub enum OperatorExpression<'a> {
 
     /// Unwraps valid values or propagates errors
     ErrorPropagation(ErrorPropagationExpression<'a>),
+
+    /// Converts an expression to a type
+    TypeCast(TypeCastExpression<'a>),
 }
