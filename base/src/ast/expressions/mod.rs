@@ -1,6 +1,7 @@
 //! Definitions for all expression types in Rust
 
 mod array;
+mod async_block;
 mod block;
 mod r#break;
 mod call;
@@ -24,6 +25,7 @@ mod with_block;
 mod without_block;
 
 pub use array::{ArrayElements, ArrayExpression};
+pub use async_block::AsyncBlockExpression;
 pub use block::BlockExpression;
 pub use call::{CallExpression, CallParams};
 pub use const_block::ConstBlockExpression;

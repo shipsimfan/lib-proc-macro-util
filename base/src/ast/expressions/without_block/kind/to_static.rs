@@ -43,6 +43,9 @@ impl<'a> ExpressionWithoutBlockKind<'a> {
             ExpressionWithoutBlockKind::Array(array) => {
                 ExpressionWithoutBlockKind::Array(array.into_static())
             }
+            ExpressionWithoutBlockKind::AsyncBlock(async_block) => {
+                ExpressionWithoutBlockKind::AsyncBlock(async_block.into_static())
+            }
         }
     }
 }
