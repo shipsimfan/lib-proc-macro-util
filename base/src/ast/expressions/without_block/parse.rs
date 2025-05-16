@@ -3,7 +3,7 @@ use crate::{
         expressions::{
             AwaitExpression, CallExpression, ComparisonExpression, ErrorPropagationExpression,
             FieldExpression, IndexExpression, MethodCallExpression, OperatorExpression,
-            TypeCastExpression,
+            TupleIndexExpression, TypeCastExpression,
         },
         ExpressionWithoutBlock, ExpressionWithoutBlockKind,
     },
@@ -30,6 +30,12 @@ impl<'a> Parse<'a> for ExpressionWithoutBlock<'a> {
                             expression: Box::new(ret.into_expression()),
                             dot,
                             r#await,
+                        })
+                    } else if let Ok(index) = parser.step_parse() {
+                        ExpressionWithoutBlockKind::TupleIndex(TupleIndexExpression {
+                            expression: Box::new(ret.into_expression()),
+                            dot,
+                            index,
                         })
                     } else if let Ok((name, parameters)) =
                         parser.step(|parser| Ok((parser.parse()?, parser.parse()?)))

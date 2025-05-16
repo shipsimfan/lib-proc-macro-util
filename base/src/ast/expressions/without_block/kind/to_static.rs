@@ -52,6 +52,9 @@ impl<'a> ExpressionWithoutBlockKind<'a> {
             ExpressionWithoutBlockKind::Await(r#await) => {
                 ExpressionWithoutBlockKind::Await(r#await.into_static())
             }
+            ExpressionWithoutBlockKind::TupleIndex(tuple_index) => {
+                ExpressionWithoutBlockKind::TupleIndex(tuple_index.into_static())
+            }
         }
     }
 }

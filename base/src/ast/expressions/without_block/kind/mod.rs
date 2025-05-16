@@ -3,7 +3,7 @@ use crate::ast::{
         ArrayExpression, AsyncBlockExpression, AwaitExpression, BreakExpression, CallExpression,
         ContinueExpression, FieldExpression, GroupedExpression, IndexExpression, LiteralExpression,
         MethodCallExpression, OperatorExpression, PathExpression, ReturnExpression,
-        UnderscoreExpression,
+        TupleIndexExpression, UnderscoreExpression,
     },
     MacroInvocation,
 };
@@ -64,4 +64,7 @@ pub enum ExpressionWithoutBlockKind<'a> {
 
     /// Waits for a future to complete
     Await(AwaitExpression<'a>),
+
+    /// Accesses an element in a tuple
+    TupleIndex(TupleIndexExpression<'a>),
 }

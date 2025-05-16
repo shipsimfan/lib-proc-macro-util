@@ -19,6 +19,7 @@ mod method_call;
 mod operator;
 mod path;
 mod r#return;
+mod tuple_index;
 mod underscore;
 mod unsafe_block;
 
@@ -45,6 +46,7 @@ pub use r#continue::ContinueExpression;
 pub use r#if::{ElseBlockExpression, IfExpression};
 pub use r#match::{MatchArm, MatchArmGuard, MatchExpression};
 pub use r#return::ReturnExpression;
+pub use tuple_index::TupleIndexExpression;
 pub use underscore::UnderscoreExpression;
 pub use unsafe_block::UnsafeBlockExpression;
 
