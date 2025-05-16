@@ -37,6 +37,10 @@ impl<'a> Parse<'a> for ExpressionWithoutBlockKind<'a> {
             if let Ok(grouped) = parser.step_parse() {
                 return Ok(ExpressionWithoutBlockKind::Grouped(grouped));
             }
+
+            if let Ok(array) = parser.step_parse() {
+                return Ok(ExpressionWithoutBlockKind::Array(array));
+            }
         }
 
         if let Ok(macro_invocation) = parser.step_parse() {

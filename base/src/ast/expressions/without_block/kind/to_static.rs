@@ -40,6 +40,9 @@ impl<'a> ExpressionWithoutBlockKind<'a> {
             ExpressionWithoutBlockKind::Grouped(grouped) => {
                 ExpressionWithoutBlockKind::Grouped(grouped.into_static())
             }
+            ExpressionWithoutBlockKind::Array(array) => {
+                ExpressionWithoutBlockKind::Array(array.into_static())
+            }
         }
     }
 }

@@ -17,6 +17,7 @@ impl<'a> ToTokens for ExpressionWithoutBlockKind<'a> {
             ExpressionWithoutBlockKind::Break(r#break) => r#break.to_tokens(generator),
             ExpressionWithoutBlockKind::Return(r#return) => r#return.to_tokens(generator),
             ExpressionWithoutBlockKind::Grouped(grouped) => grouped.to_tokens(generator),
+            ExpressionWithoutBlockKind::Array(array) => array.to_tokens(generator),
         }
     }
 }

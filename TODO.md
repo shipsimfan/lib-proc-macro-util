@@ -29,19 +29,18 @@
        2. MacroItem
          1. MacroRulesDefinition
      2. Expression
-       1. ArrayExpression
-       2. AsyncBlockExpression
-       3. ErrorPropagationExpression
-       4. TypeCastExpression
-       5. IndexExpression
-       6. AwaitExpression
-       7. TupleIndexingExpression
-       8. NegationExpression
-       9. ArithmeticOrLogicalExpression
-       10. AssignmentExpression
-       11. CompoundAssignmentExpression
-       12. ClosureExpression
-       13. TupleExpression
-       14. RangeExpression
-       15. StructExpression
+       1. AsyncBlockExpression
+       2. ErrorPropagationExpression
+       3. TypeCastExpression
+       4. IndexExpression
+       5. AwaitExpression
+       6. TupleIndexingExpression
+       7. NegationExpression
+       8. ArithmeticOrLogicalExpression
+       9. AssignmentExpression
+       10. CompoundAssignmentExpression
+       11. ClosureExpression
+       12. TupleExpression
+       13. RangeExpression
+       14. StructExpression
      3. Crate

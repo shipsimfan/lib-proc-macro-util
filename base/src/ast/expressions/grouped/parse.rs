@@ -16,7 +16,7 @@ impl<'a> Parse<'a> for GroupedExpression<'a> {
         let expression = parser.parse()?;
 
         if !parser.empty() {
-            return Err(parser.error("unexpected error"));
+            return Err(parser.error("unexpected token"));
         }
 
         Ok(GroupedExpression { expression })
