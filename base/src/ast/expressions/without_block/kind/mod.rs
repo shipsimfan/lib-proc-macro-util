@@ -1,8 +1,9 @@
 use crate::ast::{
     expressions::{
         ArrayExpression, AsyncBlockExpression, BreakExpression, CallExpression, ContinueExpression,
-        FieldExpression, GroupedExpression, LiteralExpression, MethodCallExpression,
-        OperatorExpression, PathExpression, ReturnExpression, UnderscoreExpression,
+        FieldExpression, GroupedExpression, IndexExpression, LiteralExpression,
+        MethodCallExpression, OperatorExpression, PathExpression, ReturnExpression,
+        UnderscoreExpression,
     },
     MacroInvocation,
 };
@@ -57,4 +58,7 @@ pub enum ExpressionWithoutBlockKind<'a> {
 
     /// An asynchronous block of code
     AsyncBlock(AsyncBlockExpression<'a>),
+
+    /// Accesss an element at an index in an item
+    Index(IndexExpression<'a>),
 }

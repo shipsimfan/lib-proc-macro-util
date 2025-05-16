@@ -19,6 +19,7 @@ impl<'a> ToTokens for ExpressionWithoutBlockKind<'a> {
             ExpressionWithoutBlockKind::Grouped(grouped) => grouped.to_tokens(generator),
             ExpressionWithoutBlockKind::Array(array) => array.to_tokens(generator),
             ExpressionWithoutBlockKind::AsyncBlock(async_block) => async_block.to_tokens(generator),
+            ExpressionWithoutBlockKind::Index(index) => index.to_tokens(generator),
         }
     }
 }

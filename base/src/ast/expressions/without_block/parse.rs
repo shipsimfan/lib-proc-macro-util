@@ -1,12 +1,15 @@
+use proc_macro::Delimiter;
+
 use crate::{
     ast::{
         expressions::{
             CallExpression, ComparisonExpression, ErrorPropagationExpression, FieldExpression,
-            MethodCallExpression, OperatorExpression, TypeCastExpression,
+            IndexExpression, MethodCallExpression, OperatorExpression, TypeCastExpression,
         },
         ExpressionWithoutBlock, ExpressionWithoutBlockKind,
     },
-    Parse, Parser, Result,
+    tokens::Group,
+    Error, Parse, Parser, Result,
 };
 
 impl<'a> Parse<'a> for ExpressionWithoutBlock<'a> {
@@ -104,6 +107,38 @@ impl<'a> Parse<'a> for ExpressionWithoutBlock<'a> {
                     kind: ExpressionWithoutBlockKind::Call(CallExpression {
                         function: Box::new(ret.into_expression()),
                         parameters: parameters,
+                    }),
+                };
+
+                continue;
+            }
+
+            if let Ok(index) = parser.step(|parser| {
+                let group: &'a Group = parser.parse()?;
+                if group.delimiter != Delimiter::Bracket {
+                    return Err(Error::new_at(
+                        "index expression must have square brackets",
+                        group.span,
+                    ));
+                }
+
+                let mut parser = group.parser();
+                let index = parser.parse()?;
+
+                if parser.empty() {
+                    Ok(index)
+                } else {
+                    Err(parser.error("unexpected token"))
+                }
+            }) {
+                let mut attributes = Vec::new();
+                std::mem::swap(&mut attributes, &mut ret.attributes);
+
+                ret = ExpressionWithoutBlock {
+                    attributes,
+                    kind: ExpressionWithoutBlockKind::Index(IndexExpression {
+                        expression: Box::new(ret.into_expression()),
+                        index,
                     }),
                 };
 

@@ -29,16 +29,15 @@
        2. MacroItem
          1. MacroRulesDefinition
      2. Expression
-       1. IndexExpression
-       2. AwaitExpression
-       3. TupleIndexingExpression
-       4. NegationExpression
-       5. ArithmeticOrLogicalExpression
-       6. LazyBoolExpression
-       7. AssignmentExpression
-       8. CompoundAssignmentExpression
-       9. ClosureExpression
-       10. TupleExpression
-       11. RangeExpression
-       12. StructExpression
+       1. AwaitExpression
+       2. TupleIndexingExpression
+       3. NegationExpression
+       4. ArithmeticOrLogicalExpression
+       5. LazyBoolExpression
+       6. AssignmentExpression
+       7. CompoundAssignmentExpression
+       8. ClosureExpression
+       9. TupleExpression
+       10. RangeExpression
+       11. StructExpression
      3. Crate

@@ -1,8 +1,9 @@
 use crate::ast::{
     expressions::{
         ArrayExpression, AsyncBlockExpression, BreakExpression, CallExpression, ContinueExpression,
-        FieldExpression, GroupedExpression, LiteralExpression, MethodCallExpression,
-        OperatorExpression, PathExpression, ReturnExpression, UnderscoreExpression,
+        FieldExpression, GroupedExpression, IndexExpression, LiteralExpression,
+        MethodCallExpression, OperatorExpression, PathExpression, ReturnExpression,
+        UnderscoreExpression,
     },
     ExpressionWithoutBlockKind, MacroInvocation,
 };
@@ -88,5 +89,11 @@ impl<'a> From<ArrayExpression<'a>> for ExpressionWithoutBlockKind<'a> {
 impl<'a> From<AsyncBlockExpression<'a>> for ExpressionWithoutBlockKind<'a> {
     fn from(async_block: AsyncBlockExpression<'a>) -> Self {
         ExpressionWithoutBlockKind::AsyncBlock(async_block)
+    }
+}
+
+impl<'a> From<IndexExpression<'a>> for ExpressionWithoutBlockKind<'a> {
+    fn from(index: IndexExpression<'a>) -> Self {
+        ExpressionWithoutBlockKind::Index(index)
     }
 }
