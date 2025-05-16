@@ -37,6 +37,9 @@ impl<'a> ExpressionWithoutBlockKind<'a> {
             ExpressionWithoutBlockKind::Return(r#return) => {
                 ExpressionWithoutBlockKind::Return(r#return.into_static())
             }
+            ExpressionWithoutBlockKind::Grouped(grouped) => {
+                ExpressionWithoutBlockKind::Grouped(grouped.into_static())
+            }
         }
     }
 }

@@ -1,4 +1,6 @@
-use crate::{ast::expressions::BlockExpression, tokens::Group, Delimiter, Parse, Parser, Result};
+use crate::{
+    ast::expressions::BlockExpression, tokens::Group, Delimiter, Error, Parse, Parser, Result,
+};
 
 impl<'a> Parse<'a> for BlockExpression<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -6,14 +8,14 @@ impl<'a> Parse<'a> for BlockExpression<'a> {
             .parse()
             .map_err(|error| error.append("expected a block expression"))?;
         if group.delimiter != Delimiter::Brace {
-            return Err(parser.error("expected a block expression"));
+            return Err(Error::new_at("expected a block expression", group.span));
         }
 
-        let mut group = group.parser();
+        let mut parser = group.parser();
 
-        let attributes = group.parse()?;
-        let statements = group.parse()?;
-        let end = group.parse()?;
+        let attributes = parser.parse()?;
+        let statements = parser.parse()?;
+        let end = parser.parse()?;
 
         if !parser.empty() {
             return Err(parser.error("expected a block expression"));

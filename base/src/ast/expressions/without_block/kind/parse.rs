@@ -1,4 +1,8 @@
-use crate::{ast::ExpressionWithoutBlockKind, tokens::Literal, Parse, Parser, Result, Token};
+use crate::{
+    ast::ExpressionWithoutBlockKind,
+    tokens::{Group, Literal},
+    Parse, Parser, Result, Token,
+};
 
 impl<'a> Parse<'a> for ExpressionWithoutBlockKind<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -27,6 +31,12 @@ impl<'a> Parse<'a> for ExpressionWithoutBlockKind<'a> {
 
         if parser.peek::<Token![&]>() || parser.peek::<Token![&&]>() || parser.peek::<Token![*]>() {
             return parser.parse().map(ExpressionWithoutBlockKind::Operator);
+        }
+
+        if parser.peek::<&'a Group>() {
+            if let Ok(grouped) = parser.step_parse() {
+                return Ok(ExpressionWithoutBlockKind::Grouped(grouped));
+            }
         }
 
         if let Ok(macro_invocation) = parser.step_parse() {

@@ -1,8 +1,8 @@
 use crate::ast::{
     expressions::{
-        BreakExpression, CallExpression, ContinueExpression, FieldExpression, LiteralExpression,
-        MethodCallExpression, OperatorExpression, PathExpression, ReturnExpression,
-        UnderscoreExpression,
+        BreakExpression, CallExpression, ContinueExpression, FieldExpression, GroupedExpression,
+        LiteralExpression, MethodCallExpression, OperatorExpression, PathExpression,
+        ReturnExpression, UnderscoreExpression,
     },
     MacroInvocation,
 };
@@ -48,4 +48,7 @@ pub enum ExpressionWithoutBlockKind<'a> {
 
     /// Stops running a function
     Return(ReturnExpression<'a>),
+
+    /// An expression wrapped in parentheses
+    Grouped(GroupedExpression<'a>),
 }

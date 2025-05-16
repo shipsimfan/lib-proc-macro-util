@@ -1,8 +1,8 @@
 use crate::ast::{
     expressions::{
-        BreakExpression, CallExpression, ContinueExpression, FieldExpression, LiteralExpression,
-        MethodCallExpression, OperatorExpression, PathExpression, ReturnExpression,
-        UnderscoreExpression,
+        BreakExpression, CallExpression, ContinueExpression, FieldExpression, GroupedExpression,
+        LiteralExpression, MethodCallExpression, OperatorExpression, PathExpression,
+        ReturnExpression, UnderscoreExpression,
     },
     ExpressionWithoutBlockKind, MacroInvocation,
 };
@@ -70,5 +70,11 @@ impl<'a> From<BreakExpression<'a>> for ExpressionWithoutBlockKind<'a> {
 impl<'a> From<ReturnExpression<'a>> for ExpressionWithoutBlockKind<'a> {
     fn from(r#return: ReturnExpression<'a>) -> Self {
         ExpressionWithoutBlockKind::Return(r#return)
+    }
+}
+
+impl<'a> From<GroupedExpression<'a>> for ExpressionWithoutBlockKind<'a> {
+    fn from(grouped: GroupedExpression<'a>) -> Self {
+        ExpressionWithoutBlockKind::Grouped(grouped)
     }
 }
