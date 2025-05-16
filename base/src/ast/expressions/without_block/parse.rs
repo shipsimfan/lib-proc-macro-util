@@ -1,9 +1,9 @@
 use crate::{
     ast::{
         expressions::{
-            AwaitExpression, CallExpression, ComparisonExpression, ErrorPropagationExpression,
-            FieldExpression, IndexExpression, MethodCallExpression, OperatorExpression,
-            TupleIndexExpression, TypeCastExpression,
+            ArithmeticOrLogicalExpression, AwaitExpression, CallExpression, ComparisonExpression,
+            ErrorPropagationExpression, FieldExpression, IndexExpression, MethodCallExpression,
+            OperatorExpression, TupleIndexExpression, TypeCastExpression,
         },
         ExpressionWithoutBlock, ExpressionWithoutBlockKind,
     },
@@ -106,6 +106,22 @@ impl<'a> Parse<'a> for ExpressionWithoutBlock<'a> {
                             right: parser.parse()?,
                         },
                     )),
+                });
+            }
+
+            if let Ok(arithmetic_or_logical_operator) = parser.step_parse() {
+                let mut attributes = Vec::new();
+                std::mem::swap(&mut attributes, &mut ret.attributes);
+
+                return Ok(ExpressionWithoutBlock {
+                    attributes,
+                    kind: ExpressionWithoutBlockKind::Operator(
+                        OperatorExpression::ArithmeticOrLogical(ArithmeticOrLogicalExpression {
+                            left: Box::new(ret.into_expression()),
+                            operator: arithmetic_or_logical_operator,
+                            right: parser.parse()?,
+                        }),
+                    ),
                 });
             }
 

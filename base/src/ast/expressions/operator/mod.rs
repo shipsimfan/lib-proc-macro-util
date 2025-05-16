@@ -1,3 +1,4 @@
+mod arithmetic_or;
 mod borrow;
 mod comparison;
 mod dereference;
@@ -11,6 +12,7 @@ mod parse;
 mod to_static;
 mod to_tokens;
 
+pub use arithmetic_or::{ArithmeticOrLogicalExpression, ArithmeticOrLogicalOperator};
 pub use borrow::*;
 pub use comparison::{ComparisonExpression, ComparisonOperator};
 pub use dereference::DereferenceExpression;
@@ -38,4 +40,7 @@ pub enum OperatorExpression<'a> {
 
     /// Negates another expression
     Negation(NegationExpression<'a>),
+
+    /// A arithmetic or logical operation between two expressions
+    ArithmeticOrLogical(ArithmeticOrLogicalExpression<'a>),
 }

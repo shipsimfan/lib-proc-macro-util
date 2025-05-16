@@ -20,6 +20,9 @@ impl<'a> OperatorExpression<'a> {
             OperatorExpression::Negation(negation) => {
                 OperatorExpression::Negation(negation.into_static())
             }
+            OperatorExpression::ArithmeticOrLogical(arithmetic_or_logical) => {
+                OperatorExpression::ArithmeticOrLogical(arithmetic_or_logical.into_static())
+            }
         }
     }
 }

@@ -29,12 +29,11 @@
        2. MacroItem
          1. MacroRulesDefinition
      2. Expression
-       1. ArithmeticOrLogicalExpression
-       2. LazyBoolExpression
-       3. AssignmentExpression
-       4. CompoundAssignmentExpression
-       5. ClosureExpression
-       6. TupleExpression
-       7. RangeExpression
-       8. StructExpression
+       1. LazyBoolExpression
+       2. AssignmentExpression
+       3. CompoundAssignmentExpression
+       4. ClosureExpression
+       5. TupleExpression
+       6. RangeExpression
+       7. StructExpression
      3. Crate

@@ -3,6 +3,8 @@ use crate::ast::expressions::{
     NegationExpression, OperatorExpression, TypeCastExpression,
 };
 
+use super::ArithmeticOrLogicalExpression;
+
 impl<'a> From<BorrowExpression<'a>> for OperatorExpression<'a> {
     fn from(borrow: BorrowExpression<'a>) -> Self {
         OperatorExpression::Borrow(borrow)
@@ -36,5 +38,11 @@ impl<'a> From<TypeCastExpression<'a>> for OperatorExpression<'a> {
 impl<'a> From<NegationExpression<'a>> for OperatorExpression<'a> {
     fn from(negation: NegationExpression<'a>) -> Self {
         OperatorExpression::Negation(negation)
+    }
+}
+
+impl<'a> From<ArithmeticOrLogicalExpression<'a>> for OperatorExpression<'a> {
+    fn from(arithmetic_or_logical: ArithmeticOrLogicalExpression<'a>) -> Self {
+        OperatorExpression::ArithmeticOrLogical(arithmetic_or_logical)
     }
 }

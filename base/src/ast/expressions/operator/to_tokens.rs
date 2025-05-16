@@ -11,6 +11,9 @@ impl<'a> ToTokens for OperatorExpression<'a> {
             }
             OperatorExpression::TypeCast(type_cast) => type_cast.to_tokens(generator),
             OperatorExpression::Negation(negation) => negation.to_tokens(generator),
+            OperatorExpression::ArithmeticOrLogical(arithmetic_or_logical) => {
+                arithmetic_or_logical.to_tokens(generator)
+            }
         }
     }
 }
