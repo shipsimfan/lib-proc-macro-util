@@ -11,6 +11,9 @@ impl<'a> OperatorExpression<'a> {
             OperatorExpression::Comparison(comparison) => {
                 OperatorExpression::Comparison(comparison.into_static())
             }
+            OperatorExpression::ErrorPropagation(error_propagation) => {
+                OperatorExpression::ErrorPropagation(error_propagation.into_static())
+            }
         }
     }
 }

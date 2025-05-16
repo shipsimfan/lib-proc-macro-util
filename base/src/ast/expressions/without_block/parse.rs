@@ -1,12 +1,12 @@
 use crate::{
     ast::{
         expressions::{
-            CallExpression, ComparisonExpression, FieldExpression, MethodCallExpression,
-            OperatorExpression,
+            CallExpression, ComparisonExpression, ErrorPropagationExpression, FieldExpression,
+            MethodCallExpression, OperatorExpression,
         },
         ExpressionWithoutBlock, ExpressionWithoutBlockKind,
     },
-    Parse, Parser, Result, Token,
+    Parse, Parser, Result,
 };
 
 impl<'a> Parse<'a> for ExpressionWithoutBlock<'a> {
@@ -17,11 +17,9 @@ impl<'a> Parse<'a> for ExpressionWithoutBlock<'a> {
         };
 
         loop {
-            if parser.peek::<Token![.]>() {
+            if let Ok(dot) = parser.step_parse() {
                 let mut attributes = Vec::new();
                 std::mem::swap(&mut attributes, &mut ret.attributes);
-
-                let dot = parser.parse()?;
 
                 ret = ExpressionWithoutBlock {
                     attributes,
@@ -41,6 +39,23 @@ impl<'a> Parse<'a> for ExpressionWithoutBlock<'a> {
                             identifier: parser.parse()?,
                         })
                     },
+                };
+
+                continue;
+            }
+
+            if let Ok(question) = parser.step_parse() {
+                let mut attributes = Vec::new();
+                std::mem::swap(&mut attributes, &mut ret.attributes);
+
+                ret = ExpressionWithoutBlock {
+                    attributes,
+                    kind: ExpressionWithoutBlockKind::Operator(
+                        OperatorExpression::ErrorPropagation(ErrorPropagationExpression {
+                            expression: Box::new(ret.into_expression()),
+                            question,
+                        }),
+                    ),
                 };
 
                 continue;

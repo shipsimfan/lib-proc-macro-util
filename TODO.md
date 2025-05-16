@@ -29,13 +29,13 @@
        2. MacroItem
          1. MacroRulesDefinition
      2. Expression
-       1. ErrorPropagationExpression
-       2. TypeCastExpression
-       3. IndexExpression
-       4. AwaitExpression
-       5. TupleIndexingExpression
-       6. NegationExpression
-       7. ArithmeticOrLogicalExpression
+       1. TypeCastExpression
+       2. IndexExpression
+       3. AwaitExpression
+       4. TupleIndexingExpression
+       5. NegationExpression
+       6. ArithmeticOrLogicalExpression
+       7. LazyBoolExpression
        8. AssignmentExpression
        9. CompoundAssignmentExpression
        10. ClosureExpression

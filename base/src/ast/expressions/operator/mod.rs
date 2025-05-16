@@ -1,6 +1,7 @@
 mod borrow;
 mod comparison;
 mod dereference;
+mod error_propagation;
 
 mod from;
 mod new;
@@ -11,6 +12,7 @@ mod to_tokens;
 pub use borrow::*;
 pub use comparison::{ComparisonExpression, ComparisonOperator};
 pub use dereference::DereferenceExpression;
+pub use error_propagation::ErrorPropagationExpression;
 
 /// An expression that contains an operator
 #[derive(Debug, Clone)]
@@ -23,4 +25,7 @@ pub enum OperatorExpression<'a> {
 
     /// A comparison between two expressions
     Comparison(ComparisonExpression<'a>),
+
+    /// Unwraps valid values or propagates errors
+    ErrorPropagation(ErrorPropagationExpression<'a>),
 }
