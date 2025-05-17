@@ -54,6 +54,10 @@ impl<'a> Parse<'a> for ExpressionWithoutBlockKind<'a> {
                 return Ok(ExpressionWithoutBlockKind::Grouped(grouped));
             }
 
+            if let Ok(tuple) = parser.step_parse() {
+                return Ok(ExpressionWithoutBlockKind::Tuple(tuple));
+            }
+
             if let Ok(array) = parser.step_parse() {
                 return Ok(ExpressionWithoutBlockKind::Array(array));
             }

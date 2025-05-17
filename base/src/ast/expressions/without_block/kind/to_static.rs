@@ -61,6 +61,9 @@ impl<'a> ExpressionWithoutBlockKind<'a> {
             ExpressionWithoutBlockKind::Range(range) => {
                 ExpressionWithoutBlockKind::Range(range.into_static())
             }
+            ExpressionWithoutBlockKind::Tuple(tuple) => {
+                ExpressionWithoutBlockKind::Tuple(tuple.into_static())
+            }
         }
     }
 }

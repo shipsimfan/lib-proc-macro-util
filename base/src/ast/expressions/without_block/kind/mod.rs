@@ -3,7 +3,8 @@ use crate::ast::{
         ArrayExpression, AsyncBlockExpression, AwaitExpression, BreakExpression, CallExpression,
         ClosureExpression, ContinueExpression, FieldExpression, GroupedExpression, IndexExpression,
         LiteralExpression, MethodCallExpression, OperatorExpression, PathExpression,
-        RangeExpression, ReturnExpression, TupleIndexExpression, UnderscoreExpression,
+        RangeExpression, ReturnExpression, TupleExpression, TupleIndexExpression,
+        UnderscoreExpression,
     },
     MacroInvocation,
 };
@@ -73,4 +74,7 @@ pub enum ExpressionWithoutBlockKind<'a> {
 
     /// A range between two expressions
     Range(RangeExpression<'a>),
+
+    /// A tuple of multiple expressions
+    Tuple(TupleExpression<'a>),
 }
