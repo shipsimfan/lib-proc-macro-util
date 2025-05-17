@@ -3,6 +3,7 @@ mod borrow;
 mod comparison;
 mod dereference;
 mod error_propagation;
+mod lazy_boolean;
 mod negation;
 mod type_cast;
 
@@ -17,6 +18,7 @@ pub use borrow::*;
 pub use comparison::{ComparisonExpression, ComparisonOperator};
 pub use dereference::DereferenceExpression;
 pub use error_propagation::ErrorPropagationExpression;
+pub use lazy_boolean::{LazyBooleanExpression, LazyBooleanOperator};
 pub use negation::{NegationExpression, NegationOperator};
 pub use type_cast::TypeCastExpression;
 
@@ -43,4 +45,7 @@ pub enum OperatorExpression<'a> {
 
     /// A arithmetic or logical operation between two expressions
     ArithmeticOrLogical(ArithmeticOrLogicalExpression<'a>),
+
+    /// A comparison between two boolean expressions
+    LazyBoolean(LazyBooleanExpression<'a>),
 }

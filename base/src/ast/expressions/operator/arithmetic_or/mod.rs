@@ -8,15 +8,15 @@ mod to_tokens;
 
 pub use operator::ArithmeticOrLogicalOperator;
 
-/// A comparison between two expressions
+/// A arithmetic or logical operation between two expressions
 #[derive(Debug, Clone)]
 pub struct ArithmeticOrLogicalExpression<'a> {
-    /// The left side of the comparison
+    /// The left side of the operation
     pub left: Box<Expression<'a>>,
 
-    /// The operator to compare with
+    /// The operator to use
     pub operator: ArithmeticOrLogicalOperator,
 
-    /// The right side of the comparison
+    /// The right side of the operation
     pub right: Box<Expression<'a>>,
 }

@@ -1,9 +1,8 @@
 use crate::ast::expressions::{
-    BorrowExpression, ComparisonExpression, DereferenceExpression, ErrorPropagationExpression,
-    NegationExpression, OperatorExpression, TypeCastExpression,
+    ArithmeticOrLogicalExpression, BorrowExpression, ComparisonExpression, DereferenceExpression,
+    ErrorPropagationExpression, LazyBooleanExpression, NegationExpression, OperatorExpression,
+    TypeCastExpression,
 };
-
-use super::ArithmeticOrLogicalExpression;
 
 impl<'a> From<BorrowExpression<'a>> for OperatorExpression<'a> {
     fn from(borrow: BorrowExpression<'a>) -> Self {
@@ -44,5 +43,11 @@ impl<'a> From<NegationExpression<'a>> for OperatorExpression<'a> {
 impl<'a> From<ArithmeticOrLogicalExpression<'a>> for OperatorExpression<'a> {
     fn from(arithmetic_or_logical: ArithmeticOrLogicalExpression<'a>) -> Self {
         OperatorExpression::ArithmeticOrLogical(arithmetic_or_logical)
+    }
+}
+
+impl<'a> From<LazyBooleanExpression<'a>> for OperatorExpression<'a> {
+    fn from(lazy_boolean: LazyBooleanExpression<'a>) -> Self {
+        OperatorExpression::LazyBoolean(lazy_boolean)
     }
 }

@@ -2,8 +2,8 @@ use crate::{
     ast::{
         expressions::{
             ArithmeticOrLogicalExpression, AwaitExpression, CallExpression, ComparisonExpression,
-            ErrorPropagationExpression, FieldExpression, IndexExpression, MethodCallExpression,
-            OperatorExpression, TupleIndexExpression, TypeCastExpression,
+            ErrorPropagationExpression, FieldExpression, IndexExpression, LazyBooleanExpression,
+            MethodCallExpression, OperatorExpression, TupleIndexExpression, TypeCastExpression,
         },
         ExpressionWithoutBlock, ExpressionWithoutBlockKind,
     },
@@ -122,6 +122,22 @@ impl<'a> Parse<'a> for ExpressionWithoutBlock<'a> {
                             right: parser.parse()?,
                         }),
                     ),
+                });
+            }
+
+            if let Ok(lazy_boolean_operator) = parser.step_parse() {
+                let mut attributes = Vec::new();
+                std::mem::swap(&mut attributes, &mut ret.attributes);
+
+                return Ok(ExpressionWithoutBlock {
+                    attributes,
+                    kind: ExpressionWithoutBlockKind::Operator(OperatorExpression::LazyBoolean(
+                        LazyBooleanExpression {
+                            left: Box::new(ret.into_expression()),
+                            operator: lazy_boolean_operator,
+                            right: parser.parse()?,
+                        },
+                    )),
                 });
             }
 

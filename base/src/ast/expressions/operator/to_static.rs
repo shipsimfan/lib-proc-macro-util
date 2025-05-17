@@ -23,6 +23,9 @@ impl<'a> OperatorExpression<'a> {
             OperatorExpression::ArithmeticOrLogical(arithmetic_or_logical) => {
                 OperatorExpression::ArithmeticOrLogical(arithmetic_or_logical.into_static())
             }
+            OperatorExpression::LazyBoolean(lazy_boolean) => {
+                OperatorExpression::LazyBoolean(lazy_boolean.into_static())
+            }
         }
     }
 }
