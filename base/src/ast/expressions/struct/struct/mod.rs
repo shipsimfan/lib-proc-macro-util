@@ -1,21 +1,24 @@
-use crate::ast::PathInExpression;
+use crate::Token;
 
 mod base;
 mod field;
-mod fields;
-mod kind;
+
+mod parse;
+mod to_static;
+mod to_tokens;
 
 pub use base::StructBase;
 pub use field::{StructExprField, StructExprFieldName};
-pub use fields::StructExprFields;
-pub use kind::StructExprKind;
 
-/// An expression which creates a struct
+/// A struct expression which is of a struct-style
 #[derive(Debug, Clone)]
-pub struct StructExpression<'a> {
-    /// The path to the struct
-    pub path: PathInExpression<'a>,
+pub struct StructExprStruct<'a> {
+    /// The first field in the struct
+    pub first: StructExprField<'a>,
 
-    /// The kind of struct it is
-    pub kind: StructExprKind<'a>,
+    /// The remaining fields and their separators
+    pub remaining: Vec<(Token![,], StructExprField<'a>)>,
+
+    /// A base expression to fill out the remaining fields
+    pub base: Option<(Token![,], Option<StructBase<'a>>)>,
 }

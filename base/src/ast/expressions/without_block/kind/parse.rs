@@ -1,5 +1,8 @@
 use crate::{
-    ast::{expressions::RangeExpression, ExpressionWithoutBlockKind},
+    ast::{
+        expressions::{PathExpression, RangeExpression, StructExprKind, StructExpression},
+        ExpressionWithoutBlockKind,
+    },
     tokens::{Group, Literal},
     Parse, Parser, Result, Token,
 };
@@ -70,7 +73,18 @@ impl<'a> Parse<'a> for ExpressionWithoutBlockKind<'a> {
         }
 
         if let Ok(path) = parser.step_parse() {
-            return Ok(ExpressionWithoutBlockKind::Path(path));
+            return Ok(match parser.parse().unwrap() {
+                StructExprKind::Unit => {
+                    ExpressionWithoutBlockKind::Path(PathExpression::Normal(path))
+                }
+                kind => ExpressionWithoutBlockKind::Struct(StructExpression { path, kind }),
+            });
+        }
+
+        if let Ok(path) = parser.step_parse() {
+            return Ok(ExpressionWithoutBlockKind::Path(
+                PathExpression::QualifiedPathInExpression(path),
+            ));
         }
 
         Err(parser.error("expected an expression without a block"))

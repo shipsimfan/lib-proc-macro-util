@@ -3,7 +3,7 @@ use crate::ast::{
         ArrayExpression, AsyncBlockExpression, AwaitExpression, BreakExpression, CallExpression,
         ClosureExpression, ContinueExpression, FieldExpression, GroupedExpression, IndexExpression,
         LiteralExpression, MethodCallExpression, OperatorExpression, PathExpression,
-        RangeExpression, ReturnExpression, TupleExpression, TupleIndexExpression,
+        RangeExpression, ReturnExpression, StructExpression, TupleExpression, TupleIndexExpression,
         UnderscoreExpression,
     },
     MacroInvocation,
@@ -77,4 +77,7 @@ pub enum ExpressionWithoutBlockKind<'a> {
 
     /// A tuple of multiple expressions
     Tuple(TupleExpression<'a>),
+
+    /// A struct with multiple sub-expressions
+    Struct(StructExpression<'a>),
 }

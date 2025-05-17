@@ -3,7 +3,7 @@ use crate::ast::{
         ArrayExpression, AsyncBlockExpression, AwaitExpression, BreakExpression, CallExpression,
         ClosureExpression, ContinueExpression, FieldExpression, GroupedExpression, IndexExpression,
         LiteralExpression, MethodCallExpression, OperatorExpression, PathExpression,
-        RangeExpression, ReturnExpression, TupleExpression, TupleIndexExpression,
+        RangeExpression, ReturnExpression, StructExpression, TupleExpression, TupleIndexExpression,
         UnderscoreExpression,
     },
     ExpressionWithoutBlockKind, MacroInvocation,
@@ -126,5 +126,11 @@ impl<'a> From<RangeExpression<'a>> for ExpressionWithoutBlockKind<'a> {
 impl<'a> From<TupleExpression<'a>> for ExpressionWithoutBlockKind<'a> {
     fn from(tuple: TupleExpression<'a>) -> Self {
         ExpressionWithoutBlockKind::Tuple(tuple)
+    }
+}
+
+impl<'a> From<StructExpression<'a>> for ExpressionWithoutBlockKind<'a> {
+    fn from(r#struct: StructExpression<'a>) -> Self {
+        ExpressionWithoutBlockKind::Struct(r#struct)
     }
 }

@@ -28,6 +28,4 @@
          7. ExternBlock
        2. MacroItem
          1. MacroRulesDefinition
-     2. Expression
-       1. StructExpression
-     3. Crate
+     2. Crate

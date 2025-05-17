@@ -64,6 +64,9 @@ impl<'a> ExpressionWithoutBlockKind<'a> {
             ExpressionWithoutBlockKind::Tuple(tuple) => {
                 ExpressionWithoutBlockKind::Tuple(tuple.into_static())
             }
+            ExpressionWithoutBlockKind::Struct(r#struct) => {
+                ExpressionWithoutBlockKind::Struct(r#struct.into_static())
+            }
         }
     }
 }

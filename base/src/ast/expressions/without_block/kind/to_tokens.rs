@@ -25,6 +25,7 @@ impl<'a> ToTokens for ExpressionWithoutBlockKind<'a> {
             ExpressionWithoutBlockKind::Closure(closure) => closure.to_tokens(generator),
             ExpressionWithoutBlockKind::Range(range) => range.to_tokens(generator),
             ExpressionWithoutBlockKind::Tuple(tuple) => tuple.to_tokens(generator),
+            ExpressionWithoutBlockKind::Struct(r#struct) => r#struct.to_tokens(generator),
         }
     }
 }

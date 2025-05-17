@@ -5,6 +5,10 @@ use crate::{
 
 mod name;
 
+mod parse;
+mod to_static;
+mod to_tokens;
+
 pub use name::StructExprFieldName;
 
 /// A field in a struct expression
