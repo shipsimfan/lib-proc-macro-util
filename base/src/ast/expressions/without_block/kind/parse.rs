@@ -22,6 +22,10 @@ impl<'a> Parse<'a> for ExpressionWithoutBlockKind<'a> {
             return parser.parse().map(ExpressionWithoutBlockKind::Return);
         }
 
+        if let Ok(closure) = parser.step_parse() {
+            return Ok(ExpressionWithoutBlockKind::Closure(closure));
+        }
+
         if parser.peek::<Token![async]>() {
             return parser.parse().map(ExpressionWithoutBlockKind::AsyncBlock);
         }

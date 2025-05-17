@@ -55,6 +55,9 @@ impl<'a> ExpressionWithoutBlockKind<'a> {
             ExpressionWithoutBlockKind::TupleIndex(tuple_index) => {
                 ExpressionWithoutBlockKind::TupleIndex(tuple_index.into_static())
             }
+            ExpressionWithoutBlockKind::Closure(closure) => {
+                ExpressionWithoutBlockKind::Closure(closure.into_static())
+            }
         }
     }
 }

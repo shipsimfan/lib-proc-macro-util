@@ -1,9 +1,9 @@
 use crate::ast::{
     expressions::{
         ArrayExpression, AsyncBlockExpression, AwaitExpression, BreakExpression, CallExpression,
-        ContinueExpression, FieldExpression, GroupedExpression, IndexExpression, LiteralExpression,
-        MethodCallExpression, OperatorExpression, PathExpression, ReturnExpression,
-        TupleIndexExpression, UnderscoreExpression,
+        ClosureExpression, ContinueExpression, FieldExpression, GroupedExpression, IndexExpression,
+        LiteralExpression, MethodCallExpression, OperatorExpression, PathExpression,
+        ReturnExpression, TupleIndexExpression, UnderscoreExpression,
     },
     MacroInvocation,
 };
@@ -67,4 +67,7 @@ pub enum ExpressionWithoutBlockKind<'a> {
 
     /// Accesses an element in a tuple
     TupleIndex(TupleIndexExpression<'a>),
+
+    /// A function which can capture local variables
+    Closure(ClosureExpression<'a>),
 }
