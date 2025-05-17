@@ -3,7 +3,7 @@ use crate::ast::{
         ArrayExpression, AsyncBlockExpression, AwaitExpression, BreakExpression, CallExpression,
         ClosureExpression, ContinueExpression, FieldExpression, GroupedExpression, IndexExpression,
         LiteralExpression, MethodCallExpression, OperatorExpression, PathExpression,
-        ReturnExpression, TupleIndexExpression, UnderscoreExpression,
+        RangeExpression, ReturnExpression, TupleIndexExpression, UnderscoreExpression,
     },
     MacroInvocation,
 };
@@ -70,4 +70,7 @@ pub enum ExpressionWithoutBlockKind<'a> {
 
     /// A function which can capture local variables
     Closure(ClosureExpression<'a>),
+
+    /// A range between two expressions
+    Range(RangeExpression<'a>),
 }

@@ -4,7 +4,7 @@ use crate::{
             ArithmeticOrLogicalExpression, AssignmentExpression, AwaitExpression, CallExpression,
             ComparisonExpression, CompoundAssignmentExpression, ErrorPropagationExpression,
             FieldExpression, IndexExpression, LazyBooleanExpression, MethodCallExpression,
-            OperatorExpression, TupleIndexExpression, TypeCastExpression,
+            OperatorExpression, RangeExpression, TupleIndexExpression, TypeCastExpression,
         },
         ExpressionWithoutBlock, ExpressionWithoutBlockKind,
     },
@@ -107,6 +107,20 @@ impl<'a> Parse<'a> for ExpressionWithoutBlock<'a> {
                             right: parser.parse()?,
                         },
                     )),
+                });
+            }
+
+            if let Ok(operator) = parser.step_parse() {
+                let mut attributes = Vec::new();
+                std::mem::swap(&mut attributes, &mut ret.attributes);
+
+                return Ok(ExpressionWithoutBlock {
+                    attributes,
+                    kind: ExpressionWithoutBlockKind::Range(RangeExpression {
+                        lower: Some(Box::new(ret.into_expression())),
+                        operator,
+                        upper: parser.parse()?,
+                    }),
                 });
             }
 

@@ -58,6 +58,9 @@ impl<'a> ExpressionWithoutBlockKind<'a> {
             ExpressionWithoutBlockKind::Closure(closure) => {
                 ExpressionWithoutBlockKind::Closure(closure.into_static())
             }
+            ExpressionWithoutBlockKind::Range(range) => {
+                ExpressionWithoutBlockKind::Range(range.into_static())
+            }
         }
     }
 }

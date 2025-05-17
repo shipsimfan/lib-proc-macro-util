@@ -1,5 +1,5 @@
 use crate::{
-    ast::ExpressionWithoutBlockKind,
+    ast::{expressions::RangeExpression, ExpressionWithoutBlockKind},
     tokens::{Group, Literal},
     Parse, Parser, Result, Token,
 };
@@ -28,6 +28,14 @@ impl<'a> Parse<'a> for ExpressionWithoutBlockKind<'a> {
 
         if parser.peek::<Token![async]>() {
             return parser.parse().map(ExpressionWithoutBlockKind::AsyncBlock);
+        }
+
+        if let Ok(operator) = parser.step_parse() {
+            return Ok(ExpressionWithoutBlockKind::Range(RangeExpression {
+                lower: None,
+                operator,
+                upper: parser.parse()?,
+            }));
         }
 
         if parser.peek::<&'a Literal>()
