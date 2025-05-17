@@ -15,6 +15,9 @@ impl<'a> ToTokens for OperatorExpression<'a> {
                 arithmetic_or_logical.to_tokens(generator)
             }
             OperatorExpression::LazyBoolean(lazy_boolean) => lazy_boolean.to_tokens(generator),
+            OperatorExpression::CompoundAssignment(compound_assignment) => {
+                compound_assignment.to_tokens(generator)
+            }
         }
     }
 }

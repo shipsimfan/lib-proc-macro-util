@@ -4,6 +4,8 @@ use crate::ast::expressions::{
     TypeCastExpression,
 };
 
+use super::CompoundAssignmentExpression;
+
 impl<'a> From<BorrowExpression<'a>> for OperatorExpression<'a> {
     fn from(borrow: BorrowExpression<'a>) -> Self {
         OperatorExpression::Borrow(borrow)
@@ -49,5 +51,11 @@ impl<'a> From<ArithmeticOrLogicalExpression<'a>> for OperatorExpression<'a> {
 impl<'a> From<LazyBooleanExpression<'a>> for OperatorExpression<'a> {
     fn from(lazy_boolean: LazyBooleanExpression<'a>) -> Self {
         OperatorExpression::LazyBoolean(lazy_boolean)
+    }
+}
+
+impl<'a> From<CompoundAssignmentExpression<'a>> for OperatorExpression<'a> {
+    fn from(compound_assignment: CompoundAssignmentExpression<'a>) -> Self {
+        OperatorExpression::CompoundAssignment(compound_assignment)
     }
 }

@@ -30,9 +30,8 @@
          1. MacroRulesDefinition
      2. Expression
        1. AssignmentExpression
-       2. CompoundAssignmentExpression
-       3. ClosureExpression
-       4. TupleExpression
-       5. RangeExpression
-       6. StructExpression
+       2. ClosureExpression
+       3. TupleExpression
+       4. RangeExpression
+       5. StructExpression
      3. Crate

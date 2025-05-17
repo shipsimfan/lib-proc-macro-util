@@ -1,6 +1,7 @@
-mod arithmetic_or;
+mod arithmetic_or_logical;
 mod borrow;
 mod comparison;
+mod compound_assignment;
 mod dereference;
 mod error_propagation;
 mod lazy_boolean;
@@ -13,9 +14,10 @@ mod parse;
 mod to_static;
 mod to_tokens;
 
-pub use arithmetic_or::{ArithmeticOrLogicalExpression, ArithmeticOrLogicalOperator};
+pub use arithmetic_or_logical::{ArithmeticOrLogicalExpression, ArithmeticOrLogicalOperator};
 pub use borrow::*;
 pub use comparison::{ComparisonExpression, ComparisonOperator};
+pub use compound_assignment::{CompoundAssignmentExpression, CompoundAssignmentOperator};
 pub use dereference::DereferenceExpression;
 pub use error_propagation::ErrorPropagationExpression;
 pub use lazy_boolean::{LazyBooleanExpression, LazyBooleanOperator};
@@ -48,4 +50,7 @@ pub enum OperatorExpression<'a> {
 
     /// A comparison between two boolean expressions
     LazyBoolean(LazyBooleanExpression<'a>),
+
+    /// A combined assigned and arithmetic or logical operation
+    CompoundAssignment(CompoundAssignmentExpression<'a>),
 }

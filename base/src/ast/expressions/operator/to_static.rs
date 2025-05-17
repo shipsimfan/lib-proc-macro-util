@@ -26,6 +26,9 @@ impl<'a> OperatorExpression<'a> {
             OperatorExpression::LazyBoolean(lazy_boolean) => {
                 OperatorExpression::LazyBoolean(lazy_boolean.into_static())
             }
+            OperatorExpression::CompoundAssignment(compound_assignment) => {
+                OperatorExpression::CompoundAssignment(compound_assignment.into_static())
+            }
         }
     }
 }
