@@ -1,10 +1,10 @@
 use crate::{
     ast::{
         expressions::{
-            ArithmeticOrLogicalExpression, AwaitExpression, CallExpression, ComparisonExpression,
-            CompoundAssignmentExpression, ErrorPropagationExpression, FieldExpression,
-            IndexExpression, LazyBooleanExpression, MethodCallExpression, OperatorExpression,
-            TupleIndexExpression, TypeCastExpression,
+            ArithmeticOrLogicalExpression, AssignmentExpression, AwaitExpression, CallExpression,
+            ComparisonExpression, CompoundAssignmentExpression, ErrorPropagationExpression,
+            FieldExpression, IndexExpression, LazyBooleanExpression, MethodCallExpression,
+            OperatorExpression, TupleIndexExpression, TypeCastExpression,
         },
         ExpressionWithoutBlock, ExpressionWithoutBlockKind,
     },
@@ -92,6 +92,22 @@ impl<'a> Parse<'a> for ExpressionWithoutBlock<'a> {
                 };
 
                 continue;
+            }
+
+            if let Ok(equals) = parser.step_parse() {
+                let mut attributes = Vec::new();
+                std::mem::swap(&mut attributes, &mut ret.attributes);
+
+                return Ok(ExpressionWithoutBlock {
+                    attributes,
+                    kind: ExpressionWithoutBlockKind::Operator(OperatorExpression::Assignment(
+                        AssignmentExpression {
+                            left: Box::new(ret.into_expression()),
+                            equals,
+                            right: parser.parse()?,
+                        },
+                    )),
+                });
             }
 
             if let Ok(comparison_operator) = parser.step_parse() {

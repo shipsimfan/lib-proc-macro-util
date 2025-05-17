@@ -29,6 +29,9 @@ impl<'a> OperatorExpression<'a> {
             OperatorExpression::CompoundAssignment(compound_assignment) => {
                 OperatorExpression::CompoundAssignment(compound_assignment.into_static())
             }
+            OperatorExpression::Assignment(assignment) => {
+                OperatorExpression::Assignment(assignment.into_static())
+            }
         }
     }
 }

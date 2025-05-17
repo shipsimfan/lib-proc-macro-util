@@ -1,4 +1,5 @@
 mod arithmetic_or_logical;
+mod assignment;
 mod borrow;
 mod comparison;
 mod compound_assignment;
@@ -15,6 +16,7 @@ mod to_static;
 mod to_tokens;
 
 pub use arithmetic_or_logical::{ArithmeticOrLogicalExpression, ArithmeticOrLogicalOperator};
+pub use assignment::AssignmentExpression;
 pub use borrow::*;
 pub use comparison::{ComparisonExpression, ComparisonOperator};
 pub use compound_assignment::{CompoundAssignmentExpression, CompoundAssignmentOperator};
@@ -53,4 +55,7 @@ pub enum OperatorExpression<'a> {
 
     /// A combined assigned and arithmetic or logical operation
     CompoundAssignment(CompoundAssignmentExpression<'a>),
+
+    /// An expression which assigns contents to a variable
+    Assignment(AssignmentExpression<'a>),
 }

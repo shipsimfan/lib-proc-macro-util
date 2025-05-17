@@ -18,6 +18,7 @@ impl<'a> ToTokens for OperatorExpression<'a> {
             OperatorExpression::CompoundAssignment(compound_assignment) => {
                 compound_assignment.to_tokens(generator)
             }
+            OperatorExpression::Assignment(assignment) => assignment.to_tokens(generator),
         }
     }
 }

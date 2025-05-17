@@ -1,10 +1,8 @@
 use crate::ast::expressions::{
-    ArithmeticOrLogicalExpression, BorrowExpression, ComparisonExpression, DereferenceExpression,
-    ErrorPropagationExpression, LazyBooleanExpression, NegationExpression, OperatorExpression,
-    TypeCastExpression,
+    ArithmeticOrLogicalExpression, AssignmentExpression, BorrowExpression, ComparisonExpression,
+    CompoundAssignmentExpression, DereferenceExpression, ErrorPropagationExpression,
+    LazyBooleanExpression, NegationExpression, OperatorExpression, TypeCastExpression,
 };
-
-use super::CompoundAssignmentExpression;
 
 impl<'a> From<BorrowExpression<'a>> for OperatorExpression<'a> {
     fn from(borrow: BorrowExpression<'a>) -> Self {
@@ -57,5 +55,11 @@ impl<'a> From<LazyBooleanExpression<'a>> for OperatorExpression<'a> {
 impl<'a> From<CompoundAssignmentExpression<'a>> for OperatorExpression<'a> {
     fn from(compound_assignment: CompoundAssignmentExpression<'a>) -> Self {
         OperatorExpression::CompoundAssignment(compound_assignment)
+    }
+}
+
+impl<'a> From<AssignmentExpression<'a>> for OperatorExpression<'a> {
+    fn from(assignment: AssignmentExpression<'a>) -> Self {
+        OperatorExpression::Assignment(assignment)
     }
 }

@@ -29,9 +29,8 @@
        2. MacroItem
          1. MacroRulesDefinition
      2. Expression
-       1. AssignmentExpression
-       2. ClosureExpression
-       3. TupleExpression
-       4. RangeExpression
-       5. StructExpression
+       1. ClosureExpression
+       2. TupleExpression
+       3. RangeExpression
+       4. StructExpression
      3. Crate
