@@ -48,7 +48,12 @@ impl<'a> Parse<'a> for ExpressionWithoutBlockKind<'a> {
             return parser.parse().map(ExpressionWithoutBlockKind::Literal);
         }
 
-        if parser.peek::<Token![&]>() || parser.peek::<Token![&&]>() || parser.peek::<Token![*]>() {
+        if parser.peek::<Token![&]>()
+            || parser.peek::<Token![&&]>()
+            || parser.peek::<Token![*]>()
+            || parser.peek::<Token![-]>()
+            || parser.peek::<Token![!]>()
+        {
             return parser.parse().map(ExpressionWithoutBlockKind::Operator);
         }
 
