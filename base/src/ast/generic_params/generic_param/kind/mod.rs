@@ -3,6 +3,7 @@ mod lifetime;
 mod r#type;
 
 mod parse;
+mod to_generic_arg;
 mod to_static;
 mod to_tokens;
 

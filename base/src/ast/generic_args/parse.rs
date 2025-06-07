@@ -7,7 +7,7 @@ impl<'a> Parse<'a> for GenericArgs<'a> {
             args: parser.parse()?,
             last_arg: parser.parse()?,
             last_comma: parser.parse()?,
-            end: parser.parse()?,
+            close: parser.parse()?,
         })
     }
 }

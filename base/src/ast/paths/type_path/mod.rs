@@ -3,6 +3,7 @@ use crate::Token;
 mod r#fn;
 mod segment;
 
+mod from_ident;
 mod parse;
 mod to_static;
 mod to_tokens;

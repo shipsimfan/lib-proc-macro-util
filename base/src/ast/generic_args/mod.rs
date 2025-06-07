@@ -30,5 +30,5 @@ pub struct GenericArgs<'a> {
     pub last_comma: Option<Token![,]>,
 
     /// The marker for the end of generic arguments
-    pub end: Token![>],
+    pub close: Token![>],
 }

@@ -6,6 +6,6 @@ impl<'a> ToTokens for GenericArgs<'a> {
         self.args.to_tokens(generator);
         self.last_arg.to_tokens(generator);
         self.last_comma.to_tokens(generator);
-        self.end.to_tokens(generator);
+        self.close.to_tokens(generator);
     }
 }

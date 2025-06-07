@@ -11,7 +11,7 @@ mod to_tokens;
 #[derive(Debug, Clone)]
 pub struct PathExprSegment<'a> {
     /// The name of the segment
-    pub ident: PathIdentSegment,
+    pub ident: PathIdentSegment<'a>,
 
     /// Generic arugments modifying this segment
     pub generic_args: Option<(Token![::], GenericArgs<'a>)>,

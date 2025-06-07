@@ -8,6 +8,7 @@ use std::borrow::Cow;
 mod parse;
 mod to_static;
 mod to_tokens;
+mod to_type;
 
 /// A generic type parameter
 #[derive(Debug, Clone)]

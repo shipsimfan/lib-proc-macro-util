@@ -1,6 +1,6 @@
 use crate::{ast::PathIdentSegment, Generator, ToTokens};
 
-impl ToTokens for PathIdentSegment {
+impl<'a> ToTokens for PathIdentSegment<'a> {
     fn to_tokens(self, generator: &mut Generator) {
         match self {
             PathIdentSegment::Identifier(identifier) => identifier.to_tokens(generator),

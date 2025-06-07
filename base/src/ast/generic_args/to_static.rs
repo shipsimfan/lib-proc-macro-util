@@ -12,7 +12,7 @@ impl<'a> GenericArgs<'a> {
                 .collect(),
             last_arg: self.last_arg.into_static(),
             last_comma: self.last_comma,
-            end: self.end,
+            close: self.close,
         }
     }
 }

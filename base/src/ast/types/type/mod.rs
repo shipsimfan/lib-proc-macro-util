@@ -7,6 +7,7 @@ use crate::ast::{
     MacroInvocation, QualifiedPathInType, TypePath,
 };
 
+mod from_ident;
 mod parse;
 mod to_static;
 mod to_tokens;

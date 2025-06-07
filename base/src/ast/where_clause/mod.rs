@@ -2,6 +2,7 @@ use crate::Token;
 
 mod item;
 
+mod add_trait_bounds;
 mod parse;
 mod to_static;
 mod to_tokens;
