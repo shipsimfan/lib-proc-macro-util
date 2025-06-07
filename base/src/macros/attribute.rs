@@ -24,7 +24,7 @@ macro_rules! proc_macro_attribute {
             };
 
             let item_buffer = $crate::collect_token_stream(item_stream);
-            let item = match $crate::parse::<$crate::ast::Item>(&item_buffer, true) {
+            let item = match $crate::parse(&item_buffer, true) {
                 Ok(item) => item,
                 Err(error) => return $crate::generate(error),
             };
