@@ -1,13 +1,17 @@
-use crate::{ast::Lifetime, tokens::Identifier, Token};
+use crate::{ast::Lifetime, tokens::Identifier, Spacing, Token};
 
 impl<'a> Lifetime<'a> {
     /// Creates a new [`Lifetime`] from `identifier`
     pub fn new<T: Into<Identifier>>(identifier: T) -> Self {
-        Lifetime::Identifier(Token!['_](), identifier.into().into())
+        let mut comma = Token!['_]();
+        comma.final_spacing = Spacing::Joint;
+        Lifetime::Identifier(comma, identifier.into().into())
     }
 
     /// Creates a new anonymous [`Lifetime`]
     pub fn new_anon() -> Self {
-        Lifetime::Underscore(Token!['_](), Token![_]())
+        let mut comma = Token!['_]();
+        comma.final_spacing = Spacing::Joint;
+        Lifetime::Underscore(comma, Token![_]())
     }
 }

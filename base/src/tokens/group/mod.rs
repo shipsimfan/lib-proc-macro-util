@@ -22,12 +22,12 @@ pub struct Group {
 
 impl Group {
     /// Creates a [`Parser`] for this groups tokens
-    pub fn parser(&self) -> Parser {
+    pub fn parser<'a>(&'a self) -> Parser<'a> {
         Parser::new(&self.tokens)
     }
 
     /// Creates a generator over the tokens of this group
-    pub fn generator(&mut self) -> Generator {
+    pub fn generator<'a>(&'a mut self) -> Generator<'a> {
         Generator::new(&mut self.tokens)
     }
 }

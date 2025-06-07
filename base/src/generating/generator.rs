@@ -34,7 +34,7 @@ impl<'a> Generator<'a> {
     }
 
     /// Inserts a new group with delimited by `delimiter` and returns a generator for that group
-    pub fn group(&mut self, delimiter: Delimiter) -> Generator {
+    pub fn group<'b>(&'b mut self, delimiter: Delimiter) -> Generator<'b> {
         self.tokens.push(Group::new(delimiter).into());
         match self.tokens.last_mut() {
             Some(TokenTree::Group(group)) => group.generator(),
@@ -44,19 +44,19 @@ impl<'a> Generator<'a> {
 
     /// Inserts a new group with delimited by [`Delimiter::Brace`] and returns a generator for that
     /// group
-    pub fn group_brace(&mut self) -> Generator {
+    pub fn group_brace<'b>(&'b mut self) -> Generator<'b> {
         self.group(Delimiter::Brace)
     }
 
     /// Inserts a new group with delimited by [`Delimiter::Bracket`] and returns a generator for
     /// that group
-    pub fn group_bracket(&mut self) -> Generator {
+    pub fn group_bracket<'b>(&'b mut self) -> Generator<'b> {
         self.group(Delimiter::Bracket)
     }
 
     /// Inserts a new group with delimited by [`Delimiter::Parenthesis`] and returns a generator
     /// for that group
-    pub fn group_parenthesis(&mut self) -> Generator {
+    pub fn group_parenthesis<'b>(&'b mut self) -> Generator<'b> {
         self.group(Delimiter::Parenthesis)
     }
 }
