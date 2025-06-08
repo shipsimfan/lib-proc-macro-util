@@ -80,9 +80,6 @@ impl<'a> Parse<'a> for ExpressionWithoutBlockKind<'a> {
         if let Ok(path) = parser.step_parse() {
             return Ok(match parser.step_parse() {
                 Ok(StructExprKind::Unit) | Err(_) => {
-                    if !parser.empty() {
-                        println!("GOT A PATH: {:?}", path);
-                    }
                     ExpressionWithoutBlockKind::Path(PathExpression::Normal(path))
                 }
                 Ok(kind) => ExpressionWithoutBlockKind::Struct(StructExpression { path, kind }),
