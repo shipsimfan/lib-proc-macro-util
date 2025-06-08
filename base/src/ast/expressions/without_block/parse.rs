@@ -20,6 +20,20 @@ impl<'a> Parse<'a> for ExpressionWithoutBlock<'a> {
         };
 
         loop {
+            if let Ok(operator) = parser.step_parse() {
+                let mut attributes = Vec::new();
+                std::mem::swap(&mut attributes, &mut ret.attributes);
+
+                return Ok(ExpressionWithoutBlock {
+                    attributes,
+                    kind: ExpressionWithoutBlockKind::Range(RangeExpression {
+                        lower: Some(Box::new(ret.into_expression())),
+                        operator,
+                        upper: parser.parse()?,
+                    }),
+                });
+            }
+
             if let Ok(dot) = parser.step_parse() {
                 let mut attributes = Vec::new();
                 std::mem::swap(&mut attributes, &mut ret.attributes);
@@ -94,36 +108,6 @@ impl<'a> Parse<'a> for ExpressionWithoutBlock<'a> {
                 continue;
             }
 
-            if let Ok(equals) = parser.step_parse() {
-                let mut attributes = Vec::new();
-                std::mem::swap(&mut attributes, &mut ret.attributes);
-
-                return Ok(ExpressionWithoutBlock {
-                    attributes,
-                    kind: ExpressionWithoutBlockKind::Operator(OperatorExpression::Assignment(
-                        AssignmentExpression {
-                            left: Box::new(ret.into_expression()),
-                            equals,
-                            right: parser.parse()?,
-                        },
-                    )),
-                });
-            }
-
-            if let Ok(operator) = parser.step_parse() {
-                let mut attributes = Vec::new();
-                std::mem::swap(&mut attributes, &mut ret.attributes);
-
-                return Ok(ExpressionWithoutBlock {
-                    attributes,
-                    kind: ExpressionWithoutBlockKind::Range(RangeExpression {
-                        lower: Some(Box::new(ret.into_expression())),
-                        operator,
-                        upper: parser.parse()?,
-                    }),
-                });
-            }
-
             if let Ok(comparison_operator) = parser.step_parse() {
                 let mut attributes = Vec::new();
                 std::mem::swap(&mut attributes, &mut ret.attributes);
@@ -134,6 +118,22 @@ impl<'a> Parse<'a> for ExpressionWithoutBlock<'a> {
                         ComparisonExpression {
                             left: Box::new(ret.into_expression()),
                             operator: comparison_operator,
+                            right: parser.parse()?,
+                        },
+                    )),
+                });
+            }
+
+            if let Ok(lazy_boolean_operator) = parser.step_parse() {
+                let mut attributes = Vec::new();
+                std::mem::swap(&mut attributes, &mut ret.attributes);
+
+                return Ok(ExpressionWithoutBlock {
+                    attributes,
+                    kind: ExpressionWithoutBlockKind::Operator(OperatorExpression::LazyBoolean(
+                        LazyBooleanExpression {
+                            left: Box::new(ret.into_expression()),
+                            operator: lazy_boolean_operator,
                             right: parser.parse()?,
                         },
                     )),
@@ -156,22 +156,6 @@ impl<'a> Parse<'a> for ExpressionWithoutBlock<'a> {
                 });
             }
 
-            if let Ok(lazy_boolean_operator) = parser.step_parse() {
-                let mut attributes = Vec::new();
-                std::mem::swap(&mut attributes, &mut ret.attributes);
-
-                return Ok(ExpressionWithoutBlock {
-                    attributes,
-                    kind: ExpressionWithoutBlockKind::Operator(OperatorExpression::LazyBoolean(
-                        LazyBooleanExpression {
-                            left: Box::new(ret.into_expression()),
-                            operator: lazy_boolean_operator,
-                            right: parser.parse()?,
-                        },
-                    )),
-                });
-            }
-
             if let Ok(compound_assignment_operator) = parser.step_parse() {
                 let mut attributes = Vec::new();
                 std::mem::swap(&mut attributes, &mut ret.attributes);
@@ -185,6 +169,22 @@ impl<'a> Parse<'a> for ExpressionWithoutBlock<'a> {
                             right: parser.parse()?,
                         }),
                     ),
+                });
+            }
+
+            if let Ok(equals) = parser.step_parse() {
+                let mut attributes = Vec::new();
+                std::mem::swap(&mut attributes, &mut ret.attributes);
+
+                return Ok(ExpressionWithoutBlock {
+                    attributes,
+                    kind: ExpressionWithoutBlockKind::Operator(OperatorExpression::Assignment(
+                        AssignmentExpression {
+                            left: Box::new(ret.into_expression()),
+                            equals,
+                            right: parser.parse()?,
+                        },
+                    )),
                 });
             }
 
