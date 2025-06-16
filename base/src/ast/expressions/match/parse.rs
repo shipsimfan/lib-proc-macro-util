@@ -7,7 +7,7 @@ use crate::{
 impl<'a> Parse<'a> for MatchExpression<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         let r#match = parser.parse()?;
-        let scrutinee = parser.parse()?;
+        let scrutinee = Box::new(Expression::parse_without_struct(parser)?);
 
         let group: &'a Group = parser.parse()?;
         if group.delimiter != Delimiter::Brace {

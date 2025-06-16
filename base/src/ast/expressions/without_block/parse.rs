@@ -25,7 +25,7 @@ impl<'a> ExpressionWithoutBlock<'a> {
         Self::do_parse(parser, false)
     }
 
-    fn do_parse(parser: &mut Parser<'a>, include_struct: bool) -> Result<Self> {
+    pub(crate) fn do_parse(parser: &mut Parser<'a>, include_struct: bool) -> Result<Self> {
         let mut ret = ExpressionWithoutBlock {
             attributes: parser.parse()?,
             kind: ExpressionWithoutBlockKind::do_parse(parser, include_struct)?,
