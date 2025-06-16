@@ -14,9 +14,21 @@ use crate::{
 
 impl<'a> Parse<'a> for ExpressionWithoutBlock<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
+        Self::do_parse(parser, true)
+    }
+}
+
+impl<'a> ExpressionWithoutBlock<'a> {
+    /// Parse an [`ExpressionWithoutBlock`] without parsing a
+    /// [`StructExpression`](crate::ast::expressions::StructExpression)
+    pub fn parse_without_struct(parser: &mut Parser<'a>) -> Result<Self> {
+        Self::do_parse(parser, false)
+    }
+
+    fn do_parse(parser: &mut Parser<'a>, include_struct: bool) -> Result<Self> {
         let mut ret = ExpressionWithoutBlock {
             attributes: parser.parse()?,
-            kind: parser.parse()?,
+            kind: ExpressionWithoutBlockKind::do_parse(parser, include_struct)?,
         };
 
         loop {
