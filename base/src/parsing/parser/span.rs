@@ -1,4 +1,6 @@
-use crate::{tokens::TokenTree, Error, Parser, Span};
+use proc_macro::Diagnostic;
+
+use crate::{tokens::TokenTree, Parser, Span};
 
 impl<'a> Parser<'a> {
     /// Get the span of the next element
@@ -23,8 +25,8 @@ impl<'a> Parser<'a> {
     ///  * `message` - The message which will be displayed
     ///
     /// ## Return Value
-    /// Returns the newly created [`Error`]
-    pub fn error<T: std::fmt::Display>(&self, message: T) -> Error {
-        Error::new_at(message, self.span())
+    /// Returns the newly created [`Diagnostic`]
+    pub fn error<T: Into<String>>(&self, message: T) -> Diagnostic {
+        self.span().error(message)
     }
 }

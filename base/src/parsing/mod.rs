@@ -1,14 +1,15 @@
 use crate::tokens::TokenTree;
 
 mod collect_token_stream;
-mod error;
 mod parse;
 mod parser;
 
 pub use collect_token_stream::collect_token_stream;
-pub use error::{Error, ErrorMessage, Result};
 pub use parse::Parse;
 pub use parser::Parser;
+
+/// A result from parsing tokens
+pub type Result<T> = core::result::Result<T, ()>;
 
 ///
 /// ## Parameters
@@ -24,6 +25,7 @@ pub fn parse<'a, T: Parse<'a>>(tokens: &'a [TokenTree], full: bool) -> Result<T>
     if !full || parser.empty() {
         Ok(result)
     } else {
-        Err(Error::new("expected the end of the macro"))
+        parser.span().error("unexpected token").emit();
+        Err(())
     }
 }
