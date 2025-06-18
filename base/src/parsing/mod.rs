@@ -1,4 +1,4 @@
-use crate::tokens::TokenTree;
+use crate::{tokens::TokenTree, Span};
 
 mod collect_token_stream;
 mod parse;
@@ -19,8 +19,8 @@ pub type Result<T> = core::result::Result<T, ()>;
 ///
 /// ## Return Value
 /// Returns the object parsed from `input` on success.
-pub fn parse<'a, T: Parse<'a>>(tokens: &'a [TokenTree], full: bool) -> Result<T> {
-    let mut parser = Parser::new(&tokens);
+pub fn parse<'a, T: Parse<'a>>(tokens: &'a [TokenTree], full: bool, span: Span) -> Result<T> {
+    let mut parser = Parser::new(&tokens, span);
     let result = parser.parse()?;
     if !full || parser.empty() {
         Ok(result)

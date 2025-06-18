@@ -1,4 +1,4 @@
-use crate::tokens::TokenTree;
+use crate::{tokens::TokenTree, Span};
 
 mod from;
 mod new;
@@ -13,6 +13,9 @@ pub struct Parser<'a> {
 
     /// The current location of this parser in the stream
     index: usize,
+
+    /// The span to produce for end errors
+    span: Span,
 }
 
 impl<'a> Parser<'a> {

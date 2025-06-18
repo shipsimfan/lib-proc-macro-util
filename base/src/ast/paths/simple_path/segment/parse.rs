@@ -6,9 +6,13 @@ impl<'a> Parse<'a> for SimplePathSegment<'a> {
             return Ok(SimplePathSegment::DollarCrate(dollar, parser.parse()?));
         }
 
+        if let Ok(identifier) = parser.step_parse() {
+            return Ok(SimplePathSegment::Identifier(identifier));
+        }
+
         parser
-            .parse()
-            .map(|identifier| SimplePathSegment::Identifier(identifier))
-            .map_err(|_| parser.error("expected a simple path segment"))
+            .error("expected identifier, `self`, `super`, `crate`, or `Self`")
+            .emit();
+        Err(())
     }
 }

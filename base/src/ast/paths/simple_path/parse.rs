@@ -1,16 +1,14 @@
-use crate::{ast::SimplePath, Parse, Parser, Result, Token};
+use crate::{ast::SimplePath, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for SimplePath<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        let leading: Option<Token![::]> = parser.parse()?;
-        let first = parser.parse().map_err(|error| {
-            if leading.is_some() {
-                error
-            } else {
-                parser.error("expected a simple path")
-            }
-        })?;
-        let remaining = parser.parse()?;
+        let leading = parser.parse()?;
+        let first = parser.parse()?;
+
+        let mut remaining = Vec::new();
+        while let Ok(path_sep) = parser.step_parse() {
+            remaining.push((path_sep, parser.parse()?));
+        }
 
         Ok(SimplePath {
             leading,

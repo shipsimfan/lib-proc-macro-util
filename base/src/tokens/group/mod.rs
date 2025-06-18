@@ -23,7 +23,7 @@ pub struct Group {
 impl Group {
     /// Creates a [`Parser`] for this groups tokens
     pub fn parser<'a>(&'a self) -> Parser<'a> {
-        Parser::new(&self.tokens)
+        Parser::new(&self.tokens, self.span.end())
     }
 
     /// Creates a generator over the tokens of this group

@@ -6,9 +6,13 @@ impl<'a> Parse<'a> for AttrInput<'a> {
             return Ok(AttrInput::Expression(equals, parser.parse()?));
         }
 
+        if let Ok(group) = parser.step_parse() {
+            return Ok(AttrInput::Group(group));
+        }
+
         parser
-            .parse()
-            .map(|group| AttrInput::Group(group))
-            .map_err(|_| parser.error("expected a group or an '='"))
+            .error("expected one of `(`, `::`, `=`, `[`, `]`, or `{`")
+            .emit();
+        Err(())
     }
 }
