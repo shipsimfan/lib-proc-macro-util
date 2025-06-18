@@ -5,10 +5,14 @@ use crate::{
 
 impl<'a> Parse<'a> for &'a Identifier {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        match parser.next() {
-            Some(TokenTree::Identifier(identifier)) => Ok(identifier.into()),
-            _ => Err(parser.error("expected an identifier")),
-        }
+        let span = match parser.next() {
+            Some(TokenTree::Identifier(identifier)) => return Ok(identifier),
+            Some(token_tree) => token_tree.span(),
+            None => parser.span(),
+        };
+
+        span.error("expected an identifier").emit();
+        Err(())
     }
 }
 

@@ -5,10 +5,14 @@ use crate::{
 
 impl<'a> Parse<'a> for &'a Punctuation {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        match parser.next() {
-            Some(TokenTree::Punctuation(punctuation)) => Ok(punctuation.into()),
-            _ => Err(parser.error("expected punctuation")),
-        }
+        let span = match parser.next() {
+            Some(TokenTree::Punctuation(punctuation)) => return Ok(punctuation),
+            Some(token_tree) => token_tree.span(),
+            None => parser.span(),
+        };
+
+        span.error("expected punctuation").emit();
+        Err(())
     }
 }
 

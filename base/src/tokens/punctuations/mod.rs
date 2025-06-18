@@ -1,4 +1,7 @@
-use crate::{tokens::Punctuation, Generator, Parse, Parser, Result, Spacing, Span, ToTokens};
+use crate::{
+    tokens::{Punctuation, TokenTree},
+    Generator, Parse, Parser, Result, Spacing, Span, ToTokens,
+};
 
 mod r#macro;
 

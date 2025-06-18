@@ -48,13 +48,20 @@ macro_rules! keywords {
 
         impl<'a> Parse<'a> for $name {
             fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-                if let Some(TokenTree::Identifier(identifier)) = parser.next() {
-                    if identifier == $keyword {
-                        return Ok(Self::new_at(identifier.span()))
-                    }
-                }
+                let span = match parser.next() {
+                    Some(TokenTree::Identifier(identifier)) => {
+                        if identifier == $keyword {
+                            return Ok(Self::new_at(identifier.span()))
+                        }
 
-                Err(parser.error(concat!("expected \"", $keyword, "\"")))
+                        identifier.span()
+                    }
+                    Some(token_tree) => token_tree.span(),
+                    None => parser.span(),
+                };
+
+                span.error(concat!("expected \"", $keyword, "\"")).emit();
+                Err(())
             }
         }
 

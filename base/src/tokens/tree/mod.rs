@@ -4,6 +4,7 @@ mod display;
 mod from;
 mod into;
 mod parse;
+mod span;
 mod to_tokens;
 
 /// One token or tree

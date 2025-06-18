@@ -66,14 +66,23 @@ macro_rules! punctuation {
                 let mut spans = [parser.span(); Self::LEN];
                 let mut final_spacing = Spacing::Alone;
                 for (i, c) in $punctuation.chars().enumerate() {
-                    let punctuation: Punctuation = parser.parse().map_err(
-                        |error| error.append(concat!("expected \"", $punctuation, "\""))
-                    )?;
+                    let punctuation = match parser.next() {
+                        Some(TokenTree::Punctuation(punctuation)) => punctuation,
+                        Some(token_tree) => {
+                            token_tree.span().error(concat!("expected \"", $punctuation, "\"")).emit();
+                            return Err(());
+                        }
+                        None => {
+                            parser.span().error(concat!("expected \"", $punctuation, "\"")).emit();
+                            return Err(());
+                        }
+                    };
 
                     if punctuation.as_char() != c || (
                         i < Self::LEN - 1 && punctuation.spacing() != Spacing::Joint
                     ) {
-                        return Err(parser.error(concat!("expected \"", $punctuation, "\"")));
+                        punctuation.span().error(concat!("expected \"", $punctuation, "\"")).emit();
+                        return Err(());
                     }
 
                     spans[i] = punctuation.span();
