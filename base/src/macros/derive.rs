@@ -19,12 +19,18 @@ macro_rules! proc_macro_derive {
             let token_buffer = $crate::collect_token_stream(input);
             let derive_item = match $crate::parse::<$crate::ast::DeriveItem>(&token_buffer, true) {
                 Ok(derive_item) => derive_item,
-                Err(error) => return $crate::generate(error),
+                Err(error) => {
+                    error.emit();
+                    ::proc_macro::TokenStream::new()
+                }
             };
 
             match $path(derive_item) {
                 Ok(output) => $crate::generate(output),
-                Err(error) => $crate::generate(error),
+                Err(error) => {
+                    error.emit();
+                    ::proc_macro::TokenStream::new()
+                }
             }
         }
     };
@@ -40,12 +46,18 @@ macro_rules! proc_macro_derive {
             let token_buffer = $crate::collect_token_stream(input);
             let derive_item = match $crate::parse::<$crate::ast::DeriveItem>(&token_buffer, true) {
                 Ok(derive_item) => derive_item,
-                Err(error) => return $crate::generate(error),
+                Err(error) => {
+                    error.emit();
+                    ::proc_macro::TokenStream::new()
+                }
             };
 
             match $path(derive_item) {
                 Ok(output) => $crate::generate(output),
-                Err(error) => $crate::generate(error),
+                Err(error) => {
+                    error.emit();
+                    ::proc_macro::TokenStream::new()
+                }
             }
         }
     };

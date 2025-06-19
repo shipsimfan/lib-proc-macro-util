@@ -21,7 +21,7 @@ macro_rules! proc_macro_function {
         $(#[$meta])*
         pub fn $name(input: ::proc_macro::TokenStream) -> ::proc_macro::TokenStream {
             let token_buffer = $crate::collect_token_stream(input);
-            match $crate::parse::<$path>(&token_buffer, true, $crate::Span::call_site()) {
+            match $crate::parse::<$path>(&token_buffer, true, $crate::Span::call_site().end()) {
                 Ok(output) => $crate::generate(output),
                 Err(error) => {
                     error.emit();

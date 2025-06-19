@@ -20,18 +20,27 @@ macro_rules! proc_macro_attribute {
             let attr_buffer = $crate::collect_token_stream(attr_stream);
             let attr = match $crate::parse(&attr_buffer, true) {
                 Ok(attr) => attr,
-                Err(error) => return $crate::generate(error),
+                Err(error) => {
+                    error.emit();
+                    return ::proc_macro::TokenStream::new()
+                }
             };
 
             let item_buffer = $crate::collect_token_stream(item_stream);
             let item = match $crate::parse(&item_buffer, true) {
                 Ok(item) => item,
-                Err(error) => return $crate::generate(error),
+                Err(error) => {
+                    error.emit();
+                    return ::proc_macro::TokenStream::new()
+                }
             };
 
             match $path(item, attr) {
                 Ok(output) => $crate::generate(output),
-                Err(error) => $crate::generate(error),
+                Err(error) => {
+                    error.emit();
+                    ::proc_macro::TokenStream::new()
+                }
             }
         }
     };
