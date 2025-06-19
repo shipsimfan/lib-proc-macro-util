@@ -10,9 +10,6 @@ impl<'a> Parse<'a> for SimplePathSegment<'a> {
             return Ok(SimplePathSegment::Identifier(identifier));
         }
 
-        parser
-            .error("expected identifier, `self`, `super`, `crate`, or `Self`")
-            .emit();
-        Err(())
+        Err(parser.error("expected identifier, `self`, `super`, `crate`, or `Self`"))
     }
 }

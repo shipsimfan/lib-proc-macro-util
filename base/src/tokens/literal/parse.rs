@@ -11,8 +11,7 @@ impl<'a> Parse<'a> for &'a Literal {
             None => parser.span(),
         };
 
-        span.error("expected a literal").emit();
-        Err(())
+        Err(span.error("expected a literal"))
     }
 }
 

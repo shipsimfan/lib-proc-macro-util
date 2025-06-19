@@ -7,15 +7,13 @@ impl<'a> Parse<'a> for InnerAttribute<'a> {
 
         let group: &'a Group = parser.parse()?;
         if group.delimiter != Delimiter::Bracket {
-            group.span.start().error("expected `[`").emit();
-            return Err(());
+            return Err(group.span.start().error("expected `[`"));
         }
 
         let mut group_parser = group.parser();
         let attr = group_parser.parse()?;
         if !group_parser.empty() {
-            group_parser.error("expected `]`").emit();
-            return Err(());
+            return Err(group_parser.error("expected `]`"));
         }
 
         Ok(InnerAttribute {

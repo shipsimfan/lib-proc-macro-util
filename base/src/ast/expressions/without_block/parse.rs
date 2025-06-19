@@ -1,15 +1,15 @@
 use crate::{
     ast::{
-        expressions::{
+        /*expressions::{
             ArithmeticOrLogicalExpression, AssignmentExpression, AwaitExpression, CallExpression,
             ComparisonExpression, CompoundAssignmentExpression, ErrorPropagationExpression,
             FieldExpression, IndexExpression, LazyBooleanExpression, MethodCallExpression,
             OperatorExpression, RangeExpression, TupleIndexExpression, TypeCastExpression,
-        },
+        },*/
         ExpressionWithoutBlock, ExpressionWithoutBlockKind,
     },
     tokens::Group,
-    Delimiter, Error, Parse, Parser, Result,
+    Delimiter, Parse, Parser, Result,
 };
 
 impl<'a> Parse<'a> for ExpressionWithoutBlock<'a> {
@@ -30,6 +30,8 @@ impl<'a> ExpressionWithoutBlock<'a> {
             attributes: parser.parse()?,
             kind: ExpressionWithoutBlockKind::do_parse(parser, include_struct)?,
         };
+
+        /*
 
         loop {
             if let Ok(operator) = parser.step_parse() {
@@ -245,9 +247,9 @@ impl<'a> ExpressionWithoutBlock<'a> {
                 };
 
                 continue;
-            }
+            }*/
 
-            return Ok(ret);
-        }
+        return Ok(ret);
+        //}
     }
 }

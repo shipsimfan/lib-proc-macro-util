@@ -10,9 +10,6 @@ impl<'a> Parse<'a> for AttrInput<'a> {
             return Ok(AttrInput::Group(group));
         }
 
-        parser
-            .error("expected one of `(`, `::`, `=`, `[`, `]`, or `{`")
-            .emit();
-        Err(())
+        Err(parser.error("expected one of `(`, `::`, `=`, `[`, `]`, or `{`"))
     }
 }

@@ -1,3 +1,5 @@
+#![feature(proc_macro_diagnostic)]
+
 use proc_macro_util_base::proc_macro_function;
 
 mod to_tokens;

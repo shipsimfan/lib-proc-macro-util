@@ -11,8 +11,7 @@ impl<'a> Parse<'a> for &'a Group {
             None => parser.span(),
         };
 
-        span.error("expected a group").emit();
-        Err(())
+        Err(span.error("expected a group"))
     }
 }
 

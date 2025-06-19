@@ -1,6 +1,6 @@
 use crate::{
     ast::{
-        expressions::{PathExpression, RangeExpression, StructExprKind, StructExpression},
+        //expressions::{PathExpression, RangeExpression, StructExprKind, StructExpression},
         ExpressionWithoutBlockKind,
     },
     tokens::{Group, Literal},
@@ -21,6 +21,7 @@ impl<'a> ExpressionWithoutBlockKind<'a> {
     }
 
     pub(crate) fn do_parse(parser: &mut Parser<'a>, include_struct: bool) -> Result<Self> {
+        /*
         if parser.peek::<Token![_]>() {
             return parser.parse().map(ExpressionWithoutBlockKind::Underscore);
         }
@@ -107,6 +108,7 @@ impl<'a> ExpressionWithoutBlockKind<'a> {
                 PathExpression::QualifiedPathInExpression(path),
             ));
         }
+        */
 
         Err(parser.error("expected an expression without a block"))
     }

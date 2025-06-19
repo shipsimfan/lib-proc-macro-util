@@ -69,20 +69,17 @@ macro_rules! punctuation {
                     let punctuation = match parser.next() {
                         Some(TokenTree::Punctuation(punctuation)) => punctuation,
                         Some(token_tree) => {
-                            token_tree.span().error(concat!("expected `", $punctuation, "`")).emit();
-                            return Err(());
+                            return Err(token_tree.span().error(concat!("expected `", $punctuation, "`")));
                         }
                         None => {
-                            parser.span().error(concat!("expected `", $punctuation, "`")).emit();
-                            return Err(());
+                            return Err(parser.span().error(concat!("expected `", $punctuation, "`")))
                         }
                     };
 
                     if punctuation.as_char() != c || (
                         i < Self::LEN - 1 && punctuation.spacing() != Spacing::Joint
                     ) {
-                        punctuation.span().error(concat!("expected `", $punctuation, "`")).emit();
-                        return Err(());
+                        return Err(punctuation.span().error(concat!("expected `", $punctuation, "`")));
                     }
 
                     spans[i] = punctuation.span();

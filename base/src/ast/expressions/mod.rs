@@ -1,10 +1,11 @@
 //! Definitions for all expression types in Rust
 
+/*
 mod array;
 mod async_block;
 mod r#await;
-mod block;
 mod r#break;
+mod block;
 mod call;
 mod closure;
 mod const_block;
@@ -26,11 +27,13 @@ mod tuple;
 mod tuple_index;
 mod underscore;
 mod unsafe_block;
+*/
 
 mod expression;
 mod with_block;
 mod without_block;
 
+/*
 pub use array::{ArrayElements, ArrayExpression};
 pub use async_block::AsyncBlockExpression;
 pub use block::BlockExpression;
@@ -57,6 +60,7 @@ pub use tuple::TupleExpression;
 pub use tuple_index::TupleIndexExpression;
 pub use underscore::UnderscoreExpression;
 pub use unsafe_block::UnsafeBlockExpression;
+*/
 
 pub use expression::Expression;
 pub use with_block::{ExpressionWithBlock, ExpressionWithBlockKind};

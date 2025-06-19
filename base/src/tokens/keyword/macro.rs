@@ -60,8 +60,7 @@ macro_rules! keywords {
                     None => parser.span(),
                 };
 
-                span.error(concat!("expected `", $keyword, "`")).emit();
-                Err(())
+                Err(span.error(concat!("expected `", $keyword, "`")))
             }
         }
 

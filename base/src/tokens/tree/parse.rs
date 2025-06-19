@@ -4,10 +4,7 @@ impl<'a> Parse<'a> for &'a TokenTree {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         match parser.next() {
             Some(token_tree) => Ok(token_tree),
-            None => {
-                parser.error("expected a token tree").emit();
-                Err(())
-            }
+            None => Err(parser.error("expected a token tree")),
         }
     }
 }

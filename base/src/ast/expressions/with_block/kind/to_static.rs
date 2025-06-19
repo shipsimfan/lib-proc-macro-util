@@ -3,7 +3,8 @@ use crate::ast::ExpressionWithBlockKind;
 impl<'a> ExpressionWithBlockKind<'a> {
     /// Takes ownership of any borrowed elements and converts the lifetime to `'static`
     pub fn into_static(self) -> ExpressionWithBlockKind<'static> {
-        match self {
+        todo!()
+        /*match self {
             ExpressionWithBlockKind::Block(block) => {
                 ExpressionWithBlockKind::Block(block.into_static())
             }
@@ -20,6 +21,6 @@ impl<'a> ExpressionWithBlockKind<'a> {
             ExpressionWithBlockKind::Match(r#match) => {
                 ExpressionWithBlockKind::Match(r#match.into_static())
             }
-        }
+        }*/
     }
 }

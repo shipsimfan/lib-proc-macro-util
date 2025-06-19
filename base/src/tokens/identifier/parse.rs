@@ -11,8 +11,7 @@ impl<'a> Parse<'a> for &'a Identifier {
             None => parser.span(),
         };
 
-        span.error("expected an identifier").emit();
-        Err(())
+        Err(span.error("expected an identifier"))
     }
 }
 

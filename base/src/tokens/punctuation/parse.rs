@@ -11,8 +11,7 @@ impl<'a> Parse<'a> for &'a Punctuation {
             None => parser.span(),
         };
 
-        span.error("expected punctuation").emit();
-        Err(())
+        Err(span.error("expected punctuation"))
     }
 }
 

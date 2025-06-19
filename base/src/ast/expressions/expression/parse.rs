@@ -1,6 +1,6 @@
 use crate::{
     ast::{Expression, ExpressionWithoutBlock},
-    Error, Parse, Parser, Result,
+    Parse, Parser, Result,
 };
 
 impl<'a> Parse<'a> for Expression<'a> {
@@ -27,6 +27,6 @@ impl<'a> Expression<'a> {
             return Ok(Expression::WithoutBlock(expression));
         }
 
-        Err(Error::new_at("expected an expression", parser.span()))
+        Err(parser.error("expected an expression"))
     }
 }

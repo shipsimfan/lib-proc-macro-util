@@ -1,10 +1,8 @@
-use crate::{
-    ast::{expressions::LoopLabel, ExpressionWithBlockKind},
-    Parse, Parser, Result, Token,
-};
+use crate::{ast::ExpressionWithBlockKind, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for ExpressionWithBlockKind<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
+        /*
         if parser.peek::<Token![unsafe]>() {
             return parser.parse().map(ExpressionWithBlockKind::Unsafe);
         }
@@ -28,6 +26,7 @@ impl<'a> Parse<'a> for ExpressionWithBlockKind<'a> {
         if parser.peek::<Token![for]>() || parser.peek::<LoopLabel<'a>>() {
             return parser.parse().map(ExpressionWithBlockKind::Loop);
         }
+        */
 
         Err(parser.error("expected an expression with a block"))
     }

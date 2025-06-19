@@ -15,7 +15,7 @@
 
 pub use proc_macro_util_base::{
     ast, collect_token_stream, generate, into_token_stream, parse, proc_macro_attribute,
-    proc_macro_derive, proc_macro_function, tokens, Delimiter, Error, ErrorMessage, Generator,
-    Parse, Parser, Result, Spacing, Span, ToTokens, Token,
+    proc_macro_derive, proc_macro_function, tokens, Delimiter, Generator, Parse, Parser, Result,
+    Spacing, Span, ToTokens, Token,
 };
 pub use proc_macro_util_macros::*;

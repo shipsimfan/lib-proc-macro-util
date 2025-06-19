@@ -1,4 +1,4 @@
-use crate::ast::{
+/*use crate::ast::{
     expressions::{
         ArrayExpression, AsyncBlockExpression, AwaitExpression, BreakExpression, CallExpression,
         ClosureExpression, ContinueExpression, FieldExpression, GroupedExpression, IndexExpression,
@@ -7,9 +7,11 @@ use crate::ast::{
         UnderscoreExpression,
     },
     MacroInvocation,
-};
+};*/
 
-mod from;
+use std::marker::PhantomData;
+
+//mod from;
 mod new;
 mod parse;
 mod to_static;
@@ -18,6 +20,9 @@ mod to_tokens;
 /// A specific type of expression that does not have a block
 #[derive(Debug, Clone)]
 pub enum ExpressionWithoutBlockKind<'a> {
+    /// TODO: Remove
+    Phantom(PhantomData<&'a ()>),
+    /*
     /// An expression made up of a literal value
     Literal(LiteralExpression<'a>),
 
@@ -80,4 +85,5 @@ pub enum ExpressionWithoutBlockKind<'a> {
 
     /// A struct with multiple sub-expressions
     Struct(StructExpression<'a>),
+    */
 }

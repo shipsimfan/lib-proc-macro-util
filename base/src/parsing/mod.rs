@@ -1,4 +1,4 @@
-use crate::{tokens::TokenTree, Span};
+use crate::{tokens::TokenTree, Diagnostic, Span};
 
 mod collect_token_stream;
 mod parse;
@@ -9,7 +9,7 @@ pub use parse::Parse;
 pub use parser::Parser;
 
 /// A result from parsing tokens
-pub type Result<T> = core::result::Result<T, ()>;
+pub type Result<T> = core::result::Result<T, Diagnostic>;
 
 ///
 /// ## Parameters
@@ -25,7 +25,6 @@ pub fn parse<'a, T: Parse<'a>>(tokens: &'a [TokenTree], full: bool, span: Span) 
     if !full || parser.empty() {
         Ok(result)
     } else {
-        parser.span().error("unexpected token").emit();
-        Err(())
+        Err(parser.span().error("unexpected token"))
     }
 }

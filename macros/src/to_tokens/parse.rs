@@ -18,7 +18,7 @@ impl<'a> Parse<'a> for ToTokens<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         let generator = parser
             .parse()
-            .map_err(|error| error.append("expected the name of the generator to use"))?;
+            .map_err(|error| error.error("expected the name of the generator to use"))?;
 
         ToTokens::parse_without_name(parser, generator)
     }
