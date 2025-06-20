@@ -6,7 +6,7 @@ impl<'a> Parse<'a> for OuterAttribute<'a> {
 
         let group: &'a Group = match parser.step_parse() {
             Ok(group) => group,
-            Err(_) => return Err(parser.span().error("expected `[`")),
+            Err(_) => return Err(parser.error("expected `[`")),
         };
         if group.delimiter != Delimiter::Bracket {
             return Err(group.span.start().error("expected `[`"));

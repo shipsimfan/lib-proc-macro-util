@@ -1,4 +1,4 @@
-use crate::{ast::expressions::ComparisonOperator, Error, Parse, Parser, Result};
+use crate::{ast::expressions::ComparisonOperator, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for ComparisonOperator {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -28,6 +28,6 @@ impl<'a> Parse<'a> for ComparisonOperator {
             return Ok(ComparisonOperator::LessThanOrEqual(less_than_or_equal));
         }
 
-        Err(Error::new_at("unexpected token", parser.span()))
+        Err(parser.error("unexpected token"))
     }
 }

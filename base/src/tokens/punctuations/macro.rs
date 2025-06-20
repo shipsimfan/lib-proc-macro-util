@@ -72,7 +72,7 @@ macro_rules! punctuation {
                             return Err(token_tree.span().error(concat!("expected `", $punctuation, "`")));
                         }
                         None => {
-                            return Err(parser.span().error(concat!("expected `", $punctuation, "`")))
+                            return Err(parser.error(concat!("expected `", $punctuation, "`")))
                         }
                     };
 

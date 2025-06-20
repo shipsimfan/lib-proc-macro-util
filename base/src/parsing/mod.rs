@@ -25,6 +25,6 @@ pub fn parse<'a, T: Parse<'a>>(tokens: &'a [TokenTree], full: bool, span: Span) 
     if !full || parser.empty() {
         Ok(result)
     } else {
-        Err(parser.span().error("unexpected token"))
+        Err(parser.error("unexpected token"))
     }
 }

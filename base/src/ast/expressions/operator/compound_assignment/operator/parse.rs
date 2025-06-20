@@ -1,4 +1,4 @@
-use crate::{ast::expressions::CompoundAssignmentOperator, Error, Parse, Parser, Result};
+use crate::{ast::expressions::CompoundAssignmentOperator, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for CompoundAssignmentOperator {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -42,6 +42,6 @@ impl<'a> Parse<'a> for CompoundAssignmentOperator {
             return Ok(CompoundAssignmentOperator::Shr(shr));
         }
 
-        Err(Error::new_at("unexpected token", parser.span()))
+        Err(parser.error("unexpected token"))
     }
 }

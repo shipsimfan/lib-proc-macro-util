@@ -1,11 +1,9 @@
-/*use crate::ast::expressions::{
+use crate::ast::expressions::{
     BlockExpression, ConstBlockExpression, IfExpression, LoopExpression, MatchExpression,
-                    UnsafeBlockExpression,
-};*/
+    UnsafeBlockExpression,
+};
 
-use std::marker::PhantomData;
-
-//mod from;
+mod from;
 mod new;
 mod parse;
 mod to_static;
@@ -14,9 +12,6 @@ mod to_tokens;
 /// A specific type of expression that has a block
 #[derive(Debug, Clone)]
 pub enum ExpressionWithBlockKind<'a> {
-    /// TODO: Remove
-    Phantom(PhantomData<&'a ()>),
-    /*
     /// An expression made up of only a block
     Block(BlockExpression<'a>),
 
@@ -34,5 +29,4 @@ pub enum ExpressionWithBlockKind<'a> {
 
     /// An expression which runs code conditionally on matching a pattern
     Match(MatchExpression<'a>),
-    */
 }

@@ -1,4 +1,4 @@
-use crate::{ast::expressions::NegationOperator, Error, Parse, Parser, Result};
+use crate::{ast::expressions::NegationOperator, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for NegationOperator {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -10,6 +10,6 @@ impl<'a> Parse<'a> for NegationOperator {
             return Ok(NegationOperator::Boolean(exclamation));
         }
 
-        Err(Error::new_at("unexpected token", parser.span()))
+        Err(parser.error("unexpected token"))
     }
 }

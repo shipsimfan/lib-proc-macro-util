@@ -1,7 +1,7 @@
 use crate::{
     ast::{expressions::MatchExpression, Expression},
     tokens::Group,
-    Delimiter, Error, Parse, Parser, Result,
+    Delimiter, Parse, Parser, Result,
 };
 
 impl<'a> Parse<'a> for MatchExpression<'a> {
@@ -11,7 +11,7 @@ impl<'a> Parse<'a> for MatchExpression<'a> {
 
         let group: &'a Group = parser.parse()?;
         if group.delimiter != Delimiter::Brace {
-            return Err(Error::new_at("unexpected token", group.span));
+            return Err(group.span.start().error("expected `[`"));
         }
 
         let mut parser = group.parser();
@@ -36,7 +36,7 @@ impl<'a> Parse<'a> for MatchExpression<'a> {
         }
 
         if !parser.empty() {
-            return Err(Error::new_at("unexpected token", parser.span()));
+            return Err(parser.error("expected `]`"));
         }
 
         Ok(MatchExpression {

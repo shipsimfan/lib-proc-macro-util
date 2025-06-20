@@ -3,7 +3,7 @@ use crate::ast::ExpressionWithoutBlockKind;
 impl<'a> ExpressionWithoutBlockKind<'a> {
     /// Takes ownership of any borrowed elements and converts the lifetime to `'static`
     pub fn into_static(self) -> ExpressionWithoutBlockKind<'static> {
-        /*match self {
+        match self {
             ExpressionWithoutBlockKind::Literal(literal) => {
                 ExpressionWithoutBlockKind::Literal(literal.into_static())
             }
@@ -67,7 +67,6 @@ impl<'a> ExpressionWithoutBlockKind<'a> {
             ExpressionWithoutBlockKind::Struct(r#struct) => {
                 ExpressionWithoutBlockKind::Struct(r#struct.into_static())
             }
-        }*/
-        todo!()
+        }
     }
 }

@@ -16,6 +16,6 @@ impl<'a> Parse<'a> for ExpressionStatement<'a> {
             ));
         }
 
-        Err(parser.span().error("expected an expression"))
+        Err(parser.error("expected an expression"))
     }
 }

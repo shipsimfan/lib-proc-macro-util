@@ -1,11 +1,11 @@
 use crate::{
     ast::{
-        /*expressions::{
+        expressions::{
             ArithmeticOrLogicalExpression, AssignmentExpression, AwaitExpression, CallExpression,
             ComparisonExpression, CompoundAssignmentExpression, ErrorPropagationExpression,
             FieldExpression, IndexExpression, LazyBooleanExpression, MethodCallExpression,
             OperatorExpression, RangeExpression, TupleIndexExpression, TypeCastExpression,
-        },*/
+        },
         ExpressionWithoutBlock, ExpressionWithoutBlockKind,
     },
     tokens::Group,
@@ -30,8 +30,6 @@ impl<'a> ExpressionWithoutBlock<'a> {
             attributes: parser.parse()?,
             kind: ExpressionWithoutBlockKind::do_parse(parser, include_struct)?,
         };
-
-        /*
 
         loop {
             if let Ok(operator) = parser.step_parse() {
@@ -220,10 +218,7 @@ impl<'a> ExpressionWithoutBlock<'a> {
             if let Ok(index) = parser.step(|parser| {
                 let group: &'a Group = parser.parse()?;
                 if group.delimiter != Delimiter::Bracket {
-                    return Err(Error::new_at(
-                        "index expression must have square brackets",
-                        group.span,
-                    ));
+                    return Err(group.span.start().error("expected `[`"));
                 }
 
                 let mut parser = group.parser();
@@ -247,9 +242,9 @@ impl<'a> ExpressionWithoutBlock<'a> {
                 };
 
                 continue;
-            }*/
+            }
 
-        return Ok(ret);
-        //}
+            return Ok(ret);
+        }
     }
 }

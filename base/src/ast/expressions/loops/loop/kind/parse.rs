@@ -1,6 +1,4 @@
-use crate::{
-    ast::expressions::LoopExpressionKind, tokens::Group, Error, Parse, Parser, Result, Token,
-};
+use crate::{ast::expressions::LoopExpressionKind, tokens::Group, Parse, Parser, Result, Token};
 
 impl<'a> Parse<'a> for LoopExpressionKind<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -20,6 +18,6 @@ impl<'a> Parse<'a> for LoopExpressionKind<'a> {
             return parser.parse().map(LoopExpressionKind::Block);
         }
 
-        Err(Error::new_at("expected a loop expression", parser.span()))
+        Err(parser.error("expected a loop expression"))
     }
 }

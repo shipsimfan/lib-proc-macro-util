@@ -1,17 +1,17 @@
 use crate::{
     ast::{expressions::CallParams, Expression},
     tokens::Group,
-    Delimiter, Error, Parse, Parser, Result,
+    Delimiter, Parse, Parser, Result,
 };
 
 impl<'a> Parse<'a> for CallParams<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
-        let group: &'a Group = parser.parse()?;
+        let group: &'a Group = match parser.step_parse() {
+            Ok(group) => group,
+            Err(_) => return Err(parser.error("expected `(`")),
+        };
         if group.delimiter != Delimiter::Parenthesis {
-            return Err(Error::new_at(
-                "function call parameters must be surrounded by parentheses",
-                group.span,
-            ));
+            return Err(group.span.start().error("expected `(`"));
         }
 
         let mut parser = group.parser();
@@ -24,7 +24,7 @@ impl<'a> Parse<'a> for CallParams<'a> {
         };
 
         if !parser.empty() {
-            return Err(Error::new_at("unexpected token", parser.span()));
+            return Err(parser.error("expected `)`"));
         }
 
         Ok(CallParams {

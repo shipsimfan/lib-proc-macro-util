@@ -1,4 +1,4 @@
-use crate::{ast::expressions::LazyBooleanOperator, Error, Parse, Parser, Result};
+use crate::{ast::expressions::LazyBooleanOperator, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for LazyBooleanOperator {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -10,6 +10,6 @@ impl<'a> Parse<'a> for LazyBooleanOperator {
             return Ok(LazyBooleanOperator::And(and));
         }
 
-        Err(Error::new_at("unexpected token", parser.span()))
+        Err(parser.error("unexpected token"))
     }
 }

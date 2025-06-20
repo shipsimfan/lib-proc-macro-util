@@ -1,6 +1,4 @@
-use crate::{
-    ast::expressions::StructExprKind, tokens::Group, Delimiter, Error, Parse, Parser, Result,
-};
+use crate::{ast::expressions::StructExprKind, tokens::Group, Delimiter, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for StructExprKind<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -9,7 +7,7 @@ impl<'a> Parse<'a> for StructExprKind<'a> {
             let kind = match group.delimiter {
                 Delimiter::Brace => StructExprKind::Struct(parser.parse()?),
                 Delimiter::Parenthesis => StructExprKind::Tuple(parser.parse()?),
-                _ => return Err(Error::new_at("unexpected token", group.span)),
+                _ => return Err(group.span.start().error("expected `(` or `{`")),
             };
 
             if !parser.empty() {
