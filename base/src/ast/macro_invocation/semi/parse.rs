@@ -5,7 +5,7 @@ impl<'a> Parse<'a> for MacroInvocationSemi<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         let path = parser.parse()?;
         let exclamation = parser.parse()?;
-        let group: Cow<Group> = parser.parse()?;
+        let group: Cow<'a, Group> = parser.parse()?;
         match group.delimiter {
             Delimiter::Parenthesis | Delimiter::Bracket => {
                 Ok(MacroInvocationSemi::ParenthesesOrBracket(

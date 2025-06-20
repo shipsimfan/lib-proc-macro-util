@@ -1,4 +1,4 @@
-use crate::{ast::statements::ExpressionStatement, Error, Parse, Parser, Result};
+use crate::{ast::statements::ExpressionStatement, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for ExpressionStatement<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -16,6 +16,6 @@ impl<'a> Parse<'a> for ExpressionStatement<'a> {
             ));
         }
 
-        Err(Error::new_at("expected an expression", parser.span()))
+        Err(parser.span().error("expected an expression"))
     }
 }

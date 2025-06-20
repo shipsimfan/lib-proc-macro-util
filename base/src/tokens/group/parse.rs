@@ -11,7 +11,7 @@ impl<'a> Parse<'a> for &'a Group {
             None => parser.span(),
         };
 
-        Err(span.error("expected a group"))
+        Err(span.error("expected one of `(`, `[`, or `{`"))
     }
 }
 
