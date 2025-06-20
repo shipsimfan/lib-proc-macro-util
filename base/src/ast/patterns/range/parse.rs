@@ -3,7 +3,7 @@ use crate::{
         ObsoleteRangePattern, RangeExclusivePattern, RangeFromPattern, RangeInclusivePattern,
         RangePattern,
     },
-    Error, Parse, Parser, Result,
+    Parse, Parser, Result,
 };
 
 impl<'a> Parse<'a> for RangePattern<'a> {
@@ -42,6 +42,6 @@ impl<'a> Parse<'a> for RangePattern<'a> {
             return Ok(RangePattern::ToInclusive(to_inclusive));
         }
 
-        Err(Error::new_at("expected a range pattern", parser.span()))
+        Err(parser.error("expected a range pattern"))
     }
 }

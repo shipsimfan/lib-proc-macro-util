@@ -2,7 +2,7 @@ use crate::{
     ast::patterns::{
         StructPatternElements, StructPatternEtCetera, StructPatternField, StructPatternFields,
     },
-    Error, Parse, Parser, Result, Span,
+    Parse, Parser, Result,
 };
 
 impl<'a> Parse<'a> for StructPatternElements<'a> {
@@ -39,10 +39,6 @@ impl<'a> Parse<'a> for StructPatternElements<'a> {
             if let Ok(name) = parser.step_parse() {
                 remaining.push((comma, StructPatternField { attributes, name }));
                 continue;
-            }
-
-            if attributes.len() > 0 {
-                return Err(Error::new_at("unexpected token", Span::call_site()));
             }
 
             break Some(comma);

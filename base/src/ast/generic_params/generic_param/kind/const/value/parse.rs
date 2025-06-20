@@ -10,11 +10,6 @@ impl<'a> Parse<'a> for ConstParamValue<'a> {
             return Ok(ConstParamValue::Identifier(identifier));
         }
 
-        Ok(ConstParamValue::Literal(
-            parser.parse()?,
-            parser
-                .parse()
-                .map_err(|error| error.append_at("expected a constant value", parser.span()))?,
-        ))
+        Ok(ConstParamValue::Literal(parser.parse()?, parser.parse()?))
     }
 }

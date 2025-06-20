@@ -1,6 +1,4 @@
-use crate::{
-    ast::patterns::TupleStructPattern, tokens::Group, Delimiter, Error, Parse, Parser, Result,
-};
+use crate::{ast::patterns::TupleStructPattern, tokens::Group, Delimiter, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for TupleStructPattern<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -8,16 +6,13 @@ impl<'a> Parse<'a> for TupleStructPattern<'a> {
 
         let group: &'a Group = parser.parse()?;
         if group.delimiter != Delimiter::Parenthesis {
-            return Err(Error::new_at(
-                "a tuple struct pattern body must be surrounded by parentheses",
-                group.span,
-            ));
+            return Err(group.span.start().error("expected `(`"));
         }
 
         let mut parser = group.parser();
         let items = parser.parse()?;
         if !parser.empty() {
-            return Err(Error::new_at("unexpected token", parser.span()));
+            return Err(parser.error("unexpected token"));
         }
 
         Ok(TupleStructPattern { path, items })

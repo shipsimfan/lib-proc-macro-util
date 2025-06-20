@@ -1,4 +1,4 @@
-use crate::{ast::items::EnumItemKind, tokens::Group, Delimiter, Error, Parse, Parser, Result};
+use crate::{ast::items::EnumItemKind, tokens::Group, Delimiter, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for EnumItemKind<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -15,10 +15,10 @@ impl<'a> Parse<'a> for EnumItemKind<'a> {
             } else {
                 Some(parser.parse()?)
             }),
-            _ => return Err(Error::new_at("unexpected token", group.span)),
+            _ => return Err(group.span.start().error("exepcted `{` or `(`")),
         };
         if !parser.empty() {
-            return Err(Error::new_at("unexpected token", parser.span()));
+            return Err(parser.error("unexpected token"));
         }
         Ok(ret)
     }

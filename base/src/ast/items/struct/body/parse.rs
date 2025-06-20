@@ -1,4 +1,4 @@
-use crate::{ast::items::StructBody, tokens::Group, Delimiter, Error, Parse, Parser, Result};
+use crate::{ast::items::StructBody, tokens::Group, Delimiter, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for StructBody<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -29,7 +29,7 @@ impl<'a> Parse<'a> for StructBody<'a> {
                         fields,
                     });
                 }
-                _ => return Err(Error::new_at("expected the structure body", group.span)),
+                _ => return Err(group.span.start().error("expected a `(` or `{`")),
             }
         }
 
@@ -41,7 +41,7 @@ impl<'a> Parse<'a> for StructBody<'a> {
 
         let group = parser.parse::<&'a Group>()?;
         if group.delimiter != Delimiter::Brace {
-            return Err(Error::new_at("expected the structure body", group.span));
+            return Err(group.span.start().error("expected a `{`"));
         }
 
         let mut group_parser = group.parser();

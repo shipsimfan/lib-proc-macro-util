@@ -8,7 +8,7 @@ use crate::{
         PatternWithoutRange,
     },
     tokens::Group,
-    Delimiter, Error, Parse, Parser, Result, Token,
+    Delimiter, Parse, Parser, Result, Token,
 };
 
 impl<'a> Parse<'a> for PatternWithoutRange<'a> {
@@ -52,11 +52,11 @@ impl<'a> Parse<'a> for PatternWithoutRange<'a> {
                     }
                 }
             } else {
-                return Err(Error::new_at("unexpected token", group.span));
+                return Err(group.span.start().error("expected `[` or `(`"));
             };
 
             if !parser.empty() {
-                return Err(Error::new_at("unexpected token", group.span));
+                return Err(parser.error("unexpected token"));
             }
 
             return Ok(pattern);
@@ -79,7 +79,7 @@ impl<'a> Parse<'a> for PatternWithoutRange<'a> {
                 let group: &'a Group = parser.parse()?;
                 match group.delimiter {
                     Delimiter::Brace | Delimiter::Bracket => Ok(group),
-                    _ => Err(Error::new_at("unexpected token", group.span)),
+                    _ => Err(group.span.start().error("expected `{` or `[`")),
                 }
             }) {
                 let mut parser = group.parser();
@@ -94,11 +94,11 @@ impl<'a> Parse<'a> for PatternWithoutRange<'a> {
                             items: parser.parse()?,
                         })
                     }
-                    _ => return Err(Error::new_at("unexpected token", group.span)),
+                    _ => return Err(group.span.start().error("expected `(` or `{`")),
                 };
 
                 if !parser.empty() {
-                    return Err(Error::new_at("unexpected token", parser.span()));
+                    return Err(parser.error("unexpected token"));
                 }
 
                 return Ok(pattern);
@@ -123,9 +123,6 @@ impl<'a> Parse<'a> for PatternWithoutRange<'a> {
             return Ok(PatternWithoutRange::Identifier(identifier));
         }
 
-        Err(Error::new_at(
-            "expected a pattern without range",
-            parser.span(),
-        ))
+        Err(parser.error("expected a pattern without range"))
     }
 }

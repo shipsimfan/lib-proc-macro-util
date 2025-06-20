@@ -1,4 +1,4 @@
-use crate::{ast::PatternNoTopAlt, Error, Parse, Parser, Result};
+use crate::{ast::PatternNoTopAlt, Parse, Parser, Result};
 
 impl<'a> Parse<'a> for PatternNoTopAlt<'a> {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
@@ -10,6 +10,6 @@ impl<'a> Parse<'a> for PatternNoTopAlt<'a> {
             return Ok(PatternNoTopAlt::WithoutRange(pattern));
         }
 
-        Err(Error::new_at("expected a pattern", parser.span()))
+        Err(parser.error("expected a pattern"))
     }
 }
