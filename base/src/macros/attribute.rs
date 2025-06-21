@@ -22,7 +22,7 @@ macro_rules! proc_macro_attribute {
                 Ok(attr) => attr,
                 Err(error) => {
                     error.emit();
-                    return ::proc_macro::TokenStream::new()
+                    return ::proc_macro::TokenStream::new();
                 }
             };
 
@@ -31,7 +31,7 @@ macro_rules! proc_macro_attribute {
                 Ok(item) => item,
                 Err(error) => {
                     error.emit();
-                    return ::proc_macro::TokenStream::new()
+                    return ::proc_macro::TokenStream::new();
                 }
             };
 
