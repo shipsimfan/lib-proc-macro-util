@@ -1,4 +1,7 @@
-use crate::ast::{statements::ExpressionStatement, MacroInvocationSemi};
+use crate::ast::{
+    statements::{ExpressionStatement, LetStatement},
+    Item, MacroInvocationSemi,
+};
 
 mod parse;
 mod to_static;
@@ -8,11 +11,12 @@ mod to_tokens;
 /// function.
 #[derive(Debug, Clone)]
 pub enum Statement<'a> {
-    /*/// A definition of an item
+    /// A definition of an item
     Item(Item<'a>),
 
     /// A statement introducing new variables
-    Let(LetStatement<'a>),*/
+    Let(LetStatement<'a>),
+
     /// An expression whose results are ignored
     Expression(ExpressionStatement<'a>),
 
