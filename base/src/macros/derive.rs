@@ -21,7 +21,7 @@ macro_rules! proc_macro_derive {
                 Ok(derive_item) => derive_item,
                 Err(error) => {
                     error.emit();
-                    ::proc_macro::TokenStream::new()
+                    return ::proc_macro::TokenStream::new();
                 }
             };
 
