@@ -18,7 +18,7 @@ macro_rules! proc_macro_attribute {
         $(#[$meta])*
         pub fn $name(attr_stream: ::proc_macro::TokenStream, item_stream: ::proc_macro::TokenStream) -> ::proc_macro::TokenStream {
             let attr_buffer = $crate::collect_token_stream(attr_stream);
-            let attr = match $crate::parse(&attr_buffer, true) {
+            let attr = match $crate::parse(&attr_buffer, true, $crate::Span::call_site().end()) {
                 Ok(attr) => attr,
                 Err(error) => {
                     error.emit();
@@ -27,7 +27,7 @@ macro_rules! proc_macro_attribute {
             };
 
             let item_buffer = $crate::collect_token_stream(item_stream);
-            let item = match $crate::parse(&item_buffer, true) {
+            let item = match $crate::parse(&item_buffer, true, $crate::Span::call_site().end()) {
                 Ok(item) => item,
                 Err(error) => {
                     error.emit();
