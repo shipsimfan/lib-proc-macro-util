@@ -2,9 +2,10 @@
 ///
 /// `path` must have the following signature:
 /// ```rust
-/// fn example(attr: A, item: proc_macro_util::Item) -> proc_macro_util::Result<T>
+/// fn example(item: Item, attr: Attr) -> proc_macro_util::Result<T>
 /// where
-///    A: proc_macro_util::Parse,
+///    Item: proc_macro_util::Parse,
+///    Attr: proc_macro_util::Parse,
 ///    T: proc_macro_util::ToTokens;
 /// ```
 #[macro_export]

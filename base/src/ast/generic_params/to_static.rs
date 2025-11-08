@@ -8,7 +8,7 @@ impl<'a> GenericParams<'a> {
             params: self
                 .params
                 .into_iter()
-                .map(|(param, separator)| ((param.into_static(), separator)))
+                .map(|(param, separator)| (param.into_static(), separator))
                 .collect(),
             last_param: self.last_param.into_static(),
             last_comma: self.last_comma,
